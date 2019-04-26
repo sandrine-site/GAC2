@@ -1,3 +1,14 @@
+<h1> Projet GAC</h1>
+
+<p>Ce projet est réaliser comme projet de fin de formation Open Classroom DWJ
+Il à pour but de réaliser un site pour un club de gym 
+ce site possede une bases de données adherent qu'il faut gérer</p>
+Ce projet est réalisé sur la base de Laravel
+
+
+
+
+
 <p align="center"><img src="https://laravel.com/assets/img/components/logo-laravel.svg"></p>
 
 <p align="center">
