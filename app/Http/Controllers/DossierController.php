@@ -5,8 +5,9 @@ namespace App\Http\Controllers;
 use App\Adherent;
 use App\Dossier;
 use App\Fonction;
-use App\Http\Requests\DossierUpdateRequest;
+use App\Http\Requests\DossierRequest;
 use Illuminate\Http\Request;
+use App\Repositories\DossierRepository;
 
 class DossierController extends Controller
 {
@@ -17,8 +18,8 @@ class DossierController extends Controller
      */
     public function index ()
     {
-        $adherents = Adherent::orderBy('nom')->orderBy('prenom')->simplePaginate (15);
-//        dd($adherents[19]->dossier);
+        $adherents = Adherent::orderBy('nom')->orderBy('prenom')->get();
+
 //        $dossiers=Dossier::orderBy('adherent_id->$nom')->simplePaginate (15);
 //        $links = $dossiers->links ();
 //        $dossiers = Dossier::all ();
@@ -46,7 +47,8 @@ class DossierController extends Controller
      */
     public function store (Request $request)
     {
-
+Dossier::create ($request->all());
+return back()->withOk('le dossier a bien été modifié');
     }
 
     /**
@@ -84,12 +86,17 @@ class DossierController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function update (DossierUpdateRequest $request, $id)
+    public function update ($id)
     {
-        dd($request);
-        Dossier::update ($id, $request->all ());
-        $adherents=Adherent::all ();
-       return view ('dossier.index', compact ( 'adherents'));
+        $input=['certifMedical'=>$_POST['certifMedical'],
+            'photo'=>$_POST['photo'],
+            'autorisationsRendues'=>$_POST['autorisationsRendues'],
+            'payementOk'=>$_POST['payementOk'],
+            'adherent_id'=>Dossier::find($id)->adherent_id,
+            'recuDemande'=>$_POST['recuDemande'],
+        ];
+        Dossier::find($id)->update ($input);
+       return back ();
     }
 
     /**

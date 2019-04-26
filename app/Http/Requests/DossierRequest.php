@@ -8,7 +8,7 @@ use Illuminate\Validation\Rule;
 use Illuminate\Validation\ValidationData;
 use Illuminate\Validation\Validator;
 
-class DossierUpdateRequest extends FormRequest
+class DossierRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.

@@ -618,15 +618,30 @@ a.page-link{
 a.page-link:hover,a.page-link:active{
     color:#6a387c;
 }
-.card-body > table:nth-child(2) > thead:nth-child(1) > tr:nth-child(1) > th:nth-child(3),.card-body > table:nth-child(2) > thead:nth-child(1) > tr:nth-child(1) > th:nth-child(4),.card-body > table:nth-child(2) > thead:nth-child(1) > tr:nth-child(1) > th:nth-child(5), .card-body > table:nth-child(2) > thead:nth-child(1) > tr:nth-child(1) > th:nth-child(6),
-.card-body > table:nth-child(2) > thead:nth-child(1) > tr:nth-child(1) > th:nth-child(7){
-writing-mode: vertical-rl;
+#dossier > table:nth-child(1) > thead:nth-child(1) > tr:nth-child(1) > th:nth-child(3),#dossier > table:nth-child(1) > thead:nth-child(1) > tr:nth-child(1) > th:nth-child(7),#dossier > table:nth-child(1) > thead:nth-child(1) > tr:nth-child(1) > th:nth-child(6), #dossier > table:nth-child(1) > thead:nth-child(1) > tr:nth-child(1) > th:nth-child(4),
+#dossier > table:nth-child(1) > thead:nth-child(1) > tr:nth-child(1) > th:nth-child(5){
+width: 8%;
+    writing-mode: vertical-rl;
 text-orientation: mixed;
 }
  div.card div.card-body table{
+
     width: 100%;
 }
   div.card div.card-body table tr:nth-child(even){
   background-color:white;
 }
-
+i.fas.fa-frown{
+color: #ed1358;
+    font-size: xx-large;
+}
+i.fas.fa-smile{
+color: #6b8e23;
+    font-size: xx-large;
+}
+ div#dossier input.btn.btn-warning{
+     padding: 0 0.8rem;
+ }
+#dossier.card-body table tbody tr td:nth-child(11){
+    text-align: center;
+}
