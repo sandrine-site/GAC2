@@ -139,15 +139,6 @@ class AdherentController extends Controller
         $inputAutoSortie['typeAuto_id']='4';
         Autorisation::create($inputAutoSortie);
 
-        $inputDossier['adherent_id']=$adherent->id;
-        $inputDossier['certifMedical']=0;
-        $inputDossier['photo']=0;
-        $inputDossier['autorisationsRendues']=0;
-        $inputDossier['payementOk']=0;
-        $inputDossier['aidesSociales']=0;
-        $inputDossier['recuDemande']=0;
-        Dossier::create($inputDossier);
-
 //        Dossier::create('inputDossier');
         return redirect ('adherent.confirm');
     }
