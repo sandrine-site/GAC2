@@ -31,7 +31,7 @@
                                         <form action='./dossier/{{$adherent->dossier->id}}' method="post">
                             {!!csrf_field ()  !!}
                                             {{method_field ("put")}}
-{{--                            <input type="hidden" name="_method" value="put">--}}
+                            <input type="hidden" name="_method" value="put">
                                         <td>{{$adherent->nom}} </td>
                                         <td>{{$adherent->prenom}}</td>
                                         @if($adherent->dossier->certifMedical===1)
@@ -168,10 +168,9 @@
                     </div>
                 </div>
             </div>
+              {!! $adherents->links()  !!}
         </div>
     </div>
 
-
-{{--    {!! $adherents->links()  !!}--}}
 @endsection
 

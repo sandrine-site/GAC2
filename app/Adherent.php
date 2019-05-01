@@ -6,7 +6,6 @@ use Illuminate\Database\Eloquent\Model;
 
 class Adherent extends Model
 {
-
     protected $table = 'adherents';
     public $timestamps = false;
     protected $fillable = array('nom', 'prenom', 'lieuNaissance', 'dateNaissance', 'sexe', 'adresse', 'ville', 'cp', 'email1', 'nomUrgence', 'heureSemaine','groupe_id','section_id');

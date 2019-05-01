@@ -5,18 +5,13 @@ namespace App\Http\Controllers;
 use App\Adherent;
 use App\Autorisation;
 use App\Autorisations;
-use App\Creneau;
-use App\Dossier;
 use App\Groupe;
 use App\Http\Requests\AdherentCreateRequest;
 use App\Http\Requests\AdherentUpdateGroupeRequest;
-use App\Http\Requests\GroupeUpdateRequest;
-use App\Payement;
 use App\Remarque;
 use App\Section;
 use App\Section_adherent;
 use App\Telephone;
-use Dotenv\Validator;
 use Illuminate\Http\Request;
 
 class AdherentController extends Controller
@@ -46,17 +41,16 @@ class AdherentController extends Controller
 
     }
 
-    public function indexRepartition()
-    {
-        $adherents=Adherent::All();
-        $telephones=Telephone::All();
-        $sections=Section_adherent::All();
-        $groupe=Groupe::all ();
-
-//        $adherents=$adherents->groupBy('section');
-        return view('adherent.indexRepartition',compact('adherents','telephones','sections'));
-
-    }
+//    public function indexRepartition()
+//    {
+//        $adherents=Adherent::All();
+//        $telephones=Telephone::All();
+//        $sections=Section_adherent::All();
+//
+////        $adherents=$adherents->groupBy('section');
+//        return view('adherent.indexRepartition',compact('adherents','telephones','sections'));
+//
+//    }
     /**
      * Show the form for creating a new resource.
      *
@@ -86,7 +80,6 @@ class AdherentController extends Controller
         date_date_set ($request['dateNaissance'],$request['date_naissance_A'],$request['date_naissance_M'],$request['date_naissance_J']);
         Adherent::create ($request->all());
         $adherent = Adherent::orderBy('id','desc')->first();
-
         $inputTeleUrgen['adherent_id']=$adherent->id;
         $inputTeleUrgen['numero']=$request['telUrgence'];
         $inputTeleUrgen['typeTel_id']='4';
@@ -138,8 +131,6 @@ class AdherentController extends Controller
         $inputAutoSortie['adherent_id']=$adherent->id;
         $inputAutoSortie['typeAuto_id']='4';
         Autorisation::create($inputAutoSortie);
-
-//        Dossier::create('inputDossier');
         return redirect ('adherent.confirm');
     }
 
@@ -152,20 +143,24 @@ class AdherentController extends Controller
     public function edit($id)
     {
        $adherent=Adherent::find($id);
-       $telephone=Telephone::All()->where('adherent_id',$id);
-       $remarque=Remarque::All()->where('adherent_id',$id);
-       $autorisation=Autorisations::All()->where('adherent_id',$id);
-       $payement=Payement::all ()->where('adherent_id',$id);
+
+//       $telephone=Telephone::All()->where('adherent_id',$id);
+//       $remarque=Remarque::All()->where('adherent_id',$id);
+//       $autorisation=Autorisations::All()->where('adherent_id',$id);
+//       $payement=Payement::all ()->where('adherent_id',$id);
        //manque groupe et section
+//        mettre les test suivant laravel mode dans la vue
         return view('adherent.edit',compact('adherent','telephone','remarque','autorisation','payement'));
     }
 
-    public function updateGroupe(AdherentUpdateGroupeRequest $request,$id)
-    {
-        Adherent::update ($id,$request->all ());
-        return redirect ('groupe')->withOk ("Le gymnaste a bien été ajouté");
-
-    }
+//    public function updateGroupe(AdherentUpdateGroupeRequest $request,$id)
+//    {
+//        Adherent::update ($id,$request->all ());
+//
+////        $request->session()->flash('status', 'Task was successful!');
+//        return redirect ('groupe')->withOk ("Le gymnaste a bien été ajouté");
+//
+//    }
     /**
      * Update the specified resource in storage.
      *

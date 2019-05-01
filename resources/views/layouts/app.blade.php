@@ -15,69 +15,78 @@
     <!-- Fonts -->
     <link href="https://fonts.googleapis.com/css?family=Shadows+Into+Light" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Lato" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Kalam" rel="stylesheet">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css"
           integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
 
     <!-- Styles -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+
     <!---JS----->
 
 </head>
 
 <body>
-    <nav class="navbar navbar-expand-md navbar-light navbar-laravel navbar-fixed-top">
-        <div class="container col-sm-12">
-            <a class="navbar-brand" href="#">
-                <img src="http://localhost/GAC3/resources/images/logo.png">
-            </a>
-            <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                @guest
-                    <a class="nav-link dropdown-toggle text-black-50" href="#" id="navbarDropdownMenuLink"
-                               data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Menu</a>
-                            <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownMenuLink">
-                                <a class="dropdown-item" href="http://localhost/GAC2/public/">Accueil</a>
-                                <a class="dropdown-item" href="#">BabyGym</a>
-                                <a class="dropdown-item" href="#">Gymnastique Artistique</a>
-                                <a class="dropdown-item" href="#">Gym'Adultes</a>
-                                <a class="dropdown-item" href="#">Pilates</a>
-                                <a class="dropdown-item" href="#">Zumba</a>
-                                <a class="dropdown-item" href="{{ route('adherent.create') }}">Inscription</a>
-                                <a class="dropdown-item" href="{{ route('login') }}">Connexion</a>
+<nav class="navbar navbar-expand-md navbar-light navbar-laravel navbar-fixed-top">
+    <div class="container col-sm-12">
+        <a class="navbar-brand" href="#">
+            <img src="http://localhost/GAC3/resources/images/logo.png">
+        </a>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            @guest
+                <a class="nav-link dropdown-toggle text-black-50" href="#" id="navbarDropdownMenuLink"
+                   data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Menu</a>
+                <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownMenuLink">
+                    <a class="dropdown-item" href="http://localhost/GAC2/public/">Accueil</a>
+                    <a class="dropdown-item" href="#">BabyGym</a>
+                    <a class="dropdown-item" href="#">Gymnastique Artistique</a>
+                    <a class="dropdown-item" href="#">Gym'Adultes</a>
+                    <a class="dropdown-item" href="#">Pilates</a>
+                    <a class="dropdown-item" href="#">Zumba</a>
+                    <a class="dropdown-item" href="{{ route('adherent.create') }}">Inscription</a>
+                    <a class="dropdown-item" href="{{ route('login') }}">Connexion</a>
 
-                                @endguest
+                    @endguest
 
-                                @auth
-                                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">{{ Auth::user()->name }}</a>
-                                    <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownMenuLink">
-                                        <a class="dropdown-item" href="http://localhost/GAC2/public/">Accueil</a>
-                                        <a class="dropdown-item" href="http://localhost/GAC2/public/home/">Accueil administration</a>
-                                        <a class="dropdown-item" href="#">BabyGym</a>
-                                        <a class="dropdown-item" href="#">Gymnastique Artistique</a>
-                                        <a class="dropdown-item" href="#">Gym'Adultes</a>
-                                        <a class="dropdown-item" href="#">Pilates</a>
-                                        <a class="dropdown-item" href="#">Zumba</a>
-                                        <a class="dropdown-item" href="{{ route('adherent.create') }}">Inscription</a>
-                                        <a class="dropdown-item" href="{{ url('/logout') }}"
-                                           onclick="event.preventDefault();
+                    @auth
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown"
+                           aria-haspopup="true" aria-expanded="false">{{ Auth::user()->name }}</a>
+                        <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownMenuLink">
+                            <a class="dropdown-item" href="http://localhost/GAC2/public/">Accueil</a>
+                            <a class="dropdown-item" href="http://localhost/GAC2/public/home/">Accueil
+                                administration</a>
+                            <a class="dropdown-item" href="#">BabyGym</a>
+                            <a class="dropdown-item" href="#">Gymnastique Artistique</a>
+                            <a class="dropdown-item" href="#">Gym'Adultes</a>
+                            <a class="dropdown-item" href="#">Pilates</a>
+                            <a class="dropdown-item" href="#">Zumba</a>
+                            <a class="dropdown-item" href="{{ route('adherent.create') }}">Inscription</a>
+                            <a class="dropdown-item" href="{{ url('/logout') }}"
+                               onclick="event.preventDefault();
              document.getElementById('logout-form').submit();">
-                                            Logout
-                                        </a>
+                                Logout
+                            </a>
 
-                                        <form id="logout-form" action="{{ url('/logout') }}" method="POST" style="display: none;">
-                                            {{ csrf_field() }}
-                                        </form>
-                                    </div>
-                                    </div>
-                                        @endauth
-                                    </div>
-                            </div>
+                            <form id="logout-form" action="{{ url('/logout') }}" method="POST" style="display: none;">
+                                {{ csrf_field() }}
+                            </form>
+                        </div>
+                </div>
+            @endauth
+        </div>
+    </div>
 
-    </nav>
+</nav>
 
-    <main class="py-4">
-        <script src="../../../resources/js/app.js"></script>
-        @yield('content')
-    </main>
+<main class="py-4">
+    <script src="../../../resources/js/app.js"></script>
+
+    @yield('content')
+</main>
 </div>
 </body>
 </html>

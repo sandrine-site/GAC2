@@ -4,10 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Adherent;
 use App\Dossier;
-use App\Fonction;
-use App\Http\Requests\DossierRequest;
 use Illuminate\Http\Request;
-use App\Repositories\DossierRepository;
 
 class DossierController extends Controller
 {
@@ -16,16 +13,11 @@ class DossierController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index ()
+    public function index()
     {
-        $adherents = Adherent::orderBy('nom')->orderBy('prenom')->get();
+        $adherents = Adherent::orderBy('nom')->orderBy('prenom')->Paginate(15);
 
-//        $dossiers=Dossier::orderBy('adherent_id->$nom')->simplePaginate (15);
-//        $links = $dossiers->links ();
-//        $dossiers = Dossier::all ();
-
-        return view ('dossier.index', compact ( 'adherents'));
-
+        return view('dossier.index', compact('adherents'));
     }
 
     /**
@@ -33,7 +25,7 @@ class DossierController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create ()
+    public function create()
     {
         //
     }
@@ -45,10 +37,10 @@ class DossierController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function store (Request $request)
+    public function store(Request $request)
     {
-Dossier::create ($request->all());
-return back()->withOk('le dossier a bien été modifié');
+        Dossier::create($request->all());
+        return back()->withOk('le dossier a bien été modifié');
     }
 
     /**
@@ -58,7 +50,7 @@ return back()->withOk('le dossier a bien été modifié');
      *
      * @return \Illuminate\Http\Response
      */
-    public function show ($id)
+    public function show($id)
     {
 
     }
@@ -70,11 +62,11 @@ return back()->withOk('le dossier a bien été modifié');
      *
      * @return \Illuminate\Http\Response
      */
-    public function edit ($id)
+    public function edit($id)
     {
-        $dossier = Dossier::find ($id);
-        $adherent = Adherent:: find ($dossier->adherent_id);
-        return view ('dossier.edit', compact ('adherent', 'dossier'));
+        $dossier = Dossier::find($id);
+        $adherent = Adherent:: find($dossier->adherent_id);
+        return view('dossier.edit', compact('adherent', 'dossier'));
 
     }
 
@@ -82,21 +74,21 @@ return back()->withOk('le dossier a bien été modifié');
      * Update the specified resource in storage.
      *
      * @param \Illuminate\Http\Request $request
-     * @param int                      $id
+     * @param int $id
      *
      * @return \Illuminate\Http\Response
      */
-    public function update ($id)
+    public function update($id)
     {
-        $input=['certifMedical'=>$_POST['certifMedical'],
-            'photo'=>$_POST['photo'],
-            'autorisationsRendues'=>$_POST['autorisationsRendues'],
-            'payementOk'=>$_POST['payementOk'],
-            'adherent_id'=>Dossier::find($id)->adherent_id,
-            'recuDemande'=>$_POST['recuDemande'],
+        $input = ['certifMedical' => $_POST['certifMedical'],
+            'photo' => $_POST['photo'],
+            'autorisationsRendues' => $_POST['autorisationsRendues'],
+            'payementOk' => $_POST['payementOk'],
+            'adherent_id' => Dossier::find($id)->adherent_id,
+            'recuDemande' => $_POST['recuDemande'],
         ];
-        Dossier::find($id)->update ($input);
-       return back ();
+        Dossier::find($id)->update($input);
+        return back();
     }
 
     /**
@@ -106,7 +98,7 @@ return back()->withOk('le dossier a bien été modifié');
      *
      * @return \Illuminate\Http\Response
      */
-    public function destroy ($id)
+    public function destroy($id)
     {
         //
     }

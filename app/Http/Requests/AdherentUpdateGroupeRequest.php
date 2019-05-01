@@ -20,7 +20,7 @@ class AdherentUpdateGroupeRequest extends FormRequest
     {
         return
             [
-                'groupe_id'=>'required|integer',
+                'groupe_id'=>'required|integer|200',
 
             ];}
     public function groupe()

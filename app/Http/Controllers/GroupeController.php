@@ -3,9 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Adherent;
-use App\Creneau;
 use App\Groupe;
-use App\Http\Requests\GroupeUpdateRequest;
 use App\Section;
 use App\User;
 use Illuminate\Http\Request;
@@ -22,14 +20,11 @@ class GroupeController extends Controller
     public function index ()
     {
         $groupes = Groupe::all ();
-        $adherents = Adherent::orderBy ('dateNaissance', 'desc')
-            ->simplePaginate (15);
-        $links = $adherents->render ();
         $users = User::where ('fonction_id', '4')
             ->orderBy ('prenom')
             ->get ();
         $sections = Section::all ();
-        return view ('groupe.edit', compact ('groupes', 'adherents', 'users', 'links', 'sections'));
+        return view ('groupe.edit', compact ('groupes', 'users', 'sections'));
     }
 
     /**
@@ -39,7 +34,7 @@ class GroupeController extends Controller
      */
     public function create ()
     {
-        //
+
     }
 
     /**
@@ -66,8 +61,10 @@ class GroupeController extends Controller
      */
     public function update()
     {
-
-
+       $input= ["groupe_id"=>$_POST['groupe']];
+        $id=$_POST['adherent'];
+        Adherent::find($id)->update ($input);
+return back();
     }
     /**
      * Display the specified resource.
@@ -91,10 +88,6 @@ class GroupeController extends Controller
     public function edit ($id)
     {
         $groupes = Groupe::all ();
-        $adherentsAll = Adherent::orderBy ('dateNaissance')
-            ->get ();
-        $adherentSections = $adherentsAll->groupBy ('section');
-        $adherents = $adherentSections->groupBy ('groupe')->paginate ($n);
         $users = User::where ('fonction_id', '4')
             ->orderBy ('prenom')
             ->get ();
@@ -116,5 +109,10 @@ class GroupeController extends Controller
     {
         Groupe::find ($id)->delete ();
         return back ();
+    }
+
+    public function updateAdherent()
+    {
+
     }
 }

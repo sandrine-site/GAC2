@@ -18,7 +18,7 @@
                         </tr>
                         </thead>
                         <tbody class="medium violet">
-                        @foreach($groupes as$groupe)
+                        @foreach($groupes as $groupe)
                             <tr>
                                 <th>{{$groupe->nom}}</th>
                                 <th class="small">{{$groupe->categorie}}</th>
@@ -32,8 +32,9 @@
                                     <td></td>
                                 @endif
                                 <td>{{$groupe->section->nom}}</td>
-                                <td>{!! link_to_route('groupe.edit', 'Liste des gymnastes', $groupe->id, ['class' => 'btn btn-warning btn-block']) !!}</td>
-                                <td>    {!! Form::open(['method' => 'DELETE', 'route' => ['groupe.destroy', $groupe->id]]) !!}
+                                <td>{!! link_to_route('groupe.edit', 'Liste des gymnastes', $groupe->id, ['class' => 'btn btn-primary btn-block']) !!}</td>
+                                <td>{!! link_to_route('groupe.edit', 'Modifier', $groupe->id, ['class' => 'btn btn-warning btn-block']) !!}</td>
+                                <td> {!! Form::open(['method' => 'DELETE', 'route' => ['groupe.destroy', $groupe->id]]) !!}
                                     {!! Form::submit('Supprimer', ['class' => 'btn btn-danger btn-block', 'onclick' => 'return confirm(\'Vraiment supprimer ce creneau ?\')']) !!}
                                     {!! Form::close() !!}
                                 </td>
@@ -41,8 +42,10 @@
                         @endforeach
                         <tr>
                             <form method="post" action="{{route('groupe.store')}}">
-                                @csrf
-                                <th><input type="text" name="nom" class="form-control" placeholder='nom' value="nom"/></th>
+                                {!!csrf_field ()  !!}
+
+                                <th><input type="text" name="nom" class="form-control" placeholder='nom' value="nom"/>
+                                </th>
                                 <th><input type="text" name="categorie" class="form-control" placeholder='Catégorie'/>
                                 </th>
                                 <th>
@@ -52,7 +55,9 @@
                                     @endforeach</th>
                                 <th>
                                     <select name="section_id" class="medium">
+                                        <option value="">choisir</option>
                                         @foreach($sections as $section)
+
                                             <option value='{{$section->id}}'>{{$section->nom}}</option>
                                         @endforeach
                                     </select></th>
@@ -70,65 +75,73 @@
             <div class="card">
                 <div class="card-header">Liste des gymnastes</div>
                 <div class="card-body">
-                    <table class="table">
-                        <thead>
-                        <tr>
-                            <th>Nom</th>
-                            <th>Prénom</th>
-                            <th>Section</th>
-                            <th>Date naissance</th>
-                            <th>Groupe</th>
-                        </tr>
-                        </thead>
-                        <tbody class="medium rose">
-                        @foreach($adherents as $adherent)
-                        <form action='/adherent/{{$adherent->id}}/updateGroupe' method="post">
-                            {!!csrf_field ()  !!}
-                            <input type="hidden" name="_method" value="put">
-                                <tr class="violet">
-                                    <td>{{$adherent->nom}}</td>
-                                    <td>{{$adherent->prenom}}</td>
-                                    @isset($adherent->section_id)
-                                        <td>{{$adherent->section->nom}}</td>
-                                    @else
-                                        <td></td>
-                                    @endisset
-                                    <td>{{strftime("%d/%m/%G", strtotime($adherent->dateNaissance))}}</td>
-                                    <td>
-                                        @foreach($groupes as $groupe)
-                                            @if($groupe->id==$adherent->groupe_id)
-                                                <label for="groupe">groupe : {!! $groupe->nom!!}  </label>
-                                            @endif
-                                        @endforeach
-                                            <select name="groupe" id="groupe" cols="10">
-                                                <option value=""></option>
-                                        @foreach($groupes as $groupe)
-
-                                                <option value="{!! $groupe->id!!}"> {!! $groupe->nom!!}</option>
-                                                @endforeach
-                                            </select>
-                                    </td>
-
-                                    <td><input type="submit" value="Enregistrer" class='btn btn-primary btn-block'/>
-
-
-                                    </td>
+                     <table>
+                            <thead>
+                            <tr>
+                                <th>Nom</th>
+                                <th>Prénom</th>
+                                <th>Date naissance</th>
+                                <th >Groupe</th>
                             </tr>
+                            </thead>
+                            <tbody class="medium violet">
 
+                            @foreach($sections as $section)
+                                <th class="b-rose">Section: {{$section->nom}}</th>
+                                @foreach($section->adherents->where('groupe_id','<>',NULL) as $adherent)
+
+                                    <form action='./groupe/updateAdherent' method="post">
+                        {!!csrf_field ()  !!}
+                        {{method_field ("put")}}
+ <tr>
+                                        <td>{{$adherent->nom}} <input type="hidden" name="adherent" value="{{$adherent->id}}"></td>
+                                        <td>{{$adherent->prenom}}</td>
+                                        <td>{{strftime("%d/%m/%G", strtotime($adherent->dateNaissance))}}</td>
+                                        <td class="align-end">
+                                      {{$adherent->groupe->nom}}  <select name="groupe" id="groupe" cols="10">
+                                            <option value="">choisir dans la liste</option>
+                                            @foreach($groupes as $groupe)
+                                                <option value="{!!$groupe->id!!}"> {!! $groupe->nom!!}</option>
+                                            @endforeach
+                                        </select></span>
+                                        </td>
+                                        <td> <input type="submit" value="Enregistrer" class='btn btn-vert2 btn-block'/></td>
+                                    </form>
+                                    @endforeach
+                                 @foreach($section->adherents->where('groupe_id','=',NULL) as $adherent)
+
+                                    <form action='./groupe/updateAdherent' method="post">
+                        {!!csrf_field ()  !!}
+                        {{method_field ("put")}}
+ <tr>
+                                        <td>{{$adherent->nom}} <input type="hidden" name="adherent" value="{{$adherent->id}}"></td>
+                                        <td>{{$adherent->prenom}}</td>
+                                        <td>{{strftime("%d/%m/%G", strtotime($adherent->dateNaissance))}}</td>
+                                        <td class="align-end">
+                                          <select name="groupe" id="groupe" cols="10">
+                                            <option value="">choisir dans la liste</option>
+                                            @foreach($groupes as $groupe)
+                                                <option value="{!!$groupe->id!!}"> {!! $groupe->nom!!}</option>
+                                            @endforeach
+                                        </select></span>
+                                        </td>
+                                        <td> <input type="submit" value="Enregistrer" class='btn btn-vert2 btn-block'/></td>
+                                    </form>
+     @endforeach </tr>
                             @endforeach
-                            </form>
 
 
-                        </tbody>
+                            </tbody>
 
-                    </table>
-                    {!! $links !!}
+                        </table>
+
+
+
                 </div>
             </div>
             <a href="#ListeParGroupe"></a>
         </div>
     </div>
     </div>
-
     {{--@endforeach--}}
 @endsection

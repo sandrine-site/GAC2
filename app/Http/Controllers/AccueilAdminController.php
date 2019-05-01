@@ -15,6 +15,13 @@ use App\Telephone;
 
 class AccueilAdminController extends Controller
 {
+
+    public function index()
+    {
+       $adherents = Adherent::orderBy('section_id')->orderBy('groupe_id')->orderBy('nom')->orderBy('prenom')->paginate(15);
+       return view('adherent.liste',compact('adherents'));
+
+    }
     /**
      * Display a listing of the resource.
      *
