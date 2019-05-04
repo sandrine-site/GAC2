@@ -1,395 +1,389 @@
 @extends('layouts.app')
 @section('content')
+
     <div class="container">
         <div class="row justify-content-center">
             <div class="col-md-12">
+
                 <div class="card">
-                    @foreach($adherent as $adherent)
-                        <span
-                            class="card-header display-6">Fiche de : {{" "}}   {{$adherent->prenom}} {{$adherent->nom}}  </span>
-                        <form action='./adherent/{{$adherent->id}}' method="post">
-                            {!!csrf_field ()  !!}
-                            {{method_field ("put")}}
-                            <div class="card-body">
-                                <div class="row display-5">
-                                    <div class="col-8">
-                                        Adresse :<input type="text" class="form-invisible col-4" name="adresse"
-                                                        placeholder="{{$adherent->adresse}}">
-                                        - <input type="text" class="form-invisible col-2" name="cp"
-                                                 placeholder="{{$adherent->cp}} "> <input type="text"
-                                                                                          class="form-invisible col-3"
-                                                                                          name="ville"
-                                                                                          placeholder="{{$adherent->ville}} ">
+                    <div class="card-header">
+                       <span
+                           class="card-header display-6">Fiche de : {{" "}}   {{$adherent->prenom}} {{$adherent->nom}}  </span>
+                        <ul class="nav  nav-pills  nav-stacked fiche ">
+                            <li class="active bandeRose"><a data-toggle="tab" href="#identite"><i
+                                        class="fas fa-id-card rose"></i><br/>
+                                    Identité</a></li>
+                            <li class="bandeBleu"><a data-toggle="tab" href="#entrainement"><i
+                                        class="fas fa-dumbbell Bleu"></i><br/>
+                                    Entrainement</a></li>
+                            <li class="bandeRouge"><a data-toggle="tab" href="#urgence"><i
+                                        class="fas fa-briefcase-medical Rouge"></i><br/>
+                                    En cas d'urgence</a></li>
+                            <li class="bandeHotpink"><a data-toggle="tab" href="#inscription"><i
+                                        class="fas fa-copy Hotpink"></i><br/>
+                                    Dossier d'inscription</a></li>
+                            <li class="bandeCyan"><a data-toggle="tab" href="#payement"><i
+                                        class="fas fa-money-bill-wave Cyan"></i><br/>
+                                    Payement</a></li>
+                            <li class="bandeJaune"><a data-toggle="tab" href="#autres"><i
+                                        class="fas fa-highlighter Jaune"></i><br/>
+                                    Autres remarques</a></li>
+                        </ul>
+                    </div>
+                    <div class="card-body">
+                        <div class="tab-content">
+
+                            <div id="identite" class="tab-pane fade-in active">
+                                <form action='./adherent/{{$adherent->id}}' method="post">
+                                    {!!csrf_field ()  !!}
+                                    {{method_field ("put")}}
+                                    <input type="hidden" class="type" name="type" value="identite"/>
+                                    <div class="row ">
+                                        <div class="col-10">
+                                            Adresse :<input type="text" class="form-invisible col-4" name="adresse"
+                                                            placeholder="{{$adherent->adresse}}">
+                                            - <input type="text" class="form-invisible col-2" name="cp"
+                                                     placeholder="{{$adherent->cp}} "> <input type="text"
+                                                                                              class="form-invisible col-3"
+                                                                                              name="ville"
+                                                                                              placeholder="{{$adherent->ville}} ">
+                                        </div>
+                                        <div class="col-2">
+                                            <i class="fas fa-id-card onglet rose"></i>
+                                        </div>
                                     </div>
-                                <div class=" col-4">
-                                    <div class="col-12">
-                                        <p>Date de naissance: {{strftime("%d/%m/%G", strtotime( $adherent->dateNaissance))}}</p>
-                                    </div>
-                                        <div class="col-12">
+                                    <div class="row">
+                                        <div class="col-5">
+                                            <p>Date de
+                                                naissance: {{strftime("%d/%m/%G", strtotime( $adherent->dateNaissance))}}</p>
+                                        </div>
+
+                                        <div class="col-4">
                                             à {{$adherent->lieuNaissance}}
                                         </div>
-                                        <div class="col-12">
+                                        <div class="col-3">
                                             {{$adherent->sexe}}
                                         </div>
                                     </div>
-                                </div>
-                                </div>
-                                    <div class="row display-5">
-                                        <div class="col-6">
+                                    <div class="row">
+                                        <?php $resp2 = 0?>
+                                        @foreach($adherent->telephones as $telephone )
+                                            @if($telephone->typeTel_id==1)
+                                                <div class="col-12">
+                                                    Téléphone adhérent: <input type="text"
+                                                                               class="form-invisible"
+                                                                               name="telephone_adherent"
+                                                                               placeholder="{{$telephone->numero}}">
+                                                </div>
+                                            @elseif($telephone->typeTel_id==2)
+                                                <div class="col-6">
+                                                    Téléphone responsable legal 1: <input type="text"
+                                                                                          class="form-invisible "
+                                                                                          name="telephone_Resp1"
+                                                                                          placeholder="{{$telephone->numero}}">
+                                                </div>
 
-                                            @foreach($telephones as $telephone )
-
-                                                @if($telephone->typeTel_id==1)
-                                                    Téléphone adhérent:  <input type="text" class="form-invisible col-2"
-                                                                                name="telephone_adherent"
-                                                                                placeholder="{{$telephone->numero}}">
-
-                                                @elseif($telephone->typeTel_id==2)
-                                                    Téléphone responsable legal 1:  <input type="text"
-                                                                                           class="form-invisible col-2"
-                                                                                           name="telephone_Resp1"
-                                                                                           placeholder="{{$telephone->numero}}">
-
-                                                @elseif($telephone-> typeTel_id==3)
-                                                    Téléphone responsable legal 2:  <input type="text"
-                                                                                           class="form-invisible col-2"
-                                                                                           name="telephone_Resp2"
-                                                                                           placeholder="{{$telephone->numero}}">
-                                                @endif
-                                            @endforeach
-
-                                        </div>
-                                        <div class=" col-6">
-                                            Email: {{$adherent->email1}}
-
-                                            @if(isset($adherent->email2)&&$adherent->email2!='null')
-                                                et  {{$adherent->email2}}
+                                            @elseif($telephone-> typeTel_id==3)
+                                                <?php $resp2 = 1?>
+                                                <div class="col-6">
+                                                    Téléphone responsable legal 2: <input type="text"
+                                                                                          class="form-invisible"
+                                                                                          name="telephone_Resp2"
+                                                                                          placeholder="{{$telephone->numero}}">
+                                                </div>
                                             @endif
+                                        @endforeach
+                                        <div class="input_tel col-6">
+                                            @if($resp2!=1)
+                                                <button class="ajouterTel btn-small btn btn-link">Ajouter numéro de
+                                                    téléphone
+                                                </button>
                                         </div>
+                                        @endif
                                     </div>
-                                </div>
-                            </div>
-                            <br/>
-                            <div class="row haut ">
-                                <div class="col-6">
-                                    <div class="card">
-                                        <div class="card-header">Entrainement:</div>
-                                        <div class="card-body">
-                                            <div class="row">
-                                                <div class="col-12">
-                                                    <h4 class="fonce">Section : {{$adherent->section->nom}}</h4>
-                                                    <h4 class="fonce">Groupe : </h4>
-                                                    <p class="fonce">Creneaux :</p>
-                                                    @foreach ($licence as $licence)
-                                                        <p class="fonce">Licencié le : {{$licence->DateLicence}}</p>
-                                                        <p class="fonce">Numéro de licence
-                                                            : {{$licence->numLicence}}</p>
-                                                    @endforeach
-                                                </div>
-                                                <div class="col-12">
-                                                    @if ($adherent->minibus==1)
-                                                        <p class="flex-nowrap"><i class="fas fa-bus"></i><p
-                                                            class="xx-small"> Doit
-                                                            être
-                                                            transportée en minibus </p> </p>@endif
-                                                    <p>Autorisations :</p>
-                                                    @foreach($autorisations as $autorisation)
-                                                        @if ($autorisation->typeAuto_id===4)
-                                                            @if($autorisation->ok===1)
-                                                                <div class="xx-small flex-nowrap"><i
-                                                                        class="fas fa-child large"></i>
-                                                                    Est
-                                                                    autorisé(e) à partir seul(e) à la fin de
-                                                                    l'entrainement
-                                                                </div>
-                                                            @else
-                                                                <div class="xx-small flex-nowrap "><i
-                                                                        class="fas fa-child large barre"></i> N'est pas
-                                                                    autorisé(e)
-                                                                    à
-                                                                    partir seul(e) à la fin de l'entrainement
-                                                                </div>
-                                                            @endif
-                                                        @elseif ($autorisation->typeAuto_id=='3')
-                                                            @if($autorisation->ok==1)
-                                                                <div class="xx-small flex-nowrap"><i
-                                                                        class="fas fa-video large"></i>
-                                                                    A
-                                                                    l'autorisation media
-                                                                </div>
-                                                            @else
-                                                                <div class="xx-small flex-nowrap"><i
-                                                                        class="fas fa-video large barre"></i> N'a pas
-                                                                    l'autorisation
-                                                                    media
-                                                                </div>
-                                                            @endif
-                                                        @elseif ($autorisation->typeAuto_id=='2')
-                                                            @if($autorisation->ok===1)
-                                                                <div class="xx-small flex-nowrap"><i
-                                                                        class="fas fa-car"></i> Peut
-                                                                    etre
-                                                                    transporté par quelqu'un du club
-                                                                </div>
-                                                            @endif
-                                                        @endif
-                                                    @endforeach
-
-                                                    @foreach($remarques as $remarque)
-                                                        @if (($remarque->typeRq_id=="1"))
-                                                            <p class="fonce">Remarques : {{$remarque->remarque}}
-                                                        @endif
-                                                    @endforeach
-                                                </div>
+                                    <div class="row">
+                                        <div class=" col-6">
+                                            Email: <input type="email" class="form-invisible" name="email1"
+                                                          placeholder="{{$adherent->email1}}">
+                                        </div>
+                                        @if(isset($adherent->email2)&&$adherent->email2!='null')
+                                            <div class="col-6">
+                                                et <input type="email" class="form-invisible" name="email1"
+                                                          placeholder="{{$adherent->email2}}">
                                             </div>
-                                        </div>
+
+                                        @else
+                                            <div class="col-6">
+                                                <div class="input_mail">
+                                                    <button class="ajouterMail btn-small btn btn-link">Ajouter une
+                                                        adresse mail
+                                                    </button>
+                                                </div>
+                                                @endif
+                                            </div>
+                                            <div class="col-12">
+                                                <h5 class="violet"> Les champs en violet peuvent être modifiés.</h5>
+                                                <button type="submit" class="btn btn-primary btn pull-right">Enregistrer
+                                                    les modifications
+                                                </button>
+                                            </div>
                                     </div>
-                                </div>
-                                <br/>
-                                <div class="col-6">
-                                    <div class="card">
-                                        <div class="card-header">En cas d'urgence :</div>
-                                        <div class="card-body">
-                                            <p> Personne à prevenir :{{$adherent->nomUrgence}},<br/>
-                                            @foreach($telephones as $telephone)
-                                                @if ($telephone->typeTel_id==4)
-                                                    <p>Téléphone:{{$telephone->numero}}</p>
-                                                @endif
-                                            @endforeach
-                                            @foreach($autorisations as $autorisation)
-                                                @if ($autorisation->typeAuto_id=='1')
-                                                    @if($autorisation->ok===1)
-                                                        <div class="xx-small "><i class="fas fa-ambulance"></i> Les
-                                                            animateurs
-                                                            sont
-                                                            autorisés à mettre en oeuvre, des traitements,
-                                                            hospitalisations et
-                                                            interventions
-                                                            nécessaires en cas d'urgence.
-                                                        </div>
-                                                    @else
-                                                        <div class="xx-small flex-nowrap"><i
-                                                                class="fas fa-ambulance large barre"></i> Les
-                                                            animateurs NE SONT PAS autorisés à mettre en oeuvre, des
-                                                            traitements,
-                                                            hospitalisations et interventions nécessaires en cas
-                                                            d'urgence.
-                                                        </div>
-                                                    @endif
-                                                @endif
-                                            @endforeach
-                                            @foreach($remarques as $remarque)
-                                                @if (($remarque->typeRq_id=="2"))
-                                                    <p class="fonce">Remarques : {{$remarque->remarque}}
-                                                @endif
-                                            @endforeach
-                                        </div>
-                                    </div>
-                                </div>
-                                <br/>
+                                </form>
                             </div>
-                            <br/>
-                            <div class="row haut ">
-                                <div class="col-md-6">
-                                    <div class="card">
-                                        <div class="card-header">Dossier d'inscription :</div>
-                                        <div class="card-body xx-small">
-                                            <table>
-                                                <thead>
-                                                @foreach($dossier as $dossier)
-                                                    {!! Form::model($dossier, ['route'=>['dossier.update', $dossier->id],'method'=>'get']) !!}
-                                                    <tr>
-                                                        <th class="small">Certif médical</th>
-                                                        <th class="small">Photo</th>
-                                                        <th class="small">Autorisations</th>
-                                                        <th class="small">Payement</th>
-                                                        <th class="small">Attestation</th>
-                                                        <th class="small"></th>
-                                                    </tr>
-                                                </thead>
-                                                <tbody>
 
-                                                <tr>
-                                                    @if($dossier->certifMedical===1)
-                                                        <td><input checked type="radio" name="certifMedical"
-                                                                   id="certifMedicalT"
-                                                                   value="1">
-                                                            <label class="xx-small"
-                                                                   for="certifMedicalT"> ok </label><br/>
-                                                            <input type="radio" name="certifMedical" id="certifMedicalF"
-                                                                   value="0">
-                                                            <label
-                                                                class="xx-small" for="certifMedicalF">pas
-                                                                ok</label><br/></td>
-                                                    @else
-                                                        <td><input type="radio" name="certifMedical" id="certifMedicalT"
-                                                                   value="1">
-                                                            <label
-                                                                class="xx-small" for="certifMedicalT"> ok </label><br/>
-                                                            <input checked type="radio" name="certifMedical"
-                                                                   id="certifMedicalF"
-                                                                   value="0">
-                                                            <label class="xx-small"
-                                                                   for="certifMedicalF">pas ok</label><br/></td>
-                                                    @endif
-                                                    @if($dossier->photo===1)
-                                                        <td><input checked type="radio" name="photo" id="photoT"
-                                                                   value="1"> <label
-                                                                class="xx-small" for="photoT"> ok </label><br/>
-                                                            <input type="radio" name="photo" id="photoF" value="0">
-                                                            <label
-                                                                class="xx-small" for="photoF">pas ok</label><br/></td>
-                                                    @else
-                                                        <td><input type="radio" name="photo" id="photoT" value="1">
-                                                            <label
-                                                                class="xx-small" for="photoT"> ok </label><br/>
-                                                            <input checked type="radio" name="photo" id="photoF"
-                                                                   value="0"> <label
-                                                                class="xx-small" for="photoF">pas ok</label><br/></td>
-                                                    @endif
-                                                    @if($dossier->autorisationsRendues===1)
-                                                        <td><input checked type="radio" name="autorisationsRendues"
-                                                                   id="autorisationsRenduesT" value="1"> <label
-                                                                class="xx-small" for="autorisationsRenduesT">
-                                                                ok </label><br/>
-                                                            <input type="radio" name="autorisationsRendues"
-                                                                   id="autorisationsRenduesF" value="0"> <label
-                                                                class="xx-small" for="autorisationsRenduesF">pas
-                                                                ok</label><br/>
-                                                        </td>
-                                                    @else
-                                                        <td><input type="radio" name="autorisationsRendues"
-                                                                   id="autorisationsRenduesT" value="1"> <label
-                                                                class="xx-small" for="autorisationsRenduesT">
-                                                                ok </label><br/>
-                                                            <input checked type="radio" name="autorisationsRendues"
-                                                                   id="autorisationsRenduesF" value="0"> <label
-                                                                class="xx-small" for="autorisationsRenduesF">pas
-                                                                ok</label><br/>
-                                                        </td>
-                                                    @endif
-                                                    @if($dossier->payementOk===1)
-                                                        <td><input checked type="radio" name="payementOk"
-                                                                   id="payementOkT"
-                                                                   value="1">
-                                                            <label class="xx-small"
-                                                                   for="payementOkT"> ok </label><br/>
-                                                            <input type="radio" name="payementOk" id="payementOkF"
-                                                                   value="0">
-                                                            <label
-                                                                class="xx-small" for="payementOkF">pas ok</label><br/>
-                                                        </td>
-                                                    @else
-                                                        <td><input type="radio" name="payementOk" id="payementOkT"
-                                                                   value="1">
-                                                            <label class="xx-small"
-                                                                   for="payementOkT"> ok </label><br/>
-                                                            <input checked type="radio" name="payementOk"
-                                                                   id="payementOkF"
-                                                                   value="0">
-                                                            <label
-                                                                class="xx-small" for="payementOkF">pas ok</label><br/>
-                                                        </td>
-                                                    @endif
-                                                    @if($dossier->recuDemande===1)
-                                                        <td><input checked type="radio" name="recuDemandeOk"
-                                                                   id="recuDemandeT"
-                                                                   value="1">
-                                                            <label
-                                                                class="xx-small" for="recuDemandeT">A
-                                                                fournir</label><br/>
-                                                            <input hidden type="radio" name="payementOk"
-                                                                   id="payementOkF" value="0">
-                                                            <label
-                                                                class="xx-small" for="payementOkF"></label><br/></td>
-                                                    @else
-                                                        <td><input type="radio" name="recuDemandeOk" id="recuDemandeT"
-                                                                   value="1">
-                                                            <label
-                                                                class="xx-small" for="recuDemandeT">A
-                                                                fournir</label><br/>
-                                                            <input hidden checked type="radio" name="payementOk"
-                                                                   id="payementOkF"
-                                                                   value="0">
-                                                            <label
-                                                                class="xx-small" for="payementOkF"></label><br/></td>
-                                                    @endif
+                        <div id="entrainement" class="tab-pane fade-in">
+                            <form action='./adherent/{{$adherent->id}}' method="post">
+                                {!!csrf_field ()  !!}
+                                {{method_field ("put")}}
+                                <input type="hidden" class="type" name="type" value="entrainement"/>
+                                <div class="row">
+                                    <div class="col-10">
+                                        <h4 class="fonce">Section : <input type="text" class="form-invisible"
+                                                                           name="groupe"
+                                                                           placeholder="{{$adherent->section->nom}}">
+                                        </h4>
+                                        <h4 class="fonce">Groupe :
+                                            @isset($adherent->groupe){{$adherent->groupe->nom}}  ou
+                                            @endisset
+                                            <select name="groupe" id="groupe" cols="10">
+                                                <option value="">choisir dans la liste</option>
+                                                @foreach($groupes as $groupe)
+                                                    <option value="{!!$groupe->id!!}"> {!! $groupe->nom!!}</option>
+                                                @endforeach
+                                            </select></h4>
 
-                                                    <td>  {!! Form::submit('Envoyer', ['class' => 'btn btn-warning']) !!}
 
-                                                    </td>
-                                                    {!! Form::close() !!}
-                                                    @endforeach
-                                                </tr>
-                                                </tbody>
-                                            </table>
-                                        </div>
+                                            {{--                                        @if (count($adherent->creneaux))--}}
+
+                                            {{--                                            @foreach($adherent->creneaux as $creneau)--}}
+                                            {{--                                                le:  {{($creneau->jour)}} à {{($creneau->heure_debut)}}--}}
+                                            {{--                                                h {{($creneau->min_debut)}}--}}
+                                            {{--                                            @endforeach--}}
+                                            {{--                                        @endif--}}
+                                            Ajouter un créneau
+                                            <select name="creneau" id="creneau" cols="10">
+                                                <option value="">choisir dans la liste</option>
+                                                @foreach($creneaux as $creneau)
+                                                    <option value="{!!$creneau->id!!}"> le {!!$creneau->jour->jour!!}
+                                                        à {{$creneau->heure_debut}}h{{$creneau->min_debut}}</option>
+                                                @endforeach
+                                            </select></p>
+                                    </div>
+                                    <div class="col-2">
+                                        <i
+                                            class="fas fa-dumbbell  onglet Bleu"></i>
+                                    </div>
+                                    <div class="col-12">
+                                        <h5 class="violet"> Les champs en violet peuvent être modifiés.</h5>
+                                        <button type="submit" class="btn btn-primary btn pull-right">Enregistrer
+                                            les modifications
+                                        </button>
                                     </div>
                                 </div>
-                            </div>
-                </div>
+                            </form>
+
+                        <div class="col-12">
+                            <h4 class="rose">Autorisations</h4>
+                            @foreach($adherent->autorisations as $autorisation)
+                                @if($autorisation->typeAuto_id==2)
+                                    <div class="autorisation row">
+                                        @if($autorisation->ok==1)
+
+                                            <div>
+                                                <i class="fas fa-car onglet Vert2"></i>
+                                            </div>
+                                            <div>
+                                                Le(la) gymnaste peut etre transporté par un membre du club
+                                            </div>
+                                            <div>
+                                                {!! link_to_route('autorisation.update', 'Modifier',['id'=>$autorisation->id,'adherent_id'=>$adherent->id], ['class' => 'changerAutorisationTransport  btn-autorisation btn btn-link']) !!}</div>
+                                        @else
+                                            <div>
+                                                <i class="fas fa-car onglet Rouge line"></i>
+                                            </div>
+                                            <div>
+                                                Le(la) gymnaste ne peut pas etre transporté par un membre du club
+                                            </div>
+                                            <div>
+                                              {!! link_to_route('autorisation.update', 'Modifier',['id'=>$autorisation->id,'adherent_id'=>$adherent->id], ['class' => 'changerAutorisationTransport  btn-autorisation btn btn-link']) !!}
+                                            </div>
+
+                                        @endif
+                                    </div>
+                                @elseif($autorisation->typeAuto_id==3 )
+                                    <div class="autorisation row">
+                                    @if($autorisation->ok==1)
+                                        <div>
+                                            <i class="fas fa-camera onglet Vert2"></i>
+                                        </div>
+                                        <div>
+                                            Le(la) gymnaste peut etre photographié pour les besoins du club
+                                        </div>
+                                        <div>
+                                            {!! link_to_route('autorisation.update', 'Modifier',['id'=>$autorisation->id,'adherent_id'=>$adherent->id], ['class' => 'changerAutorisationTransport  btn-autorisation btn btn-link']) !!}</div>
+                                    @else
+                                        <div>
+                                            <i class="fas fa-camera onglet Rouge line"></i>
+                                        </div>
+                                        <div>
+                                            Le(la) ne peut gymnaste pas etre photographié.
+                                        </div>
+                                        <div>
+                                          {!! link_to_route('autorisation.update', 'Modifier',['id'=>$autorisation->id,'adherent_id'=>$adherent->id], ['class' => 'changerAutorisationTransport  btn-autorisation btn btn-link']) !!}
+                                        </div>
+                                        @endif
+                        </div>
+
+                            @elseif($autorisation->typeAuto_id==4)
+                                    <div class="row autorisation">
+                                        @if( $autorisation->ok==1)
+                                <div>
+                                    <i class="fas fa-user-clock onglet Vert2"></i>
+                                </div>
+                                <div>
+                                    Le(la) gymnaste est autorisé à partir seul à la fin de l'entrainement
+                                </div>
+                                <div>
+                                    {!! link_to_route('autorisation.update', 'Modifier',['id'=>$autorisation->id,'adherent_id'=>$adherent->id], ['class' => 'changerAutorisationTransport  btn-autorisation btn btn-link']) !!}</div>
+                                </div>
+                            @else
+                                <div>
+                                    <i class="fas fa-user-clock onglet Rouge line"></i>
+                                </div>
+                                <div>
+                                    Le(la) gymnaste n'est pas autorisé à partir seul à la fin de l'entrainement
+                                </div>
+                                <div>
+                                    {!! link_to_route('autorisation.update', 'Modifier',['id'=>$autorisation->id,'adherent_id'=>$adherent->id], ['class' => 'changerAutorisationTransport  btn-autorisation btn btn-link']) !!}
+                                </div>
+                                            @endif
+                        </div>
+                        @endif
+                        @endforeach
+                        </div>
+
+                     <div id="urgence" class="tab-pane fade-in">
+                            <form action='./adherent/{{$adherent->id}}' method="post">
+                                {!!csrf_field ()  !!}
+                                {{method_field ("put")}}
+                                <input type="hidden" class="type" name="type" value="urgence"/>
+                                <div class="row">
+                                    <div class="col-10">
+                                      <h4 class="rose">Personne à prevenir en cas d'urgence : <input type="text" class="form-invisible" name="groupe" placeholder="{{$adherent->nomUrgence}}">
+                                        </h4>
+                                    </div>
+                                    <div class="col-2">
+                                        <i
+                                        class="fas fa-briefcase-medical onglet Rouge"></i><br/><br/>
+                                    </div>
+                                     @foreach($adherent->telephones as $telephone )
+                                            @if($telephone->typeTel_id==4)
+                                    <div class="col-10">
+                                      <p class="large" >N° de téléphone:  <input type="text" class="form-invisible" name="groupe" placeholder="{{$telephone->numero}}">
+@endif
+                                        @endforeach
+                                      </p>
+                                    </div>
+                                        <div class="col-2">
+                                          <button type="submit" class="btn btn-primary btn pull-right">Enregistrer
+                                            les modifications
+                                        </button>
+                                        </div>
+                                    </div>
+                            </form>
+ <div class="autorisation row">
+                                @foreach($adherent->autorisations as $autorisation)
+                                @if($autorisation->typeAuto_id==1)
+
+                                        @if($autorisation->ok==1)
+                                            <div>
+                                                <i class="fas fa-first-aid onglet Vert2"></i>
+                                            </div>
+                                            <div>
+                                                 Les animateurs sont autorisés à mettre en œuvre en cas d'urgence, les traitements, hospitalisation et intervention reconnus médicalement nécessaires auprès du gymnaste.
+                                            </div>
+                                            <div>
+                                                 {!! link_to_route('autorisation.update', 'Modifier',['id'=>$autorisation->id,'adherent_id'=>$adherent->id], ['class' => 'changerAutorisationTransport  btn-autorisation btn btn-link']) !!}
+                                            </div>
+                                        @else
+                                            <div>
+                                                 <i class="fas fa-first-aidonglet line Rouge"></i>
+                                            </div>
+                                            <div>
+                                                 Les animateurs ne sont pas autorisés à mettre en œuvre en cas d'urgence.
+                                            </div>
+                                            <div>
+                                                 {!! link_to_route('autorisation.update', 'Modifier',['id'=>$autorisation->id,'adherent_id'=>$adherent->id], ['class' => 'changerAutorisationTransport  btn-autorisation btn btn-link']) !!}
+                                            </div>
+
+                                        @endif
+                                    </div>
+                                    @endif
+                                    @endforeach
             </div>
+
+                 <div id="dossier" class="tab-pane fade-in">
+                            <form action='./adherent/{{$adherent->id}}' method="post">
+                                {!!csrf_field ()  !!}
+                                {{method_field ("put")}}
+                                <input type="hidden" class="type" name="type" value="dossier"/>
+                               <div class="row">
+                                    <div class="col-10">
+                                      <h4 class="rose">Dossier d'inscription
+                                          <input type="text" class="form-invisible" name="groupe" placeholder="{{$adherent->nomUrgence}}">
+                                        </h4>
+                                    </div>
+                               </div>
+                            </form>
+                 </div>
+                </div>
+    </div>
+    </div>
+    </div>
         </div>
-        </form>
-
-        {{--                @if (Auth::user()->fonction_id==1|Auth::user()->fonction_id==2|Auth::user()->fonction_id==3)--}}
-        {{--        <div class="col-md-6">--}}
-        {{--            <div class="card">--}}
-        {{--                <div class="card-header">Payement :</div>--}}
-        {{--                <div class="card-body">--}}
-        {{--                    @foreach($dossier as $dossier)--}}
-        {{--                        @if($dossier->payementOk =="1")--}}
-        {{--                            <p>A jours pour le payement</p>--}}
-        {{--                        @else--}}
-        {{--                            <div class="rose">N'est pas à jours pour le payement</div>--}}
-        {{--                        @endif--}}
-        {{--                        @if($dossier->aidesSociales =="1")--}}
-        {{--                            <p>Une demande d'aides sociales à été faite</p>--}}
-        {{--                        @endif--}}
-        {{--                        @if($dossier->recuDemande  =="1")--}}
-        {{--                            <p>Un reçu est demandé</p>--}}
-        {{--                        @endif--}}
-        {{--                    @endforeach--}}
-        {{--                    @foreach($remarques as $remarque)--}}
-        {{--                        @if (($remarque->typeRq_id=="3"&&Auth::user()->fonction_id==1))--}}
-        {{--                            <p class="fonce">Remarques : {{$remarque->remarque}}--}}
-        {{--                                @endif--}}
-        {{--                                @endforeach--}}
-        {{--                            </p>--}}
-        {{--                            <h4 class="fonce"> Montant total : </h4>--}}
-
-        {{--                            <table class="xx-small w-100">--}}
-        {{--                                <thead>--}}
-        {{--                                <tr>--}}
-        {{--                                    <th>Moyen payement</th>--}}
-        {{--                                    <th>Montant</th>--}}
-        {{--                                    <th>A encaisser le</th>--}}
-        {{--                                    <th>Numéro de chéque</th>--}}
-        {{--                                </tr>--}}
-        {{--                                </thead>--}}
-        {{--                                <tbody>--}}
-        {{--                                @foreach($payements as $payement)--}}
-        {{--                                    <tr>--}}
-        {{--                                        <th>$payement->moyensPayement_id->type</th>--}}
-        {{--                                        <th>$payement->montant</th>--}}
-        {{--                                        <th>$payement->encaisseMois</th>--}}
-        {{--                                        <th>$payement->numCheque</th>--}}
-        {{--                                    </tr>--}}
-        {{--                                @endforeach--}}
-
-        {{--                                </tbody>--}}
-        {{--                            </table>--}}
-        {{--                        @else--}}
-        {{--                            {!! link_to_route('dossier.create', 'Modifier', $dossier->id, ['class' => 'btn btn-warning btn-small'])  !!}--}}
-        {{--                </div>--}}
-        {{--@endif--}}
-
-    </div>
-    </div>
-    </div>
     </div>
 
 
-    @endforeach
+
+    {{--
+    {{--                            @endforeach--}}
+    {{--                            @foreach($remarques as $remarque)--}}
+    {{--                                @if (($remarque->typeRq_id=="3"&&Auth::user()->fonction_id==1))--}}
+    {{--                                    <p class="fonce">Remarques : {{$remarque->remarque}}--}}
+    {{--                                        @endif--}}
+    {{--                                        @endforeach--}}
+    {{--                                    </p>--}}
+    {{--                                    <h4 class="fonce"> Montant total : </h4>--}}
+
+    {{--                                    <table class="xx-small w-100">--}}
+    {{--                                        <thead>--}}
+    {{--                                        <tr>--}}
+    {{--                                            <th>Moyen payement</th>--}}
+    {{--                                            <th>Montant</th>--}}
+    {{--                                            <th>A encaisser le</th>--}}
+    {{--                                            <th>Numéro de chéque</th>--}}
+    {{--                                        </tr>--}}
+    {{--                                        </thead>--}}
+    {{--                                        <tbody>--}}
+    {{--                                        @foreach($payements as $payement)--}}
+    {{--                                            <tr>--}}
+    {{--                                                <th>$payement->moyensPayement_id->type</th>--}}
+    {{--                                                <th>$payement->montant</th>--}}
+    {{--                                                <th>$payement->encaisseMois</th>--}}
+    {{--                                                <th>$payement->numCheque</th>--}}
+    {{--                                            </tr>--}}
+    {{--                                        @endforeach--}}
+
+    {{--                                        </tbody>--}}
+    {{--                                    </table>--}}
+    {{--                                @else--}}
+    {{--                                    {!! link_to_route('dossier.create', 'Modifier', $dossier->id, ['class' => 'btn btn-warning btn-small'])  !!}--}}
+    {{--                        </div>--}}
+    {{--        @endif--}}
+    {{--@endforeach--}}
+
+
+
+
     {{--@endforeach--}}
 @endsection

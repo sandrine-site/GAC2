@@ -17,13 +17,13 @@
                             <th></th>
                         </tr>
                         </thead>
-                        <tbody class="medium violet">
+                        <tbody class="small violet">
                         @foreach($groupes as $groupe)
                             <tr>
                                 <th>{{$groupe->nom}}</th>
-                                <th class="small">{{$groupe->categorie}}</th>
+                                <th >{{$groupe->categorie}}</th>
                                 @if (count ($groupe->users))
-                                    <td class="text-primary">
+                                    <td >
                                         @foreach($groupe->users as $user)
                                             {{($user->prenom)}}
                                         @endforeach
@@ -103,7 +103,7 @@
                                             @foreach($groupes as $groupe)
                                                 <option value="{!!$groupe->id!!}"> {!! $groupe->nom!!}</option>
                                             @endforeach
-                                        </select></span>
+                                        </select>
                                         </td>
                                         <td> <input type="submit" value="Enregistrer" class='btn btn-vert2 btn-block'/></td>
                                     </form>

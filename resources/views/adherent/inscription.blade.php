@@ -143,8 +143,8 @@
                             <label for="email1"> Email :</label>
                         </div>
                         <div class="col-sm-6">
-                            <input type="email" name="email1" class="form-control col-sm-offset-1 col-sm-10" id="email1"
-                                   placeholder="Email principal" value="{{old("email1","")}}"/>
+                            <input type="email" name="email1" class="form-control  col-sm-10" id="email1"
+                                   placeholder="Email principal" value="{{old("email1","")}}"/><br/>
                             {!! $errors->first('email1', '<small class="help-block">:message</small>') !!}
                             <p>Vous recevrez une confirmation de votre inscription sur cette adresse email</p>
                         </div>
@@ -178,7 +178,7 @@
                         </div>
                         <div class="col-sm-4">
                             <h4 class="fonce">Remarques concernant les horaires :</h4>
-                            <textarea name="entrainement" id="entrainement" class="form-control col-sm-offset-1 col-sm-10"
+                            <textarea name="entrainement" id="entrainement" class="form-control  col-10"
                                       value="{{old("entrainement","")}}"></textarea>
                             <br/>
                         </div>
@@ -371,12 +371,12 @@
             </div>
         </div>
         <br/>
-        <p class="important"><strong>Vous recevrez une confirmation de votre inscription, ainsi que les documents à
-                imprimer sur votre email après cette étape.</strong></p>
+        <h4 class="important"><strong>Vous recevrez une confirmation de votre inscription, ainsi que les documents à
+                imprimer sur votre email après cette étape.</strong></h4>
         <p class="fonce"> Si vous ne recevez pas d'email dans les 30 min, veuillez nous écrire à l'adresse :
             gacgym@hotmail.fr</p>
-        <p class="rose"> Veuillez remettre à votre entraîneur le dossier, le certificat médical et le paiement. A très
-            bientôt!</p>
+        <h4 class="rose"> Veuillez remettre à votre entraîneur le dossier, le certificat médical et le paiement. A très
+            bientôt!</h4>
         {!! Form::submit('Envoyer !', ['class' => 'btn btn-xlarge btn-primary']) !!}
         {!! Form::close() !!}
     </div>

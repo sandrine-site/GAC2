@@ -15,7 +15,7 @@ class DossierController extends Controller
      */
     public function index()
     {
-        $adherents = Adherent::orderBy('nom')->orderBy('prenom')->Paginate(15);
+        $adherents = Adherent::orderBy('nom')->orderBy('prenom')->Paginate(20);
 
         return view('dossier.index', compact('adherents'));
     }

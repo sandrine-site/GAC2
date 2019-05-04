@@ -28,7 +28,7 @@ class Creneau extends Model
 
     public function adherents()
     {
-        return $this->belongsToMany('App\Adherent','adherent_creneaux','creneau_id','adherent_id');
+        return $this->belongsToMany(Adherent::class);
     }
 
 }

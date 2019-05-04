@@ -11,17 +11,17 @@ class CreateAdherentCreneauTable extends Migration {
 			$table->integer('adherent_id')
                 ->unsigned()
                 ->index();
-			$table->integer('adherent_id')
+			$table->foreign('adherent_id')
                 ->reference('id')
-                ->on('adherent')
-                ->onDelete('cascade');
-			$table->integer('crenaux_id')
+                ->on('adherents')
+               ->onDelete('cascade');
+			$table->integer('crenau_id')
                 ->unsigned()
             ->index();
-			$table->integer('crenau_id')
+			$table->foreign('crenau_id')
                ->reference('id')
                 ->on('creneaux')
-                ->onDelete('cascade');
+              ->onDelete('cascade');
 			$table->primary(['adherent_id','creneau_id']);
 		});
 	}

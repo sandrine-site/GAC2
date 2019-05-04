@@ -282,6 +282,12 @@ textarea {
     overflow: auto;
     resize: vertical
 }
+ textarea#medicales.form-control{
+margin-left: 30px;
+     width: 94%;
+ }
+ html body main.py-4 form.form-horizontal.large div.container div.row.justify-content-center div.card.inscription div.card-body div.col-12 h4.fonce{
+     margin-left: 20px;}
 
 fieldset {
     min-width: 0;
@@ -290,6 +296,7 @@ fieldset {
     border: 0
 }
 
+ .btn:not(:disabled):not(.disabled){font-size: smaller;}
 legend {
     display: block;
     width: 100%;
@@ -564,8 +571,7 @@ pre code {
 .row {
     display: flex;
     flex-wrap: wrap;
-    margin-right: -15px;
-    margin-left: -15px
+
 }
 
 .no-gutters {
@@ -1710,7 +1716,7 @@ pre code {
 
 .form-control {
     display: block;
-    width: 100%;
+    width: 70%;
     height: calc(2.19rem + 2px);
     padding: .375rem .75rem;
     font-size: 1.5rem;
@@ -1723,6 +1729,9 @@ pre code {
     transition: border-color .15s ease-in-out, box-shadow .15s ease-in-out
 }
 
+.card.inscription div.card-body div.row.haut div.col-sm-6 p{
+    font-size: small;
+}
 @media screen and (prefers-reduced-motion: reduce) {
     .form-control {
         transition: none
@@ -2052,6 +2061,9 @@ select.form-control[multiple], select.form-control[size], textarea.form-control 
 .custom-file-input.is-invalid:focus ~ .custom-file-label, .was-validated .custom-file-input:invalid:focus ~ .custom-file-label {
     box-shadow: 0 0 0 .2rem rgba(227, 52, 47, .25)
 }
+div.card.inscription div.card-body div.row.haut div.col-sm-4 h4.fonce,div.card.inscription div.card-body div.col-12 h4.fonce{
+    font-size: inherit;
+}
 
 .form-inline {
     display: flex;
@@ -2184,6 +2196,10 @@ a.btn.disabled, fieldset:disabled a.btn {
 
 .btn-primary.focus, .btn-primary:focus {
     box-shadow: 0 0 0 .2rem rgba(52, 144, 220, .5)
+}
+.row{
+   margin-right: 15px ;
+    margin-left: 15px ;
 }
 
 .btn-primary.disabled, .btn-primary:disabled {
@@ -8913,7 +8929,12 @@ font-size: small;
     background-color: #dcdcdc;
     border: none;
 }
-
+div.card-body table.table tbody.small.violet tr td {
+	font-size: small;
+}
+.btn:not(:disabled):not(.disabled) {
+	 font-size: smaller;
+}
 /* ==------------------ Formulaires -------------------------*/
 .form-control {
     display: block;
@@ -8944,6 +8965,7 @@ font-size: small;
     border-color: #900C39;
 }
 
+
 div.form-group h3 {
     color: #900C39;
 }
@@ -8956,7 +8978,20 @@ div.form-group h3 {
 .form-control {
     font-size: small;
 }
-
+ div.row.justify-content-center div.card.inscription div.card-body div.col-12 div.row{
+     padding: 0!important;
+ }
+ .form-control::placeholder {
+	color: #6a387c !important;
+	opacity: 0.8!important;
+	font-weight: normal!important;
+}
+ select{
+     font-weight: normal;
+ }
+form-control {
+    font-weight:unset;
+}
 /* ==--------------polices de carracteres et autre --------------*/
 
 h1, h2, h3, h4, h5 {
@@ -9203,6 +9238,7 @@ div.form-group select {
     background-color: #dcdcdc;
     border: none;
     color: #6a387c;
+    font-weight: bold;
 }
 
 .display-5 {
@@ -9341,7 +9377,7 @@ div#dossier input.btn.btn-warning {
     justify-content: space-around;
 }
 
-.bandeRose {
+.bandeRose,.bandeRose.active a {
     border-top-left-radius: 4px;
     border-top-right-radius: 4px;
     border-top: 1rem #ed1358 solid;
@@ -9349,7 +9385,7 @@ div#dossier input.btn.btn-warning {
 .rose{
     color:#ed1358;
 }
-.bandeVert2 {
+.bandeVert2,.bandeVert2.active a {
     border-top-left-radius: 4px;
     border-top-right-radius: 4px;
     border-top: 1rem olivedrab solid;
@@ -9358,7 +9394,7 @@ div#dossier input.btn.btn-warning {
     color: olivedrab;
 }
 
-.bandeBleu {
+.bandeBleu,.bandeBleu.active a {
     border-top-left-radius: 4px;
     border-top-right-radius: 4px;
     border-top: 1rem cornflowerblue solid;
@@ -9367,7 +9403,7 @@ div#dossier input.btn.btn-warning {
     color: cornflowerblue;
 }
 
-.bandeHotpink {
+.bandeHotpink,.bandeHotpink.active a {
     border-top-left-radius: 4px;
     border-top-right-radius: 4px;
     border-top: 1rem hotpink solid;
@@ -9376,7 +9412,7 @@ div#dossier input.btn.btn-warning {
     color: hotpink;
 }
 
-.bandeJaune {
+.bandeJaune,.bandeJaune.active a {
     border-top-left-radius: 4px;
     border-top-right-radius: 4px;
     border-top: 1rem #ebb742 solid;
@@ -9385,7 +9421,7 @@ div#dossier input.btn.btn-warning {
     color: #ebb742;
 }
 
-.bandeCyan {
+.bandeCyan,.bandeCyan.active a {
     border-top-left-radius: 4px;
     border-top-right-radius: 4px;
     border-top: 1rem darkcyan solid;
@@ -9394,13 +9430,16 @@ div#dossier input.btn.btn-warning {
     color: darkcyan;
 }
 
-.bandeRouge {
+.bandeRouge,.bandeRouge.active a {
     border-top-left-radius: 4px;
     border-top-right-radius: 4px;
-    border-top: 1rem #c51f1a solid;
+    border-top: 1rem red solid;
+}
+.Rouge{
+    color:red;
 }
 
-.bandeViolette {
+.bandeViolette,.bandeViolette.active a {
     border-top-left-radius: 4px;
     border-top-right-radius: 4px;
     border-top: 1rem #6a387c solid;
@@ -9414,13 +9453,39 @@ div#dossier input.btn.btn-warning {
     justify-content: space-between;
     align-items: flex-start;
 }
-
+.nav {
+display: flex;
+width: 100%;
+}
+.fiche li {
+	text-align: center;
+	width: 16.66%;
+}
+.admin li {
+	text-align: center;
+	width: 14.2%;
+}
+#identite{
+    font-size: initial;
+    line-height: 2.5;
+}
 .boutonsCard {
     display: flex;
     justify-content: space-around;
-    align-items: flex-end
+    align-items: flex-end;
 }
-
+.autorisation{
+    width: 55%;
+justify-content: space-between;
+}
+ .btn-autorisation{
+     height: 15px;
+     padding: 0 10px;
+     line-height: 15px !important;
+     font-size: x-small !important;
+ }
+h5{
+font-size: small;}
 .display-rowcard {
     display: flex;
     justify-content: space-around;
@@ -9440,17 +9505,16 @@ div.card-header ul.nav.nav-pills.nav-stacked li a {
 
 ul.nav.nav-pills.nav-stacked li.active a {
     background-color:  darkgray;
-    box-shadow:0 -0.5rem 1rem rgba(0, 0, 0, .15) !important;
+    box-shadow:0 -1.5rem 1rem rgba(0, 0, 0, .15) !important;
+    transform: translateY(-2rem);
 }
 div.card-header ul.nav.nav-pills.nav-stacked{
     justify-content: center;
 }
-
 div.card-header ul.nav.nav-pills.nav-stacked li a {
     color: black;
     font-size: small;
 }
-
 .nav > li {
     text-align: center;
 }
@@ -9462,9 +9526,7 @@ ul.nav.nav-pills.nav-stacked li a i {
 .nav-pills > li > a {
     border-radius: 0;
 }
-.onglet{
-
-	font-size: xx-large;
+.onglet{	font-size: xx-large;
 	text-align: left;
 	align-self: last baseline;
 
@@ -9473,6 +9535,36 @@ ul.nav.nav-pills.nav-stacked li a i {
 	align-content: center;
 	display: flex;
 	justify-content: end;
-
 width: 80%;
 }
+.nav-justified .nav-item {
+    flex-basis: 0;
+    flex-grow: 1;
+    text-align: center;
+}
+
+.tab-content > .tab-pane {
+    display: none
+}
+.tab-content > .tab-pane {
+    display: none
+}
+
+.tab-content > .active {
+    display: block
+}
+
+.navbar {
+    position: relative;
+    padding: .5rem 1rem
+}
+.page-item.active .page-link,.pagination > .active > span:hover {
+	z-index: 1;
+	color: #fff;
+	background-color:#ed1358;
+	border-color: #6a387c;
+}
+.pagination > li > a{
+    color: #ed1358;
+}
+

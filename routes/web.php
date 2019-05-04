@@ -24,9 +24,9 @@ Route::resource('accueilAdmin','accueilAdminController');
 
 
 
-Route::get('/adherent/edit/{filtre?}/{valeur?}', function () {
+//Route::get('/adherent/edit/{filtre?}/{valeur?}', function () {
 
-});
+//});
 // rendre les parametres optionels avec? apres? avec des paramettres o
 //Route::middleware('administrateur')->group(function () {
 //    Route::resource ('section', 'SectionController',[ 'except'=>['create','show','edit','update']]);
@@ -52,9 +52,10 @@ Route::get('/home', 'HomeController@index')->name('home');
 /*  Adherent Controller*/
 Route::get('/adherent/create','AdherentController@create')->name('adherent.create');
 Route::post('/adherent', 'AdherentController@store')->name('adherent.store');
-Route::get('/adherent/edit/{filtre?}/{valeur?}', 'AdherentController@edit')->name('adherent.edit');
+Route::get('/adherent/edit','AdherentController@edit')->name('adherent.edit');
 Route::get('/adherent/updateGroupe','AdherentController@updateGroupe')->name('adherent.updateGroupe');
 Route::get('/adherent','AdherentController@index')->name('adherent.index');
+Route::get('/adherent/update','AdherentController@update')->name('adherent.update');
 
 /*Année Scolaire Controller*/
 Route::get('/anneeScolaire','AnneeScolaireController@index')->name('anneeScolaire.index');
@@ -99,3 +100,5 @@ Route::delete('/user/{user}','UserController@destroy')->name('user.destroy');
 
 /*Update adherent Controller*/
 Route::put('updateAdherent','GroupeController@updateAdherent')->name('groupe.updateAdherent');
+/*autorisationControleir*/
+Route::get('update','AutorisationController@update')->name('autorisation.update');

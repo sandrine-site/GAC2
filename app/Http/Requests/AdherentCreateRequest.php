@@ -57,7 +57,6 @@ class AdherentCreateRequest extends FormRequest
                 "telephone_adherent" => 'nullable|regex:#^0[1-9]([-. /]?[0-9]{2}){4}$#',
                 "adresse2" => 'nullable|string|max:200',
                 "entrainement" => 'nullable|string|max:200',
-                "heureSemaine" => 'required|string',
                 "medicales" => 'nullable|string|max:200',
                 "heureSemaine" => 'required_if:section_id,4'
             ]);
