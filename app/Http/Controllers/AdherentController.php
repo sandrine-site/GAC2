@@ -24,9 +24,7 @@ class AdherentController extends Controller
      */
     public function index()
     {
-        $adherents = Adherent::All()->paginate(10);
-
-        $sections = Section_adherent::All();
+        $adherents = Adherent::orderBy('sexe')->orderBy('nom')->orderBy('prenom')->Paginate(10);
 
 //        $a=$adherents[0];
 //        echo $a->id;
@@ -38,20 +36,17 @@ class AdherentController extends Controller
 //        dd($t);
 
 //        $adherents=$adherents->groupBy('section');
-        return view('adherent.index', compact('adherents', 'sections'));
+        return view('adherent.index', compact('adherents'));
 
     }
 
-//    public function indexRepartition()
-//    {
-//        $adherents=Adherent::All();
-//        $telephones=Telephone::All();
-//        $sections=Section_adherent::All();
-//
-////        $adherents=$adherents->groupBy('section');
-//        return view('adherent.indexRepartition',compact('adherents','telephones','sections'));
-//
-//    }
+    public function indexRepartition()
+    {
+       $sections=Section::all();
+        $groupes=Groupe::all();
+        $creneaux=Creneau::all();
+return view('adherent.editRepartition',compact('sections','groupes','creneaux'));
+    }
     /**
      * Show the form for creating a new resource.
      *
@@ -172,33 +167,155 @@ class AdherentController extends Controller
      * @param int $id
      * @return \Illuminate\Http\Response
      */
-    public function update()
+    public function updateDocument()
     {
-       if(isset($_GET['photo'])){
-        foreach ($_GET['photo'] as $photo)
-        {
-            Adherent::where('id',$photo)
-                ->update(['photo'=>1]);
-        }}
+        if(isset($_GET['photo'])){
+            foreach ($_GET['photo'] as $photo)
+            {
+                Adherent::where('id',$photo)
+                    ->update(['photo'=>1]);
+            }}
         if(isset($_GET['CertifMedical'])){
-         foreach ($_GET['CertifMedical'] as $CertifMedical)
-        {
-            Adherent::where('id',$CertifMedical)
-                ->update(['CertifMedical'=>1]);
-        }}
+            foreach ($_GET['CertifMedical'] as $CertifMedical)
+            {
+                Adherent::where('id',$CertifMedical)
+                    ->update(['CertifMedical'=>1]);
+            }}
         if(isset($_GET['autorisationsRendues'])){
-         foreach ($_GET['autorisationsRendues'] as $autorisationsRendue)
-           {
-            Adherent::where('id',$autorisationsRendue)
-                ->update(['autorisationsRendues'=>1]);
-        }}
+            foreach ($_GET['autorisationsRendues'] as $autorisationsRendue)
+            {
+                Adherent::where('id',$autorisationsRendue)
+                    ->update(['autorisationsRendues'=>1]);
+            }}
         if(isset($_GET['RecuDemande'])){
-          foreach ($_GET['RecuDemande'] as $RecuDemande)
-           {
-            Adherent::where('id',$RecuDemande)
-                ->update(['RecuDemande'=>1]);}}
+            foreach ($_GET['RecuDemande'] as $RecuDemande)
+            {
+                Adherent::where('id',$RecuDemande)
+                    ->update(['RecuDemande'=>1]);}}
         return redirect('/dossier');
-     }
+    }
+
+    public function update(Request $request,$id)
+    {
+        $adherent=Adherent::findOrFail($id);
+        if($request->input('adresse')!=null){
+            $adherent->adresse=($request->input('adresse'));}
+        elseif ($request->input('cp') != null) {
+            $adherent->cp = ($request->input('cp'));}
+        elseif ($request->input('ville') != null) {
+            $adherent->ville = ($request->input('ville'));}
+        elseif ($request->input('email1') != null) {
+            $adherent->email1 = ($request->input('email1'));}
+        elseif ($request->input('email2') != null) {
+            $adherent->email2 = ($request->input('email2'));}
+        elseif ($request->input('groupe') != null) {
+            $adherent->groupe = ($request->input('groupe'));}
+        elseif ($request->input('heureSemaine') != null) {
+            $adherent->heureSemaine = ($request->input('heureSemaine'));}
+        elseif($request->input('creneau') != null){
+            $adherent->creneaux = ($request->input('creneau'));}
+//            elseif ($request->input('groupe') != null) {
+//            $adherent->groupe = ($request->input('groupe'));}
+        elseif
+        ($request->input('groupe') != null){
+            $adherent->groupe = ($request->input('groupe'));}
+
+        $adherent->save();
+
+        $telephones=$adherent->telephones;
+        foreach ($telephones as $telephone){
+            if ($request->input('telephone_adherent') != null && $telephone->typeTel_id == 1){
+                $telephones->numero = ($request->input('telephone_adherent'));
+                $telephones->typeTel_id=1;
+                $telephones->id=$telephone->id;}
+            elseif ($request->input('telephone_adherent') != null && $telephone->typeTel_id != 1) {
+                $inputTeleAdherent['adherent_id'] = $adherent->id;
+                $inputTeleAdherent['numero'] = $request['telephone_adherent'];
+                $inputTeleAdherent['typeTel_id'] = '1';
+                Telephone::create($inputTeleAdherent);}
+            elseif ($request->input('telephone_Resp1') != null && $telephone->typeTel_id == 2) {
+                $telephones->numero = ($request->input('telephone_Resp1'));
+                $telephones->typeTel_id = 2;
+                $telephones->id = $telephone->id;
+                $telephones->save();}
+            elseif ($request->input('telephone_Resp2') != null && $telephone->typeTel_id == 3) {
+                $telephones->numero = ($request->input('telephone_Resp2'));
+                $telephones->typeTel_id = 3;
+                $telephones->id = $telephone->id;
+                $telephones->save();
+            }
+            elseif ($request->input('telephone_Resp2') != null && $telephone->typeTel_id !== 3) {
+                $inputTele['adherent_id'] = $adherent->id;
+                $inputTele['numero'] = $request['telephone_Rep2'];
+                $inputTeleAdherent['typeTel_id'] = '3';
+                Telephone::create($inputTele);
+            }
+            elseif ($request->input('telephone_Urgence') != null && $telephone->typeTel_id == 4) {
+                $telephones->numero = ($request->input('telephone_Resp2'));
+                $telephones->typeTel_id = 4;
+                $telephones->id = $telephone->id;
+                $telephones->save();
+            }
+        }
+        foreach ($adherent->remarques as $remarque){
+            if ($request->input('Rq_entrainement') != null && $remarque->typeRQ_id == 1) {
+                $remarque->remarque = ($request->input('Rq_entrainement'));
+                $remarque->typeqRq_id = 1;
+                $remarque->id = $remarque->id;
+                $remarque->save();
+            }
+            elseif ($request->input('Rq_entrainement') != null && $remarque->typeRq_id !== 1) {
+                $inputRq['adherent_id'] = $adherent->id;
+                $inputRq['remarque'] = $request['Rq_entrainement'];
+                $inputRq['typeqRq_id'] = '1';
+                Remarque::create($inputRq);
+            }
+            elseif ($request->input('Rq_urgence') != null && $remarque->typeRq_id == 2) {
+                $remarque->remarque = ($request->input('Rq_urgence'));
+                $remarque->typeqRq_id = 2;
+                $remarque->id = $remarque->id;
+                $remarque->save();
+            }
+            elseif ($request->input('Rq_urgence') != null && $remarque->typeRq_id !== 2) {
+                $inputRq['adherent_id'] = $adherent->id;
+                $inputRq['remarque'] = $request['Rq_urgence'];
+                $inputRq['typeqRq_id'] = '2';
+                Remarque::create($inputRq);
+            }
+            elseif ($request->input('Rq_payement') != null && $remarque->typeRq_id == 3) {
+                $remarque->remarque = ($request->input('Rq_payement'));
+                $remarque->typeqRq_id = 3;
+                $remarque->id = $remarque->id;
+                $remarque->save();
+            }
+            elseif ($request->input('Rq_payement') != null && $remarque->typeRq_id !== 3) {
+                $inputRq['adherent_id'] = $adherent->id;
+                $inputRq['remarque'] = $request['Rq_payement'];
+                $inputRq['typeqRq_id'] = '3';
+                Remarque::create($inputRq);
+            }
+            elseif ($request->input('Rq_autres') != null && $remarque->typeRq_id == 4) {
+                $remarque->remarque = ($request->input('Rq_autres'));
+                $remarque->typeqRq_id = 4;
+                $remarque->id = $remarque->id;
+                $remarque->save();
+            }
+            elseif ($request->input('Rq_autres') != null && $remarque->typeRq_id !== 3) {
+                $inputRq['adherent_id'] = $adherent->id;
+                $inputRq['remarque'] = $request['Rq_autres'];
+                $inputRq['typeqRq_id'] = '4';
+                Remarque::create($inputRq);
+            }
+        }
+
+
+        $groupes = Groupe::orderBy('section_id')
+            ->get();
+        $sections = Section::all();
+        $creneaux = Creneau::orderBy('jour_id')
+            ->get();
+        return view('adherent.edit', compact('adherent', 'groupes', 'sections', 'creneaux'));
+    }
 
     /**
      * Remove the specified resource from storage.

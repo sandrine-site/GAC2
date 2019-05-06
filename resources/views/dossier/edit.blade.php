@@ -94,7 +94,6 @@
                                 @endif
 
                                     <td>{!! link_to_route('dossier.update', 'Modifier', $dossier->id, ['class' => 'btn btn-warning '])  !!}</td>
-
                             </tr>
                             </tbody>
                         </table>

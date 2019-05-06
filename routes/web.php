@@ -55,7 +55,8 @@ Route::post('/adherent', 'AdherentController@store')->name('adherent.store');
 Route::get('/adherent/edit','AdherentController@edit')->name('adherent.edit');
 Route::get('/adherent/updateGroupe','AdherentController@updateGroupe')->name('adherent.updateGroupe');
 Route::get('/adherent','AdherentController@index')->name('adherent.index');
-Route::get('/adherent/update','AdherentController@update')->name('adherent.update');
+Route::get('/adherent/updateDocument','AdherentController@updateDocument')->name('adherent.updateDocument');
+Route::put('/adherent/{adherent}', 'AdherentController@update')->name('adherent.update');
 
 /*Année Scolaire Controller*/
 Route::get('/anneeScolaire','AnneeScolaireController@index')->name('anneeScolaire.index');

@@ -10,7 +10,7 @@
                 <div class="card">
                     <div class="card-header">
                         Edition
-                        <ul class="nav  nav-pills  nav-stacked admin active">
+                        <ul class="nav nav-tabs nav-justified admin">
                             <li class="active bandeRose"><a data-toggle="tab" href="#accueil"><i
                                         class="fas fa-home rose"></i><br/>
                                     Accueil</a></li>
@@ -74,7 +74,7 @@
                                             class="fas fa-history"></i> Changer l'année </a>
                                 </div>
                             </div>
-                            <div id="tous" class="tab-pane fade-in">
+                            <div id="tous" class="tab-pane">
                                 <div class="row ">
                                     <div class="col-10">
                                         <h4 class="fonce"> Tous les gymnastes</h4>
@@ -85,7 +85,7 @@
                                 </div>
                                 <br/>
                                 <div class="row boutonsCard">
-                                    <a class="btn btn-primary btn" href={!!route('accueilAdmin.index')!!}>Editer <i
+                                    <a class="btn btn-primary btn" href={!!route('adherent.index')!!}>Editer <i
                                             class="fas fa-edit"></i>
                                     </a>
                                     <button type="submit" class='btn btn-vert2 btn'>Envoyer un SMS <i
@@ -97,227 +97,224 @@
                                 </div>
                             </div>
 
-                        <div id="un" class="tab-pane fade-in">
-                            <div class="row ">
-                                <div class="col-10">
-                                    <h4 class="fonce"> Un gymnaste</h4>
-                                    <p>Choisir dans la liste</p>
+                            <div id="un" class="tab-pane fade ">
+                                 <form action='./adherent/edit' method="post">
+
+                                            {!!csrf_field ()  !!}
+                                            {{method_field ("get")}}
+                                <div class="row ">
+                                    <div class="col-10">
+                                        <h4 class="fonce"> Un gymnaste</h4>
+                                        <p>Choisir dans la liste</p>
+                                    </div>
+
+                                    <div class="col-2">
+                                        <i class="fas fa-user-cog onglet Vert2"></i>
+                                    </div>
+                                    <div class=" col-12 display-5">
+                                            <select name="id" id="id">
+                                                <option value=""></option>
+                                                @foreach($adherents as $adherent)
+                                                    <option
+                                                        value="{{$adherent->id}}">{{$adherent->nom}} {{$adherent->prenom}} </option>
+                                                @endforeach
+                                            </select>
+                                    </div>
                                 </div>
+                                <br/>
 
-                                <div class="col-2">
-                                    <i class="fas fa-user-cog onglet Vert2"></i>
+                                <div class="row boutonsCard">
+                                    <button type="submit" class="btn btn-primary btn">Editer <i
+                                            class="fas fa-edit"></i>
+                                    </button>
+                                    <button type="submit" class='btn btn-vert2 btn'>Envoyer un SMS <i
+                                            class="fas fa-sms"></i>
+                                    </button>
+                                    <button type="submit" class='btn btn-bleu1 btn'>Envoyer un mail <i
+                                            class="fas fa-envelope-open-text"></i>
+                                    </button>
                                 </div>
-                                <div class=" col-12 display-5">
-
-                                    <form action='./adherent/edit' method="post">
-
-                                        {!!csrf_field ()  !!}
-                                        {{method_field ("get")}}
-                                        <select name="id" id="id">
-                                            <option value=""></option>
-                                            @foreach($adherents as $adherent)
-                                                <option
-                                                    value="{{$adherent->id}}">{{$adherent->nom}} {{$adherent->prenom}} </option>
-                                            @endforeach
-                                        </select>
-
-
-                                </div>
+                                </form>
                             </div>
-                            <br/>
 
-                            <div class="row boutonsCard">
-                                <button type="submit" class="btn btn-primary btn">Editer <i
-                                        class="fas fa-edit"></i>
-                                </button>
-                                <button type="submit" class='btn btn-vert2 btn'>Envoyer un SMS <i
-                                        class="fas fa-sms"></i>
-                                </button>
-                                <button type="submit" class='btn btn-bleu1 btn'>Envoyer un mail <i
-                                        class="fas fa-envelope-open-text"></i>
-                                </button>
+                            <div id="groupe" class="tab-pane fade ">
+                                <form action='./accueilAdmin.edit' method="post">
+                                    {!!csrf_field ()  !!}
+                                    {{method_field ("put")}}
+                                    <div class="row ">
+                                        <div class="col-10">
+                                            <h4 class="fonce"> Un groupe</h4>
+                                            <p>Choisir dans la liste</p>
+                                        </div>
+
+                                        <div class="col-2">
+                                            <i class="fas fa-users-cog onglet Hotpink "></i>
+                                        </div>
+                                        <div class=" col-12 display-5">
+                                            <select name="nom" value="nom" id="nom">
+                                                <option value=""></option>
+                                                @foreach($groupes as $groupe)
+                                                    <option
+                                                        value="{{$groupe->id}}">{{$groupe->nom}} </option>
+                                                @endforeach
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <br/>
+                                    <div class="row boutonsCard">
+                                        <button type="submit" class="btn btn-primary btn">Editer <i
+                                                class="fas fa-edit"></i>
+                                        </button>
+                                        <button type="submit" class='btn btn-vert2 btn'>Envoyer un SMS <i
+                                                class="fas fa-sms"></i>
+                                        </button>
+                                        <button type="submit" class='btn btn-bleu1 btn'>Envoyer un mail <i
+                                                class="fas fa-envelope-open-text"></i>
+                                        </button>
+                                    </div>
+                                </form>
                             </div>
-                            </form>
-                        </div>
 
-                        <div id="groupe" class="tab-pane fade-in">
-                            <form action='./accueilAdmin.edit' method="post">
-                                {!!csrf_field ()  !!}
-                                {{method_field ("put")}}
-                                <div class="row ">
-                                    <div class="col-10">
-                                        <h4 class="fonce"> Un groupe</h4>
-                                        <p>Choisir dans la liste</p>
+                            <div id="section" class="tab-pane fade">
+                                <form action='./accueilAdmin.edit' method="post">
+                                    {!!csrf_field ()  !!}
+                                    {{method_field ("put")}}
+                                    <div class="row ">
+                                        <div class="col-10">
+                                            <h4 class="fonce"> Une section</h4>
+                                            <p>Choisir dans la liste</p>
+                                        </div>
+
+                                        <div class="col-2">
+                                            <i
+                                                class="fas fa-users onglet Jaune"></i>
+                                        </div>
+                                        <div class=" col-12 display-5">
+                                            <select name="nom" value="nom" id="nom">
+                                                <option value=""></option>
+                                                @foreach($sections as $section)
+                                                    <option
+                                                        value="{{$section->id}}">{{$section->nom}} </option>
+                                                @endforeach
+                                            </select>
+                                        </div>
                                     </div>
-
-                                    <div class="col-2">
-                                        <i class="fas fa-users-cog onglet Hotpink "></i>
+                                    <br/>
+                                    <div class="row boutonsCard">
+                                        <button type="submit" class="btn btn-primary btn">Editer <i
+                                                class="fas fa-edit"></i>
+                                        </button>
+                                        <button type="submit" class='btn btn-vert2 btn'>Envoyer un SMS <i
+                                                class="fas fa-sms"></i>
+                                        </button>
+                                        <button type="submit" class='btn btn-bleu1 btn'>Envoyer un mail <i
+                                                class="fas fa-envelope-open-text"></i>
+                                        </button>
                                     </div>
-                                    <div class=" col-12 display-5">
-                                        <select name="nom" value="nom" id="nom">
-                                            <option value=""></option>
-                                            @foreach($groupes as $groupe)
-                                                <option
-                                                    value="{{$groupe->id}}">{{$groupe->nom}} </option>
-                                            @endforeach
-                                        </select>
+                                </form>
+                            </div>
+
+                            <div id="entraineur" class=" tab-pane fade  ">
+                                <form action='./accueilAdmin.edit' method="post">
+                                    {!!csrf_field ()  !!}
+                                    {{method_field ("put")}}
+                                    <div class="row ">
+                                        <div class="col-10">
+                                            <h4 class="fonce"> Suivant un entraineur</h4>
+                                            <p>Choisir dans la liste</p>
+                                        </div>
+
+                                        <div class="col-2">
+                                            <i
+                                                class="fas fa-dumbbell onglet Viollette"></i><br/>
+                                        </div>
+                                        <div class=" col-12 display-5">
+                                            <select name="nom" value="nom" id="nom">
+                                                <option value=""></option>
+                                                @foreach($users as $user)
+                                                    <option
+                                                        value="{{$user->id}}">{{$user->prenom}} </option>
+                                                @endforeach
+                                            </select>
+                                        </div>
                                     </div>
-                                </div>
-                                <br/>
-                                <div class="row boutonsCard">
-                                    <button type="submit" class="btn btn-primary btn">Editer <i
-                                            class="fas fa-edit"></i>
-                                    </button>
-                                    <button type="submit" class='btn btn-vert2 btn'>Envoyer un SMS <i
-                                            class="fas fa-sms"></i>
-                                    </button>
-                                    <button type="submit" class='btn btn-bleu1 btn'>Envoyer un mail <i
-                                            class="fas fa-envelope-open-text"></i>
-                                    </button>
-                                </div>
-                            </form>
-                        </div>
-
-                        <div id="section" class="tab-pane fade-in">
-                            <form action='./accueilAdmin.edit' method="post">
-                                {!!csrf_field ()  !!}
-                                {{method_field ("put")}}
-                                <div class="row ">
-                                    <div class="col-10">
-                                        <h4 class="fonce"> Une section</h4>
-                                        <p>Choisir dans la liste</p>
+                                    <br/>
+                                    <div class="row boutonsCard">
+                                        <button type="submit" class="btn btn-primary btn">Editer <i
+                                                class="fas fa-edit"></i>
+                                        </button>
+                                        <button type="submit" class='btn btn-vert2 btn'>Envoyer un SMS <i
+                                                class="fas fa-sms"></i>
+                                        </button>
+                                        <button type="submit" class='btn btn-bleu1 btn'>Envoyer un mail <i
+                                                class="fas fa-envelope-open-text"></i>
+                                        </button>
                                     </div>
+                                </form>
+                            </div>
 
-                                    <div class="col-2">
-                                        <i
-                                            class="fas fa-users onglet Jaune"></i>
+                            <div id="creneau" class=" tab-pane fade  ">
+                                <form action='./accueilAdmin.edit' method="post">
+                                    {!!csrf_field ()  !!}
+                                    {{method_field ("put")}}
+                                    <div class="row ">
+                                        <div class="col-10">
+                                            <h4 class="fonce"> Suivant un créneau horaire</h4>
+                                            <p>Choisir dans la liste</p>
+                                        </div>
+
+                                        <div class="col-2">
+                                            <i class="far fa-calendar-alt onglet Cyan"></i>
+                                        </div>
                                     </div>
-                                    <div class=" col-12 display-5">
-                                        <select name="nom" value="nom" id="nom">
-                                            <option value=""></option>
-                                            @foreach($sections as $section)
-                                                <option
-                                                    value="{{$section->id}}">{{$section->nom}} </option>
-                                            @endforeach
-                                        </select>
+                                    <div class="row display-8">
+                                        <div class=" col-6">
+                                            <select name="nom" value="nom" id="nom">
+                                                <option value=""></option>
+                                                @foreach($jours as $jour)
+                                                    <option
+                                                        value="{{$jour->id}}">{{$jour->jour}} </option>
+                                                @endforeach
+                                            </select>
+
+
+                                            <select name="heure_debut" id="heure_debut">
+                                                @for($i=8;$i<22;$i++)
+                                                    <option value={{$i}}>{{$i}}</option>
+                                                @endfor
+                                            </select>h
+
+
+                                            <select name="min_debut" id="min_debut">
+                                                <option value='00'>00</option>
+                                                <option value='10'>10</option>
+                                                <option value='20'>20</option>
+                                                <option value='30'>30</option>
+                                                <option value='40'>40</option>
+                                                <option value='50'>50</option>
+                                            </select>min.
+
+                                        </div>
                                     </div>
-                                </div>
-                                <br/>
-                                <div class="row boutonsCard">
-                                    <button type="submit" class="btn btn-primary btn">Editer <i
-                                            class="fas fa-edit"></i>
-                                    </button>
-                                    <button type="submit" class='btn btn-vert2 btn'>Envoyer un SMS <i
-                                            class="fas fa-sms"></i>
-                                    </button>
-                                    <button type="submit" class='btn btn-bleu1 btn'>Envoyer un mail <i
-                                            class="fas fa-envelope-open-text"></i>
-                                    </button>
-                                </div>
-                            </form>
-                        </div>
-
-                        <div id="entraineur" class="tab-pane fade-in">
-                            <form action='./accueilAdmin.edit' method="post">
-                                {!!csrf_field ()  !!}
-                                {{method_field ("put")}}
-                                <div class="row ">
-                                    <div class="col-10">
-                                        <h4 class="fonce"> Suivant un entraineur</h4>
-                                        <p>Choisir dans la liste</p>
+                                    <br/>
+                                    <div class="row boutonsCard">
+                                        <button type="submit" class="btn btn-primary btn">Editer <i
+                                                class="fas fa-edit"></i>
+                                        </button>
+                                        <button type="submit" class='btn btn-vert2 btn'>Envoyer un SMS <i
+                                                class="fas fa-sms"></i>
+                                        </button>
+                                        <button type="submit" class='btn btn-bleu1 btn'>Envoyer un mail <i
+                                                class="fas fa-envelope-open-text"></i>
+                                        </button>
                                     </div>
-
-                                    <div class="col-2">
-                                        <i
-                                            class="fas fa-dumbbell onglet Viollette"></i><br/>
-                                    </div>
-                                    <div class=" col-12 display-5">
-                                        <select name="nom" value="nom" id="nom">
-                                            <option value=""></option>
-                                            @foreach($users as $user)
-                                                <option
-                                                    value="{{$user->id}}">{{$user->prenom}} </option>
-                                            @endforeach
-                                        </select>
-                                    </div>
-                                </div>
-                                <br/>
-                                <div class="row boutonsCard">
-                                    <button type="submit" class="btn btn-primary btn">Editer <i
-                                            class="fas fa-edit"></i>
-                                    </button>
-                                    <button type="submit" class='btn btn-vert2 btn'>Envoyer un SMS <i
-                                            class="fas fa-sms"></i>
-                                    </button>
-                                    <button type="submit" class='btn btn-bleu1 btn'>Envoyer un mail <i
-                                            class="fas fa-envelope-open-text"></i>
-                                    </button>
-                                </div>
-                            </form>
-                        </div>
-
-                        <div id="creneau" class="tab-pane fade-in">
-                            <form action='./accueilAdmin.edit' method="post">
-                                {!!csrf_field ()  !!}
-                                {{method_field ("put")}}
-                                <div class="row ">
-                                    <div class="col-10">
-                                        <h4 class="fonce"> Suivant un créneau horaire</h4>
-                                        <p>Choisir dans la liste</p>
-                                    </div>
-
-                                    <div class="col-2">
-                                        <i class="far fa-calendar-alt onglet Cyan"></i>
-                                    </div>
-                                </div>
-                                <div class="row display-8">
-                                    <div class=" col-6">
-                                        <select name="nom" value="nom" id="nom">
-                                            <option value=""></option>
-                                            @foreach($jours as $jour)
-                                                <option
-                                                    value="{{$jour->id}}">{{$jour->jour}} </option>
-                                            @endforeach
-                                        </select>
-
-
-                                        <select name="heure_debut" id="heure_debut">
-                                            @for($i=8;$i<22;$i++)
-                                                <option value={{$i}}>{{$i}}</option>
-                                            @endfor
-                                        </select>h
-
-
-                                        <select name="min_debut" id="min_debut">
-                                            <option value='00'>00</option>
-                                            <option value='10'>10</option>
-                                            <option value='20'>20</option>
-                                            <option value='30'>30</option>
-                                            <option value='40'>40</option>
-                                            <option value='50'>50</option>
-                                        </select>min.
-
-                                    </div>
-                                </div>
-                                <br/>
-                                <div class="row boutonsCard">
-                                    <button type="submit" class="btn btn-primary btn">Editer <i
-                                            class="fas fa-edit"></i>
-                                    </button>
-                                    <button type="submit" class='btn btn-vert2 btn'>Envoyer un SMS <i
-                                            class="fas fa-sms"></i>
-                                    </button>
-                                    <button type="submit" class='btn btn-bleu1 btn'>Envoyer un mail <i
-                                            class="fas fa-envelope-open-text"></i>
-                                    </button>
-                                </div>
-                            </form>
+                                </form>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-    </div>
 
 
 @endsection

@@ -23,9 +23,9 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
-
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
 
+    <!---JS----->
 
 </head>
 
@@ -37,18 +37,13 @@
         </a>
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             @guest
+
                 <a class="nav-link dropdown-toggle text-black-50" href="#" id="navbarDropdownMenuLink"
                    data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Menu</a>
                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownMenuLink">
-                    <a class="dropdown-item" href="http://localhost/GAC2/public/">Accueil</a>
-                    <a class="dropdown-item" href="#">BabyGym</a>
-                    <a class="dropdown-item" href="#">Gymnastique Artistique</a>
-                    <a class="dropdown-item" href="#">Gym'Adultes</a>
-                    <a class="dropdown-item" href="#">Pilates</a>
-                    <a class="dropdown-item" href="#">Zumba</a>
                     <a class="dropdown-item" href="{{ route('adherent.create') }}">Inscription</a>
                     <a class="dropdown-item" href="{{ route('login') }}">Connexion</a>
-
+                </div>
                     @endguest
 
                     @auth
@@ -58,12 +53,6 @@
                             <a class="dropdown-item" href="http://localhost/GAC2/public/">Accueil</a>
                             <a class="dropdown-item" href="http://localhost/GAC2/public/home/">Accueil
                                 administration</a>
-                            <a class="dropdown-item" href="#">BabyGym</a>
-                            <a class="dropdown-item" href="#">Gymnastique Artistique</a>
-                            <a class="dropdown-item" href="#">Gym'Adultes</a>
-                            <a class="dropdown-item" href="#">Pilates</a>
-                            <a class="dropdown-item" href="#">Zumba</a>
-                            <a class="dropdown-item" href="{{ route('adherent.create') }}">Inscription</a>
                             <a class="dropdown-item" href="{{ url('/logout') }}"
                                onclick="event.preventDefault();
              document.getElementById('logout-form').submit();">
@@ -76,29 +65,25 @@
                         </div>
                 </div>
             @endauth
+
         </div>
     </div>
-
+    <ul class="nav nav-tabs nav-justified menu ">
+        <li class="active menu bandeRose"><a data-toggle="tab" href="#identite">Accueil</a></li>
+        <li class="bandeBleu menu"><a data-toggle="tab" href="#entrainement">Baby Gym</a></li>
+        <li class="bandeViolette menu"><a data-toggle="tab" href="#urgence">Gymnastique Artistique</a></li>
+        <li class="bandeHotpink menu"><a data-toggle="tab" href="#inscription">Gym'Adulte</a></li>
+        <li class="bandeCyan menu"><a data-toggle="tab" href="#payement">Pilate</a></li>
+        <li class="bandeJaune menu"><a data-toggle="tab" href="#autres">Zumba</a></li>
+        <li class="bandeRouge menu"><a  href="{{ route('adherent.create') }}">Inscription</a></li>
+    </ul>
 </nav>
 
 <main class="py-4">
-    <script src="../../../resources/js/app.js"></script>
-
+     <script src="../../../resources/js/app.js"></script>
     @yield('content')
 </main>
-</div>
- <!---JS----->
-  <script>
 
-        $(function() {
 
-            $.ajaxSetup({
-                headers: {
-                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-                },
-                ...
-            },)
-        })
-    </script>
 </body>
 </html>

@@ -6,10 +6,8 @@
                 <div class="card" >
                     <div class="card-header">Gestion des dossiers</div>
                     <div class="card-body" id="dossier">
-                          <form action='./adherent/update' method="get">
+                          <form action='./adherent/updateDocument' method="get">
                                 {!!csrf_field ()  !!}
-
-
                         <table class="dossier">
                             <thead>
                             <tr>
@@ -23,7 +21,7 @@
                             </tr>
                             </thead>
                             <tbody>
- @foreach($adherents as $adherent)
+                                @foreach($adherents as $adherent)
                                 <tr>
                                     <td>
                                         {{$adherent->nom}}
@@ -72,6 +70,4 @@
                 </div>
             </div>{!! $adherents->links()  !!}
         </div>
-
-
 @endsection

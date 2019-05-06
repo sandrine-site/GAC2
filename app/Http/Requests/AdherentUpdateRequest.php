@@ -2,6 +2,7 @@
 
 namespace App\Http\Requests;
 
+use App\Adherent;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Validation\Rule;
 use Illuminate\Validation\ValidationData;
@@ -14,7 +15,7 @@ class AdherentUpdateRequest extends FormRequest
      *
      * @return bool
      */
-    public function authorize()
+    public function authorize ()
     {
         return true;
     }
@@ -24,21 +25,12 @@ class AdherentUpdateRequest extends FormRequest
      *
      * @return array
      */
-    public function rules()
+    public function rules ()
     {
 
 
-        return
-        [
-            'adresse'=>'nullable|max:200',
-            'ville'=>'nullable|string|max:50',
-            'cp'=>'nullable|integer',
-            'email1'=>'nullable|email|max:255',
-            'email2'=>'nullable|email|max:255',
-            'section_id'=>'nullable|integer',
-            'nom_Urgence'=>'nullable|string|max:50',
-            'telephone_Urgence'=>'nullable|regex:#^0[1-9]([-. /]?[0-9]{2}){4}$#',
-            'nbHeures'=>'nullable',
+        return [
 
-    ];}}
-
+            ];
+    }
+}

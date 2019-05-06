@@ -6,8 +6,7 @@ $(document).ready(function() {
 
 	$(add_button).click(function(e){
 		e.preventDefault();
-			$(wrapper).append('<div><input type="mail" name="email2"/></div>'); //add input box
-
+			$(wrapper).replaceWith('<div><input type="mail" name="email2"/></div>');
 	});
 
 });
@@ -17,11 +16,12 @@ $(document).ready(function() {
 
 	$(add_button).click(function(e){
 		e.preventDefault();
-			$(wrapper).append('<div><input type="mail" name="email2"/></div>'); //add input box
+			$(wrapper).replaceWith('<div class="xx-small"><input type="text" placeholder="Tél responsable legal" name="telephone_Resp2"/><br/><input type="text" placeholder="Tél adherent" name="telephone_adherent"/></div>');
+
 
 	});
 
-})
+});
 
 
 

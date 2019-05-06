@@ -8398,7 +8398,9 @@ a.bg-dark:focus, a.bg-dark:hover, button.bg-dark:focus, button.bg-dark:hover {
 }
 
 .text-primary {
-    color: #6a387c !important
+    color: #6a387c !important;
+    font-size: small !important;
+
 }
 
 a.text-primary:focus, a.text-primary:hover {
@@ -9237,7 +9239,7 @@ div.form-group select {
 .form-invisible {
     background-color: #dcdcdc;
     border: none;
-    color: #6a387c;
+    color: black;
     font-weight: bold;
 }
 
@@ -9347,6 +9349,10 @@ i.fas.fa-smile {
     font-size: xx-large;
 }
 
+#inscription > form:nth-child(1) > div:nth-child(4) > div:nth-child(2){
+    display: block;
+    align-self: baseline;
+}
 div#dossier input.btn.btn-warning {
     padding: 0 0.8rem;
 }
@@ -9384,6 +9390,7 @@ div#dossier input.btn.btn-warning {
 }
 .rose{
     color:#ed1358;
+    font-size: x-large;
 }
 .bandeVert2,.bandeVert2.active a {
     border-top-left-radius: 4px;
@@ -9392,6 +9399,7 @@ div#dossier input.btn.btn-warning {
 }
 .Vert2{
     color: olivedrab;
+    font-size: x-large;
 }
 
 .bandeBleu,.bandeBleu.active a {
@@ -9401,6 +9409,7 @@ div#dossier input.btn.btn-warning {
 }
 .Bleu{
     color: cornflowerblue;
+    font-size: x-large;
 }
 
 .bandeHotpink,.bandeHotpink.active a {
@@ -9410,6 +9419,7 @@ div#dossier input.btn.btn-warning {
 }
 .Hotpink{
     color: hotpink;
+    font-size: x-large;
 }
 
 .bandeJaune,.bandeJaune.active a {
@@ -9419,6 +9429,7 @@ div#dossier input.btn.btn-warning {
 }
 .Jaune{
     color: #ebb742;
+    font-size: x-large;
 }
 
 .bandeCyan,.bandeCyan.active a {
@@ -9428,6 +9439,7 @@ div#dossier input.btn.btn-warning {
 }
 .Cyan{
     color: darkcyan;
+    font-size: x-large;
 }
 
 .bandeRouge,.bandeRouge.active a {
@@ -9437,6 +9449,7 @@ div#dossier input.btn.btn-warning {
 }
 .Rouge{
     color:red;
+    font-size: x-large;
 }
 
 .bandeViolette,.bandeViolette.active a {
@@ -9446,6 +9459,7 @@ div#dossier input.btn.btn-warning {
 }
 .Viollette{
     color: #6a387c;
+    font-size: x-large;
 }
 
 .display-card {
@@ -9454,8 +9468,20 @@ div#dossier input.btn.btn-warning {
     align-items: flex-start;
 }
 .nav {
-display: flex;
+display: inline-block;
 width: 100%;
+
+}
+
+.btn-group-vertical > .btn-group::after, .btn-group-vertical > .btn-group::before, .btn-toolbar::after, .btn-toolbar::before, .clearfix::after, .clearfix::before, .container-fluid::after, .container-fluid::before, .container::after, .container::before, .dl-horizontal dd::after, .dl-horizontal dd::before, .form-horizontal .form-group::after, .form-horizontal .form-group::before, .modal-footer::after, .modal-footer::before, .modal-header::after, .modal-header::before, .nav::after, .nav::before, .navbar-collapse::after, .navbar-collapse::before, .navbar-header::after, .navbar-header::before, .navbar::after, .navbar::before, .pager::after, .pager::before, .panel-body::after, .panel-body::before, .row::after, .row::before {
+display: flex;
+justify-content: center;
+align-content: first baseline;
+}
+
+.navbar-expand-md {
+     flex-flow: column !important;
+    justify-content: flex-start;
 }
 .fiche li {
 	text-align: center;
@@ -9465,9 +9491,25 @@ width: 100%;
 	text-align: center;
 	width: 14.2%;
 }
+
 #identite{
     font-size: initial;
     line-height: 2.5;
+}
+
+.nav > li {
+    position: relative;
+    display: block;
+    font-family: 'Kalam', cursive;
+    color: black;
+}
+
+.nav-tabs.nav-justified > li > a {
+    color: black;
+}
+
+.nav-tabs.nav-justified > li > a:focus{
+    color: #ed1358;
 }
 .boutonsCard {
     display: flex;
@@ -9518,14 +9560,43 @@ div.card-header ul.nav.nav-pills.nav-stacked li a {
 .nav > li {
     text-align: center;
 }
+.navbar{
+padding: 0 !important;}
 
 ul.nav.nav-pills.nav-stacked li a i {
-    font-size: x-large;
+    font-size: large;
+}
+a.active {
+    font-size: initial;
 }
 
-.nav-pills > li > a {
-    border-radius: 0;
+.nav > li > a {
+    position: relative;
+    display: block;
+     padding: 0;
 }
+
+ul.nav:nth-child(1) {
+ font-size: small;
+font-weight: initial;
+}
+
+.fiche {
+font-size: small;
+font-weight: initial;
+}
+ul.nav-pills.nav-stacked li.active a {
+    background-color: darkgray;
+    box-shadow: 0 -1.5rem 1rem rgba(0, 0, 0, .15) !important;
+    transform: translateY(-2rem);}
+
+
+ul.nnav nav-tabs nav-justified .menu li.active a {
+ background-color: darkgray;
+ box-shadow: 0 - 1 rem 1 rem rgba(0, 0, 0, .15) !important;
+ transform: translateY(- 0.5 rem);
+}
+
 .onglet{	font-size: xx-large;
 	text-align: left;
 	align-self: last baseline;
@@ -9568,3 +9639,43 @@ width: 80%;
     color: #ed1358;
 }
 
+.section4 {
+    color: #ed1358;
+font-size: small !important;
+}
+.section5 {
+    color: olivedrab;
+    font-size: small !important;
+}
+.section2 {
+    color: cornflowerblue;
+    font-size: small !important;
+}
+.section1 {
+    color: hotpink;
+    font-size: small !important;
+}
+.section6 {
+    color: #ebb742;
+    font-size: small!important;;
+}
+.section7 {
+    color: darkcyan;
+    font-size: small!important;
+}
+.section8 {
+    color: red;
+    font-size: small!important;
+}
+.section3 {
+    color: #6a387c;
+    font-size: small!important;
+}
+
+.xx-small {
+    font-size: xx-small !important;
+}
+
+i>.small {
+font-size: medium !important;
+}

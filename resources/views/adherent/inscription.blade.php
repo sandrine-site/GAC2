@@ -188,18 +188,19 @@
                             <select name="heureSemaine" id="heureSemaine" cols="10">
 
                                 <option value="{{old("heureSemaine","")}}">{{old("heureSemaine","")}}</option>
-                                <option value="0.75">45min</option>
-                                <option value="1">1h</option>
-                                <option value="1.5">1h30</option>
-                                <option value="2">2h</option>
-                                <option value="2.5">2h30</option>
-                                <option value="3">3h</option>
-                                <option value="3.5">3h30</option>
-                                <option value="4">4h</option>
-                                <option value="4.5">4h30</option>
-                                <option value="5">5h</option>
-                                <option value="5.5">5h30</option>
-                                <option value="6">6h</option>
+                                <option value="45min">45min</option>
+                                <option value="1h">1h</option>
+                                <option value="1h30">1h30</option>
+                                <option value="2h">2h</option>
+                                <option value="2h30">2h30</option>
+                                <option value="3h">3h</option>
+                                <option value="3h30">3h30</option>
+                                <option value="4h">4h</option>
+                                <option value="4h30">4h30</option>
+                                <option value="5h">5h</option>
+                                <option value="5h30">5h30</option>
+                                <option value="6h">6h</option>
+                                <option value="8h">8h</option>
                             </select><br/>
                             {!! $errors->first('heureSemaine', '<small class="help-block">:message</small>') !!}
                         </div>
