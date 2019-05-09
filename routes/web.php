@@ -11,8 +11,8 @@
 |
 */
 
-//Route::get('adherent/index',function () {
-//    return view('adherent.index');});
+Route::get('adherent/index',function () {
+    return view('adherent.index');});
 Route::get('adherent.confirm', function () {
     return view('adherent.confirm');
 });
@@ -57,6 +57,8 @@ Route::get('/adherent/updateGroupe','AdherentController@updateGroupe')->name('ad
 Route::get('/adherent','AdherentController@index')->name('adherent.index');
 Route::get('/adherent/updateDocument','AdherentController@updateDocument')->name('adherent.updateDocument');
 Route::put('/adherent/{adherent}', 'AdherentController@update')->name('adherent.update');
+Route::get('/adherent/Repartition', 'AdherentController@indexRepartition')->name('adherent.indexRepartition');
+Route::put('/adherent/updateRepartition', 'AdherentController@updateRepartition')->name('adherent.updateRepartition');
 
 /*Année Scolaire Controller*/
 Route::get('/anneeScolaire','AnneeScolaireController@index')->name('anneeScolaire.index');
@@ -103,3 +105,7 @@ Route::delete('/user/{user}','UserController@destroy')->name('user.destroy');
 Route::put('updateAdherent','GroupeController@updateAdherent')->name('groupe.updateAdherent');
 /*autorisationControleir*/
 Route::get('update','AutorisationController@update')->name('autorisation.update');
+//essaies
+Route::get('/test', function () {
+    return view('test');
+});

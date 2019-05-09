@@ -48,10 +48,17 @@
                                 </div>
                                 <br/><br/>
                                 <div class=" row display-7">
-                                    <a href="{!!route('groupe.index')!!}" class="btn btn-info "><i
-                                            class="fas fa-users-cog"></i> Composer des groupes gym</a>
+                                    <a href="{!!route('adherent.indexRepartition')!!}" class="btn btn-hotPink "><i
+                                            class="fas fa-share-alt"></i> Répartition des gymnastes</a>
+                                </div>
+                                <br/>
+                                <div class="row display-7">
                                     <a href="{!!route('section.index')!!}" class="btn btn-success  "><i
                                             class="fas fa-table"></i> Edition des sections</a>
+                                    <a href="{!!route('groupe.index')!!}" class="btn btn-info "><i
+                                            class="fas fa-users-cog"></i> Edition des groupes</a>
+                                    <a href="{!!route('section.index')!!}" class="btn btn-success  "><i
+                                            class="fas fa-table"></i> </a>
                                     <a href="{!!route('creneau.index')!!}" class="btn btn-dark "><i
                                             class="far fa-clock"></i> Gestion des creneaux horaire</a>
                                 </div>

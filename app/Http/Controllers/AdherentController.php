@@ -42,10 +42,11 @@ class AdherentController extends Controller
 
     public function indexRepartition()
     {
+    $adherent=Adherent::orderBy('dateNaissance')->paginate(10);
        $sections=Section::all();
         $groupes=Groupe::all();
         $creneaux=Creneau::all();
-return view('adherent.editRepartition',compact('sections','groupes','creneaux'));
+return view('adherent.editRepartition',compact('adherent','sections','groupes','creneaux'));
     }
     /**
      * Show the form for creating a new resource.
@@ -169,29 +170,55 @@ return view('adherent.editRepartition',compact('sections','groupes','creneaux'))
      */
     public function updateDocument()
     {
-        if(isset($_GET['photo'])){
-            foreach ($_GET['photo'] as $photo)
-            {
-                Adherent::where('id',$photo)
+        dd($_GET);
+    dd($_GET['adherent'],$_GET['photo']);
+    foreach ($_GET['adherent'] as $adherent){
+        if (isset($_GET['photo'])){
+            foreach ($_GET['photo'] as $photo){
+                if($photo==$adherent){
+                    Adherent::where('id',$adherent)
                     ->update(['photo'=>1]);
-            }}
-        if(isset($_GET['CertifMedical'])){
-            foreach ($_GET['CertifMedical'] as $CertifMedical)
-            {
-                Adherent::where('id',$CertifMedical)
-                    ->update(['CertifMedical'=>1]);
-            }}
-        if(isset($_GET['autorisationsRendues'])){
-            foreach ($_GET['autorisationsRendues'] as $autorisationsRendue)
-            {
-                Adherent::where('id',$autorisationsRendue)
-                    ->update(['autorisationsRendues'=>1]);
-            }}
-        if(isset($_GET['RecuDemande'])){
-            foreach ($_GET['RecuDemande'] as $RecuDemande)
-            {
-                Adherent::where('id',$RecuDemande)
-                    ->update(['RecuDemande'=>1]);}}
+                }
+                else{
+                Adherent::where('id', $adherent)
+                    ->update(['photo' => 0]);}
+            }
+
+        if (isset($_GET['CertifMedical'])) {
+            foreach ($_GET['CertifMedical'] as $CertifMedical) {
+                if ($CertifMedical == $adherent) {
+                    Adherent::where('id', $adherent)
+                        ->update(['CertifMedical' => 1]);
+                } else {
+                    Adherent::where('id', $adherent)
+                        ->update(['CertifMedical' => 0]);
+                }
+            }
+        }
+            if (isset($_GET['autorisationsRendues'])) {
+                foreach ($_GET['autorisationsRendues'] as $autorisationsRendues) {
+                    if ($autorisationsRendues == $adherent) {
+                        Adherent::where('id', $adherent)
+                            ->update(['autorisationsRendues' => 1]);
+                    } else {
+                        Adherent::where('id', $adherent)
+                            ->update(['autorisationsRendues' => 0]);
+                    }
+                }
+            }
+            if (isset($_GET['RecuDemande'])) {
+                foreach ($_GET['RecuDemande'] as $RecuDemande) {
+                    if ($RecuDemande == $adherent) {
+                        Adherent::where('id', $adherent)
+                            ->update(['RecuDemande' => 1]);
+                    } else {
+                        Adherent::where('id', $adherent)
+                            ->update(['RecuDemande' => 0]);
+                    }
+                }
+            }
+        }
+    }
         return redirect('/dossier');
     }
 
@@ -317,6 +344,10 @@ return view('adherent.editRepartition',compact('sections','groupes','creneaux'))
         return view('adherent.edit', compact('adherent', 'groupes', 'sections', 'creneaux'));
     }
 
+    public function updateRepartition()
+    {
+    dd($_GET);
+    }
     /**
      * Remove the specified resource from storage.
      *
