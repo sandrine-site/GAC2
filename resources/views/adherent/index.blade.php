@@ -91,26 +91,26 @@
                                         @endforeach
                                         @endisset</td>
                                            <td class="entrainement"> @if($adherent->autorisations->where('typeAuto_id','=','2')->first()->ok==1)
-                                                    <i class="fas fa-car Vert2"></i>
+                                                    <i class="fas fa-car VertY"></i>
                                                 @elseif($adherent->autorisations->where('typeAuto_id','=','2')->first()->ok==0)
-                                                    <i class="fas fa-car Rouge"></i>
+                                                    <i class="fas fa-car RougeN"></i>
                                            @endif </td>
                                             <td class="entrainement">@if($adherent->autorisations->where('typeAuto_id','=','3')->first()->ok==1)
-                                                    <i class="fas fa-camera Vert2"></i>
+                                                    <i class="fas fa-camera VertY"></i>
                                                 @elseif ($adherent->autorisations->where('typeAuto_id','=','3')->first()->ok==0)
-                                                    <i class="fas fa-camera Rouge"></i>
+                                                    <i class="fas fa-camera RougeN"></i>
                                                 @endif</td>
                                             <td class="entrainement">@if($adherent->autorisations->where('typeAuto_id','=','4')->first()->ok==1)
-                                                    <i class="fas fa-user-clock Vert2"></i>
+                                                    <i class="fas fa-user-clock VertY"></i>
                                                 @elseif($adherent->autorisations->where('typeAuto_id','=','4')->first()->ok==0)
-                                                    <i class="fas fa-user-clock Rouge"></i>
+                                                    <i class="fas fa-user-clock RougeN"></i>
                                                 @endif </td>
                                             <td class="section{{$adherent->section->id}} urgence">
                                                 @if($adherent->autorisations->where('typeAuto_id','=','1')->first()->ok==1)
 
-                                                    <i class="fas fa-first-aid Vert2"></i>
+                                                    <i class="fas fa-first-aid VertY"></i>
                                                 @elseif($adherent->autorisations->where('typeAuto_id','=','1')->first()->ok==0)
-                                                    <i class="fas fa-first-aid Rouge"></i>
+                                                    <i class="fas fa-first-aid RougeN"></i>
                                                 @endif
                                             </td>
                                             <td class="section{{$adherent->section->id}} urgence">
@@ -128,15 +128,15 @@
                                                 </td>
                                             <td class="dossier" >
                                                 @if($adherent->CertifMedical==1)
-                                                    <i class="fas fa-check-circle Vert2"></i>
+                                                    <i class="fas fa-check-circle VertY"></i>
                                                 @endif</td>
                                             <td class="dossier">
                                                 @if($adherent->photo==1)
-                                                    <i class="fas fa-check-circle  Vert2"></i>
+                                                    <i class="fas fa-check-circle  VertY"></i>
                                                     @endif
                                             <td class="dossier">
                                                 @if($adherent->autorisationsRendues==1)
-                                                    <i class="fas fa-check-circle Vert2">
+                                                    <i class="fas fa-check-circle VertY">
                                                      @endif</td>
                                             <td class="dossier">
                                                 @if($adherent->RecuDemande==1)
@@ -144,9 +144,9 @@
                                                 @endif</td>
                                             <td class="dossier">
                                                 @if($adherent->autorisationsRendues==1&&$adherent->photo==1&&$adherent->CertifMedical==1)
-                                                    <i class="fas fa-smile Vert2"></i>
+                                                    <i class="fas fa-smile VertY"></i>
                                                 @else
-                                                    <i class="fas fa-frown  Rouge"></i>
+                                                    <i class="fas fa-frown  RougeN"></i>
                                                 @endif</td>
                                         <td class="section{{$adherent->section->id}} payement"> </td>
                                         <td class="section{{$adherent->section->id}} payement"></td>
@@ -172,9 +172,14 @@
                 </div>
             </div>
         </div>
-        <div class="display-2">
-            <div class="row">
-            </div>
+
+            <div class="row back">
+
+                                <a href="javascript:history.back()" class="btn-back">
+                                    <span class="glyphicon glyphicon-circle-arrow-left"></span> Retour
+                                </a>
+
+
     {!! $adherents->links()  !!}
         </div>
     </div>

@@ -4,7 +4,7 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Groupe extends Model 
+class Groupe extends Model
 {
 
     protected $table = 'groupes';
@@ -12,9 +12,9 @@ class Groupe extends Model
     protected $fillable = array('nom', 'categorie','section_id');
     protected $nullable = array ('categorie');
 
-    public function users()
+    public function user()
     {
-        return $this->belongsToMany('App\User', 'groupes_users','groupe_id','user_id');
+        return $this->belongsToMany('App\User', 'groupe_user','groupe_id','user_id');
     }
 
     public function adherents()

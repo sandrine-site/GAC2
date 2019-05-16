@@ -16,8 +16,10 @@ class DossierController extends Controller
     public function index()
     {
         $adherents = Adherent::orderBy('nom')->orderBy('prenom')->Paginate(20);
-
-        return view('dossier.index', compact('adherents'));
+        foreach ($adherents as $adherent){
+        $adherent->remarques;}
+$json=json_encode ($adherents);
+        return view('dossier.index', compact('adherents','json'));
     }
 
     /**

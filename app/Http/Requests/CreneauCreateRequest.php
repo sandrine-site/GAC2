@@ -27,7 +27,7 @@ class CreneauCreateRequest extends FormRequest
             'jour_id'=>'required|integer',
             'heure_debut'=>'required|integer',
             'min_debut'=>'nullable|string',
-            'duree'=>'required|between:0,10',
+            'duree'=>'required',
             'lieu_id'=>'nullable|integer'
         ];
     }

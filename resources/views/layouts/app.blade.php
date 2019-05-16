@@ -23,9 +23,11 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
-    <link href="{{ asset('css/app.css') }}" rel="stylesheet">
-
+{{--    <link href="{{asset('css/app.css')}}" rel="stylesheet">--}}
+    <link href="{{asset('css/app2.css')}}" rel="stylesheet">
     <!---JS----->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.6.10/vue.min.js"></script>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
 
 </head>
 
@@ -50,8 +52,8 @@
                         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown"
                            aria-haspopup="true" aria-expanded="false">{{ Auth::user()->name }}</a>
                         <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownMenuLink">
-                            <a class="dropdown-item" href="http://localhost/GAC2/public/">Accueil</a>
-                            <a class="dropdown-item" href="http://localhost/GAC2/public/home/">Accueil
+                            <a class="dropdown-item" href="{!!route('accueil')!!}">Accueil</a>
+                            <a class="dropdown-item" href="{!!route('home')!!}">Accueil
                                 administration</a>
                             <a class="dropdown-item" href="{{ url('/logout') }}"
                                onclick="event.preventDefault();
@@ -69,7 +71,7 @@
         </div>
     </div>
     <ul class="nav nav-tabs nav-justified menu ">
-        <li class="active menu bandeRose"><a data-toggle="tab" href="#identite">Accueil</a></li>
+        <li class="active menu fondRose"><a data-toggle="tab" href="#identite">Accueil</a></li>
         <li class="bandeBleu menu"><a data-toggle="tab" href="#entrainement">Baby Gym</a></li>
         <li class="bandeViolette menu"><a data-toggle="tab" href="#urgence">Gymnastique Artistique</a></li>
         <li class="bandeHotpink menu"><a data-toggle="tab" href="#inscription">Gym'Adulte</a></li>
@@ -80,10 +82,14 @@
 </nav>
 
 <main class="py-4">
-     <script src="../../../resources/js/app.js"></script>
+
     @yield('content')
 </main>
 
-
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+<script>
+      window.Laravel = {!! json_encode(['csrfToken' => csrf_token()]) !!};
+    </script>
+    @yield('script')
 </body>
 </html>

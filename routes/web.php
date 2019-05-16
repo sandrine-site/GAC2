@@ -43,7 +43,10 @@ Route::resource('accueilAdmin','accueilAdminController');
 /* page d'Accueil*/
 Route::get('/', function () {
     return view('Accueil');
-});
+})->name('accueil');
+//Route::get('/', function () {
+//    return view('welcome');
+//})->name('accueil');
 
 /*Page d'autentification*/
 Auth::routes();
@@ -57,8 +60,12 @@ Route::get('/adherent/updateGroupe','AdherentController@updateGroupe')->name('ad
 Route::get('/adherent','AdherentController@index')->name('adherent.index');
 Route::get('/adherent/updateDocument','AdherentController@updateDocument')->name('adherent.updateDocument');
 Route::put('/adherent/{adherent}', 'AdherentController@update')->name('adherent.update');
-Route::get('/adherent/Repartition', 'AdherentController@indexRepartition')->name('adherent.indexRepartition');
-Route::put('/adherent/updateRepartition', 'AdherentController@updateRepartition')->name('adherent.updateRepartition');
+/*AdherentRepartitionController*/
+Route::get('/adherent/Repartition', 'AdherentRepartitionController@indexRepartition')->name('adherent.indexRepartition');
+Route::put('/adherent/updateRepartition', 'AdherentRepartitionController@updateRepartition')->name('adherent.updateRepartition');
+Route::post ('/ByGroup','AdherentRepartitionController@editByGroup')->name('adherent.editByGroup');
+Route::post ('/BySection','AdherentRepartitionController@editBySection')->name('adherent.editBysection');
+Route::post ('/ByEntraineur','AdherentRepartitionController@editByEntraineur')->name('adherent.editByEntraineur');Route::post ('/ByCreneau','AdherentRepartitionController@editByCreneau')->name('adherent.editByCreneau');
 
 /*Année Scolaire Controller*/
 Route::get('/anneeScolaire','AnneeScolaireController@index')->name('anneeScolaire.index');

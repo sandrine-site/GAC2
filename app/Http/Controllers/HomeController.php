@@ -39,13 +39,12 @@ class HomeController extends Controller
             ->orderBy ('prenom')
             ->get ();
         $sections = Section::all ();
-        $jours = Jour::all ();
-        $creneaux = Creneau::all ();
+        $creneaux = Creneau::orderBy('jour_id')->get();
         $adherents = Adherent::orderBy ('nom')
             ->get ();
         $groupes = Groupe::orderBy ('section_id')
             ->get ();
-        return view ('accueilAdmin', compact ('users', 'sections', 'jours', 'creneaux', 'adherents', 'groupes'));
+        return view ('accueilAdmin', compact ('users', 'sections', 'creneaux', 'adherents', 'groupes'));
     }
 
     public function navbar ()

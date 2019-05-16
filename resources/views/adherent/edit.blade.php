@@ -92,7 +92,7 @@
                                             </div>
                                         @endif
                                         <div class="col-12">
-                                            <h5 class="violet">Les champs en gris peuvent être modifiés.</h5>
+                                            <h5 class="violet">Les champs en noir peuvent être modifiés.</h5>
                                             <button type="submit" class="btn btn-primary btn pull-right">
                                                 Enregistrer les modifications
                                             </button>
@@ -196,7 +196,7 @@
                                             <div class="autorisation row">
                                                 @if($autorisation->ok==1)
                                                     <div>
-                                                        <i class="fas fa-car onglet Vert2"></i>
+                                                        <i class="fas fa-car onglet VertY"></i>
                                                     </div>
                                                     <div>
                                                         Le(la) gymnaste peut etre transporté par un membre du club
@@ -206,7 +206,7 @@
                                                     </div>
                                                 @else
                                                     <div>
-                                                        <i class="fas fa-car onglet Rouge line"></i>
+                                                        <i class="fas fa-car onglet RougeN line"></i>
                                                     </div>
                                                     <div>
                                                         Le(la) gymnaste ne peut pas etre transporté par un membre du club
@@ -220,7 +220,7 @@
                                             <div class="autorisation row">
                                                 @if($autorisation->ok==1)
                                                     <div>
-                                                        <i class="fas fa-camera onglet Vert2"></i>
+                                                        <i class="fas fa-camera onglet VertY"></i>
                                                     </div>
                                                     <div>
                                                         Le(la) gymnaste peut etre photographié pour les besoins du club
@@ -229,7 +229,7 @@
                                                         {!! link_to_route('autorisation.update', 'Modifier',['id'=>$autorisation->id,'adherent_id'=>$adherent->id], ['class' => 'changerAutorisationTransport  btn-autorisation btn btn-link']) !!}</div>
                                                 @else
                                                     <div>
-                                                        <i class="fas fa-camera onglet Rouge line"></i>
+                                                        <i class="fas fa-camera onglet RougeN line"></i>
                                                     </div>
                                                     <div>
                                                         Le(la) ne peut gymnaste pas etre photographié.
@@ -243,7 +243,7 @@
                                             <div class="row autorisation">
                                                 @if( $autorisation->ok==1)
                                                     <div>
-                                                        <i class="fas fa-user-clock onglet Vert2"></i>
+                                                        <i class="fas fa-user-clock onglet VertY"></i>
                                                     </div>
                                                     <div>
                                                         Le(la) gymnaste est autorisé à partir seul à la fin de l'entrainement
@@ -254,7 +254,7 @@
                                             </div>
                                         @else
                                             <div>
-                                                <i class="fas fa-user-clock onglet Rouge line"></i>
+                                                <i class="fas fa-user-clock onglet RougeN line"></i>
                                             </div>
                                             <div>
                                                 Le(la) gymnaste n'est pas autorisé à partir seul à la fin de l'entrainement
@@ -325,7 +325,7 @@
                                         @if($autorisation->typeAuto_id==1)
                                             @if($autorisation->ok==1)
                                                 <div>
-                                                    <i class="fas fa-first-aid onglet Vert2"></i>
+                                                    <i class="fas fa-first-aid onglet VertY"></i>
                                                 </div>
                                                 <div>
                                                     Les animateurs sont autorisés à mettre en œuvre en cas d'urgence, les traitements, hospitalisation et intervention reconnus médicalement nécessaires auprès du gymnaste.
@@ -335,7 +335,7 @@
                                                 </div>
                                             @else
                                                 <div>
-                                                    <i class="fas fa-first-aid onglet line Rouge"></i>
+                                                    <i class="fas fa-first-aid onglet line RougeN"></i>
                                                 </div>
                                                 <div>
                                                     Les animateurs ne sont pas autorisés à mettre en œuvre en cas d'urgence.
@@ -491,10 +491,10 @@
                     </div>
                 </div>
             </div>
-            <div class="col-2">
-                <a href="javascript:history.back()" class="btn btn-warning">
+
+                <a href="javascript:history.back()" class="btn-back">
                     <span class="glyphicon glyphicon-circle-arrow-left"></span> Retour
                 </a>
-            </div>
+
         </div>
 @endsection

@@ -22,7 +22,7 @@
                             <tr>
                                 <th>{{$groupe->nom}}</th>
                                 <th >{{$groupe->categorie}}</th>
-                                @if (count ($groupe->users))
+                                @isset($groupe->users)
                                     <td >
                                         @foreach($groupe->users as $user)
                                             {{($user->prenom)}}
@@ -30,7 +30,7 @@
                                     </td>
                                 @else
                                     <td></td>
-                                @endif
+                                @endisset
                                 <td>{{$groupe->section->nom}}</td>
                                 <td>{!! link_to_route('groupe.edit', 'Liste des gymnastes', $groupe->id, ['class' => 'btn btn-primary btn-block']) !!}</td>
                                 <td>{!! link_to_route('groupe.edit', 'Modifier', $groupe->id, ['class' => 'btn btn-warning btn-block']) !!}</td>

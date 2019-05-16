@@ -56,12 +56,14 @@
                                     <small class="help-block">{{$errors->first("duree",':message') }}</small>  @endif
                                 <label>durée:</label><br/>
                                 <select name="duree" id="duree">
-                                    <option value='0.75'>45min</option>
-                                    <option value='1'>1h</option>
-                                    <option value='1.25'>1h15</option>
-                                    <option value='1.5'>1h30</option>
-                                    <option value='1.75'>1h45</option>
-                                    <option value='2'>2h</option>
+                                    <option value='45min'>45min</option>
+                                    <option value='1h'>1h</option>
+                                    <option value='1h25'>1h15</option>
+                                    <option value='1h30'>1h30</option>
+                                    <option value='1h45'>1h45</option>
+                                    <option value='2h'>2h</option>
+                                    <option value='2h30'>2h30</option>
+                                    <option value=3h'>3h</option>
                                 </select>
                             </div>
                             @if ($errors->has('duree'))
