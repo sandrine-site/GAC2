@@ -84,7 +84,7 @@ Route::get('/creneau/{creneau}/edit', 'CreneauController@edit')->name('creneau.e
 Route::get('/dossier','DossierController@index')->name('dossier.index');
 Route::post('/dossier','DossierController@store')->name('dossier.store');
 Route::get('/dossier/{dossier}/edit','DossierController@edit')->name('dossier.edit');
-Route::put('/dossier/{dossier}','DossierController@update')->name('dossier.update');
+Route::post('/dossier/update','DossierController@update')->name('dossier.update');
 
 /*FonctionController*/
 Route::get('/fonction','FonctionController@index')->name('fonction.index');

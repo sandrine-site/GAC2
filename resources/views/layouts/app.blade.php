@@ -29,6 +29,7 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.6.10/vue.min.js"></script>
     <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
 
+
 </head>
 
 <body>
@@ -88,8 +89,9 @@
 
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
 <script>
+
       window.Laravel = {!! json_encode(['csrfToken' => csrf_token()]) !!};
-    </script>
+         </script>
     @yield('script')
 </body>
 </html>

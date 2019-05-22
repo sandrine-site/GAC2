@@ -9383,7 +9383,7 @@ div#dossier input.btn.btn-warning {
 }
 
 .b-rose {
-    background-color: #ed1358;
+    background-color: #ed1358 !important;
     color: white;
 }
 
@@ -9842,4 +9842,11 @@ justify-content: space-between;}
 	text-decoration: none;
 	background-color: #ebb742;
 	border: 1px solid #ddd;
-}}
+}
+
+.dossier > thead:nth-child(1) > tr:nth-child(1),.dossier > thead:nth-child(1) > tr:nth-child(1) > th:nth-child(2)  {
+width: 20%;
+}
+.dossier > thead:nth-child(1) > tr:nth-child(1) > th:nth-child(3) ,.dossier > thead:nth-child(1) > tr:nth-child(1) > th:nth-child(4) ,.dossier > thead:nth-child(1) > tr:nth-child(1) > th:nth-child(5),.dossier > thead:nth-child(1) > tr:nth-child(1) > th:nth-child(6),.dossier > thead:nth-child(1) > tr:nth-child(1) > th:nth-child(7),.dossier > thead:nth-child(1) > tr:nth-child(1) > th:nth-child(8) {
+ width: 10%;
+}

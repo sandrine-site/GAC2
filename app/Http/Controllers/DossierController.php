@@ -15,10 +15,10 @@ class DossierController extends Controller
      */
     public function index()
     {
-        $adherents = Adherent::orderBy('nom')->orderBy('prenom')->Paginate(20);
+        $adherents = Adherent::orderBy('nom')->orderBy('prenom')->paginate(20);
         foreach ($adherents as $adherent){
-        $adherent->remarques;}
-$json=json_encode ($adherents);
+            $adherent->remarques;}
+        $json=json_encode ($adherents);
         return view('dossier.index', compact('adherents','json'));
     }
 
@@ -41,8 +41,7 @@ $json=json_encode ($adherents);
      */
     public function store(Request $request)
     {
-        Dossier::create($request->all());
-        return back()->withOk('le dossier a bien été modifié');
+
     }
 
     /**
@@ -80,17 +79,35 @@ $json=json_encode ($adherents);
      *
      * @return \Illuminate\Http\Response
      */
-    public function update($id)
+    public function update(Request $request)
     {
-        $input = ['certifMedical' => $_POST['certifMedical'],
-            'photo' => $_POST['photo'],
-            'autorisationsRendues' => $_POST['autorisationsRendues'],
-            'payementOk' => $_POST['payementOk'],
-            'adherent_id' => Dossier::find($id)->adherent_id,
-            'recuDemande' => $_POST['recuDemande'],
-        ];
-        Dossier::find($id)->update($input);
-        return back();
+        var_dump ($request->all());
+        if(isset($request->photo)){
+        if($request->photo===true||$request->photo==="true"||$request->photo=="1"||$request->photo==1){
+            Adherent::where('id', $request->id)
+                ->update(['photo' => true]);}
+        else{Adherent::where('id', $request->id)
+            ->update(['photo' => false]);}}
+            if(isset($request->autorisationsRendues)){
+        if($request->autorisationsRendues===true||$request->autorisationsRendues==="true"||$request->autorisationsRendues=="1"||$request->autorisationsRendues==1){
+            Adherent::where('id', $request->id)
+                ->update(['autorisationsRendues' => true]);}
+        else{Adherent::where('id', $request->id)
+            ->update(['autorisationsRendues' => false]);}}
+           if( isset($request->CertifMedical)){
+        if($request->CertifMedical===true||$request->CertifMedical==="true"||$request->CertifMedical=="1"||$request->CertifMedical==1){
+            Adherent::where('id', $request->id)
+                ->update(['CertifMedical' => true]);}
+        else{Adherent::where('id', $request->id)
+            ->update(['CertifMedical' => false]);}}
+               if(isset($request->RecuDemande)){
+        if($request->RecuDemande==true||$request->RecuDemande=="true"||$request->RecuDemande=="1"||$request->RecuDemande==1){
+            Adherent::where('id', $request->id)
+                ->update(['RecuDemande' => true]);}
+        else{Adherent::where('id', $request->id)
+            ->update(['RecuDemande' => false]);
+        }}
+        return ;
     }
 
     /**
