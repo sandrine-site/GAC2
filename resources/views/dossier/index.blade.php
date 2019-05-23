@@ -54,9 +54,17 @@
 
                         </table>
                     </form>
-                </div>
-                {!! $adherents->links()  !!}
-            </div>
+                </div> </div>
+                <div class="row back">
+
+                                              <a href="javascript:history.back()" class="btn-back">
+                                                  <span class="glyphicon glyphicon-circle-arrow-left"></span> Retour
+                                              </a>
+
+
+                  {!! $adherents->links()  !!}
+
+
             @endsection
 
             @section('script')

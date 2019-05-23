@@ -9850,3 +9850,14 @@ width: 20%;
 .dossier > thead:nth-child(1) > tr:nth-child(1) > th:nth-child(3) ,.dossier > thead:nth-child(1) > tr:nth-child(1) > th:nth-child(4) ,.dossier > thead:nth-child(1) > tr:nth-child(1) > th:nth-child(5),.dossier > thead:nth-child(1) > tr:nth-child(1) > th:nth-child(6),.dossier > thead:nth-child(1) > tr:nth-child(1) > th:nth-child(7),.dossier > thead:nth-child(1) > tr:nth-child(1) > th:nth-child(8) {
  width: 10%;
 }
+.small > tr > td:nth-child(6) {
+display: flex;
+justify-content: space-between;
+}
+.repartition button{
+padding: 0 5px;
+    background-color:#fff;
+color: #ed1358;
+}
+#creneau li{
+list-style: none}

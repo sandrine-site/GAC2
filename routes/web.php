@@ -62,7 +62,7 @@ Route::get('/adherent/updateDocument','AdherentController@updateDocument')->name
 Route::put('/adherent/{adherent}', 'AdherentController@update')->name('adherent.update');
 /*AdherentRepartitionController*/
 Route::get('/adherent/Repartition', 'AdherentRepartitionController@indexRepartition')->name('adherent.indexRepartition');
-Route::put('/adherent/updateRepartition', 'AdherentRepartitionController@updateRepartition')->name('adherent.updateRepartition');
+Route::post('/AdherentRepartitionController/updateRepartition','AdherentRepartitionController@updateRepartition')->name('adherent.updateRepartition');
 Route::post ('/ByGroup','AdherentRepartitionController@editByGroup')->name('adherent.editByGroup');
 Route::post ('/BySection','AdherentRepartitionController@editBySection')->name('adherent.editBysection');
 Route::post ('/ByEntraineur','AdherentRepartitionController@editByEntraineur')->name('adherent.editByEntraineur');Route::post ('/ByCreneau','AdherentRepartitionController@editByCreneau')->name('adherent.editByCreneau');
