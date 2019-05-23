@@ -24,7 +24,7 @@
                                     </tr>
                                     </thead>
                                     <tbody class="small violet">
-                                    <tr v-for="adherent in adherents">
+                                    <tr v-for="adherent in adherentsdata">
                                         <td v-text="adherent.nom"></td>
                                         <td v-text="adherent.prenom"></td>
                                         <td v-text="adherent.dateNaissance"></td>
@@ -47,11 +47,11 @@
                                             <select
                                                 id="groupe"
                                                 v-model="groupe"
-                                              v-on:click= "changeGroupe(adherent,groupe)"
+                                              v-on:click.capture= "changeGroupe(adherent,groupe)"
                                                 name="groupe">
                                                 <option>Choisir dans la liste</option>
                                                 <option
-                                                    v-for="groupe in groupe"
+                                                    v-for="groupe in groupedata"
                                                     v-bind:value="groupe"
                                                     v-text="groupe.nom"
                                                    >
@@ -71,9 +71,14 @@
                                                 id="creneau"
                                                 v-model="creneau"
                                                 name="creneau"
+                                               v-on:click= "addCreneau(adherent,creneau)"
                                             >
                                                 <option value="" >Choisir dans la liste</option>
-                                                <option v-for="horaire in creneaux" v-bind:value="horaire.id" v-text="horaire.creneauphrase" ></option>
+                                                <option
+                                                v-for="horaire in creneauxdata"
+                                                v-bind:value="horaire"
+                                                v-text="horaire.creneauphrase" >
+                                                </option>
                                             </select></li>
                                         </ul>
                                         </td>
@@ -105,16 +110,16 @@
         var app = new Vue({
             el: '#app',
             data: {
-                creneaux:{!! $json !!},
-                adherents:{!! $jsonAdherents !!},
-                sections:{!!$jsonSections!!},
-                groupe:{!!$jsonGroupes!!},
+                creneauxdata:{!! $json !!},
+                adherentsdata:{!! $jsonAdherents !!},
+                sectionsdata:{!!$jsonSections!!},
+                groupedata:{!!$jsonGroupes!!},
             },
             methods: {
 
                 deleteCreneaux: function (adherent,creneau) {
                                             adherent.creneau=false;
-                                            console.log(adherent.id,creneau.id);
+
                     $.ajaxSetup({
                         headers: {
                             'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
@@ -152,7 +157,7 @@
                         console.log(error);
                     })
                 },
-                changeGroupe(adherent,groupe){
+                changeGroupe:function(adherent,groupe){
                   adherent.groupe=groupe;
 
                     $.ajaxSetup({
@@ -172,6 +177,29 @@
                         console.log(error);
                     })
                 },
+              addCreneau:function(adherent,creneau){
+
+                adherent.creneaux.push(creneau);
+                    $.ajaxSetup({
+                        headers: {
+                            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                        }
+                    });
+                    $.ajax({
+                        type: "POST",
+                        url: "{{route('adherent.updateRepartition')}}",
+                        data:{
+                          "adherent_id":adherent.id,
+                          "creneau_id":creneau.id,
+                          'value':true,
+                          }
+                    }).done(function(response){
+                        console.log(response);
+                    }).fail(function(error){
+                        console.log(error);
+                    })
+                },
+
             }})
     </script>
 @endsection

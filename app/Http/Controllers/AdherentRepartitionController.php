@@ -71,12 +71,15 @@ foreach ($adherent->creneaux as $creneau){
                                 ->update(['groupe_id' =>$request->groupe_id]);
                         }
     }
-                        if(isset($request->creneau_id)){
+                        elseif(isset($request->creneau_id)){
         if($request->value===false||$request->value==="false"||$request->value==="0"||$request->value===0){
                     $adherent=Adherent::find($request->adherent_id);
-                    var_dump ($request->creneau_id);
                     $adherent->creneaux()->detach($request->creneau_id);}
-//                    var_dump ($adherent->creneaux($request->creneaux_id));
+                    else{
+                        $adherent=Adherent::find($request->adherent_id);
+                                            $adherent->creneaux()->attach($request->creneau_id);
+                                            var_dump($adherent,$adherent->creneaux);
+                                            }
                         }
                         return;
     }
