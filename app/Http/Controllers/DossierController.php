@@ -81,7 +81,7 @@ class DossierController extends Controller
      */
     public function update(Request $request)
     {
-        var_dump ($request->all());
+
         if(isset($request->photo)){
         if($request->photo===true||$request->photo==="true"||$request->photo=="1"||$request->photo==1){
             Adherent::where('id', $request->id)
@@ -107,7 +107,7 @@ class DossierController extends Controller
         else{Adherent::where('id', $request->id)
             ->update(['RecuDemande' => false]);
         }}
-        return ;
+        return back('id'=>$request->id) ;
     }
 
     /**

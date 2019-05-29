@@ -76,7 +76,7 @@ Route::get('/anneeScolaire/create','AnneeScolaireController@create')->name('anne
 Route::get('/creneau','CreneauController@index')->name('creneau.index');
 Route::post('/creneau','CreneauController@store')->name('creneau.store');
 Route::get('/creneau/create','CreneauController@create')->name('creneau.create');
-Route::delete('/creneau/{creneau}','CreneauController@destroy')->name('creneau.destroy');
+Route::get('/creneau/{creneau}/{adherent}','CreneauController@destroy')->name('creneau.destroy');
 Route::get('/creneau/{creneau}/edit', 'CreneauController@edit')->name('creneau.edit');
 
 

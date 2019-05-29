@@ -6,6 +6,7 @@ use App\Creneau_User;
 use App\Creneaux_users;
 use App\Http\Requests\CreneauCreateRequest;
 use App\Creneau;
+use App\Adherent;
 use App\Jour;
 use App\Jours;
 use App\Lieu;
@@ -82,10 +83,12 @@ class CreneauController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy($creneau_id,$adherent_id)
     {
-        Creneau::find ($id)->delete();
-        return back ();
+      $adherent=Adherent::find($adherent_id);
+
+                          $adherent->creneaux()->detach($creneau_id);
+        return redirect('/creneau/{$adherent_id}/edit');
     }
 
 }

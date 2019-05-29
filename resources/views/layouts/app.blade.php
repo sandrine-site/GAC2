@@ -83,15 +83,11 @@
 </nav>
 
 <main class="py-4">
-
     @yield('content')
 </main>
 
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
-<script>
 
-      window.Laravel = {!! json_encode(['csrfToken' => csrf_token()]) !!};
-         </script>
     @yield('script')
 </body>
 </html>

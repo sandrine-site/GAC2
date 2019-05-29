@@ -240,7 +240,7 @@
                         <div class="row">
                             <div class="col-7">
                                 <input type="text" name="nomUrgence" class="form-control" id="nomUrgence"  value="{{old
-                ("nomUrgence","")}}" placeholder='Nom Prenom '/>
+                ("nomUrgence","")}}" placeholder='Nom Prénom '/>
                                 {!! $errors->first('nomUrgence', '<small class="help-block">:message</small>') !!}
                             </div>
                             <div class="col-5">
@@ -376,7 +376,7 @@
                 imprimer sur votre email après cette étape.</strong></h4>
         <p class="fonce"> Si vous ne recevez pas d'email dans les 30 min, veuillez nous écrire à l'adresse :
             gacgym@hotmail.fr</p>
-        <h4 class="rose"> Veuillez remettre à votre entraîneur le dossier, le certificat médical et le paiement. A très
+        <h4 class="roserose"> Veuillez remettre à votre entraîneur le dossier, le certificat médical et le paiement. A très
             bientôt!</h4>
         {!! Form::submit('Envoyer !', ['class' => 'btn btn-xlarge btn-primary']) !!}
         {!! Form::close() !!}

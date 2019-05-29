@@ -4304,6 +4304,7 @@ input[type=button].btn-block, input[type=reset].btn-block, input[type=submit].bt
     padding-left: 0;
     list-style: none;
     border-radius: .25rem
+  box-shadow: 0px 1px 3px 0px rgba(0, 0, 0, 0.2), 0px 1px 1px 0px rgba(0, 0, 0, 0.14), 0px 2px 1px -1px rgba(0, 0, 0, 0.12);
 }
 
 .page-link {
@@ -8740,7 +8741,14 @@ a.text-dark:focus, a.text-dark:hover {
     background-color: cyan;
     color: #898989;
 }
-
+.btn-orange{
+background-color: #da4f49;
+color: white;
+}
+.btn-orange:hover,.btn-orange:focus{
+background-color: #d0312a;
+color: white;
+}
 .btn.btn-success:hover,
 .btn.btn-success:focus {
     background: #BA0944;
@@ -8941,8 +8949,8 @@ font-size: small;
 }
 
 .form-invisible {
-    background-color: silver;
-    border: none;
+    background-color: #fdfafd;
+     font-style: oblique;
 }
 div.card-body table.table tbody.small.violet tr td {
 	font-size: small;
@@ -9014,8 +9022,8 @@ h1, h2, h3, h4, h5 {
 }
 
 h1 {
-    color: #efefef;
-    text-shadow: #ed135866 1px 1px, #ed135866 -1px 1px, #ed135866 -1px 1px, #ed135866 -1px -1px;
+    color: color: rgb(78, 85, 91);;
+    text-shadow: #EF0452 1px 1px, #EF0452 -1px 1px, #EF0452 -1px 1px, #EF0452 -1px -1px;
     margin-left: 2rem;
     font-size: 4rem;
 }
@@ -9138,14 +9146,6 @@ textarea {
     font-weight: 600;
 }
 
-.panel, .card-body {
-    background-color: silver;
-}
-
-.panel-info > .panel-heading, .card-header {
-    /*background-image:linear-gradient(to bottom,#AD999F 0,#828181 100%);*/
-}
-
 .panel-info {
     border-color: #171717;
     padding: 0 1rem 4rem 1rem;
@@ -9257,11 +9257,25 @@ div.form-group select {
 }
 
 .form-invisible {
-    background-color: silver;
-    border: none;
+    background-color: #faf7fa;
+    border: solid 1px #e2dfe2;
     color: black;
     font-weight: bold;
+    border-radius: 3px;
+    padding: 0;
+  line-height: 1.5;
 }
+ .form-small{
+font-size: small;
+line-height: 2.6rem;
+width: 19rem;
+   background-color: #faf7fa;
+       border: solid 1px #e2dfe2;
+       color: black;
+       border-radius: 3px;
+       padding: 0;
+       font-style: oblique;
+     }
 
 .display-5 {
     display: flex;
@@ -9336,10 +9350,64 @@ form.form.small button.btn.btn-secondary.xx-small {
     align-items: baseline;
     justify-content: flex-start;
 }
-
+display-6 i{
+  margin-right: 15px;
+   margin-left: 15px;
+}
+form button.btn-autorisation.btn.btn-link i.fas.fa-exchange-alt{
+line-height: inherit;
+margin: auto;
+}
+ form input.btn.btn-orange{
+   line-height: 1rem;
+ padding: 0;
+  width: 7rem;
+   height: 20px;
+ }
+html body main.py-4 div.container.groupe div.col-md-12 div.card div.card-body table.table tbody.small.violet tr td form input.btn.btn-danger,
+html body main.py-4 div.container.groupe div.col-md-12 div.card div.card-body table.table tbody.small.violet tr td a.btn.btn-warning{
+padding: 0;
+}
+html body main.py-4 div.container.groupe div.col-md-12 div.card div.card-body table.table tbody.small.violet tr td form input.btn.btn-danger,
+html body main.py-4 div.container.groupe div.col-md-12 div.card div.card-body table.table tbody.small.violet tr td a.btn.btn-warning{
+  height: 30px;
+  padding: 0;
+  line-height: 30px;
+  width: 8rem;
+}
+.table>tbody>tr>td,
+.table>tbody>tr>th,
+.table>tfoot>tr>td,
+.table>tfoot>tr>th,
+.table>thead>tr>td,
+.table>thead>tr>th {
+padding:2px;
+}
+html body main.py-4 div.container div.col-md-6 div.card div.card-body table.table,html body main.py-4 div.container.groupe div.col-md-12 div.card div.card-body table.table{
+width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+html body main.py-4 div.container.groupe div.col-md-12 div.card div.card-body table.table
 span.page-link {
     font-size: initial;
 }
+div.container.groupe div.col-md-12 div.card div.card-body table.table thead tr th{
+width: 25%;
+  margin-right: 2rem;
+      margin-left: 2rem;
+
+  }
+.table > thead:nth-child(1) {
+
+  width: 50%;
+      align-self: baseline;
+      margin-left: 17rem;
+
+  }
+}
+
 
 a.page-link {
     font-size: initial;
@@ -9433,6 +9501,25 @@ display: inline-block;
 width: 100%;
 
 }
+.card {
+  box-shadow: 0px 1px 3px 0px rgba(0, 0, 0, 0.2), 0px 1px 1px 0px rgba(0, 0, 0, 0.14), 0px 2px 1px -1px rgba(0, 0, 0, 0.12);
+}
+.card-header:first-child {
+    border-radius: calc(.25rem - 1px) calc(.25rem - 1px) 0 0;
+    background-color: ghostwhite;
+    border-right: #EF0452 solid 0.5px;
+    border-left:#EF0452 solid 0.5px;
+    border-top:#EF0452 solid 0.5px;
+    border-bottom: white  solid 0.5px;
+}
+.card-body {
+ background-color: ghostwhite;
+  border-right: #EF0452 solid 0.5px;
+      border-left:#EF0452 solid 0.5px;
+      border-bottom:#EF0452 solid 0.5px;
+      border-top: white  solid 0.5px;
+}
+
 .rose,.Vert2,.Bleu,.Hotpink,.Jaune,.Cyan,.Rouge,.Violette{
     color:#4e555b;
     font-size: x-large;
@@ -9441,13 +9528,24 @@ width: 100%;
     color:#ed1358;
     font-size: x-large;
 }
-.Bleu:active,.Bleu:hover,.nav-tabs > li > a:focus>.Bleu, .nav-tabs > li > a:hover>.Bleu,.nav-tabs > li > a:active>.Bleu{
+.roserose{
+  color:#ed1358;
+      font-size: x-large;
+}
+.Bleu:active,.Bleu:hover,.nav-tabs > li > a:focus>.Bleu, .nav-tabs > li > a:hover>.Bleu,.nav-tabs > li > a:active>.Bleubleu{
     color: cornflowerblue;
     font-size: x-large;
 }
+.Bleubleu{
+color: cornflowerblue;}
+
 .Vert2:active,.Vert2:hover,.nav-tabs > li > a:focus>.Vert2, .nav-tabs > li > a:hover>.Vert2,.nav-tabs > li > a:active>.Vert2{
     color: olivedrab;
     font-size: x-large;
+}
+.Vertvert{
+  color: olivedrab;
+      font-size: x-large;
 }
 .Hotpink:hover,.Hotpink:active,.nav-tabs > li > a:focus>.Hotpink, .nav-tabs > li > a:hover>.Hotpink,.nav-tabs > li > a:active>.Hotpink{
     color: hotpink;
@@ -9457,6 +9555,10 @@ width: 100%;
     color: #ebb742;
     font-size: x-large;
 }
+.Jaunejaune{
+  color: #ebb742;
+      font-size: x-large;
+  }
 .Cyan:hover,.Cyan:active,Cyan:focus,.nav-tabs > li > a:focus>.Cyan, .nav-tabs > li > a:hover.Cyan,.nav-tabs > li > a:active>.Cyan{
     color: darkcyan;
     font-size: x-large;
@@ -9467,6 +9569,10 @@ width: 100%;
 }
 .Rouge:hover,.Rouge:active,.Rouge:focus,.nav-tabs > li > a:focus>.Rouge, .nav-tabs > li > a:hover>.Rouge,.nav-tabs > li > a:active>.Rouge{
     color:red;
+    font-size: x-large;
+}
+.Rougerouge
+{color:red;
     font-size: x-large;
 }
 
@@ -9529,10 +9635,11 @@ padding: 1rem;}
 border-left:9px red solid;
 padding: 1rem;}
 
-.bandeRose,.bandeRose.active a {
+.bandeRose,.bandeRose a.active:active {
     border-top-left-radius: 4px;
     border-top-right-radius: 4px;
     border-top: 1rem #ed1358 solid;
+    vertical-align: bottom;
 }
 .bandeBleu,.bandeBleu.active a {
     border-top-left-radius: 4px;
@@ -9649,12 +9756,23 @@ align-content: first baseline;
     width: 55%;
 justify-content: space-between;
 }
- .btn-autorisation{
+.btn-autorisation.btn.btn-link{
      height: 15px;
      padding: 0 10px;
      line-height: 15px !important;
      font-size: x-small !important;
+     border-radius:2px !important;
  }
+ span.creneaux a.btn-creneau.btn.btn-link i.fas.fa-trash-alt{
+   line-height: 20px;
+
+  padding-left: 2px;
+  padding-right: 2px;
+   width: auto;}
+span.creneaux a.btn-creneau.btn.btn-link{
+  width: 1rem;
+ display: inline;
+}
 h5{
 font-size: small;}
 .display-rowcard {
@@ -9832,6 +9950,8 @@ justify-content: space-between;}
 	text-decoration: none;
 	background-color: #fff;
 	border: 1px solid #ddd;
+  box-shadow: 0px 1px 3px 0px rgba(0, 0, 0, 0.2), 0px 1px 1px 0px rgba(0, 0, 0, 0.14), 0px 2px 1px -1px rgba(0, 0, 0, 0.12);
+
 }
 .btn-back:focus,.btn-back:active,.btn-back:hover{
 	z-index: 2;
@@ -9842,6 +9962,7 @@ justify-content: space-between;}
 	text-decoration: none;
 	background-color: #ebb742;
 	border: 1px solid #ddd;
+  box-shadow: 0px 1px 3px 0px rgba(0, 0, 0, 0.2), 0px 1px 1px 0px rgba(0, 0, 0, 0.14), 0px 2px 1px -1px rgba(0, 0, 0, 0.12);
 }
 
 .dossier > thead:nth-child(1) > tr:nth-child(1),.dossier > thead:nth-child(1) > tr:nth-child(1) > th:nth-child(2)  {
@@ -9859,5 +9980,14 @@ padding: 0 5px;
     background-color:#fff;
 color: #ed1358;
 }
-#creneau li{
+#creneau li,.telephones li{
 list-style: none}
+ span.creneaux a.btn-creneau.btn.btn-link{
+  width: 1rem;
+ text-align: center;
+ line-height: 1.5;
+ padding: 1px;
+ display:unset;
+ border-radius: 2px;
+ margin-left:2rem; }
+

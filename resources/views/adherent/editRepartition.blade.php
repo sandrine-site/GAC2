@@ -45,9 +45,8 @@
                                         </td>
                                         <td v-else>
                                             <select
-                                                id="groupe"
-                                                v-model="groupe"
-                                              v-on:click.capture= "changeGroupe(adherent,groupe)"
+                                                v-model="groupe[adherent.id]"
+                                              v-on:change="changeGroupe(adherent)"
                                                 name="groupe">
                                                 <option>Choisir dans la liste</option>
                                                 <option
@@ -60,9 +59,9 @@
                                         </td>
                                       <td ><ul id="creneau">
                                       <li  v-for="creneau in adherent.creneaux"
-                                      v-text="creneau.creneauPhrase ">
+                                      >
+                                      @{{creneau.creneauPhrase }}
                                         <button
-                                          v-if="adherent.creneaux!=null"
                                           v-on:click="deleteCreneaux(adherent,creneau)">
                                           <i class="far fa-times-circle"></i>
                                         </button></li>
@@ -94,7 +93,7 @@
             </div>
 
 
-        </div>
+
         <div class="row back">
 
             <a href="javascript:history.back()" class="btn-back">
@@ -103,7 +102,7 @@
 
 
 
-        </div> </div>
+        </div>  </div>
 @endsection
 @section('script')
     <script>
@@ -114,6 +113,7 @@
                 adherentsdata:{!! $jsonAdherents !!},
                 sectionsdata:{!!$jsonSections!!},
                 groupedata:{!!$jsonGroupes!!},
+                groupe:[],
             },
             methods: {
 
@@ -157,8 +157,7 @@
                         console.log(error);
                     })
                 },
-                changeGroupe:function(adherent,groupe){
-                  adherent.groupe=groupe;
+                changeGroupe:function(adherent){
 
                     $.ajaxSetup({
                         headers: {
@@ -170,10 +169,11 @@
                         url: "{{route('adherent.updateRepartition')}}",
                         data:{
                             "id":adherent.id,
-                            "groupe_id":groupe.id}
-                    }).done(function(response){
-                        console.log(response);
+                            "groupe_id":this.groupe[adherent.id].id}
+                    }).done((response)=>{
+                      adherent.groupe=this.groupe[adherent.id];
                     }).fail(function(error){
+                    alert("désolé nous ne pouvons pas enregistrer l'information pour le moment");
                         console.log(error);
                     })
                 },
