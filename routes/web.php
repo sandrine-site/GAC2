@@ -12,9 +12,9 @@
 */
 
 Route::get('adherent/index',function () {
-    return view('adherent.index');});
+  return view('adherent.index');});
 Route::get('adherent.confirm', function () {
-    return view('adherent.confirm');
+  return view('adherent.confirm');
 });
 
 
@@ -42,7 +42,7 @@ Route::resource('accueilAdmin','accueilAdminController');
 /* Pages non Authentifiées*/
 /* page d'Accueil*/
 Route::get('/', function () {
-    return view('Accueil');
+  return view('Accueil');
 })->name('accueil');
 //Route::get('/', function () {
 //    return view('welcome');
@@ -51,6 +51,9 @@ Route::get('/', function () {
 /*Page d'autentification*/
 Auth::routes();
 Route::get('/home', 'HomeController@index')->name('home');
+
+/*Page accueil administration*/
+Route::get('/AdminEdit','HomeController@edit')->name('accueilAdminEdit');
 
 /*  Adherent Controller*/
 Route::get('/adherent/create','AdherentController@create')->name('adherent.create');
@@ -65,7 +68,8 @@ Route::get('/adherent/Repartition', 'AdherentRepartitionController@indexRepartit
 Route::post('/AdherentRepartitionController/updateRepartition','AdherentRepartitionController@updateRepartition')->name('adherent.updateRepartition');
 Route::post ('/ByGroup','AdherentRepartitionController@editByGroup')->name('adherent.editByGroup');
 Route::post ('/BySection','AdherentRepartitionController@editBySection')->name('adherent.editBysection');
-Route::post ('/ByEntraineur','AdherentRepartitionController@editByEntraineur')->name('adherent.editByEntraineur');Route::post ('/ByCreneau','AdherentRepartitionController@editByCreneau')->name('adherent.editByCreneau');
+Route::post ('/ByEntraineur','AdherentRepartitionController@editByEntraineur')->name('adherent.editByEntraineur');
+Route::post ('/ByCreneau','AdherentRepartitionController@editByCreneau')->name('adherent.editByCreneau');
 
 /*Année Scolaire Controller*/
 Route::get('/anneeScolaire','AnneeScolaireController@index')->name('anneeScolaire.index');
@@ -76,9 +80,9 @@ Route::get('/anneeScolaire/create','AnneeScolaireController@create')->name('anne
 Route::get('/creneau','CreneauController@index')->name('creneau.index');
 Route::post('/creneau','CreneauController@store')->name('creneau.store');
 Route::get('/creneau/create','CreneauController@create')->name('creneau.create');
-Route::get('/creneau/{creneau}/{adherent}','CreneauController@destroy')->name('creneau.destroy');
+Route::delete('/creneau/{creneau}','CreneauController@destroy')->name('creneau.destroy');
 Route::get('/creneau/{creneau}/edit', 'CreneauController@edit')->name('creneau.edit');
-
+Route::post('/dossier/{creneau}/update','CreneauController@update')->name('creneau.update');
 
 /*DossierController*/
 Route::get('/dossier','DossierController@index')->name('dossier.index');
@@ -86,6 +90,9 @@ Route::post('/dossier','DossierController@store')->name('dossier.store');
 Route::get('/dossier/{dossier}/edit','DossierController@edit')->name('dossier.edit');
 Route::post('/dossier/update','DossierController@update')->name('dossier.update');
 
+/*Autorisation Constroller*/
+Route::get('/autorisation','AutorisationController@index')->name('autorisation.index');
+Route::post('/autorisation/updateAll','AutorisationController@updateAll')->name('autorisation.updateAll');
 /*FonctionController*/
 Route::get('/fonction','FonctionController@index')->name('fonction.index');
 
@@ -114,5 +121,5 @@ Route::put('updateAdherent','GroupeController@updateAdherent')->name('groupe.upd
 Route::get('update','AutorisationController@update')->name('autorisation.update');
 //essaies
 Route::get('/test', function () {
-    return view('test');
+  return view('test');
 });

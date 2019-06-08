@@ -107,7 +107,7 @@ class DossierController extends Controller
         else{Adherent::where('id', $request->id)
             ->update(['RecuDemande' => false]);
         }}
-        return back('id'=>$request->id) ;
+        return back();
     }
 
     /**

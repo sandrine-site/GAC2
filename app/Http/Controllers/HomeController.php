@@ -39,13 +39,26 @@ class HomeController extends Controller
             ->orderBy ('prenom')
             ->get ();
         $sections = Section::all ();
-        $creneaux = Creneau::orderBy('jour_id')->get();
         $adherents = Adherent::orderBy ('nom')
             ->get ();
         $groupes = Groupe::orderBy ('section_id')
             ->get ();
-        return view ('accueilAdmin', compact ('users', 'sections', 'creneaux', 'adherents', 'groupes'));
+        return view ('accueilAdmin', compact ('users', 'sections', 'adherents', 'groupes'));
     }
+
+  public function Edit ()
+      {
+          $users = User::where ('fonction_id', '4')
+              ->orderBy ('prenom')
+              ->get ();
+          $sections = Section::all ();
+          $creneaux = Creneau::orderBy('jour_id')->get();
+          $adherents = Adherent::orderBy ('nom')
+              ->get ();
+          $groupes = Groupe::orderBy ('section_id')
+              ->get ();
+          return view ('accueilAdminEdit', compact ('users', 'sections', 'creneaux', 'adherents', 'groupes'));
+      }
 
     public function navbar ()
     {

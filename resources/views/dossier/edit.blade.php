@@ -7,12 +7,10 @@
         <div class="row justify-content-center">
             <div class="col-md-12">
                 <div class="card">
-                    <div class="card-header"> Dossier de {{$adherent->nom}}   {{$adherent->prenom}}</div>
+                    <div class="card-header "> Dossier de {{$adherent->nom}}   {{$adherent->prenom}}</div>
                     <div class="card-body">
                         <table>
                             <thead>
-{{--                             <form action='/dossier/{{$adherent->dossier->id}}/' method="post">--}}
-{{--                            {!!csrf_field ()  !!}--}}
                             <input type="hidden" name="_method" value="put">
 
                             <tr>

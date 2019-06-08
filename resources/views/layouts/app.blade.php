@@ -76,7 +76,7 @@
         <li class="bandeBleu menu"><a data-toggle="tab" href="#entrainement">Baby Gym</a></li>
         <li class="bandeViolette menu"><a data-toggle="tab" href="#urgence">Gymnastique Artistique</a></li>
         <li class="bandeHotpink menu"><a data-toggle="tab" href="#inscription">Gym'Adulte</a></li>
-        <li class="bandeCyan menu"><a data-toggle="tab" href="#payement">Pilate</a></li>
+        <li class="bandeCyan menu"><a data-toggle="tab" href="#payement">Pilates</a></li>
         <li class="bandeJaune menu"><a data-toggle="tab" href="#autres">Zumba</a></li>
         <li class="bandeRouge menu"><a  href="{{ route('adherent.create') }}">Inscription</a></li>
     </ul>

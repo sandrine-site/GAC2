@@ -118,14 +118,12 @@ class AdherentController extends Controller
    */
   public function edit()
   {
-    $adherent = Adherent::find($_POST['id']);
+      $adherent = Adherent::find($_POST['id']);
     $groupes = Groupe::orderBy('section_id')
       ->get();
     $sections = Section::all();
     $creneaux = Creneau::orderBy('jour_id')
       ->get();
-
-
     return view('adherent.edit', compact('adherent', 'groupes', 'sections', 'creneaux'));
   }
 
@@ -149,7 +147,6 @@ class AdherentController extends Controller
             Adherent::where('id', $adherent)
               ->update(['photo' => 0]);}
         }
-
         if (isset($_GET['CertifMedical'])) {
           foreach ($_GET['CertifMedical'] as $CertifMedical) {
             if ($CertifMedical == $adherent) {
@@ -208,12 +205,10 @@ class AdherentController extends Controller
     elseif ($request->urgence!=null){
       $adherent->nomUrgence=$request->urgence; }
     $adherent->save();
-
     if($request->creneau != null){
       $adherent->creneaux()->attach($request->creneau);}
     if ($request->groupe_id!= null) {
           $adherent->groupe_id = $request->groupe_id;}
-
     $telephones=$adherent->telephones;
     if ($request->telephone_adherent !== null){
       $telephones1=$telephones->where("typeTel_id",1);
@@ -241,7 +236,6 @@ class AdherentController extends Controller
     }
     if ($request->telephone_Resp2 !== null){
       $telephones3=$telephones->where("typeTel_id",3);
-
       if( $telephones3=='[]'){
         $telephone3=Telephone::create();
         $telephone3->numero = $request->telephone_Resp2;
@@ -258,7 +252,6 @@ class AdherentController extends Controller
         }
       }
     }
-
     if ($request->telephone_Urgence != null ) {
       $telephones4=$telephones->where("typeTel_id",4);
       foreach($telephones4 as $telephone4) {
@@ -266,7 +259,6 @@ class AdherentController extends Controller
         Telephone::where("id", $telephone4->id)->update(["numero" => $request->telephone_Urgence]);
       }
       }
-
     foreach ($adherent->remarques as $remarque){
       if ($request->Rq_entrainement != null && $remarque->typeRq_id == 1) {
         $remarque->remarque = ($request->Rq_entrainement);
@@ -317,14 +309,14 @@ class AdherentController extends Controller
         Remarque::create($inputRq);
       }
     }
-
-    $groupes = Groupe::orderBy('section_id')
-      ->get();
-    $sections = Section::all();
-    $creneaux = Creneau::orderBy('jour_id')
-      ->get();
-    return view('adherent.edit', compact('adherent', 'groupes', 'sections', 'creneaux'));
-  }
+    $adherent = Adherent::find($adherent->id);
+        $groupes = Groupe::orderBy('section_id')
+          ->get();
+        $sections = Section::all();
+        $creneaux = Creneau::orderBy('jour_id')
+          ->get();
+        return view('adherent.edit', compact('adherent', 'groupes', 'sections', 'creneaux'));
+      }
   /**
    * Remove the specified resource from storage.
    *

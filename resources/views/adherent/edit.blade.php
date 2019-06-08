@@ -5,7 +5,7 @@
     <div class="row justify-content-center">
       <div class="col-md-12">
         <div class="card">
-            <div class="card-header display-6">Fiche de : {{" "}}   {{$adherent->prenom}} {{$adherent->nom}}  </div>
+            <div class="card-header display-6 section5">Fiche de : {{" "}}   {{$adherent->prenom}} {{$adherent->nom}}  </div>
             <div>
             <ul class="nav nav-tabs nav-justified fiche ">
               <li class="active bandeRose"><a data-toggle="tab" href="#identite"><i class="fas fa-id-card rose"></i><br/>Identité</a></li>
@@ -17,7 +17,7 @@
             </ul>
           </div>
 
-          <div class="card-body">
+          <div class="card-body section5">
             <div class="tab-content">
               <div id="identite" class="tab-pane fade-in active">
                 <form action='{{route('adherent.update',$adherent->id)}}' method="post">
@@ -73,13 +73,10 @@
                       @endforeach
                       <div class="col-6">
                         @if ($resp2!=1)
-
                           <input type="text" class="form-small" name="telephone_Resp2"  placeholder="Téléphone responsable legal 2">
                         @endif
                         @if ($adher!=1)
-
                             <input type="text" class="form-small" name="telephone_adherent"  placeholder="Téléphone adherent">
-
                           @endif
                       </div>
                   </div>
@@ -100,7 +97,6 @@
                   <div class="row">
                     <div class="col-12">
                       <br/>
-                      <h5 >Les champs en italique peuvent être modifiés.</h5>
                       <button type="submit" class="btn btn-primary btn pull-right">
                         Enregistrer les modifications
                       </button>
@@ -120,7 +116,6 @@
                         <input type="text" class="form-invisible" name="section" placeholder="{{$adherent->section->nom}}">
                       </h4>
                       <h4 class="fonce">Groupe :
-
                         @isset($adherent->groupe){{$adherent->groupe->nom}} ou
                         @endisset
                         <select name="groupe_id" class="form-small"id="groupe_id" cols="10">
@@ -139,7 +134,6 @@
                     <div class="col-6">
                       <label for="heureSemaine"> Nombre d'heures par semaine : </label>
                       <select name="heureSemaine" class="form-invisible" id="heureSemaine" cols="10">
-
                         <option
                           value="">{{$adherent->heureSemaine}}</option>
                         <option value="45min">45min</option>
@@ -193,14 +187,11 @@
                     </div>
                   </div>
                   <div class="row display-rowcard">
-                    <br/>
-                    <h5 > Les champs en italique peuvent être modifiés.</h5>
                     <button type="submit" class="btn btn-primary btn pull-right">
                       Enregistrer les modifications
                     </button>
                   </div>
                 </form>
-
                 <div class="col-12">
                   <h4 class="roserose">Autorisations</h4>
                   @foreach($adherent->autorisations as $autorisation)
@@ -280,7 +271,6 @@
                   @endforeach
                 </div>
               </div>
-
               <div id="urgence" class="tab-pane fade">
                 <form action='{{route('adherent.update',$adherent->id)}}' method="post">
                   {!!csrf_field ()  !!}
@@ -319,13 +309,11 @@
                                     placeholder="">{{$remarque->remarque}}</textarea>
                         @endif
                       @endforeach
-
                       @if($rq==0)
                         <textarea name="Rq_urgence" id="Rq_urgence"
                                   class="form-control form-invisible col-10" placeholder="">
                         </textarea>
                       @endif
-                      Les champs en gris peuvent être modifiés.
                       <button type="submit" class="btn btn-primary btn pull-right">Enregistrer les modifications </button>
                       <br/><br/>
                     </div>
@@ -360,18 +348,16 @@
               </div>
             </div>
 
-
             <div id="inscription" class="tab-pane fade">
                 <div class="row">
                   <div class="col-10">
                     <h4 class="rose">Dossier d'inscription</h4>
                     <div class="large">
                     <span class="display-6">
-                      Certificat médical:
-
+                      Certificat médical :&nbsp
                       @if($adherent->CertifMedical==1)
                         <i class="fas fa-check-circle Vertvert"></i>
-                        <form action='../dossier/update' method="post">
+                        <form action='./dossier/update' method="post">
                           {!!csrf_field ()  !!}
                           <input type="hidden" name="CertifMedical" value="false">
                           <input type="hidden" name="id" value="{{$adherent->id}}">
@@ -379,7 +365,7 @@
                         </form>
                          @else
                         <i class="fas fa-times-circle Rougerouge"></i>
-                        <form action='../dossier/update' method="post">
+                        <form action='./dossier/update' method="post">
                           {!!csrf_field ()  !!}
                           <input type="hidden" name="CertifMedical" value="true">
                           <input type="hidden" name="id" value="{{$adherent->id}}">
@@ -392,7 +378,7 @@
                       Photo:
                       @if($adherent->photo==1)
                         <i class="fas fa-check-circle Vertvert"></i>
-                          <form action='../dossier/update' method="post">
+                          <form action='./dossier/update' method="post">
                             {!!csrf_field ()  !!}
                             <input type="hidden" name="photo" value="false">
                             <input type="hidden" name="id" value="{{$adherent->id}}">
@@ -400,7 +386,7 @@
                           </form>
                         @else
                           <i class="fas fa-times-circle Rougerouge"></i>
-                          <form action='../dossier/update' method="post">
+                          <form action='./dossier/update' method="post">
                             {!!csrf_field ()  !!}
                             <input type="hidden" name="photo" value="true">
                             <input type="hidden" name="id" value="{{$adherent->id}}">
@@ -413,7 +399,7 @@
                       Autorisations(Forme papier) :
                         @if($adherent->autorisationsRendues==1)
                           <i class="fas fa-check-circle Vertvert"></i>
-                          <form action='../dossier/update' method="post">
+                          <form action='./dossier/update' method="post">
                             {!!csrf_field ()  !!}
                             <input type="hidden" name="autorisationsRendues" value="false">
                             <input type="hidden" name="id" value="{{$adherent->id}}">
@@ -421,7 +407,7 @@
                           </form>
                         @else
                           <i class="fas fa-times-circle Rougerouge"></i>
-                          <form action='../dossier/update' method="post">
+                          <form action='./dossier/update' method="post">
                             {!!csrf_field ()  !!}
                             <input type="hidden" name="autorisationsRendues" value="true">
                             <input type="hidden" name="id" value="{{$adherent->id}}">
@@ -434,14 +420,14 @@
                         Justificatif de payement demandé
                         @if($adherent->RecuDemande==1)
                           <i class="fas fa-flag Jaunejaune"></i>
-                          <form action='../dossier/update' method="post">
+                          <form action='./dossier/update' method="post">
                             {!!csrf_field ()  !!}
                             <input type="hidden" name="RecuDemande" value="false">
                             <input type="hidden" name="id" value="{{$adherent->id}}">
                             <button type="submit" class="btn-autorisation btn btn-link"><i class="fas fa-exchange-alt"></i></button>
                           </form>
                       @else
-                          <form action='../dossier/update' method="post">
+                          <form action='./dossier/update' method="post">
                             {!!csrf_field ()  !!}
                             <input type="hidden" name="RecuDemande" value="true">
                             <input type="hidden" name="id" value="{{$adherent->id}}">
@@ -453,23 +439,18 @@
                   </div>
                   <div class="col-2">
                     @if($adherent->autorisationsRendues==1&&$adherent->photo==1&&$adherent->CertifMedical==1)
-                      <i class="fas fa-smile Vert2  onglet"></i>
+                      <i class="fas fa-smile"></i>
                       <br/>
                       <br/>
                       <br/>
-
                     @else
-                      <i class="fas fa-frown Rouge onglet"></i>
+                      <i class="fas fa-frown"></i>
                       <br/>
                       <br/>
                       <br/>
-
                     @endif
-
-                    </button>
                   </div>
                 </div>
-
             </div>
 
             <div id="payement" class="tab-pane fade">
@@ -503,7 +484,6 @@
                   @endif
                 </div>
                 <div class="col-12">
-                  <h5 class="violet"> Les champs en gris peuvent être modifiés.</h5>
                   <button type="submit" class="btn btn-primary btn pull-right">
                     Enregistrer les modifications
                   </button>
@@ -530,7 +510,6 @@
                       </textarea>
                     @endif
                   @endforeach
-
                   @if($rq==0)
                     <textarea name="Rq_autres" id="Rq_autres"
                               class="form-control form-invisible col-10" placeholder="">
@@ -551,14 +530,12 @@
         </div>
       </div>
     </div>
-
-    <div class="row back">
-
+      <div class="row back">
         <a href="javascript:history.back()" class="btn-back ">
           <span class="glyphicon glyphicon-circle-arrow-left"></span> Retour
         </a>
-
-  </div></div>
+      </div>
+    </div>
   </div>
 
 @endsection

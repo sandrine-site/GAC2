@@ -4,29 +4,26 @@
     <div class="row justify-content-center">
       <div class="col-md-12">
         <div class="card liste">
-          <div class="card-header display-6 ">Liste des adherents</div>
-<div>
+          <div class="card-header display-6 section2 ">Liste des adherents</div>
+          <div>
             <ul class="nav nav-tabs nav-justified admin">
-            <li class="active bandeRose"><a data-toggle="tab" href="#" class="identitetoggle"><i
-                  class="fas fa-id-card rose"></i><br/>Identités</a></li>
-            <li class="bandeBleu"><a data-toggle="tab" href="#" class="entrainementtoggle"><i
-                  class="fas fa-dumbbell Bleu"></i><br/>Entrainements</a></li>
-            <li class="bandeRouge"><a data-toggle="tab" href="#" class="urgencetoggle"><i
-                  class="fas fa-briefcase-medical Rouge"></i><br/> En cas d'urgence</a></li>
-            <li class="bandeHotpink"><a data-toggle="tab" href="#" class="dossiertoggle"><i
-                  class="fas fa-copy Hotpink"></i><br/> Dossiers d'inscription</a></li>
-            <li class="bandeCyan"><a data-toggle="tab" href="#" class="payementtoggle"><i
-                  class="fas fa-money-bill-wave Cyan"></i><br/> Payements</a></li>
-            <li class="bandeJaune"><a data-toggle="tab" href="#" class="autrestoggle"><i
-                  class="fas fa-highlighter Jaune"></i><br/> Autres remarques</a></li>
-          </ul>
-        </div>
-        <div class="card-body">
-          <div class="tab-content">
-            {{--                            <div id="identite" class="tab-pane fade-in active">--}}
-            <table class="table">
-              <form action='./adherent/edit' method="post">
-                {{method_field ("get")}}
+              <li class="active bandeRose"><a data-toggle="tab" href="#" class="identitetoggle"><i
+                    class="fas fa-id-card rose"></i><br/>Identités</a></li>
+              <li class="bandeBleu"><a data-toggle="tab" href="#" class="entrainementtoggle"><i
+                    class="fas fa-dumbbell Bleu"></i><br/>Entrainements</a></li>
+              <li class="bandeRouge"><a data-toggle="tab" href="#" class="urgencetoggle"><i
+                    class="fas fa-briefcase-medical Rouge"></i><br/> En cas d'urgence</a></li>
+              <li class="bandeHotpink"><a data-toggle="tab" href="#" class="dossiertoggle"><i
+                    class="fas fa-copy Hotpink"></i><br/> Dossiers d'inscription</a></li>
+              <li class="bandeCyan"><a data-toggle="tab" href="#" class="payementtoggle"><i
+                    class="fas fa-money-bill-wave Cyan"></i><br/> Payements</a></li>
+              <li class="bandeJaune"><a data-toggle="tab" href="#" class="autrestoggle"><i
+                    class="fas fa-highlighter Jaune"></i><br/> Autres remarques</a></li>
+            </ul>
+          </div>
+          <div class="card-body section2">
+            <div class="tab-content ">
+              <table class="table">
                 <thead>
                 <tr>
                   <th class="toujours">Nom</th>
@@ -56,7 +53,6 @@
                   <th class="payement">Remarques</th>
                   <th class="autres">Remarques</th>
                   <th class="toujours"></th>
-
                 </tr>
                 </thead>
                 <tbody>
@@ -80,7 +76,6 @@
                           <span>Tél 2:{{$telephone->numero}}</span>
                         @endif
                       @endforeach</td>
-
                     <td class="section{{$adherent->section->id}} entrainement"> {{$adherent->section->nom}}</td>
                     <td class="section{{$adherent->section->id}} entrainement">
                       @isset($adherent->groupe){{$adherent->groupe->nom}}
@@ -160,31 +155,32 @@
                         {{$adherent->remarques->where('typeRq_id','=','4')->first()->remarque}}
                       @endif</td>
                     <td class="toujours">
-                      <button type="submit" class="btn btn-primary btn xx-small">Editer <i
-                          class="fas fa-edit"></i></button>
+                      <form action='./adherent/edit' method="post">
+                        {{method_field ("get")}}
+                        <input type="hidden" name="id" value="{{$adherent->id}}">
+
+                        <button type="submit" class="btn btn-primary btn xx-small">Editer <i
+                            class="fas fa-edit"></i></button>
+                      </form>
                     </td>
                   </tr>
                 @endforeach
                 </tbody>
-              </form>
-            </table>
+              </table>
+            </div>
           </div>
         </div>
       </div>
     </div>
+    <div class="row back">
+      <a href="javascript:history.back()" class="btn-back">
+        <span class="glyphicon glyphicon-circle-arrow-left"></span> Retour
+      </a>
+      {!! $adherents->links()  !!}
+    </div>
   </div>
 
-  <div class="row back">
-
-    <a href="javascript:history.back()" class="btn-back">
-      <span class="glyphicon glyphicon-circle-arrow-left"></span> Retour
-    </a>
-
-
-    {!! $adherents->links()  !!}
-  </div>
-  </div>
-  @endsection
+@endsection
 @section('script')
   <script>
     $(document).ready(function () {

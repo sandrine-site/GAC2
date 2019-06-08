@@ -1,81 +1,63 @@
 @extends('layouts.app')
 @section('content')
-    <br/>
-    <div class="container groupe">
-        <div class="col-md-12">
-            <div class="card">
-                <div class="card-header">Liste des groupes</div>
-                <div class="card-body">
-                    <table class="table">
-                        <thead>
-                        <tr>
-                            <th>Nom</th>
-                            <th>Catégorie</th>
-                            <th>Entraineur</th>
-                            <th>Section</th>
-                            <th></th>
-                        </tr>
-                        </thead>
-                        <tbody class="small violet">
-                        @foreach($groupes as $groupe)
-                            <tr>
-                                <th>{{$groupe->nom}}</th>
-                                <th >{{$groupe->categorie}}</th>
-                                @isset($groupe->users)
-                                    <td >
-                                        @foreach($groupe->users as $user)
-                                            {{($user->prenom)}}
-                                        @endforeach
-                                    </td>
-                                @else
-                                    <td></td>
-                                @endisset
-                                <td>{{$groupe->section->nom}}</td>
-                                <td>{!! link_to_route('groupe.edit', 'Modifier', $groupe->id, ['class' => 'btn btn-warning']) !!}</td>
-                                <td> {!! Form::open(['method' => 'DELETE', 'route' => ['groupe.destroy', $groupe->id]]) !!}
-                                    {!! Form::submit('Supprimer', ['class' => 'btn btn-danger', 'onclick' => 'return confirm(\'Vraiment supprimer ce creneau ?\')']) !!}
-                                    {!! Form::close() !!}
-                                </td>
-                            </tr>
-                        @endforeach
-                        <tr>
-                          Creer un nouveau groupe
-                        </tr>
-                        <tr>
+  <br/>
+  <div class="container groupe">
+    <div class="col-md-12">
+      <div class="card ">
+        <div class="card-header section1">Modification du groupe {{$groupe->nom}}</div>
 
+        <div class="card-body section1">
+          <form method="post" action="{{route('groupe.update',$groupe->id)}}">
+            {!!csrf_field ()  !!}
+            {{method_field ("put")}}
+            <input type="hidden" name="id" value="{{$groupe->id}}">
+            <table>
+              <tbody>
+              <tr>
+                <td><input type="text" name="nom"  placeholder='{{$groupe->nom}}' value="{{$groupe->nom}}"/>
+                </td>
+                <td><input type="text" name="categorie"  placeholder='{{$groupe->categorie}}' value="{{$groupe->categorie}}"/>
+                </td>
+                <td>
+                  <label for="user_id">Entraineur(s) :</label><br/>
+                  @foreach($users as $user)
+                    @if($user->fonction_id==4)
 
-                            <form method="post" action="{{route('groupe.store')}}">
-                                {!!csrf_field ()  !!}
+                      @foreach($groupe->users as $entraineur)
+                        @if($entraineur->id===$user->id)
+                          <input checked type="checkbox" name="user_id" value="{!! $user->id!!}"/>
+                          <label for="{!! $user->id!!}"> {!!$user->prenom!!} </label><br/>
+                        @else
+                          <input  type="checkbox" name="user_id" value="{!! $user->id!!}"/>
+                          <label for="{!! $user->id!!}"> {!!$user->prenom!!} </label><br/>
+                        @endif
+                      @endforeach
+                    @endif
+                  @endforeach</td>
+                <td>
+                  <select name="section_id" class="medium">
 
-                                <td><input type="text" name="nom" class="form-control" placeholder='nom' value="nom"/>
-                                </td>
-                                <td><input type="text" name="categorie" class="form-control" placeholder='Catégorie'/>
-                                </td>
-                                <td>
-                                    @foreach($users as $user)
-                                        <input type="checkbox" name="user_id" value="{!! $user->id!!}"/>
-                                        <label for="{!! $user->id!!}" class="small"> {!!$user->prenom!!} </label><br/>
-                                    @endforeach</td>
-                                <td>
-                                    <select name="section_id" class="medium">
-                                        <option value="">choisir</option>
-                                        @foreach($sections as $section)
+                    <option value="{{$groupe->section->id}}">{{$groupe->section->nom}}</option>
+                    @foreach($sections as $section)
 
-                                            <option value='{{$section->id}}'>{{$section->nom}}</option>
-                                        @endforeach
-                                    </select></td>
-                                <td><input type="submit" value="Nouveau groupe" class='btn btn-primary btn-block'/></td>
-                                <td></td>
-                            </form>
-                        </tr>
-                        </tbody>
-                    </table>
-                </div>
-            </div>
-          <br/>
-            <a href="javascript:history.back()" class="btn-back">
-                    <span class="glyphicon glyphicon-circle-arrow-left"></span> Retour
-                  </a>
-        </div>
+                      <option value='{{$section->id}}'>{{$section->nom}}</option>
+                    @endforeach
+                  </select></td>
+                <td><input type="submit" value="Enregistre" class='btn btn-primary btn-block'/></td>
+                <td></td>
+
+              </tr>
+              </tbody>
+            </table>
+          </form> </div>
+      </div>
+      <div class="row back">
+
+        <a href="javascript:history.back()" class="btn-back ">
+          <span class="glyphicon glyphicon-circle-arrow-left"></span> Retour
+        </a>
+
+      </div>
+    </div>
 
 @endsection

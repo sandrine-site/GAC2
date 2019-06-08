@@ -29,13 +29,9 @@ class CreneauController extends Controller
      */
     public function index()
     {
-
         $creneaux = Creneau::paginate(10);
-        $creneaux_users=Creneau_User::all();
-        $jours=Jour::all ();
-        $lieux=Lieu::all ();
-        $users=User::all ();
-        return view ('creneau.index',compact('creneaux','creneaux_users','jours','lieux','users'));
+
+        return view ('creneau.index',compact('creneaux'));
     }
     public function create()
     {
@@ -57,7 +53,7 @@ class CreneauController extends Controller
         Creneau::create($request->all());
             $creneaux = Creneau::orderBy('id','desc')->first();
             $creneaux->users()->attach(array ($request['user_id']));
-        return redirect ('creneau')->withOk("Le creneau a bien été crée.");
+        return redirect ('creneau');
     }
 
     /**
@@ -77,18 +73,23 @@ class CreneauController extends Controller
         return view ('creneau.edit',compact('creneau','jours','lieux','users'));
     }
 
+public function update($id,Request $request)
+{
+  $creneau=Creneau::findOrFail($id);
+  $creneau->update($request->all());
+  return redirect ('creneau');
+}
+
     /**
      * Remove the specified resource from storage.
      *
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($creneau_id,$adherent_id)
+    public function destroy($creneau_id)
     {
-      $adherent=Adherent::find($adherent_id);
 
-                          $adherent->creneaux()->detach($creneau_id);
-        return redirect('/creneau/{$adherent_id}/edit');
+        return redirect('/creneau/');
     }
 
 }
