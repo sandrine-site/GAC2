@@ -72,12 +72,12 @@
         </div>
     </div>
     <ul class="nav nav-tabs nav-justified menu ">
-        <li class="active menu fondRose"><a data-toggle="tab" href="#identite">Accueil</a></li>
-        <li class="bandeBleu menu"><a data-toggle="tab" href="#entrainement">Baby Gym</a></li>
+        <li class="active menu fondRose"><a href="{{ route('accueil') }}">Accueil</a></li>
+        <li class="bandeBleu menu"><a href="{{ route('baby') }}">Baby Gym</a></li>
         <li class="bandeViolette menu"><a data-toggle="tab" href="#urgence">Gymnastique Artistique</a></li>
-        <li class="bandeHotpink menu"><a data-toggle="tab" href="#inscription">Gym'Adulte</a></li>
-        <li class="bandeCyan menu"><a data-toggle="tab" href="#payement">Pilates</a></li>
-        <li class="bandeJaune menu"><a data-toggle="tab" href="#autres">Zumba</a></li>
+        <li class="bandeHotpink menu"><a href="{{ route('adulte') }}">Gym'Adulte</a></li>
+        <li class="bandeCyan menu"><a href="{{ route('pilates') }}">Pilates</a></li>
+        <li class="bandeJaune menu"><a href="{{ route('zumba') }}">Zumba</a></li>
         <li class="bandeRouge menu"><a  href="{{ route('adherent.create') }}">Inscription</a></li>
     </ul>
 </nav>

@@ -40,10 +40,25 @@ Route::resource('accueilAdmin','accueilAdminController');
 //    ]);});
 
 /* Pages non Authentifiées*/
-/* page d'Accueil*/
+/* page du front office*/
 Route::get('/', function () {
   return view('Accueil');
 })->name('accueil');
+
+Route::get('/pilates', function () {
+  return view('front.Pilates');
+})->name('pilates');
+
+Route::get('/baby', function () {
+  return view('front.Baby');
+})->name('baby');
+Route::get('/zumba', function () {
+  return view('front.Zumba');
+})->name('zumba');
+Route::get('/adulte', function () {
+  return view('front.Adulte');
+})->name('adulte');
+
 //Route::get('/', function () {
 //    return view('welcome');
 //})->name('accueil');
@@ -110,11 +125,16 @@ Route::delete('/section/{section}','sectionController@destroy')->name('section.d
 
 /*UserController*/
 Route::get('/user','UserController@index')->name('user.index');
-Route::get('/user/create','UserController@create')->name('User.create');
+Route::get('/user/create','UserController@create')->name('user.create');
 Route::get('/user/{user}/edit','UserController@edit')->name('user.edit');
 Route::put('/user/{user}','UserController@update')->name('user.update');
 Route::delete('/user/{user}','UserController@destroy')->name('user.destroy');
 
+/*TarifsController*/
+Route::get('/tarif','TarifController@index')->name('tarif.index');
+Route::post('/tarif/{tarif?}/update','TarifController@update')->name('tarif.update');
+Route::post('/tarif','TarifController@store')->name('tarif.store');
+Route::delete('/tarif/{tarif}','TarifController@destroy')->name('tarif.destroy');
 /*Update adherent Controller*/
 Route::put('updateAdherent','GroupeController@updateAdherent')->name('groupe.updateAdherent');
 /*autorisationControleir*/

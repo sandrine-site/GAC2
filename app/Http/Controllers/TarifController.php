@@ -3,7 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-
+use App\Tarif;
+use App\Section;
 class TarifController extends Controller
 {
     /**
@@ -13,8 +14,11 @@ class TarifController extends Controller
      */
     public function index()
     {
-        //
+        $tarifs=Tarif::all();
+        $sections=Section::all();
+      return view ('tarif.edit',compact('tarifs','sections'));
     }
+
 
     /**
      * Show the form for creating a new resource.
@@ -25,6 +29,12 @@ class TarifController extends Controller
     {
         //
     }
+  /**
+       * Store a newly created resource in storage.
+       *
+       * @param  \Illuminate\Http\Request  $request
+       * @return \Illuminate\Http\Response
+       */
 
     /**
      * Store a newly created resource in storage.
@@ -34,7 +44,9 @@ class TarifController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        Tarif::create($request->all());
+
+            return back ();
     }
 
     /**
@@ -66,9 +78,13 @@ class TarifController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request)
     {
-        //
+
+      Tarif::findOrFail($request->id)->update($request->all());
+      $tarifs=Tarif::all();
+      $sections=Section::all();
+      return back ();
     }
 
     /**
@@ -79,6 +95,7 @@ class TarifController extends Controller
      */
     public function destroy($id)
     {
-        //
+      Tarif::destroy($id);
+              return back ();
     }
 }

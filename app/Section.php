@@ -4,7 +4,7 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Section extends Model 
+class Section extends Model
 {
 
     protected $table = 'sections';
@@ -19,5 +19,8 @@ class Section extends Model
     {
         return $this->hasMany ('App\Groupe');
     }
-
+  public function tarifs()
+      {
+        return $this->hasMany ('App\Tarif');
+      }
 }

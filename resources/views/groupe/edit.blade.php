@@ -43,7 +43,7 @@
                       <option value='{{$section->id}}'>{{$section->nom}}</option>
                     @endforeach
                   </select></td>
-                <td><input type="submit" value="Enregistre" class='btn btn-primary btn-block'/></td>
+                <td><input type="submit" value="Enregistrer" class='btn btn-primary btn-block'/></td>
                 <td></td>
 
               </tr>

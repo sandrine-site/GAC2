@@ -2,16 +2,11 @@
 
 @section('content')
 
-  <div class="container">
 
-    <div class="row justify-content-center">
-      <div class="col-md-12">
-        <div class="card">
-          <div class="card-header">Bienvenue dans l'interface administrateur</div>
-        </div>
-        <div class="card-body">
+    <div class="row">
+         <h1> Bienvenue dans l'interface administrateur</h1>
           <div class="partie">
-            <div class="col-2">
+            <div class="col-3">
               <nav class="nav flex-column">
                 <a href="{!!route('accueilAdminEdit')!!}" class="small btn-dossier bandeRoseGauche">
                   <i class="fas fa-edit onglet"></i>
@@ -75,13 +70,13 @@
                   </a>
                   <div class="dropdown-menu" aria-labelledby="dropdownAdministration">
                     <a class="dropdown-item" href="{!!route('user.index')!!}">  Liste des administrateurs</a>
-                    <a class="dropdown-item" href="#">  Les tarifs</a>
+                    <a class="dropdown-item" href="{!!route('tarif.index')!!}">  Les tarifs</a>
                     <a class="dropdown-item" href="{!!route('anneeScolaire.store')!!}"> Changer l'année</a>
 
                   </div></div>
               </nav>
             </div><?php $n=0?>
-            <div class="col-10">
+            <div class="col-9">
               @foreach($sections as $section)
                 <h4 class="fonce">{{$section->nom}} :</h4>
                 <div class="partie">
@@ -112,8 +107,8 @@
             </div>
           </div>
         </div>
-      </div>
-    </div>
+
+
 
 
 

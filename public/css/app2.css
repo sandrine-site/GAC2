@@ -93,7 +93,8 @@ hr {
 
 h1, h2, h3, h4, h5, h6 {
   margin-top: 0;
-  margin-bottom: .5rem
+  margin-bottom: .5rem;
+
 }
 
 p {
@@ -9019,6 +9020,13 @@ div.card-body.section1 form.form-horizontal.creneau button.btn.btn-primary{
 }
  form input.btn.btn-danger{
  width: 12rem;}
+ div.card-body.section3 form table tbody tr td input.btn.btn-primary,
+ div.card-body.section3 form table tbody tr td input.btn.btn-bleu2{
+   height: 24px;
+   line-height: 20px;
+   width: 10rem;}
+
+
 /* ==--------------polices de carracteres et couleurs --------------*/
 
 h1, h2, h3, h4, h5 {
@@ -9030,6 +9038,7 @@ h1 {
   text-shadow: #EF0452 1px 1px, #EF0452 -1px 1px, #EF0452 -1px 1px, #EF0452 -1px -1px;
   margin-left: 2rem;
   font-size: 4rem;
+  color: #fefefe;
 }
 h5{
   font-size: small;}
@@ -9102,6 +9111,7 @@ partie {
 }
  div.row.start{
 align-items: start;}
+
 .cadre label h4 {
   color: #900C39;
   font-size: large;
@@ -9849,7 +9859,7 @@ div.partie {
   font-weight: initial;
 }
 .navbar-brand > img:nth-child(1) {
-  width: 35%;
+  width: 25%;
   height: auto;
 }
 .navbar-brand {
@@ -9863,10 +9873,14 @@ div.partie {
 .navbar-expand-md .navbar-nav {
   font-size: medium;
 }
-.dropdown-menu {
+html body nav.navbar.navbar-expand-md.navbar-light.navbar-laravel.navbar-fixed-top
+.dropdown-menu{
   left: 83%;
   width: 19rem;
+
 }
+html body nav.navbar.navbar-expand-md.navbar-light.navbar-laravel.navbar-fixed-top{
+position:fixed;}
 .navbar-expand-md .navbar-collapse {
   display: flex !important;
   flex-basis: auto;
@@ -10084,5 +10098,249 @@ div.container.groupe div.col-md-12 div.card div.card-body table.table thead tr t
   justify-content: space-between;
 }
 
+/*== -----------------------------*/
+/*                                */
+/*     Front office               */
+/*                                */
+/*== -----------------------------*/
 
+.pilates{
+    background-image: url(../images/pilates.jpg);
+    background-attachment: fixed;
+    background-position: top;
+    background-size:cover ;
+  margin-top: -5rem;
+}
+.row.row-pilates{
+background-image: url("../images/pilates.png");
+   background-repeat: repeat-y;
+   background-size: cover;
+   height: 900px;
+   display: flex;
+   align-items: start;
+   margin:0;}
 
+div.card.cardPilates{
+background-color: transparent;
+margin-top: 10rem;
+}
+div.card.cardPilates div.card-header.cardPilates{
+  border-radius: calc(.25rem - 1px) calc(.25rem - 1px) 0 0;
+  background-color: rgba(0,139,139,0.8);
+  border-right: white solid 0.5px;
+  border-left: white solid 0.5px;
+  border-top: white solid 0.5px;
+  border-bottom: white solid 0.5px;
+  color: white;
+  font-size: xx-large;
+}
+div.card.cardPilates div.card-body.cardPilates{
+  border-radius: calc(.25rem - 1px) calc(.25rem - 1px) 0 0;
+   background-color: rgba(0,139,139,0.8);
+   border-right: white solid 0.5px;
+   border-left: white solid 0.5px;
+   border-top: white solid 0.5px;
+   border-bottom: white solid 0.5px;
+  color: #4e555b !important;
+  font-size: large;
+  line-height: 2;
+}
+.btn-outline-pilates {
+  color:#4e555b;
+  background-color: transparent;
+  background-image: none;
+  border-color: white;
+  border-radius: 5px;
+}
+
+.btn-outline-pilates:hover {
+  color: darkcyan;
+  background-color:white;
+  border-color: darkcyan;
+}
+
+.btn-outline-pilates.focus, .btn-outline-pilates:focus {
+  box-shadow: 0 0 0 .2rem rgba(54, 193, 188, 0.5)
+}
+
+.baby{
+    background-image: url(../images/BabyGym.jpg);
+    background-attachment: fixed;
+    background-position: top;
+    background-size:cover ;
+    margin-top: -5rem;
+}
+.row.row-baby{
+background-image: url("../images/babyGym.png");
+   background-repeat: repeat-y;
+   background-size: cover;
+   height: 900px;
+   display: flex;
+   align-items: start;
+   margin:0;
+   height: auto;}
+
+div.card.cardBaby{
+background-color: transparent;
+margin-top: 10rem;
+}
+div.card.cardBaby div.card-header.cardBaby{
+  border-radius: calc(.25rem - 1px) calc(.25rem - 1px) 0 0;
+  background-color: rgba(100,148,238,0.8);
+  border-right: hotpink solid 0.5px;
+  border-left: hotpink solid 0.5px;
+  border-top: hotpink solid 0.5px;
+  border-bottom: white solid 0.5px;
+  color: hotpink;
+  font-size: xx-large;
+}
+div.card.cardBaby div.card-body.cardBaby{
+  border-radius: calc(.25rem - 1px) calc(.25rem - 1px) 0 0;
+   background-color: rgba(100,148,238,0.8);
+   border-right: hotpink solid 0.5px;
+   border-left: hotpink solid 0.5px;
+   border-top: hotpink solid 0.5px;
+   border-bottom: hotpink solid 0.5px;
+  color: #4e555b !important;
+  font-size: large;
+  line-height: 2;
+}
+.btn-outline-baby {
+  color:#4e555b;
+  background-color: transparent;
+  background-image: none;
+  border-color: hotpink;
+  border-radius: 5px;
+}
+
+.btn-outline-baby:hover {
+  color: cornflowerblue;
+  background-color: hotpink;
+  border-color: cornflowerblue;
+}
+
+.btn-outline-baby.focus, .btn-outlinebaby:focus {
+  box-shadow: 0 0 0 .2rem rgba(61, 152, 193, 0.5)
+}
+
+.zumba{
+    background-image: url(../images/zumba.jpg);
+    background-attachment: fixed;
+    background-position: top;
+    background-size:cover ;
+  margin-top: -5rem;
+}
+.row.row-zumba{
+background-image: url("../images/zumba.png");
+   background-repeat: repeat-y;
+   background-size: cover;
+   height: 900px;
+   display: flex;
+   align-items: start;
+   margin:0;
+   height:auto;}
+
+div.card.cardZumba{
+background-color: transparent;
+margin-top: 10rem;
+}
+div.card.cardZumba div.card-header.cardZumba{
+  border-radius: calc(.25rem - 1px) calc(.25rem - 1px) 0 0;
+  background-color: rgba(204,255,0,0.8);
+  border-right: #18b118 solid 0.5px;
+  border-left: #18b118 solid 0.5px;
+  border-top: #18b118 solid 0.5px;
+  border-bottom: white solid 0.5px;
+  color: #18b118;
+  font-size: xx-large;
+}
+div.card.cardZumba div.card-body.cardZumba{
+  border-radius: calc(.25rem - 1px) calc(.25rem - 1px) 0 0;
+   background-color: rgba(204,255,0,0.8);
+   border-right: #18b118 solid 0.5px;
+   border-left: #18b118 solid 0.5px;
+   border-top: #18b118 solid 0.5px;
+   border-bottom: #18b118 solid 0.5px;
+  color: #4e555b !important;
+  font-size: large;
+  line-height: 2;
+}
+
+.btn-outline-zumba {
+  color: #18b118;
+  background-color: transparent;
+  background-image: none;
+  border-color: #18b118;
+  border-radius: 5px;
+}
+
+.btn-outline-zumba:hover {
+  color: #CCFF00;
+  background-color: #18b118;
+  border-color: #18b118;
+}
+
+.btn-outline-zumba.focus, .btn-outline-zumba:focus {
+  box-shadow: 0 0 0 .2rem rgba(56, 193, 114, .5)
+}
+
+.Adulte{
+    background-image: url(../images/GymAdulte.jpg);
+    background-attachment: fixed;
+    background-position: top;
+    background-size:cover ;
+  margin-top: -5rem;
+}
+.row.row-Adulte{
+background-image: url("../images/gymAdulte.png");
+   background-repeat: repeat-y;
+   background-size: cover;
+   height: 900px;
+   display: flex;
+   align-items: start;
+   margin:0;
+   height: auto;}
+
+div.card.cardAdulte{
+background-color: transparent;
+margin-top: 10rem;
+}
+div.card.cardAdulte div.card-header.cardAdulte{
+  border-radius: calc(.25rem - 1px) calc(.25rem - 1px) 0 0;
+  background-color: rgba(255,105,180,0.8);
+  border-right: #6a387c solid 0.5px;
+  border-left: #6a387c solid 0.5px;
+  border-top: #6a387c solid 0.5px;
+  border-bottom: white solid 0.5px;
+  color: #6a387c;
+  font-size: x-large;
+}
+div.card.cardAdulte div.card-body.cardAdulte{
+  border-radius: calc(.25rem - 1px) calc(.25rem - 1px) 0 0;
+   background-color: rgba(255,105,180,0.8);
+   border-right: #6a387c solid 0.5px;
+   border-left: #6a387c solid 0.5px;
+   border-top: #6a387c solid 0.5px;
+   border-bottom: #6a387c solid 0.5px;
+  color: #4e555b !important;
+  font-size: large;
+  line-height: 2;
+}
+
+.btn-outline-Adulte {
+  color: #6a387c;
+  background-color: transparent;
+  background-image: none;
+  border-color:#6a387c;
+  border-radius: 5px;
+}
+
+.btn-outline-Adulte:hover {
+  color: hotpink;
+  background-color: #6a387c;
+  border-color: hotpink;
+}
+
+.btn-outline-Adulte.focus, .btn-outline-Adulte:focus {
+  box-shadow: 0 0 0 .2rem rgba(56, 193, 114, .5)
+}

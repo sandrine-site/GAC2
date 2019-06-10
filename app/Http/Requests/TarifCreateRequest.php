@@ -26,9 +26,10 @@ class TarifCreateRequest extends FormRequest
         return [
             'libele'=>'required|string|max:50',
             'prix'=>'required|decimal',
-            'annee-min'=>'required|date',
-            'annee_max'=>'required|date',
-            'annee_scolaire_id'=>'required|integer',
+            'annee-min'=>'nullable|string',
+            'annee_max'=>'nullable|string',
+            'temps'=>'nullable|string',
+
         ];
     }
 }
