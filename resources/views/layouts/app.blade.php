@@ -4,6 +4,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>GAC Clapiers</title>
+{{--  <link rel="shortcut icon" type="image/ico" href="../../../public/images/ico.png"/>--}}
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
@@ -33,7 +34,7 @@
 </head>
 
 <body>
-<nav class="navbar navbar-expand-md navbar-light navbar-laravel navbar-fixed-top">
+<nav class="navbar navbar-expand-md navbar-expand-sm  navbar-light navbar-laravel navbar-fixed-top">
     <div class="container col-sm-12">
         <a class="navbar-brand" href="#">
             <img src="http://localhost/GAC3/resources/images/logo.png">
@@ -44,7 +45,8 @@
                 <a class="nav-link dropdown-toggle text-black-50" href="#" id="navbarDropdownMenuLink"
                    data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Menu</a>
                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownMenuLink">
-                    <a class="dropdown-item" href="{{ route('adherent.create') }}">Inscription</a>
+                    <a class="dropdown-item" href="{{ route('adherent.create') }}">Inscription GA</a>
+                  <a class="dropdown-item" href="{{ route('adherentAdulte.create') }}">Inscription Adulte</a>
                     <a class="dropdown-item" href="{{ route('login') }}">Connexion</a>
                 </div>
                     @endguest

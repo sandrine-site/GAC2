@@ -6,7 +6,7 @@
     <div class="row">
          <h1> Bienvenue dans l'interface administrateur</h1>
           <div class="partie">
-            <div class="col-3">
+            <div class="col-lg-2 col-md-3 col-sm-4">
               <nav class="nav flex-column">
                 <a href="{!!route('accueilAdminEdit')!!}" class="small btn-dossier bandeRoseGauche">
                   <i class="fas fa-edit onglet"></i>
@@ -38,7 +38,7 @@
                   <div class="dropdown-menu" aria-labelledby="dropdownInscriptions">
                     <a class="dropdown-item" href="{!!route('autorisation.index')!!}"> Autorisations</a>
                     <a class="dropdown-item" href="{!!route('dossier.index')!!}"> Dossiers</a>
-                    <a class="dropdown-item" href="#">Encaissements</a>
+                    <a class="dropdown-item" href="{!!route('payement.index')!!}">Encaissements</a>
                   </div>
                 </div>
                 <div class="dropdownGestion  dropright">
@@ -76,7 +76,7 @@
                   </div></div>
               </nav>
             </div><?php $n=0?>
-            <div class="col-9">
+            <div class="col-lg-10 col-md-9 col-sm-8">
               @foreach($sections as $section)
                 <h4 class="fonce">{{$section->nom}} :</h4>
                 <div class="partie">
@@ -87,7 +87,10 @@
                 <div class="card-deck">
                 <div class="small card group ">
                   <div class="card-header section{{$n}}">
-                    {{$groupe->nom}}
+                    {{$groupe->nom}}<br/>
+                    @isset($groupe->categorie)
+                   <div class="fonce small"> Catégorie:{{$groupe->categorie}}</div>
+                    @endisset
                   </div>
                     <div class="card-body section{{$n}}">
                     @foreach($groupe->adherents as $adherent)

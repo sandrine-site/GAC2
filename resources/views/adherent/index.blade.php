@@ -23,7 +23,7 @@
           </div>
           <div class="card-body section2">
             <div class="tab-content ">
-              <table class="table">
+              <table class="table-responsive">
                 <thead>
                 <tr>
                   <th class="toujours">Nom</th>
@@ -144,12 +144,19 @@
                       @else
                         <i class="fas fa-frown  RougeN"></i>
                       @endif</td>
-                    <td class="section{{$adherent->section->id}} payement"> </td>
-                    <td class="section{{$adherent->section->id}} payement"></td>
+                     @foreach($adherent->payements as $payement)
+                      <td class="section{{$adherent->section->id}} payement">
+                       {{$payement->montant}}<br/>
+                       {{App\MoyenPayement::find($payement->moyensPayement_id)->type}}<br/>
+                       {{$payement->encaisseMois}}
+
+                                          </td>
+                     @endforeach
                     <td class="section{{$adherent->section->id}} payement">
                       @if($adherent->remarques->where('typeRq_id','=','3')->first()!=null)
                         {{$adherent->remarques->where('typeRq_id','=','3')->first()->remarque}}
                       @endif</td>
+
                     <td class="section{{$adherent->section->id}} autres" >
                       @if($adherent->remarques->where('typeRq_id','=','4')->first()!=null)
                         {{$adherent->remarques->where('typeRq_id','=','4')->first()->remarque}}
@@ -176,7 +183,13 @@
       <a href="javascript:history.back()" class="btn-back">
         <span class="glyphicon glyphicon-circle-arrow-left"></span> Retour
       </a>
+
       {!! $adherents->links()  !!}
+      <a href="{{route('home')}}"
+                                         class="btn-home "
+                                         >Accueil administration
+                        <i class="fas fa-home"></i>
+                      </a>
     </div>
   </div>
 

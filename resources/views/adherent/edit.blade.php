@@ -3,10 +3,10 @@
 
   <div class="container">
     <div class="row justify-content-center">
-      <div class="col-md-12">
+      <div class="col-12">
         <div class="card">
-            <div class="card-header display-6 section5">Fiche de : {{" "}}   {{$adherent->prenom}} {{$adherent->nom}}  </div>
-            <div>
+          <div class="card-header display-6 section5">Fiche de : {{" "}}   {{$adherent->prenom}} {{$adherent->nom}}  </div>
+          <div>
             <ul class="nav nav-tabs nav-justified fiche ">
               <li class="active bandeRose"><a data-toggle="tab" href="#identite"><i class="fas fa-id-card rose"></i><br/>Identité</a></li>
               <li class="bandeBleu"><a data-toggle="tab" href="#entrainement"><i class="fas fa-dumbbell Bleu"></i><br/>Entrainement</a></li>
@@ -48,37 +48,37 @@
                     <?php $resp2 = 0;
                     $adher=0?>
                     @foreach($adherent->telephones as $telephone )
-                        @if($telephone->typeTel_id==1)
-                          <?php $adher=1?>
-                          <div class="col-12">
-                            Téléphone adhérent:
-                            <input type="text" class="form-invisible" name="telephone_adherent" placeholder="{{$telephone->numero}}" value="{{old ("telephone_adherent","")}}"/>
-                            @if ($errors->has('telephone_adherent'))
-                              <small
-                                class="help-block">{{$errors->first('telephone_adherent',':message') }}</small> @endif
-                          </div>
-                        @elseif($telephone->typeTel_id==2)
-                          <div class="col-6">
-                            Téléphone responsable legal 1: <input type="text" class="form-invisible " name="telephone_Resp1" placeholder="{{$telephone->numero}}" value="{{old ("telephone_Resp1","")}}"/>
-                            @if ($errors->has('telephone_Resp1'))
-                              <small
-                                class="help-block">{{$errors->first('telephone_Resp2',':message') }}</small> @endif
-                          </div>
-                        @elseif($telephone-> typeTel_id==3)
-                          <?php $resp2 = 1?>
-                          <div class="col-6">
-                            Téléphone responsable legal 2: <input type="text" class="form-invisible" name="telephone_Resp2"  placeholder="{{$telephone->numero}}">
-                          </div>
-                        @endif
-                      @endforeach
-                      <div class="col-6">
-                        @if ($resp2!=1)
-                          <input type="text" class="form-small" name="telephone_Resp2"  placeholder="Téléphone responsable legal 2">
-                        @endif
-                        @if ($adher!=1)
-                            <input type="text" class="form-small" name="telephone_adherent"  placeholder="Téléphone adherent">
-                          @endif
-                      </div>
+                      @if($telephone->typeTel_id==1)
+                        <?php $adher=1?>
+                        <div class="col-12">
+                          Téléphone adhérent:
+                          <input type="text" class="form-invisible" name="telephone_adherent" placeholder="{{$telephone->numero}}" value="{{old ("telephone_adherent","")}}"/>
+                          @if ($errors->has('telephone_adherent'))
+                            <small
+                              class="help-block">{{$errors->first('telephone_adherent',':message') }}</small> @endif
+                        </div>
+                      @elseif($telephone->typeTel_id==2)
+                        <div class="col-6">
+                          Téléphone responsable legal 1: <input type="text" class="form-invisible " name="telephone_Resp1" placeholder="{{$telephone->numero}}" value="{{old ("telephone_Resp1","")}}"/>
+                          @if ($errors->has('telephone_Resp1'))
+                            <small
+                              class="help-block">{{$errors->first('telephone_Resp2',':message') }}</small> @endif
+                        </div>
+                      @elseif($telephone-> typeTel_id==3)
+                        <?php $resp2 = 1?>
+                        <div class="col-6">
+                          Téléphone responsable legal 2: <input type="text" class="form-invisible" name="telephone_Resp2"  placeholder="{{$telephone->numero}}">
+                        </div>
+                      @endif
+                    @endforeach
+                    <div class="col-6">
+                      @if ($resp2!=1)
+                        <input type="text" class="form-small" name="telephone_Resp2"  placeholder="Téléphone responsable legal 2">
+                      @endif
+                      @if ($adher!=1)
+                        <input type="text" class="form-small" name="telephone_adherent"  placeholder="Téléphone adherent">
+                      @endif
+                    </div>
                   </div>
                   <div class="row">
                     <div class=" col-6">
@@ -107,8 +107,8 @@
 
               <div id="entrainement" class="tab-pane fade">
                 <form action='{{route('adherent.update',$adherent->id)}}' method="post">
-                                  {!!csrf_field ()  !!}
-                                  {{method_field ("put")}}
+                  {!!csrf_field ()  !!}
+                  {{method_field ("put")}}
                   <div class="row">
                     <div class="col-10">
                       <h4 class="fonce">
@@ -131,7 +131,7 @@
                     </div>
                   </div>
                   <div class="row">
-                    <div class="col-6">
+                    <div class="col-8">
                       <label for="heureSemaine"> Nombre d'heures par semaine : </label>
                       <select name="heureSemaine" class="form-invisible" id="heureSemaine" cols="10">
                         <option
@@ -154,10 +154,10 @@
                         <h4> creneaux d'entrainement:</h4>
                         <ul>
                           @foreach($adherent->creneaux as $creneau)
-                            <li>
-                              <span class="creneaux">  Le: {{$creneau->jour->jour}} à {{$creneau->heure_debut}}h{{$creneau->min_debut}} pendant {{$creneau->duree}}
-                                <a class="btn-creneau btn btn-link" href="../creneau/{{$creneau->id}}/{{$adherent->id}}"  role="button"  ><i class="fas fa-trash-alt"></i></a>
-                              </span>          </li>
+                            <li><div class="row haut">
+                                Le: {{$creneau->jour->jour}} à {{$creneau->heure_debut}}h{{$creneau->min_debut}} pendant {{$creneau->duree}}&nbsp
+                                <a class="btn-outline-trash" href="../creneau/{{$creneau->id}}/{{$adherent->id}}"  role="button"  ><i class="fas fa-trash-alt"></i></a>
+                              </div> </li>
                           @endforeach
                         </ul>
                       @endisset
@@ -166,19 +166,19 @@
                         <option value="">choisir dans la liste</option>
                         @foreach($creneaux as $creneau)
                           <option value="{!!$creneau->id!!}"> le {!!$creneau->jour->jour!!}
-                            à {{$creneau->heure_debut}}h{{$creneau->min_debut}}</option>
+                                                              à {{$creneau->heure_debut}}h{{$creneau->min_debut}}</option>
                         @endforeach
                       </select>
                     </div>
-                    <div class="col-6">
+                    <div class="col-4">
                       Remarque
                       @php($rq=0)
                       @foreach($adherent->remarques as $remarque)
                         @php($rq=1)
                         @if (isset($remarque)&& $remarque->typeRq_id==1)
                           <textarea  placeholder="{{$remarque->remarque}}"
-                                    name="Rq_entrainement"
-                                    class="form-control   col-10" ></textarea>
+                                     name="Rq_entrainement"
+                                     class="form-control   col-10" ></textarea>
                         @endif
                       @endforeach
                       @if($rq==0)
@@ -205,7 +205,7 @@
                             Le(la) gymnaste peut etre transporté par un membre du club
                           </div>
                           <div>
-                            {!! link_to_route('autorisation.update', 'Modifier',['id'=>$autorisation->id,'adherent_id'=>$adherent->id], ['class' => 'changerAutorisationTransport  btn-autorisation btn btn-link']) !!}
+                            {!! link_to_route('autorisation.update', 'Modifier',['id'=>$autorisation->id,'adherent_id'=>$adherent->id], ['class' => 'changerAutorisationTransport btn-outline-exchange']) !!}
                           </div>
                         @else
                           <div>
@@ -215,7 +215,7 @@
                             Le(la) gymnaste ne peut pas etre transporté par un membre du club
                           </div>
                           <div>
-                            {!! link_to_route('autorisation.update', 'Modifier',['id'=>$autorisation->id,'adherent_id'=>$adherent->id], ['class' => 'changerAutorisationTransport  btn-autorisation btn btn-link']) !!}
+                            {!! link_to_route('autorisation.update', 'Modifier',['id'=>$autorisation->id,'adherent_id'=>$adherent->id], ['class' => 'changerAutorisationTransport  btn-outline-exchange']) !!}
                           </div>
                         @endif
                       </div>
@@ -229,7 +229,7 @@
                             Le(la) gymnaste peut etre photographié pour les besoins du club
                           </div>
                           <div>
-                            {!! link_to_route('autorisation.update', 'Modifier',['id'=>$autorisation->id,'adherent_id'=>$adherent->id], ['class' => 'changerAutorisationTransport  btn-autorisation btn btn-link']) !!}
+                            {!! link_to_route('autorisation.update', 'Modifier',['id'=>$autorisation->id,'adherent_id'=>$adherent->id], ['class' => 'changerAutorisationTransport btn-outline-exchange']) !!}
                           </div>
                         @else
                           <div>
@@ -239,7 +239,7 @@
                             Le(la) ne peut gymnaste pas etre photographié.
                           </div>
                           <div>
-                            {!! link_to_route('autorisation.update', 'Modifier',['id'=>$autorisation->id,'adherent_id'=>$adherent->id], ['class' => 'changerAutorisationTransport  btn-autorisation btn btn-link']) !!}
+                            {!! link_to_route('autorisation.update', 'Modifier',['id'=>$autorisation->id,'adherent_id'=>$adherent->id], ['class' => 'changerAutorisationTransport  btn-outline-exchange']) !!}
                           </div>
                         @endif
                       </div>
@@ -253,7 +253,7 @@
                             Le(la) gymnaste est autorisé à partir seul à la fin de l'entrainement
                           </div>
                           <div>
-                            {!! link_to_route('autorisation.update', 'Modifier',['id'=>$autorisation->id,'adherent_id'=>$adherent->id], ['class' => 'changerAutorisationTransport  btn-autorisation btn btn-link']) !!}
+                            {!! link_to_route('autorisation.update', 'Modifier',['id'=>$autorisation->id,'adherent_id'=>$adherent->id], ['class' => 'changerAutorisationTransport  btn-outline-exchange']) !!}
                           </div>
                         @else
                           <div>
@@ -263,7 +263,7 @@
                             Le(la) gymnaste n'est pas autorisé à partir seul à la fin de l'entrainement
                           </div>
                           <div>
-                            {!! link_to_route('autorisation.update', 'Modifier',['id'=>$autorisation->id,'adherent_id'=>$adherent->id], ['class' => 'changerAutorisationTransport  btn-autorisation btn btn-link']) !!}
+                            {!! link_to_route('autorisation.update', 'Modifier',['id'=>$autorisation->id,'adherent_id'=>$adherent->id], ['class' => 'changerAutorisationTransport  btn-outline-exchange']) !!}
                           </div>
                         @endif
                       </div>
@@ -319,36 +319,36 @@
                     </div>
                   </div>
                 </form>
-              <div class="autorisation row">
-                @foreach($adherent->autorisations as $autorisation)
-                  @if($autorisation->typeAuto_id==1)
-                    @if($autorisation->ok==1)
-                      <div>
-                        <i class="fas fa-first-aid onglet VertY"></i>
-                      </div>
-                      <div>
-                        Les animateurs sont autorisés à mettre en œuvre en cas d'urgence, les traitements, hospitalisation et intervention reconnus médicalement nécessaires auprès du gymnaste.
-                      </div>
-                      <div>
-                        {!! link_to_route('autorisation.update', 'Modifier',['id'=>$autorisation->id,'adherent_id'=>$adherent->id], ['class' => 'changerAutorisationTransport  btn-autorisation btn btn-link']) !!}
-                      </div>
-                    @else
-                      <div>
-                        <i class="fas fa-first-aid onglet line RougeN"></i>
-                      </div>
-                      <div>
-                        Les animateurs ne sont pas autorisés à mettre en œuvre en cas d'urgence.
-                      </div>
-                      <div>
-                        {!! link_to_route('autorisation.update', 'Modifier',['id'=>$autorisation->id,'adherent_id'=>$adherent->id], ['class' => 'changerAutorisationTransport  btn-autorisation btn btn-link']) !!}
-                      </div>
+                <div class="autorisation row">
+                  @foreach($adherent->autorisations as $autorisation)
+                    @if($autorisation->typeAuto_id==1)
+                      @if($autorisation->ok==1)
+                        <div>
+                          <i class="fas fa-first-aid onglet VertY"></i>
+                        </div>
+                        <div>
+                          Les animateurs sont autorisés à mettre en œuvre en cas d'urgence, les traitements, hospitalisation et intervention reconnus médicalement nécessaires auprès du gymnaste.
+                        </div>
+                        <div>
+                          {!! link_to_route('autorisation.update', 'Modifier',['id'=>$autorisation->id,'adherent_id'=>$adherent->id], ['class' => 'changerAutorisationTransport btn-outline-exchange']) !!}
+                        </div>
+                      @else
+                        <div>
+                          <i class="fas fa-first-aid onglet line RougeN"></i>
+                        </div>
+                        <div>
+                          Les animateurs ne sont pas autorisés à mettre en œuvre en cas d'urgence.
+                        </div>
+                        <div>
+                          {!! link_to_route('autorisation.update', 'Modifier',['id'=>$autorisation->id,'adherent_id'=>$adherent->id], ['class' => 'changerAutorisationTransport  btn-outline-exchange']) !!}
+                        </div>
+                      @endif
                     @endif
-              @endif
-              @endforeach
+                  @endforeach
+                </div>
               </div>
-            </div>
 
-            <div id="inscription" class="tab-pane fade">
+              <div id="inscription" class="tab-pane fade">
                 <div class="row">
                   <div class="col-10">
                     <h4 class="rose">Dossier d'inscription</h4>
@@ -357,19 +357,19 @@
                       Certificat médical :&nbsp
                       @if($adherent->CertifMedical==1)
                         <i class="fas fa-check-circle Vertvert"></i>
-                        <form action='./dossier/update' method="post">
+                        <form action='{{route('dossier.update')}}' method="post">
                           {!!csrf_field ()  !!}
-                          <input type="hidden" name="CertifMedical" value="false">
+                          <input type="hidden" name="CertifMedical" value="0">
                           <input type="hidden" name="id" value="{{$adherent->id}}">
-                          <button type="submit" class="btn-autorisation btn btn-link"><i class="fas fa-exchange-alt"></i></button>
+                          <button type="submit" class="btn-outline-exchange"><i class="fas fa-exchange-alt"></i></button>
                         </form>
-                         @else
+                      @else
                         <i class="fas fa-times-circle Rougerouge"></i>
-                        <form action='./dossier/update' method="post">
+                        <form action='{{route('dossier.update')}}' method="post">
                           {!!csrf_field ()  !!}
-                          <input type="hidden" name="CertifMedical" value="true">
+                          <input type="hidden" name="CertifMedical" value="1">
                           <input type="hidden" name="id" value="{{$adherent->id}}">
-                          <button type="submit" class="btn-autorisation btn btn-link"><i class="fas fa-exchange-alt"></i></button>
+                          <button type="submit" class="btn-outline-exchange"><i class="fas fa-exchange-alt"></i></button>
                         </form>
                       @endif
                       </span>
@@ -377,61 +377,61 @@
                       <span class="display-6">
                       Photo:
                       @if($adherent->photo==1)
-                        <i class="fas fa-check-circle Vertvert"></i>
-                          <form action='./dossier/update' method="post">
+                          <i class="fas fa-check-circle Vertvert"></i>
+                          <form action='{{route('dossier.update')}}' method="post">
                             {!!csrf_field ()  !!}
-                            <input type="hidden" name="photo" value="false">
+                            <input type="hidden" name="photo" value="0">
                             <input type="hidden" name="id" value="{{$adherent->id}}">
-                            <button type="submit" class="btn-autorisation btn btn-link"><i class="fas fa-exchange-alt"></i></button>
+                            <button type="submit" class="btn-outline-exchange"><i class="fas fa-exchange-alt"></i></button>
                           </form>
                         @else
                           <i class="fas fa-times-circle Rougerouge"></i>
-                          <form action='./dossier/update' method="post">
+                          <form action='{{route('dossier.update')}}' method="post">
                             {!!csrf_field ()  !!}
-                            <input type="hidden" name="photo" value="true">
+                            <input type="hidden" name="photo" value="1">
                             <input type="hidden" name="id" value="{{$adherent->id}}">
-                            <button type="submit" class="btn-autorisation btn btn-link"><i class="fas fa-exchange-alt"></i></button>
+                            <button type="submit" class="btn-outline-exchange"><i class="fas fa-exchange-alt"></i></button>
                           </form>
                         @endif
                      </span>
-                     <br/>
+                      <br/>
                       <span class="display-6">
                       Autorisations(Forme papier) :
                         @if($adherent->autorisationsRendues==1)
                           <i class="fas fa-check-circle Vertvert"></i>
-                          <form action='./dossier/update' method="post">
+                          <form action='{{route('dossier.update')}}' method="post">
                             {!!csrf_field ()  !!}
-                            <input type="hidden" name="autorisationsRendues" value="false">
+                            <input type="hidden" name="autorisationsRendues" value="0">
                             <input type="hidden" name="id" value="{{$adherent->id}}">
-                            <button type="submit" class="btn-autorisation btn btn-link"><i class="fas fa-exchange-alt"></i></button>
+                            <button type="submit" class="btn-outline-exchange"><i class="fas fa-exchange-alt"></i></button>
                           </form>
                         @else
                           <i class="fas fa-times-circle Rougerouge"></i>
-                          <form action='./dossier/update' method="post">
+                          <form action='{{route('dossier.update')}}' method="post">
                             {!!csrf_field ()  !!}
-                            <input type="hidden" name="autorisationsRendues" value="true">
+                            <input type="hidden" name="autorisationsRendues" value="1">
                             <input type="hidden" name="id" value="{{$adherent->id}}">
-                            <button type="submit" class="btn-autorisation btn btn-link"><i class="fas fa-exchange-alt"></i></button>
+                            <button type="submit" class="btn-outline-exchange"><i class="fas fa-exchange-alt"></i></button>
                           </form>
-                           @endif
+                        @endif
                       </span>
                       <br/>
-                      <span class="display-6">
+                      <span class="display-5">
                         Justificatif de payement demandé
                         @if($adherent->RecuDemande==1)
                           <i class="fas fa-flag Jaunejaune"></i>
-                          <form action='./dossier/update' method="post">
+                          <form action='{{route('dossier.update')}}' method="post">
                             {!!csrf_field ()  !!}
-                            <input type="hidden" name="RecuDemande" value="false">
+                            <input type="hidden" name="RecuDemande" value="0">
                             <input type="hidden" name="id" value="{{$adherent->id}}">
-                            <button type="submit" class="btn-autorisation btn btn-link"><i class="fas fa-exchange-alt"></i></button>
+                            <button type="submit" class="btn-outline-exchange"><i class="fas fa-exchange-alt"></i></button>
                           </form>
-                      @else
-                          <form action='./dossier/update' method="post">
+                        @else
+                          <form action='{{route('dossier.update')}}' method="post">
                             {!!csrf_field ()  !!}
-                            <input type="hidden" name="RecuDemande" value="true">
+                            <input type="hidden" name="RecuDemande" value="1">
                             <input type="hidden" name="id" value="{{$adherent->id}}">
-                            <button type="submit" class="btn-autorisation btn btn-link"><i class="fas fa-exchange-alt"></i></button>
+                            <button type="submit" class="btn-outline-exchange"><i class="fas fa-exchange-alt"></i></button>
                           </form>
                         @endif
                         </span>
@@ -451,91 +451,279 @@
                     @endif
                   </div>
                 </div>
-            </div>
+              </div>
 
-            <div id="payement" class="tab-pane fade">
-              <form action='{{route('adherent.update',$adherent->id)}}' method="post">
-                {!!csrf_field ()  !!}
-                {{method_field ("put")}}
-                <div class="row">
+              <div id="payement" class="tab-pane fade">
+                <div class="row start">
                   <div class="col-10">
                     <h4 class="rose">Detail des payements</h4>
+                    <div class="row">
+                      <div class="col-6">
+                     <span> Justificatif de payement demandé
+                      @if($adherent->RecuDemande==1)
+                         <i class="fas fa-flag Jaunejaune"></i>
+                         <form action='{{route('dossier.update')}}' method="post">
+                          {!!csrf_field ()  !!}
+                          <input type="hidden" name="RecuDemande" value="0">
+                          <input type="hidden" name="id" value="{{$adherent->id}}">
+                          <button type="submit" class="btn-outline-exchange"><i class="fas fa-exchange-alt"></i></button>
+                        </form>
+                       @else
+                         <form action='{{route('dossier.update')}}' method="post">
+                          {!!csrf_field ()  !!}
+                          <input type="hidden" name="RecuDemande" value="1">
+                          <input type="hidden" name="id" value="{{$adherent->id}}">
+                          <button type="submit" class="btn-outline-exchange"><i class="fas fa-exchange-alt"></i></button>
+                        </form>
+                       @endif
+                      </span>  </div>
+                      <div class="col-6">
+                        @if ((($tarifAdhesion+$tarifLicence+$tarifCours)*(1-($adherent->reduction/100)))>($adherent->totalpaye))
+                          <i class="fas fa-frown"></i>
+                        @elseif ((($tarifAdhesion+$tarifLicence+$tarifCours)*(1-($adherent->reduction/100)))==($adherent->totalpaye))
+                          <i class="fas fa-smile"></i>
+                        @else<i class="fas fa-exclamation-triangle"></i>
+                        @endif
+
+                      </div>
+                    </div>
                   </div>
                   <div class="col-2">
-                    <i class="fas fa-money-bill-wave onglet Cyan"></i
+                    <i class="fas fa-money-bill-wave onglet Cyancyan"></i>
                   </div>
                 </div>
-                <div class="col-10">
-                  Remarque
-                  @php($rq=0)
-                  @foreach($adherent->remarques as $remarque)
-                    @php($rq=1)
-                    @if (isset($remarque)&& $remarque->typeRq_id==3)
-                      <textarea name="Rq_payement" id="Rq_payement"
-                                class="form-control form-invisible  col-10"
-                                placeholder="{{$remarque->remarque}}">
-                      </textarea>
-                    @endif
-                  @endforeach
-                  @if($rq==0)
-                    <textarea name="Rq_payement" id="Rq_payement"
-                              class="form-control form-invisible col-10" placeholder="">
-                    </textarea>
-                  @endif
-                </div>
-                <div class="col-12">
-                  <button type="submit" class="btn btn-primary btn pull-right">
-                    Enregistrer les modifications
-                  </button>
-                </div>
-              </form>
-            </div>
+                <div class="row start">
+                  <div class="col-5">
+                    <form action='{{route('adherent.update',$adherent->id)}}' method="post">
+                      {!!csrf_field ()  !!}
+                      <h5 class="fonce">Detail du prix:</h5>
+                      <table class="table-responsive">
+                        <thead>
+                        <tr>
+                          <th></th>
+                          <th></th>
+                          <th>Prix(€)</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr>
+                          <td>Adhesion au club</td>
+                          <td></td>
+                          <td>{{$tarifAdhesion}}</td>
+                        </tr>
+                        <tr>
+                          <td>Licence UFOLEP</td>
+                          <td> &nbsp {{strftime("%G", strtotime( $adherent->dateNaissance))}}</td>
+                          <td>{{$tarifLicence}}</td>
+                        </tr>
+                        <tr>
+                          <td>Cours</td>
+                          <td>{{$adherent->heureSemaine}}</td>
+                          <td>{{$tarifCours}}</td></tr>
+                        <tr>
+                          <td>Reduction (%)</td>
+                          <td> <input type="text" class="form-invisible" size="6" name="reduction"  placeholder="{{$adherent->reduction}}"> </td>
+                        </tr>
+                        <tr>
+                          <th>
+                            Total
+                          </th>
+                          <th></th>
+                          <th>
+                            @isset($adherent->tarif)
+                              <input type="text" class="form-invisible" name="tarif" size="6" placeholder="{{$adherent->tarif}}">
+                            @else
+                              <input type="text" class="form-invisible" name="tarif"  size="6" placeholder=" {{($tarifAdhesion+$tarifLicence+$tarifCours)*(1-($adherent->reduction/100))}}">
+                            @endisset
+                          </th>
+                        </tr>
+                        </tbody>
+                      </table>
+                      Remarque
+                      @php($rq=0)
+                      @foreach($adherent->remarques as $remarque)
+                        @php($rq=1)
+                        @if (isset($remarque)&& $remarque->typeRq_id==3)
+                          <textarea name="Rq_payement" id="Rq_payement"
+                                    class="form-control form-invisible  col-10"
+                                    placeholder="{{$remarque->remarque}}">
+                       </textarea>
+                        @endif
+                      @endforeach
+                      @if($rq==0)
+                        <textarea name="Rq_payement" id="Rq_payement"
+                                  class="form-control form-invisible col-10" placeholder="">
+                     </textarea>
+                      @endif
 
-            <div id="autres" class="tab-pane fade">
-              <form action='{{route('adherent.update',$adherent->id)}}' method="post">
-                {!!csrf_field ()  !!}
-                {{method_field ("put")}}
-                <div class="col-10">
-                  <h4 class="rose">Autres remarques</h4>
+                      <button type="submit" class="btn btn-primary btn pull-left">
+                        Enregistrer les modifications
+                      </button>
+                    </form>
+                  </div>
+                  <div class="col-7 payement ">
+                    <h5 class="fonce">Payements:</h5>
+
+                    <input type="hidden" name="adherent_id" value="{{$adherent->id}}"/>
+                    <div class="row strong smaller" id="payement">
+                      <div class="col-2">Montant</div>
+                      <div class="col-2">Date d'encaissement</div>
+                      <div class="col-3">Type</div>
+                      <div class="col-2">n°Cheque</div>
+                    </div>
+                    @isset($adherent->payements)
+                      @foreach($adherent->payements as $payement)
+                        <div class="row">
+                          <form action='{{route('payement.update')}}' method="post">
+                            {!!csrf_field ()  !!}
+                            <input type="hidden" name="id" value="{{$payement->id}}"/>
+                            <input type="hidden" name="adherent_id" value="{{$adherent->id}}"/>
+                            <div class="col-2">
+                              <input type="text"
+                                     class="form-invisible"
+                                     size="6"
+                                     name="montant"
+                                     placeholder="{{isset($payement->montant)?$payement->montant:"€" }}"
+                              />
+                            </div>
+                            <div class="col-2">
+                              <input type="text"
+                                     class="form-invisible"
+                                     size="10"
+                                     name="encaisseMois"
+                                     placeholder="{{isset($payement->encaisseMois)? $payement->encaisseMois:"jj/mm"}}">
+                            </div>
+                            <div class="col-3">
+                              <select name="moyensPayement_id" cols="10">
+                                @isset($payement->moyensPayement_id)
+                                  <option selected value="{{$payement->moyensPayement_id}}">{{App\MoyenPayement::find($payement->moyensPayement_id)->type}}</option>
+                                @endisset
+                                @foreach($moyensPayements as $moyensPayement)
+                                  <option value="{{$moyensPayement->id}}">{{$moyensPayement->type}}</option>
+                                @endforeach
+                              </select>
+                            </div>
+                            <div class="col-2">
+                              <input type="text"
+                                     class="form-invisible"
+                                     size="10"
+                                     name="numCheque"
+                                     placeholder="{{isset($payement->numCheque)? $payement->numCheque:"n°chéque"}}"/>
+                            </div>
+                            <div class="col-1">
+                              <button type="submit" class="btn-outline-exchange"><i class="fas fa-exchange-alt"></i></button>
+                            </div>
+                          </form>
+                          <div class="col-1">
+                            <a class="btn-outline-trash"
+                               href="{{route('payement.destroy',[$payement->id,$adherent->id])}}"
+                               role="button"  >
+                              <i class="fas fa-trash-alt"></i>
+                            </a>
+                          </div>
+                        </div>
+                      @endforeach
+                    @endisset
+                    <div class="row">
+                      <form action='{{route('payement.store')}}' method="post">
+                        {!!csrf_field ()  !!}
+                        <input type="hidden" name="adherent_id" value="{{$adherent->id}}"/>
+                        <div class="col-2">
+                          <input type="text"
+                                 class="form-invisible"
+                                 size="6"
+                                 name="montant"
+                                 placeholder="€"
+                          />
+                        </div>
+                        <div class="col-2">
+                          <input type="text"
+                                 class="form-invisible"
+                                 size="10"
+                                 name="encaisseMois"
+                                 placeholder="jj/mm"
+                          />
+                        </div>
+                        <div class="col-3">
+                          <select name="moyensPayement_id" cols="10">
+                            @foreach($moyensPayements as $moyensPayement)
+                              <option value="{{$moyensPayement->id}}">{{$moyensPayement->type}}</option>
+                            @endforeach
+                          </select>
+                        </div>
+                        <div class="col-2">
+                          <input type="text"
+                                 class="form-invisible"
+                                 name="numCheque"
+                                 size="12"
+                                 placeholder="n° Cheque"/>
+                        </div>>
+                        <div class="col-2"><button type="submit" class="btn-outline-cyan">Ajouter un  payement</button>
+                        </div>
+                      </form>
+                    </div>
+                    <div class="row">
+                      <div class="offset-2 col-2">Total payé</div>
+                      <div class="col-2">{{$adherent->totalpaye}} €</div>
+                    </div>
+                  </div>
                 </div>
-                <div class="col-10">
-                  Remarque
-                  @php($rq=0)
-                  @foreach($adherent->remarques as $remarque)
-                    @php($rq=1)
-                    @if (isset($remarque)&& $remarque->typeRq_id==4)
-                      <textarea  name= "Rq_autres" id="Rq_autres"
-                                 class="form-control form-invisible  col-10"
-                                 placeholder="{{$remarque->remarque}}">
+              </div>
+              <div id="autres" class="tab-pane fade">
+                <form action='{{route('adherent.update',$adherent->id)}}' method="post">
+                  {!!csrf_field ()  !!}
+                  {{method_field ("put")}}
+                  <div class="row">
+                    <div class="col-7">
+                      <h4 class="rose">Autres remarques</h4>
+                    </div>
+                    <i class="fas fa-highlighter Jaunejaune"></i>
+                  </div>
+                  <div class="col-10">
+                    Remarque
+                    @php($rq=0)
+                    @foreach($adherent->remarques as $remarque)
+                      @php($rq=1)
+                      @if (isset($remarque)&& $remarque->typeRq_id==4)
+                        <textarea  name= "Rq_autres" id="Rq_autres"
+                                   class="form-control form-invisible  col-10"
+                                   placeholder="{{$remarque->remarque}}">
                       </textarea>
-                    @endif
-                  @endforeach
-                  @if($rq==0)
-                    <textarea name="Rq_autres" id="Rq_autres"
-                              class="form-control form-invisible col-10" placeholder="">
+                      @endif
+                    @endforeach
+
+                    @if($rq==0)
+                      <textarea name="Rq_autres" id="Rq_autres"
+                                class="form-control form-invisible col-10" placeholder="">
                     </textarea>
-                  @endif
-                </div>
-                <div class="col-2">
-                  <i class="fas fa-highlighter Jaune"></i>
-                </div>
-                <div class="col-12">
-                  <button type="submit" class="btn btn-primary btn pull-right">
-                    Enregistrer les modifications
-                  </button>
-                </div>
-              </form>
+                    @endif
+                  </div>
+                  <div class="col-2">
+                  </div>
+                  <div class="col-12">
+                    <button type="submit" class="btn btn-primary btn pull-right">
+                      Enregistrer les modifications
+                    </button>
+                  </div>
+
+                </form>
+              </div>
             </div>
           </div>
         </div>
       </div>
     </div>
-      <div class="row back">
-        <a href="javascript:history.back()" class="btn-back ">
-          <span class="glyphicon glyphicon-circle-arrow-left"></span> Retour
-        </a>
-      </div>
+    <div class="row back">
+      <a href="javascript:history.back()" class="btn-back ">
+        <span class="glyphicon glyphicon-circle-arrow-left"></span> Retour
+      </a>
+      <a href="{{route('home')}}"
+                         class="btn-home "
+                         >Accueil administration
+        <i class="fas fa-home"></i>
+      </a>
     </div>
+  </div>
   </div>
 
 @endsection

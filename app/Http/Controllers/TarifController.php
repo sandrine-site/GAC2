@@ -18,23 +18,54 @@ class TarifController extends Controller
         $sections=Section::all();
       return view ('tarif.edit',compact('tarifs','sections'));
     }
-
-
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
-    }
   /**
-       * Store a newly created resource in storage.
-       *
-       * @param  \Illuminate\Http\Request  $request
-       * @return \Illuminate\Http\Response
-       */
+      * Store a newly created resource in storage.
+      *
+      * @param  \Illuminate\Http\Request  $request
+      * @return \Illuminate\Http\Response
+      */
+     public function calcul()
+     {
+       $tarifs=Tarif::all();
+       $sections=Section::all();
+
+       if ($_POST!=[] ) {
+
+         foreach ($tarifs->where('libele', 'Adhesion GAC') as $tarif) {
+           $tarifAdhesion = $tarif->prix;
+         }
+         if ($_POST['section_id']==3){
+
+           $tarifmini=$tarifs->where('anneeMini','<',$_POST['annee']);
+
+         foreach ($tarifmini->where('anneeMax','>=',$_POST['annee']) as $tarif) {
+                      $tarifLicence = $tarif->prix;
+                    }
+            }
+         else{
+         $tarifLicence="0";
+         }
+         if ($_POST['section_id'] == 1) {
+           foreach ($tarifs->where('section_id', 1) as $tarif) {
+             $tarifCours = $tarif->prix;
+           }
+         } else {
+         if ($tarifs->where('temps', $_POST["heureSemaine"])!='[]'){
+           foreach ($tarifs->where('temps', $_POST["heureSemaine"]) as $tarif) {
+             $tarifCours = $tarif->prix;
+           }
+           }
+           else{
+           $tarifCours=0;
+           }
+         }
+         $tempsEcrit=$_POST['heureSemaine'];
+         $sectionEcrit=Section::find($_POST['section_id'])->nom;
+         return view ('tarif.calcul',compact('tarifs','sections','tarifCours', 'tarifAdhesion','tarifLicence','tempsEcrit','sectionEcrit'));}
+       return view ('tarif.calcul',compact('tarifs','sections'));
+     }
+
+
 
     /**
      * Store a newly created resource in storage.
@@ -45,7 +76,6 @@ class TarifController extends Controller
     public function store(Request $request)
     {
         Tarif::create($request->all());
-
             return back ();
     }
 
@@ -80,7 +110,6 @@ class TarifController extends Controller
      */
     public function update(Request $request)
     {
-
       Tarif::findOrFail($request->id)->update($request->all());
       $tarifs=Tarif::all();
       $sections=Section::all();

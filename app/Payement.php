@@ -4,14 +4,14 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Payement extends Model 
+class Payement extends Model
 {
 
     protected $table = 'payements';
     public $timestamps = false;
-    protected $fillable = array('montant', 'encaisseMois', 'numCheque');
+    protected $fillable = array('montant', 'encaisseMois', 'numCheque','adherent_id','moyensPayement_id');
 
-    public function moyenPayement()
+    public function moyensPayement()
     {
         return $this->belongsTo('App\MoyenPayement', 'moyenPayement_id');
     }

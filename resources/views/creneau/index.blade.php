@@ -45,8 +45,8 @@
                   @endif
                   <td>{!! link_to_route('creneau.edit', 'Modifier', [$creneau->id], ['class' => 'btn btn-warning btn-block']) !!}</td>
                   <td>    {!! Form::open(['method' => 'DELETE', 'route' => ['creneau.destroy', $creneau->id]]) !!}
-                    {!! Form::submit('Supprimer', ['class' => 'btn btn-danger btn-block', 'onclick' => 'return confirm(\'Vraiment supprimer ce creneau ?\')']) !!}
-                    {!! Form::close() !!}
+                                        {!! Form::submit('Supprimer', ['class' => 'btn btn-danger btn-block', 'onclick' => 'return confirm(\'Vraiment supprimer ce creneau ?\')']) !!}
+                                        {!! Form::close() !!}
                   </td>
                 </tr>
               @endforeach
@@ -54,16 +54,20 @@
             </table>
 
 
-      {!! link_to_route('creneau.create', 'Ajouter un creneau', [], ['class' => 'btn btn-primary']) !!}
+            {!! link_to_route('creneau.create', 'Ajouter un creneau', [], ['class' => 'btn btn-primary']) !!}
+          </div>
+        </div></div></div>
+    <br/>
+    <div class="row back">
+
+      <a href="javascript:history.back()" class="btn-back ">
+        <span class="glyphicon glyphicon-circle-arrow-left"></span> Retour
+      </a>
+      <a href="{{route('home')}}"
+         class="btn-home "
+      >Accueil administration
+        <i class="fas fa-home"></i>
+      </a>
     </div>
-  </div></div></div>
-  <br/>
-  <div class="row back">
-
-                   <a href="javascript:history.back()" class="btn-back ">
-                     <span class="glyphicon glyphicon-circle-arrow-left"></span> Retour
-                   </a>
-
-             </div>
   </div>
 @endsection

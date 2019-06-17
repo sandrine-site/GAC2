@@ -14,6 +14,7 @@
                 <table>
                   <thead>
                   <tr>
+
                     <th>Nom</th>
                     <th>Prénom</th>
                     <th>Date naissance</th>
@@ -29,7 +30,7 @@
                     <td v-text="adherent.prenom"></td>
                     <td v-text="adherent.dateNaissance"></td>
                     <td v-text="adherent.heureSemaine"></td>
-                    <td v-text="adherent.section.nom"></td>
+                    <td v-text="adherent.adherentsect.nom"></td>
                     <td
                       v-if="adherent.groupe!=null">
 
@@ -57,8 +58,8 @@
                         </option>
                       </select>
                     </td>
-                    <td ><ul id="creneau">
-                        <li  v-for="creneau in adherent.creneaux">
+                    <td ><ul id="creneau"  >
+                        <li  class="phrase"  v-for="creneau in adherent.creneaux">
                           @{{creneau.creneauPhrase }}
 
                           <button
@@ -68,10 +69,12 @@
 
                         <li> <select
                             v-model="creneau[adherent.id]"
+                            id="creneauListe"
                             name="creneau"
                             v-on:change= "addCreneau(adherent,creneau)"
                           >
-                            <option >Choisir dans la liste</option>
+                            <option  id="start"  value=''
+                            > </option>
                             <option
                               v-for="creneau in creneauxdata"
                               v-bind:value="creneau"
@@ -98,10 +101,13 @@
         <a href="javascript:history.back()" class="btn-back">
           <span class="glyphicon glyphicon-circle-arrow-left"></span> Retour
         </a>
-
-
-
-      </div>  </div>
+        <a href="{{route('home')}}"
+                                           class="btn-home "
+                                           >Accueil administration
+                          <i class="fas fa-home"></i>
+                        </a>
+      </div>
+       </div>
     @endsection
     @section('script')
       <script>
@@ -176,6 +182,7 @@
               })
             },
             addCreneau:function(adherent,creneau){
+phrase=creneau[adherent.id].creneauphrase,
               $.ajaxSetup({
                 headers: {
                   'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
@@ -189,8 +196,11 @@
                   "creneau_id":creneau[adherent.id].id
                 }
               }).done(function(response){
-                console.log(creneau[adherent.id].creneauphrase);
-                adherent.creneaux.push(creneau[adherent.id]);
+              console.log(phrase);
+                adherent.creneaux.push(phrase);
+           $('ul').prepend(phrase).adherent,
+document.getElementById("creneauListe").selected=true;
+
               }).fail(function(error){
                 alert("Désolé nous ne pouvons pas enregistrer l'information pour le moment");
                 console.log(error);

@@ -9,11 +9,15 @@ use App\Creneau;
 use App\Groupe;
 use App\Http\Requests\AdherentCreateRequest;
 use App\Http\Requests\AdherentUpdateGroupeRequest;
+use App\MoyenPayement;
+use App\Payement;
 use App\Remarque;
 use App\Section;
 use App\Section_adherent;
 use App\Telephone;
+use App\Tarif;
 use Illuminate\Http\Request;
+
 
 class AdherentController extends Controller
 {
@@ -25,7 +29,8 @@ class AdherentController extends Controller
   public function index(){
 
     $adherents = Adherent::orderBy('sexe')->orderBy('nom')->orderBy('prenom')->Paginate(10);
-    return view('adherent.index', compact('adherents'));
+    $moyensPayements=MoyenPayement::all();
+    return view('adherent.index', compact('adherents','moyensPayements'));
   }
   /**
    * Show the form for creating a new resource.
@@ -116,15 +121,51 @@ class AdherentController extends Controller
    * @param int $id
    * @return \Illuminate\Http\Response
    */
-  public function edit()
+  public function edit(Request $request)
   {
-      $adherent = Adherent::find($_POST['id']);
+  if(isset($_GET['id'])){$id=$_GET['id'];}
+  else{$id=session()->get('id');}
+      $adherent = Adherent::find($id);
     $groupes = Groupe::orderBy('section_id')
       ->get();
     $sections = Section::all();
     $creneaux = Creneau::orderBy('jour_id')
       ->get();
-    return view('adherent.edit', compact('adherent', 'groupes', 'sections', 'creneaux'));
+      $moyensPayements=MoyenPayement::all();
+    $tarifs=Tarif::all();
+    $annee=(date ('Y',strtotime( $adherent->dateNaissance)));
+            foreach ($tarifs->where('libele', 'Adhesion GAC') as $tarif) {
+              $tarifAdhesion = $tarif->prix;
+            }
+            if ($adherent->section_id==3){
+              $tarifmini=$tarifs->where('anneeMini','<',$annee);
+
+            foreach ($tarifmini->where('anneeMax','>=',$annee) as $tarif) {
+                         $tarifLicence = $tarif->prix;
+                       }
+               }
+            else{
+            $tarifLicence="0";
+            }
+            if ($adherent->section_id == 1) {
+              foreach ($tarifs->where('section_id', 1) as $tarif) {
+                $tarifCours = $tarif->prix;
+              }
+            } else {
+            if ($tarifs->where('temps', $adherent->heureSemaine)!='[]'){
+              foreach ($tarifs->where('temps', $adherent->heureSemaine) as $tarif) {
+                $tarifCours = $tarif->prix;
+              }
+              }
+              else{
+              $tarifCours=0;
+              }
+              $adherent->totalpaye=0;
+              foreach ($adherent->payements as $payement){
+                $adherent->totalpaye=$adherent->totalpaye+$payement->montant;}
+
+            }
+    return view('adherent.edit', compact('adherent', 'groupes', 'sections', 'creneaux','tarifAdhesion','tarifLicence','tarifCours','moyensPayements'));
   }
 
   /**
@@ -182,6 +223,8 @@ class AdherentController extends Controller
         }
       }
     }
+
+
     return redirect('/dossier');
   }
 
@@ -204,6 +247,8 @@ class AdherentController extends Controller
       $adherent->heureSemaine = $request->heureSemaine;}
     elseif ($request->urgence!=null){
       $adherent->nomUrgence=$request->urgence; }
+      elseif ($request->reduction!=null){
+      $adherent->reduction=$request->reduction;}
     $adherent->save();
     if($request->creneau != null){
       $adherent->creneaux()->attach($request->creneau);}
@@ -315,7 +360,41 @@ class AdherentController extends Controller
         $sections = Section::all();
         $creneaux = Creneau::orderBy('jour_id')
           ->get();
-        return view('adherent.edit', compact('adherent', 'groupes', 'sections', 'creneaux'));
+    $tarifs=Tarif::all();
+       $annee=(date ('Y',strtotime( $adherent->dateNaissance)));
+               foreach ($tarifs->where('libele', 'Adhesion GAC') as $tarif) {
+                 $tarifAdhesion = $tarif->prix;
+               }
+               if ($adherent->section_id==3){
+                 $tarifmini=$tarifs->where('anneeMini','<',$annee);
+
+               foreach ($tarifmini->where('anneeMax','>=',$annee) as $tarif) {
+                            $tarifLicence = $tarif->prix;
+                          }
+                  }
+               else{
+               $tarifLicence="0";
+               }
+               if ($adherent->section_id == 1) {
+                 foreach ($tarifs->where('section_id', 1) as $tarif) {
+                   $tarifCours = $tarif->prix;
+                 }
+               } else {
+               if ($tarifs->where('temps', $adherent->heureSemaine)!='[]'){
+                 foreach ($tarifs->where('temps', $adherent->heureSemaine) as $tarif) {
+                   $tarifCours = $tarif->prix;
+                 }
+                 }
+                 else{
+                 $tarifCours=0;
+                 }}
+    $total=0;
+         foreach ($adherent->payements as $payement)
+         {$total=$total+$payement->montant; }
+         $adherent->total=$total;
+    $moyensPayements=MoyenPayement::all();
+
+        return view('adherent.edit', compact('adherent', 'groupes', 'sections', 'creneaux','tarifAdhesion','tarifCours','tarifLicence','moyensPayements'));
       }
   /**
    * Remove the specified resource from storage.

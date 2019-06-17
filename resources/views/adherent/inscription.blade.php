@@ -4,6 +4,8 @@
     <h1>Formulaire d'inscription</h1>
     {!! Form::open(['route'=>'adherent.store','class'=>'form-horizontal large']) !!}
     <div class="container">
+<a type="button" class="btn-outline-primary" href="{{route('tarif.calcul')}}" >Calcul du tarif</a>
+
         <div class="row justify-content-center">
             <div class="card inscription">
                 <div class="card-header section1">Informations adhérent</div>
@@ -47,7 +49,7 @@
                                         id="date_naissance_A" selected="2010">
                                     <option
                                         value="{{old("date_naissance_A","")}}">{{old("date_naissance_A","")}}</option>
-                                    @for($i=2024;$i>1936;$i=$i-1)
+                                    @for($i=2024;$i>1990;$i=$i-1)
                                         <option value="{{$i}}">{{$i}}</option>
                                     @endfor
                                 </select>
@@ -371,7 +373,7 @@
 
             </div>
         </div>
-        <br/>
+        <br/><br/>
         <h4 class="important"><strong>Vous recevrez une confirmation de votre inscription, ainsi que les documents à
                 imprimer sur votre email après cette étape.</strong></h4>
         <p class="fonce"> Si vous ne recevez pas d'email dans les 30 min, veuillez nous écrire à l'adresse :

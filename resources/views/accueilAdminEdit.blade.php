@@ -44,7 +44,7 @@
                 </div>
               </div>
               <div id="un" class="tab-pane fade ">
-                <form action='./adherent/edit' method="post">
+                <form action='{{route("adherent.edit")}}' method="get">
                   {!!csrf_field ()  !!}
                   {{method_field ("get")}}
                   <div class="row ">
@@ -192,6 +192,11 @@
           <a href="javascript:history.back()" class="btn-back">
             <span class="glyphicon glyphicon-circle-arrow-left"></span> Retour
           </a>
+          <a href="{{route('home')}}"
+                                   class="btn-home "
+                                   >Accueil administration
+                  <i class="fas fa-home"></i>
+                </a>
         </div>
       </div>
     </div>

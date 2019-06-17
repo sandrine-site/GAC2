@@ -3,7 +3,7 @@
 
   <div class="Adulte">
     <div class="row row-Adulte">
-<div class="offset-3 col-6">
+<div class="offset-md-3  col-md-6 col-sm-12">
  <div class="card cardAdulte">
 <div class="card-header cardAdulte">
   Adultes Fitness et renforcement

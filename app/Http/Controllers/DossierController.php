@@ -79,34 +79,26 @@ class DossierController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request)
-    {
+  public function update(Request $request)
+  {        if(isset($request->photo)){
+    $variable= $request->photo xor $request->photo ;
+    Adherent::where('id', $request->id)
+      ->update(['photo' =>$variable]);}
+    if(isset($request->autorisationsRendues)){
+      $variable= $request->autorisationsRendues xor $request->autorisationsRendues ;
+      Adherent::where('id', $request->id)
+        ->update(['autorisationsRendues' => $variable]);}
+    if( isset($request->CertifMedical)){
+      $variable= $request->CertifMedical xor $request->CertifMedical ;
+      Adherent::where('id', $request->id)
+        ->update(['CertifMedical' => $variable]);}
+    if(isset($request->RecuDemande)){
+      $variable= $request->RecuDemande xor $request->RecuDemande ;
 
-        if(isset($request->photo)){
-        if($request->photo===true||$request->photo==="true"||$request->photo=="1"||$request->photo==1){
-            Adherent::where('id', $request->id)
-                ->update(['photo' => true]);}
-        else{Adherent::where('id', $request->id)
-            ->update(['photo' => false]);}}
-            if(isset($request->autorisationsRendues)){
-        if($request->autorisationsRendues===true||$request->autorisationsRendues==="true"||$request->autorisationsRendues=="1"||$request->autorisationsRendues==1){
-            Adherent::where('id', $request->id)
-                ->update(['autorisationsRendues' => true]);}
-        else{Adherent::where('id', $request->id)
-            ->update(['autorisationsRendues' => false]);}}
-           if( isset($request->CertifMedical)){
-        if($request->CertifMedical===true||$request->CertifMedical==="true"||$request->CertifMedical=="1"||$request->CertifMedical==1){
-            Adherent::where('id', $request->id)
-                ->update(['CertifMedical' => true]);}
-        else{Adherent::where('id', $request->id)
-            ->update(['CertifMedical' => false]);}}
-               if(isset($request->RecuDemande)){
-        if($request->RecuDemande==true||$request->RecuDemande=="true"||$request->RecuDemande=="1"||$request->RecuDemande==1){
-            Adherent::where('id', $request->id)
-                ->update(['RecuDemande' => true]);}
-        else{Adherent::where('id', $request->id)
-            ->update(['RecuDemande' => false]);
-        }}
+      Adherent::where('id', $request->id)
+        ->update(['RecuDemande' => $variable]);
+    }
+
         return back();
     }
 

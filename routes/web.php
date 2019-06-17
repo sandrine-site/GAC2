@@ -78,6 +78,15 @@ Route::get('/adherent/updateGroupe','AdherentController@updateGroupe')->name('ad
 Route::get('/adherent','AdherentController@index')->name('adherent.index');
 Route::get('/adherent/updateDocument','AdherentController@updateDocument')->name('adherent.updateDocument');
 Route::put('/adherent/{adherent}', 'AdherentController@update')->name('adherent.update');
+Route::get('/adherent/createAdulte','AdherentController@createAdulte')->name('adherent.createAdulte');
+
+/*  AdherentAdulte Controller*/
+Route::get('/adherentAdulte/create','AdherentAdulteController@create')->name('adherentAdulte.create');
+Route::post('/adherentAdulte', 'AdherentAdulteController@store')->name('adherentAdulte.store');
+Route::get('/adherentAdulte/edit','AdherentAdulteController@edit')->name('adherentAdulte.edit');
+Route::get('/adherentAdulte','AdherentAdulteController@index')->name('adherentAdulte.index');
+Route::get('/adherentAdulte/createAdulte','AdherentAdulteController@createAdulte')->name('adherentAdulte.createAdulte');
+
 /*AdherentRepartitionController*/
 Route::get('/adherent/Repartition', 'AdherentRepartitionController@indexRepartition')->name('adherent.indexRepartition');
 Route::post('/AdherentRepartitionController/updateRepartition','AdherentRepartitionController@updateRepartition')->name('adherent.updateRepartition');
@@ -90,6 +99,7 @@ Route::post ('/ByCreneau','AdherentRepartitionController@editByCreneau')->name('
 Route::get('/anneeScolaire','AnneeScolaireController@index')->name('anneeScolaire.index');
 Route::post('/anneeScolaire','AnneeScolaireController@store')->name('anneeScolaire.store');
 Route::get('/anneeScolaire/create','AnneeScolaireController@create')->name('anneeScolaire.create');
+Route::delete('/anneeScolaire','AnneeScolaireController@destroy')->name('anneeScolaire.destroy');
 
 /*Creneaux Controller*/
 Route::get('/creneau','CreneauController@index')->name('creneau.index');
@@ -110,6 +120,12 @@ Route::get('/autorisation','AutorisationController@index')->name('autorisation.i
 Route::post('/autorisation/updateAll','AutorisationController@updateAll')->name('autorisation.updateAll');
 /*FonctionController*/
 Route::get('/fonction','FonctionController@index')->name('fonction.index');
+
+/*PayementController*/
+Route::post('/payement','PayementController@store')->name('payement.store');
+Route::get('/payement','PayementController@index')->name('payement.index');
+Route::post('/payement/update','PayementController@update')->name('payement.update');
+Route::get('/payement/{payement}/{adherent}','PayementController@destroy')->name('payement.destroy');
 
 /*GroupeController*/
 Route::get('/groupe','GroupeController@index')->name('groupe.index');
@@ -135,6 +151,8 @@ Route::get('/tarif','TarifController@index')->name('tarif.index');
 Route::post('/tarif/{tarif?}/update','TarifController@update')->name('tarif.update');
 Route::post('/tarif','TarifController@store')->name('tarif.store');
 Route::delete('/tarif/{tarif}','TarifController@destroy')->name('tarif.destroy');
+Route::get('/tarif/calcul','TarifController@calcul')->name('tarif.calcul');
+Route::post('/tarif/calcul','TarifController@calcul')->name('tarif.calcul');
 /*Update adherent Controller*/
 Route::put('updateAdherent','GroupeController@updateAdherent')->name('groupe.updateAdherent');
 /*autorisationControleir*/

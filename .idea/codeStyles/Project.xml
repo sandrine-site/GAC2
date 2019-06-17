@@ -3,7 +3,12 @@
     <option name="AUTODETECT_INDENTS" value="false" />
     <option name="LINE_SEPARATOR" value="&#13;&#10;" />
     <option name="SOFT_MARGINS" value="120" />
+    <CssCodeStyleSettings>
+      <option name="KEEP_SINGLE_LINE_BLOCKS" value="true" />
+      <option name="ALIGN_CLOSING_BRACE_WITH_PROPERTIES" value="true" />
+    </CssCodeStyleSettings>
     <HTMLCodeStyleSettings>
+      <option name="HTML_KEEP_WHITESPACES" value="true" />
       <option name="HTML_ALIGN_TEXT" value="true" />
     </HTMLCodeStyleSettings>
     <codeStyleSettings language="Blade">
@@ -22,6 +27,18 @@
         <option name="TAB_SIZE" value="1" />
         <option name="USE_TAB_CHARACTER" value="true" />
       </indentOptions>
+      <arrangement>
+        <rules>
+          <section>
+            <rule>
+              <match>
+                <NAME>.*</NAME>
+              </match>
+              <order>BY_NAME</order>
+            </rule>
+          </section>
+        </rules>
+      </arrangement>
     </codeStyleSettings>
     <codeStyleSettings language="EditorConfig">
       <option name="ALIGN_GROUP_FIELD_DECLARATIONS" value="true" />

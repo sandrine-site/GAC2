@@ -48,7 +48,14 @@
           <span class="glyphicon glyphicon-circle-arrow-left"></span> Retour
         </a>
         {!! $adherents->links()  !!}
-
+        <a href="{{route('home')}}"
+                                                    class="btn-home "
+                                                    >Accueil administration
+                                   <i class="fas fa-home"></i>
+                                 </a>
+      </div>
+    </div>
+  </div>
 
         @endsection
 

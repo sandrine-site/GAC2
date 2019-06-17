@@ -102,7 +102,11 @@
           <a href="javascript:history.back()" class="btn-back ">
             <span class="glyphicon glyphicon-circle-arrow-left"></span> Retour
           </a>
-
+    <a href="{{route('home')}}"
+                                                 class="btn-home "
+                                                 >Accueil administration
+                                <i class="fas fa-home"></i>
+                              </a>
     </div>
 
 

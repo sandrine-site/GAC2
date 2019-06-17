@@ -9,7 +9,7 @@ class Tarif extends Model
 
     protected $table = 'tarifs';
     public $timestamps = false;
-    protected $fillable = array('libele', 'prix', 'anneeMini', 'anneeMaxi','section_id','temps');
+    protected $fillable = array('libele', 'prix', 'anneeMini', 'anneeMax','section_id','temps');
 
     public function adherents()
     {
