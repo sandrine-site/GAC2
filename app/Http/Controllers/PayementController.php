@@ -9,26 +9,14 @@ use Illuminate\Http\Request;
 
 class PayementController extends Controller
 {
-//    /**
-//     * Display a listing of the resource.
-//     *
-//     * @return \Illuminate\Http\Response
-//     */
-//    public function index()
-//    {
-//        //
-//    }
+  public function __construct()
+      {
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
-    }
-
+        $this->middleware('grand');
+        $this->middleware('administrateur');
+        $this->middleware('bureau');
+      }
+//
     /**
      * Store a newly created resource in storage.
      *
@@ -86,17 +74,6 @@ class PayementController extends Controller
 
       return view("tarif.index",compact('adherents','moyensPayements'));
     }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit()
-    {
-    }
-
     /**
      * Update the specified resource in storage.
      *

@@ -19,6 +19,12 @@ use Illuminate\Http\Request;
 
 class AdherentRepartitionController extends Controller
 {
+
+  public function __construct()
+  {
+    $this->middleware('auth');
+
+  }
   /**
    * Display a listing of the resource.
    *
@@ -37,7 +43,7 @@ class AdherentRepartitionController extends Controller
       $adherent->dateNaissance=strftime("%d/%m/%G", strtotime($adherent->dateNaissance));
       foreach ($adherent->creneaux as $creneau){
         $lieu=Lieu::find($creneau->lieu_id)->nom;
-        $creneau->creneauPhrase="le ".$creneau->jour->jour." à ".$creneau->heure_debut. "h ".$creneau->min_debut. " pendant ".$creneau->duree;
+        $creneau->creneauphrase="le ".$creneau->jour->jour." à ".$creneau->heure_debut. "h ".$creneau->min_debut. " pendant ".$creneau->duree;
       }
     }
     $jsonAdherents=json_encode ($adherents);

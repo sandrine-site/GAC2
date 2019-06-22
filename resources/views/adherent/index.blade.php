@@ -7,19 +7,27 @@
           <div class="card-header display-6 section2 ">Liste des adherents</div>
           <div>
             <ul class="nav nav-tabs nav-justified admin">
-              <li class="active bandeRose"><a data-toggle="tab" href="#" class="identitetoggle"><i
-                    class="fas fa-id-card rose"></i><br/>Identités</a></li>
-              <li class="bandeBleu"><a data-toggle="tab" href="#" class="entrainementtoggle"><i
-                    class="fas fa-dumbbell Bleu"></i><br/>Entrainements</a></li>
-              <li class="bandeRouge"><a data-toggle="tab" href="#" class="urgencetoggle"><i
-                    class="fas fa-briefcase-medical Rouge"></i><br/> En cas d'urgence</a></li>
-              <li class="bandeHotpink"><a data-toggle="tab" href="#" class="dossiertoggle"><i
-                    class="fas fa-copy Hotpink"></i><br/> Dossiers d'inscription</a></li>
-              <li class="bandeCyan"><a data-toggle="tab" href="#" class="payementtoggle"><i
-                    class="fas fa-money-bill-wave Cyan"></i><br/> Payements</a></li>
-              <li class="bandeJaune"><a data-toggle="tab" href="#" class="autrestoggle"><i
-                    class="fas fa-highlighter Jaune"></i><br/> Autres remarques</a></li>
+            @auth
+                <li class="active bandeRose"><a data-toggle="tab" href="#" class="identitetoggle"><i
+                      class="fas fa-id-card rose"></i><br/>Identités</a></li>
+                <li class="bandeBleu"><a data-toggle="tab" href="#" class="entrainementtoggle"><i
+                      class="fas fa-dumbbell Bleu"></i><br/>Entrainements</a></li>
+                <li class="bandeRouge"><a data-toggle="tab" href="#" class="urgencetoggle"><i
+                      class="fas fa-briefcase-medical Rouge"></i><br/> En cas d'urgence</a></li>
+                @if (Auth::user()->fonction_id==1|Auth::user()->fonction_id==2|Auth::user()->fonction_id==3)
+                  <li class="bandeHotpink"><a data-toggle="tab" href="#" class="dossiertoggle"><i
+                        class="fas fa-copy Hotpink"></i><br/> Dossiers d'inscription</a></li>
+                  <li class="bandeCyan"><a data-toggle="tab" href="#" class="payementtoggle"><i
+                        class="fas fa-money-bill-wave Cyan"></i><br/> Payements</a></li>
+                  @if (Auth::user()->fonction_id==1|Auth::user()->fonction_id==2)
+                    <li class="bandeJaune"><a data-toggle="tab" href="#" class="autrestoggle"><i
+                          class="fas fa-highlighter Jaune"></i><br/> Autres remarques</a></li>
+                  @endif
+                @endif
+              @endauth
             </ul>
+
+
           </div>
           <div class="card-body section2">
             <div class="tab-content ">
@@ -144,14 +152,14 @@
                       @else
                         <i class="fas fa-frown  RougeN"></i>
                       @endif</td>
-                     @foreach($adherent->payements as $payement)
+                    @foreach($adherent->payements as $payement)
                       <td class="section{{$adherent->section->id}} payement">
                        {{$payement->montant}}<br/>
-                       {{App\MoyenPayement::find($payement->moyensPayement_id)->type}}<br/>
-                       {{$payement->encaisseMois}}
+                        {{App\MoyenPayement::find($payement->moyensPayement_id)->type}}<br/>
+                        {{$payement->encaisseMois}}
 
                                           </td>
-                     @endforeach
+                    @endforeach
                     <td class="section{{$adherent->section->id}} payement">
                       @if($adherent->remarques->where('typeRq_id','=','3')->first()!=null)
                         {{$adherent->remarques->where('typeRq_id','=','3')->first()->remarque}}
@@ -186,8 +194,8 @@
 
       {!! $adherents->links()  !!}
       <a href="{{route('home')}}"
-                                         class="btn-home "
-                                         >Accueil administration
+         class="btn-home "
+      >Accueil administration
                         <i class="fas fa-home"></i>
                       </a>
     </div>

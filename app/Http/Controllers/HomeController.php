@@ -16,54 +16,54 @@ use Illuminate\Support\Facades\Auth;
 
 class HomeController extends Controller
 {
-    protected $UserRepository;
+  protected $UserRepository;
 
-    /**
-     * Create a new controller instance.
-     *
-     * @return void
-     */
-    public function __construct ()
-    {
-        $this->middleware ('auth');
-    }
+  /**
+   * Create a new controller instance.
+   *
+   * @return void
+   */
+  public function __construct ()
+  {
+    $this->middleware ('auth');
+  }
 
-    /**
-     * Show the application dashboard.
-     *
-     * @return \Illuminate\Contracts\Support\Renderable
-     */
-    public function index ()
-    {
-        $users = User::where ('fonction_id', '4')
-            ->orderBy ('prenom')
-            ->get ();
-        $sections = Section::all ();
-        $adherents = Adherent::orderBy ('nom')
-            ->get ();
-        $groupes = Groupe::orderBy ('section_id')
-            ->get ();
-        return view ('accueilAdmin', compact ('users', 'sections', 'adherents', 'groupes'));
-    }
+  /**
+   * Show the application dashboard.
+   *
+   * @return \Illuminate\Contracts\Support\Renderable
+   */
+  public function index ()
+  {
+    $users = User::where ('fonction_id', '4')
+      ->orderBy ('prenom')
+      ->get ();
+    $sections = Section::all ();
+    $adherents = Adherent::orderBy ('nom')
+      ->get ();
+    $groupes = Groupe::orderBy ('section_id')
+      ->get ();
+    return view ('accueilAdmin', compact ('users', 'sections', 'adherents', 'groupes'));
+  }
 
   public function Edit ()
-      {
-          $users = User::where ('fonction_id', '4')
-              ->orderBy ('prenom')
-              ->get ();
-          $sections = Section::all ();
-          $creneaux = Creneau::orderBy('jour_id')->get();
-          $adherents = Adherent::orderBy ('nom')
-              ->get ();
-          $groupes = Groupe::orderBy ('section_id')
-              ->get ();
-          return view ('accueilAdminEdit', compact ('users', 'sections', 'creneaux', 'adherents', 'groupes'));
-      }
+  {
+    $users = User::where ('fonction_id', '4')
+      ->orderBy ('prenom')
+      ->get ();
+    $sections = Section::all ();
+    $creneaux = Creneau::orderBy('jour_id')->get();
+    $adherents = Adherent::orderBy ('nom')
+      ->get ();
+    $groupes = Groupe::orderBy ('section_id')
+      ->get ();
+    return view ('accueilAdminEdit', compact ('users', 'sections', 'creneaux', 'adherents', 'groupes'));
+  }
 
-    public function navbar ()
-    {
+  public function navbar ()
+  {
 //        $auths=Auth::user ();
 
-    }
+  }
 
 }

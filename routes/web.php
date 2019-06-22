@@ -23,22 +23,6 @@ Route::resource('user', 'UserController');
 Route::resource('accueilAdmin','accueilAdminController');
 
 
-
-//Route::get('/adherent/edit/{filtre?}/{valeur?}', function () {
-
-//});
-// rendre les parametres optionels avec? apres? avec des paramettres o
-//Route::middleware('administrateur')->group(function () {
-//    Route::resource ('section', 'SectionController',[ 'except'=>['create','show','edit','update']]);
-//    });
-//Route::middleware('grand')->group(function () {
-//    Route::resource ('section', 'SectionController',[ 'except'=>['create','show','edit','update']]);
-//});
-//Route::middleware('administrateur')->group(function () {
-//    Route::resource ('category', 'CategoryController', [
-//        'except' => 'show'
-//    ]);});
-
 /* Pages non Authentifiées*/
 /* page du front office*/
 Route::get('/', function () {
@@ -59,16 +43,24 @@ Route::get('/adulte', function () {
   return view('front.Adulte');
 })->name('adulte');
 
-//Route::get('/', function () {
-//    return view('welcome');
-//})->name('accueil');
 
 /*Page d'autentification*/
 Auth::routes();
 Route::get('/home', 'HomeController@index')->name('home');
+Route::get('/test-mail', function () {
+ Mail::raw('bonjour', function ($message) {
+
+         $message->to('test@example.org', 'John Doe');
+         $message->subject('test');
+     });
+
+});
 
 /*Page accueil administration*/
-Route::get('/AdminEdit','HomeController@edit')->name('accueilAdminEdit');
+
+Route::get('/AdminEdit','HomeController@edit')
+->middleware('auth')
+->name('accueilAdminEdit');
 
 /*  Adherent Controller*/
 Route::get('/adherent/create','AdherentController@create')->name('adherent.create');
@@ -79,6 +71,9 @@ Route::get('/adherent','AdherentController@index')->name('adherent.index');
 Route::get('/adherent/updateDocument','AdherentController@updateDocument')->name('adherent.updateDocument');
 Route::put('/adherent/{adherent}', 'AdherentController@update')->name('adherent.update');
 Route::get('/adherent/createAdulte','AdherentController@createAdulte')->name('adherent.createAdulte');
+Route::delete('/adherent/{adherent}','AdherentController@destroy')
+->middleware('grand')
+->name('adherent.destroy');
 
 /*  AdherentAdulte Controller*/
 Route::get('/adherentAdulte/create','AdherentAdulteController@create')->name('adherentAdulte.create');
@@ -96,10 +91,18 @@ Route::post ('/ByEntraineur','AdherentRepartitionController@editByEntraineur')->
 Route::post ('/ByCreneau','AdherentRepartitionController@editByCreneau')->name('adherent.editByCreneau');
 
 /*Année Scolaire Controller*/
-Route::get('/anneeScolaire','AnneeScolaireController@index')->name('anneeScolaire.index');
-Route::post('/anneeScolaire','AnneeScolaireController@store')->name('anneeScolaire.store');
-Route::get('/anneeScolaire/create','AnneeScolaireController@create')->name('anneeScolaire.create');
-Route::delete('/anneeScolaire','AnneeScolaireController@destroy')->name('anneeScolaire.destroy');
+Route::get('/anneeScolaire','AnneeScolaireController@index')
+->middleware('grand')
+->name('anneeScolaire.index');
+Route::post('/anneeScolaire','AnneeScolaireController@store')
+->middleware('grand')
+->name('anneeScolaire.store');
+Route::get('/anneeScolaire/create','AnneeScolaireController@create')
+  ->middleware('grand')
+  ->name('anneeScolaire.create');
+Route::delete('/anneeScolaire','AnneeScolaireController@destroy')
+->middleware('grand')
+->name('anneeScolaire.destroy');
 
 /*Creneaux Controller*/
 Route::get('/creneau','CreneauController@index')->name('creneau.index');
@@ -157,6 +160,11 @@ Route::post('/tarif/calcul','TarifController@calcul')->name('tarif.calcul');
 Route::put('updateAdherent','GroupeController@updateAdherent')->name('groupe.updateAdherent');
 /*autorisationControleir*/
 Route::get('update','AutorisationController@update')->name('autorisation.update');
+
+/* Envois de Mail*/
+Route::get('/contact','AdherentContactController@index')->name('contact.index');
+Route::put('/contact/mail','AdherentContactController@create')->name('contact.create');
+Route::get('/contact/contact','AdherentContactController@contact')->name('contact.send');
 //essaies
 Route::get('/test', function () {
   return view('test');

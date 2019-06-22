@@ -1,7 +1,7 @@
 <?php
 
 namespace App;
-
+use App\Notifications\MyResetPasswordNotification;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
@@ -11,6 +11,7 @@ class User extends Authenticatable
     use Notifiable;
     protected $table = 'users';
     public $timestamps = false;
+  public $remember_token=false;
     protected $fillable = array('name', 'prenom', 'email', 'telephone', 'password','fonction_id');
     /**
      * The attributes that should be hidden for arrays.
@@ -36,7 +37,8 @@ class User extends Authenticatable
         $this->attributes['password'] = bcrypt($password);
     }
 
-    public function fonction()
+
+  public function fonction()
     {
         return $this->belongsTo('App\Fonction', 'fonction_id');
     }

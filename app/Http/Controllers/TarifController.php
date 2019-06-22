@@ -7,6 +7,12 @@ use App\Tarif;
 use App\Section;
 class TarifController extends Controller
 {
+  public function __construct()
+      {
+
+        $this->middleware('grand');
+        $this->middleware('administrateur');
+      }
     /**
      * Display a listing of the resource.
      *

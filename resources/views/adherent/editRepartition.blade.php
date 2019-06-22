@@ -11,7 +11,7 @@
               <form action='#' methode="post" name="repartition">
                 {!!csrf_field ()  !!}
                 {{method_field ("post")}}
-                <table>
+                <table class="table table-responsive">
                   <thead>
                   <tr>
 
@@ -60,8 +60,7 @@
                     </td>
                     <td ><ul id="creneau"  >
                         <li  class="phrase"  v-for="creneau in adherent.creneaux">
-                          @{{creneau.creneauPhrase }}
-
+                          @{{creneau.creneauphrase }}
                           <button
                             v-on:click="deleteCreneaux(adherent,creneau)">
                             <i class="far fa-times-circle"></i>
@@ -111,6 +110,7 @@
     @endsection
     @section('script')
       <script>
+        Vue.config.devtools = true;
         var app = new Vue({
           el: '#app',
           data: {
@@ -182,7 +182,8 @@
               })
             },
             addCreneau:function(adherent,creneau){
-phrase=creneau[adherent.id].creneauphrase,
+            var phrase=creneau[adherent.id];
+            // .creneauphrase
               $.ajaxSetup({
                 headers: {
                   'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
@@ -198,8 +199,7 @@ phrase=creneau[adherent.id].creneauphrase,
               }).done(function(response){
               console.log(phrase);
                 adherent.creneaux.push(phrase);
-           $('ul').prepend(phrase).adherent,
-document.getElementById("creneauListe").selected=true;
+                creneau[adherent.id]="";
 
               }).fail(function(error){
                 alert("Désolé nous ne pouvons pas enregistrer l'information pour le moment");
@@ -209,4 +209,5 @@ document.getElementById("creneauListe").selected=true;
 
           }})
       </script>
+
 @endsection

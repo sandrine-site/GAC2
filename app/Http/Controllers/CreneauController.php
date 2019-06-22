@@ -18,8 +18,9 @@ class CreneauController extends Controller
 {
     public function __construct()
     {
-//        $this->middleware('administrateur');
-//        $this->middleware('grand');
+
+      $this->middleware('grand');
+      $this->middleware('administrateur');
     }
 
     /**

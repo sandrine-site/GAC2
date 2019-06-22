@@ -7,6 +7,7 @@
                 <div class="card">
                     <div class="card-header">Création d'un administrateur</div>
                     <div class="card-body">
+                    <div class="offset-1 col-10">
                         <form method="post" action="{{ route ('user.store') }}" class='form-horizontal'>
                             @csrf
                    <div class="form-group {!! $errors->has('name') ? 'has-error' : '' !!}">
@@ -50,16 +51,23 @@
                        <small class="help-block">{!! $errors->first('password', ':message') !!}</small>
                    </div>
 
-                    <input type="submit" value="Envoyer" class='btn btn-secondary'/>
+                    <input type="submit" value="Envoyer" class='btn btn-primary'/>
                         </form>
                </div>
             </div>
+        </div></div>
         </div>
-        </div>
-        <div class="row">
-            <div><a href="javascript:history.back()" class="btn btn-primary ">
-                    <span class="fa fa-arrow-circle-left"></span> Retour
-                </a></div>
+      <div class="row back">
+
+             <a href="javascript:history.back()" class="btn-back ">
+               <span class="glyphicon glyphicon-circle-arrow-left"></span> Retour
+             </a>
+             <a href="{{route('home')}}"
+                class="btn-home "
+             >Accueil administration
+               <i class="fas fa-home"></i>
+             </a>
+           </div>
         </div>
 
 @endsection

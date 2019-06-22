@@ -8,12 +8,18 @@
           <div class="card-header display-6 section5">Fiche de : {{" "}}   {{$adherent->prenom}} {{$adherent->nom}}  </div>
           <div>
             <ul class="nav nav-tabs nav-justified fiche ">
-              <li class="active bandeRose"><a data-toggle="tab" href="#identite"><i class="fas fa-id-card rose"></i><br/>Identité</a></li>
-              <li class="bandeBleu"><a data-toggle="tab" href="#entrainement"><i class="fas fa-dumbbell Bleu"></i><br/>Entrainement</a></li>
-              <li class="bandeRouge"><a data-toggle="tab" href="#urgence"><i class="fas fa-briefcase-medical Rouge"></i><br/> En cas d'urgence</a></li>
-              <li class="bandeHotpink"><a data-toggle="tab" href="#inscription"><i class="fas fa-copy Hotpink"></i><br/> Dossier d'inscription</a></li>
-              <li class="bandeCyan"><a data-toggle="tab" href="#payement"><i class="fas fa-money-bill-wave Cyan"></i><br/> Payement</a></li>
-              <li class="bandeJaune"><a data-toggle="tab" href="#autres"><i class="fas fa-highlighter Jaune"></i><br/> Autres remarques</a></li>
+            @auth
+                <li class="active bandeRose"><a data-toggle="tab" href="#identite"><i class="fas fa-id-card rose"></i><br/>Identité</a></li>
+                <li class="bandeBleu"><a data-toggle="tab" href="#entrainement"><i class="fas fa-dumbbell Bleu"></i><br/>Entrainement</a></li>
+                <li class="bandeRouge"><a data-toggle="tab" href="#urgence"><i class="fas fa-briefcase-medical Rouge"></i><br/> En cas d'urgence</a></li>
+                @if (Auth::user()->fonction_id==1|Auth::user()->fonction_id==2|Auth::user()->fonction_id==3)
+                  <li class="bandeHotpink"><a data-toggle="tab" href="#inscription"><i class="fas fa-copy Hotpink"></i><br/> Dossier d'inscription</a></li>
+                  <li class="bandeCyan"><a data-toggle="tab" href="#payement"><i class="fas fa-money-bill-wave Cyan"></i><br/> Payement</a></li>
+                  @if (Auth::user()->fonction_id==1|Auth::user()->fonction_id==2)
+                    <li class="bandeJaune"><a data-toggle="tab" href="#autres"><i class="fas fa-highlighter Jaune"></i><br/> Autres remarques</a></li>
+                  @endif
+                @endif
+              @endauth
             </ul>
           </div>
 
@@ -701,25 +707,36 @@
                   <div class="col-2">
                   </div>
                   <div class="col-12">
-                    <button type="submit" class="btn btn-primary btn pull-right">
+                    <button type="submit" class="btn btn-primary  pull-right">
                       Enregistrer les modifications
                     </button>
-                  </div>
+                    <br/><br/>
 
+                  </div>
                 </form>
+                <div class="row">
+                <div class="col-12">
+                <h4>Effacer l'adherent:</h4>
+                  {!! Form::open(['method' => 'DELETE', 'route' => ['adherent.destroy', $adherent->id]]) !!}
+                  {!! Form::submit('Supprimer', ['class' => 'btn btn-danger', 'onclick' => 'return confirm(\'Vraiment supprimer cet adhérent ?\')']) !!}
+                  {!! Form::close() !!}
+                                </div>
+              </div>
+            </div>
+          </div>
               </div>
             </div>
           </div>
         </div>
       </div>
-    </div>
-    <div class="row back">
+
+  <div class="row back">
       <a href="javascript:history.back()" class="btn-back ">
         <span class="glyphicon glyphicon-circle-arrow-left"></span> Retour
       </a>
       <a href="{{route('home')}}"
-                         class="btn-home "
-                         >Accueil administration
+         class="btn-home "
+      >Accueil administration
         <i class="fas fa-home"></i>
       </a>
     </div>

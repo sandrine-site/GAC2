@@ -3,6 +3,7 @@
 namespace App\Http\Middleware;
 
 use Closure;
+use Illuminate\Support\Facades\Auth;
 
 class Bureau
 {
@@ -15,13 +16,10 @@ class Bureau
      */
     public function handle($request, Closure $next)
     {
-        public function handle($request, Closure $next)
-    {
-        $user=$request->user ();
-        if ($user&&$user->fonction_id==="2"){
-            return $next($request);
-        }
-        return redirect ()->route ('home');
-    }
-    }
+      $user=Auth::user();
+              if ($user&&$user->fonction_id<=3){
+                  return $next($request);
+              }
+              return response()->redirectTo("/login");
+          }
 }

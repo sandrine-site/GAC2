@@ -12,6 +12,11 @@ use Illuminate\Http\Request;
 
 class AutorisationController extends Controller
 {
+  public function __construct()
+  {
+    $this->middleware('auth');
+    $this->middleware('grand',['only' => ['delete']]);
+  }
 
   /*
 							* Update the specified resource in storage.
@@ -56,11 +61,10 @@ class AutorisationController extends Controller
         } elseif ($autorisation->typeAuto_id == 4) {
           $adherent->adherentSortie = $autorisation->ok;
         }
-
       }
     }
-      $json = json_encode($adherents);
-      return view('autorisations.index', compact('adherents', 'json'));
+    $json = json_encode($adherents);
+    return view('autorisations.index', compact('adherents', 'json'));
 
   }
 
@@ -74,28 +78,28 @@ class AutorisationController extends Controller
       }
     }
     if(isset($request->transport)) {
-          if ($request->transport === true || $request->transport === "true" || $request->transport == "1" || $request->transport == 1) {
-            Autorisation::where('adherent_id', $request->id)->where('typeAuto_id',2)->update(['ok' => 1]);
-          } else {
-            Autorisation::where('adherent_id', $request->id)->where('typeAuto_id', 2)->update(['ok' => 0]);
-          }
-        }
-        if(isset($request->media)) {
-          if ($request->media === true || $request->media === "true" || $request->media == "1" || $request->media == 1) {
-            Autorisation::where('adherent_id', $request->id)->where('typeAuto_id',3)->update(['ok' => 1]);
-          } else {
-            Autorisation::where('adherent_id', $request->id)->where('typeAuto_id', 3)->update(['ok' => 0]);
-          }
-        }
-        if(isset($request->sortie)) {
-          if ($request->sortie === true || $request->sortie === "true" || $request->sortie == "1" || $request->sortie == 1) {
-            Autorisation::where('adherent_id', $request->id)->where('typeAuto_id',4)->update(['ok' => 1]);
-          } else {
-            Autorisation::where('adherent_id', $request->id)->where('typeAuto_id',4)->update(['ok' => 0]);
-          }
-        }
-      return ;
+      if ($request->transport === true || $request->transport === "true" || $request->transport == "1" || $request->transport == 1) {
+        Autorisation::where('adherent_id', $request->id)->where('typeAuto_id',2)->update(['ok' => 1]);
+      } else {
+        Autorisation::where('adherent_id', $request->id)->where('typeAuto_id', 2)->update(['ok' => 0]);
+      }
     }
+    if(isset($request->media)) {
+      if ($request->media === true || $request->media === "true" || $request->media == "1" || $request->media == 1) {
+        Autorisation::where('adherent_id', $request->id)->where('typeAuto_id',3)->update(['ok' => 1]);
+      } else {
+        Autorisation::where('adherent_id', $request->id)->where('typeAuto_id', 3)->update(['ok' => 0]);
+      }
+    }
+    if(isset($request->sortie)) {
+      if ($request->sortie === true || $request->sortie === "true" || $request->sortie == "1" || $request->sortie == 1) {
+        Autorisation::where('adherent_id', $request->id)->where('typeAuto_id',4)->update(['ok' => 1]);
+      } else {
+        Autorisation::where('adherent_id', $request->id)->where('typeAuto_id',4)->update(['ok' => 0]);
+      }
+    }
+    return ;
+  }
 
 
 }

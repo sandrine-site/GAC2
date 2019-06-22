@@ -1,52 +1,49 @@
 @extends('layouts.app')
 @section('content')
 
-  <div class="Adulte">
-    <div class="row row-Adulte">
-<div class="offset-3 col-6">
- <div class="card cardAdulte">
-<div class="card-header cardAdulte">
-  Adultes Fitness et renforcement
-</div>
-<div class="card-body cardAdulte">
-  Nous proposons quatres cours de renforcement musculaire avec petit matériel (Bâton, Elastiband, haltères, swiss ball...) ou sans.
-
-  Chez nous tous les âges se côtoient, le programme est adapté à votre niveau et l'ambiance est conviviale.
-      </div>
+  <div class="Accueil">
+    <div class="row row-Accueil">
+      <div class="row row-Accueil1">
+        <div class="offset-5 col-6">
+          <div class="card cardAccueil1">
+            <div class="card-header cardAccueil1">
+              Forum des associations
+            </div>
+            <div class="card-body cardAccueil1">
+            <h4> Le 7 septembre à partir de 14h</h4>
+              Comme chaque année, au sortir de l’été, le Forum des associations marque la renaissance du monde associatif clapiérois, dans le cadre magnifique du parc Claude Leenhardt.
+              Nous y seront présent venez nous y rejoindre.
+            </div>
+          </div>
         </div>
+      </div>
+      <div class="row row-Accueil2">
+        <div class="offset-1 col-6">
+          <div class="card cardAccueil2">
+            <div class="card-header cardAccueil2">
+              Saison 2018 -2019 Calendrier des Compétitions
+            </div>
+            <div class="card-body cardAccueil2">
+   Voici les dates à réserver dans votre agenda....
 
-  <div class="card cardAdulte">
- <div class="card-header cardAdulte">
-Gym adulte à CLAPIERS
- </div>
- <div class="card-body cardAdulte">
-   HORAIRES :
-<ul>
-<li>
-   Mardi : 18h00 à 19h00, gymnastique d'entretien, renforcement musculaire, fitness
-</li>
-<li>
-   Jeudi :18h00 à 19h00, gymnastique d'entretien, renforcement musculaire, fitness
-</li>
-<li>
-   Jeudi : 19h00 à 20h00 Pilates
-</li>
-<li>
-   Samedi  9h30-10h30 Fitness
-</li>
-<li>
-   Samedi 10h45 - 11h45 Fitness, renforcement musculaire, (cardio boxe sur demande)
+   Compétitions Gymnastique UFOLEP 2019 :
+   Championnats départementaux à Lavérune (34) les 26 et 27 janvier 2019
+   Championnats régionaux pour les finalités jeunes à Lavérune (34) les 06 et 07 avril 2019
+   Finales « Jeune » à Villeneuve sur Lot (47) les 25 et 26 mai 2019
 
-<ul>
-   Lieu : Gymnase Joêl ABATI, rue du Paraguay, CLAPIERS
+   Pour toutes les féminines nées en 2007 et avant en plus de la compétition des 26 et 27 janvier vous avez les rencontres suivantes :
 
-<br/>
-   <button class="btn-outline-Adulte" >Renseignements-Inscription</button>
+   Régionaux à Perpignan (66) les 13 et 14 avril 2019,gymnase du moulin à vent, boulevard Foment de la Sardanne.
+   Demi-finale à Marvejols (48) les 11 et 12 mai 2019
+   France « Finale Nationale » à Crolles (38) les 08 et 09 juin 2019
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="row row-Accueil3">
+   <button class="btn-outline-accueil" >Nous contacter</button>
        </div>
+    </div>
          </div>
-      </div>
-    </div>
-      </div>
-    </div>
-  </div>
+
 @endsection

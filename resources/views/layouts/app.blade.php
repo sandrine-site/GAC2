@@ -12,6 +12,8 @@
 
     <!-- Scripts -->
     <script src="{{ asset('js/app.js') }}" defer></script>
+    <!--tinyMCE-->
+  <script src="https://cdn.tiny.cloud/1/ml0pyee54mk9ckslddh5xe90xundxmo02hggj1v9bnnbyi8a/tinymce/5/tinymce.min.js"></script>
 
     <!-- Fonts -->
     <link href="https://fonts.googleapis.com/css?family=Shadows+Into+Light" rel="stylesheet">
@@ -89,6 +91,8 @@
 </main>
 
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+
+
 
     @yield('script')
 </body>

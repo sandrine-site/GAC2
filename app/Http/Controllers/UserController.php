@@ -24,9 +24,7 @@ class UserController extends Controller
      */
     public function __construct()
     {
-
-
-//       $this->middleware('grand',['except' => ['edit']]);
+       $this->middleware('grand',['except' => ['edit']]);
 
     }
 

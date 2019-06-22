@@ -11,7 +11,7 @@
             <ul class="nav nav-tabs nav-justified admin">
               <li class="active bandeBleu"><a data-toggle="tab" href="#tous"> <i class="fas fa-globe-europe Bleu"></i><br/>
                   Tous les gymnastes</a></li>
-              <li class="bandeVert2 "><a data-toggle="tab" href="#un"><i class="fas fa-user-alt Vert2"></i></i><br/>
+              <li class="bandeVert2 "><a data-toggle="tab" href="#un"><i class="fas fa-user-alt Vert2"></i><br/>
                   Un gymnaste</a></li>
               <li class="bandeHotpink"><a data-toggle="tab" href="#groupe"><i class="fas fa-user-friends Hotpink"></i></i><br/>
                   Un groupe</a></li>

@@ -16,11 +16,10 @@ class Administrateur
      */
     public function handle($request, Closure $next)
     {
-
         $user=Auth::user();
-        if ($user&&$user->fonction_id===2){
+        if ($user&&$user->fonction_id<=2){
             return $next($request);
         }
-        return redirect ()->route ('home');
+        return response()->redirectTo("/login");
     }
 }
