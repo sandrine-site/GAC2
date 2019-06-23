@@ -9,7 +9,7 @@
           <form method="post" action="{{route('tarif.calcul')}}">
             <div class="row start">
               {!!csrf_field ()  !!}
-              <div class="col-4">
+              <div class="col-3">
                 <h4 class="fonce">Section:</h4><br/>
                 @foreach($sections as $section)
                   <input type="radio" name="section_id" id="section_id" value="{{$section->id}}"/>
@@ -17,7 +17,7 @@
 
                 @endforeach
               </div>
-              <div class="col-4">
+              <div class="col-3">
                 <h4 class="fonce"> Année de naissance:</h4><br/>
                 <select
                   type="number"
@@ -47,6 +47,11 @@
                   <option value="6h">6h</option>
                   <option value="8h">8h</option>
                 </select><br/>
+              </div>
+              <div class="col-2">
+                <img src="../../public/images/ancv_cheques_vacances.jpg">
+                <img src="../../public/images/coupon_sport_gac.png">
+
               </div>
             </div>
 
@@ -102,17 +107,16 @@
       @endisset
 
 
-
-      <div class="row back">
-        <a href="javascript:history.back()" class="btn-back ">
-          <span class="glyphicon glyphicon-circle-arrow-left"></span> Retour
-        </a>
-        <a href="{{route('home')}}"
-           class="btn-home "
-        >Accueil administration
-          <i class="fas fa-home"></i>
-        </a>
-      </div>
     </div>
+    <div class="offset-4  col-4 back">
+            <a href="javascript:history.back()" class="btn-back ">
+              <span class="glyphicon glyphicon-circle-arrow-left"></span> Retour
+            </a>
+            <a href="{{route('home')}}"
+               class="btn-home "
+            >Accueil administration
+              <i class="fas fa-home"></i>
+            </a>
+          </div>
   </div>
 @endsection

@@ -78,6 +78,8 @@ return [
     'url'                  => "Le format de l'URL de :attribute n'est pas valide.",
 
 
+
+
     /*
     |--------------------------------------------------------------------------
     | Custom Validation Language Lines
@@ -93,6 +95,8 @@ return [
         'telephone_Resp1' => [
             'required_without' => 'Un des deux numéros est requis pour un enfant mineur',
         ],
+        'rgpd'=>['required' => 'Vous devez accepter les conditions générales d\'utilisation',]
+
 
     ],
 

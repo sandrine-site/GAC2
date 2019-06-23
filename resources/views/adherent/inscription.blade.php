@@ -148,7 +148,6 @@
                             <input type="email" name="email1" class="form-control  col-sm-10" id="email1"
                                    placeholder="Email principal" value="{{old("email1","")}}"/><br/>
                             {!! $errors->first('email1', '<small class="help-block">:message</small>') !!}
-                            <p>Vous recevrez une confirmation de votre inscription sur cette adresse email</p>
                         </div>
                         <div class="col-sm-6">
                             <input type="email" name="email2" class="form-control col-sm-offset-1 col-sm-10" id="email2"
@@ -156,7 +155,9 @@
                             {!! $errors->first('email2', '<small class="help-block">:message</small>') !!}
                         </div>
                     </div>
-                </div>
+                      <div class="col-12">Vous recevrez une confirmation de votre inscription sur cette adresse email</div>
+                                              </div>
+
             </div>
         </div>
         <br/>
@@ -374,12 +375,15 @@
             </div>
         </div>
         <br/><br/>
-        <h4 class="important"><strong>Vous recevrez une confirmation de votre inscription, ainsi que les documents à
-                imprimer sur votre email après cette étape.</strong></h4>
-        <p class="fonce"> Si vous ne recevez pas d'email dans les 30 min, veuillez nous écrire à l'adresse :
-            gacgym@hotmail.fr</p>
-        <h4 class="roserose"> Veuillez remettre à votre entraîneur le dossier, le certificat médical et le paiement. A très
-            bientôt!</h4>
+        <div class="row">
+      <input type="checkbox"  name="rgpd" id="rgpd" /> &nbsp;
+       <label for="rgpd"> &nbsp;
+       En cochant cette case, je reconnais avoir pris connaissance des <a href="{{route('rgpd')}}">Conditions Générales d'Utilisation du site</a> ainsi que sa Politique de Confidentialité et je les accepte. </label><br/>
+        </div>
+      {!! $errors->first('rgpd', '<small class="help-block">:message</small>') !!}
+        <br/>
+        <p>Le dossier d'inscription est un peu long à se générer, veuillez attendre avant de fermer cette fenêtre</p>
+        <br/>
         {!! Form::submit('Envoyer !', ['class' => 'btn btn-xlarge btn-primary']) !!}
         {!! Form::close() !!}
     </div>

@@ -64,6 +64,7 @@ class AdherentContactController extends Controller
     $jsonSections=json_encode($sections);
     $jsonEntraineurs=json_encode($entraineurs);
     $jsonCreneaux=json_encode($creneaux);
+
     return view('indexMail', compact('jsonAdherents','jsonGroupes','jsonSections','jsonEntraineurs','jsonCreneaux'));
   }
 

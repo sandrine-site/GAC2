@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use PDF;
 use App\Adherent;
 use App\Autorisation;
 use App\Autorisations;
@@ -17,6 +18,7 @@ use App\Section_adherent;
 use App\Telephone;
 use App\Tarif;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Mail;
 
 
 class AdherentController extends Controller
@@ -29,7 +31,7 @@ class AdherentController extends Controller
    */
   public function __construct()
   {
-    $this->middleware('auth',['except' => ['create','index']);
+    $this->middleware('auth',['except' => ['create','index','store']]);
     $this->middleware('grand',['only' => ['delete']]);
   }
 
@@ -62,6 +64,7 @@ class AdherentController extends Controller
    * @return \Illuminate\Http\Response
    */
   public function store(AdherentCreateRequest $request)
+
   {
     $request['nom'] = strtoupper($request['nom']);
     $request['prenom'] = ucfirst($request['prenom']);
@@ -124,7 +127,78 @@ class AdherentController extends Controller
     $inputAutoSortie['adherent_id'] = $adherent->id;
     $inputAutoSortie['typeAuto_id'] = '4';
     Autorisation::create($inputAutoSortie);
+
+    /*Calcul du tarif*/
+    $tarifs=Tarif::all();
+
+    if ($request['section_id']==3){
+    $tarif2s=$tarifs->whereBetween('id',[2, 4]);
+      $tarifmini=$tarif2s->where('anneeMini','<', $request['date_naissance_A']);
+      foreach ($tarifmini->where('anneeMax','>=', $request['date_naissance_A']) as $tarif) {
+        $tarifLicence = $tarif->prix;
+
+        if ($tarifs->where('temps',$request["heureSemaine"])!='[]'){
+                foreach ($tarifs->where('temps', $request["heureSemaine"]) as $tarif) {
+                  $tarifCours = $tarif->prix;
+                }
+              }
+              else{
+                $tarifCours=0;
+              }
+      }
+    }
+    elseif ($request['section_id'] == 1) {
+    $tarifLicence=0;
+      foreach ($tarifs->where('section_id', 1) as $tarif) {
+        $tarifCours = $tarif->prix;
+      }}
+    else{
+          $tarifLicence=0;
+      if ($tarifs->where('temps',$request["heureSemaine"])!='[]'){
+        foreach ($tarifs->where('temps', $request["heureSemaine"]) as $tarif) {
+          $tarifCours = $tarif->prix;
+        }
+      }
+      else{
+        $tarifCours=0;
+      }
+    }
+
+       /*Génération des PDF*/
+
+    $adherentData=[
+      "nom"=>strtoupper($request['nom']),
+      "prenom"=>ucfirst($request['prenom']),
+      "urgence"=>$request['urgence'],
+      "deplacements"=>$request['deplacements'],
+      "media"=>$request['media'],
+      "sortie"=>$request['sortie'],
+      "age" => getdate ()[ 'year' ] - $request['date_naissance_A'],
+      "tarifLicence"=>$tarifLicence,
+      "tarifAdhesion"=>$tarif->find(1)->prix,
+      "tarifCours"=>$tarifCours,
+
+    ];
+
+    $pdf = PDF::loadView('pdf.Autorisations',compact('adherentData'))->setPaper('A3', 'portrait');
+
+    $data = ['email' => $request['email1'], 'subject' => 'Inscription','pdf'=>$pdf];
+    Mail::send('emails.maill_Inscription', $data, function ($message) use ($data) {
+      $message->from('gacgym@hotmail.fr', 'G.A.C.');
+      $message->to($data['email'])->subject('Inscription G.A.C');
+      $message->cc('gacgym@hotmail.fr');
+      $message->attachData($data['pdf']->output(),'inscription.pdf') ;
+      $message->attach(storage_path('pdf/questionnaire_de_santé.pdf')) ;
+    });
+
     return redirect('adherent.confirm');
+
+  }
+
+  public function inscriptionPDF() {
+    $pdf = PDF::loadView('pdf.Autorisations');
+    $name = "commandeNo-.pdf";
+    return $pdf->download($name);
   }
 
   /**

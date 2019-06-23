@@ -9624,15 +9624,24 @@ display-6 i{
   margin-right: 15px;
   margin-left: 15px;
 }
+
 .help-block {
-  color: #ed1358;
-  font-weight: bold;
+	color: white;
+	font-weight: bold;
+	background-color: #ba0944;
+	width: max-content;
 }
+
 .flex-nowrap {
   white-space: nowrap;
 }
 div.card div.card-body table {
   width: 100%;
+}
+.btn-group-vertical > .btn-group::after, .btn-group-vertical > .btn-group::before, .btn-toolbar::after, .btn-toolbar::before, .clearfix::after, .clearfix::before, .container-fluid::after, .container-fluid::before, .container::after, .container::before, .dl-horizontal dd::after, .dl-horizontal dd::before, .form-horizontal .form-group::after, .form-horizontal .form-group::before, .modal-footer::after, .modal-footer::before, .modal-header::after, .modal-header::before, .nav::after, .nav::before, .navbar-collapse::after, .navbar-collapse::before, .navbar-header::after, .navbar-header::before, .navbar::after, .navbar::before, .pager::after, .pager::before, .panel-body::after, .panel-body::before, .row::after, .row::before {
+  display: table;
+ content: none;
+
 }
 #inscription > form:nth-child(1) > div:nth-child(4) > div:nth-child(2){
   display: block;
@@ -9726,7 +9735,32 @@ ul.nav.nav-pills.nav-stacked li.active a {
   display: flex;
   align-items: center;
   justify-content: space-between;}
+html body main.py-4 div.container div.row.justify-content-center {
+  margin-top: 1rem;
+}
+div.container.groupe div.col-md-12 div.card div.card-body.section3 form div.row.start div.col-2 img{
+width: 80px}
+#contenaireUFPLEP {
+ height: 50px;
+ width: 130px;
+}
+#contenaireGAC {
+ height: 100px;
+ width: 300px;
+}
+#contenaireClapiers {
+ height: 100px;
+ width: 100px;
+}
+html body nav.navbar.navbar-expand-md.navbar-expand-sm.navbar-light.navbar-laravel.navbar-fixed-top div.container.col-sm-12 a.navbar-brand {
+ width: 100%;
+ display: flex;
+ justify-content: space-between;
+ align-items: center;
+}
 
+ div.container.col-sm-12 a.navbar-brand  img{
+ width: 100%}
 /* ==------------------ Formulaires -------------------------*/
 .form-control {
   display: block;
@@ -10313,8 +10347,17 @@ div.container.groupe div.col-md-12 div.card div.card-body table.table thead tr t
   display: flex;
   justify-content: space-between;
 }
+/*==---------------RGPD--------------------*/
+div.row:nth-child(17) > label:nth-child(2) {
+ font-size: small;
+}
+html body main.py-4 form.form-horizontal.large div.container div.row
+ {
 
-/*-----------------tinyMCE-----------------*/
+  display: flex;
+  align-items: baseline;
+}
+/*==---------------tinyMCE-----------------*/
 
 
 /*== -----------------------------*/
@@ -10681,10 +10724,9 @@ background-image: url("../images/C.png");
 .btn-outline-primary {
   color: #ed1358;
   background-color: transparent;
-  background-image: none;
-  border-color:#ed1358;
+  border-color:#ed1358!important;
   border-radius: 5px;
-  text-decoration: none;
+
 }
 
 .btn-outline-primary:hover {
@@ -10696,4 +10738,53 @@ background-image: url("../images/C.png");
 
 .btn-outline-primary.focus, .btn-outline-primary:focus {
   box-shadow: 0 0 0 .2rem rgba(186, 9, 68, 0.5)
+}
+
+
+.Confirm{
+    background-image: url(../images/Merci.jpg);
+    background-attachment: fixed;
+  background-position: 0rem 10rem;
+    background-size:cover ;
+  margin-top: -5rem;
+}
+.row.row-Confirm{
+background-image: url("../images/merci.png");
+
+  background-size:contain;
+   min-height: 2500px;
+   display: flex;
+   align-items: start;
+   margin:0;
+   }
+
+@media max-width(800px) {
+  div.card.cardConfirm {
+    margin-top: 20rem;
+  }
+}
+
+.card.cardConfirm{
+background-color: white;
+margin-top: 20rem;
+}
+ div.card-header.cardConfirm{
+  border-radius: calc(.25rem - 1px) calc(.25rem - 1px) 0 0;
+  background-color: white;
+  border-right: #ed1358 solid 2px;
+  border-left: #ed1358 solid 2px;
+  border-top: #ed1358 solid 2px;
+  border-bottom: #ed1358 solid 1px;
+  font-size: x-large;
+}
+ div.card-body.cardConfirm{
+  border-radius: calc(.25rem - 1px) calc(.25rem - 1px) 0 0;
+   background-color:white;
+   border-right: #ed1358 solid 2px;
+   border-left: #ed1358 solid 2px;
+   border-top: #ed1358 solid 1px;
+   border-bottom: #ed1358 solid 2px;
+  color: #4e555b !important;
+  font-size: inherit;
+  line-height: 2;
 }

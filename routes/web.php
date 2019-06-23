@@ -165,6 +165,14 @@ Route::get('update','AutorisationController@update')->name('autorisation.update'
 Route::get('/contact','AdherentContactController@index')->name('contact.index');
 Route::put('/contact/mail','AdherentContactController@create')->name('contact.create');
 Route::get('/contact/contact','AdherentContactController@contact')->name('contact.send');
+
+/*-----------PDF----------------*/
+Route::get('/pdf', ['as' => 'inscription.pdf', 'uses' => 'AdherentController@inscriptionPdf']);
+
+/*RGPD:*/
+Route::get('/RGPD', function () {
+  return view('RGPD');
+})->name('rgpd');
 //essaies
 Route::get('/test', function () {
   return view('test');

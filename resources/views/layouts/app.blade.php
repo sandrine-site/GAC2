@@ -39,7 +39,15 @@
 <nav class="navbar navbar-expand-md navbar-expand-sm  navbar-light navbar-laravel navbar-fixed-top">
     <div class="container col-sm-12">
         <a class="navbar-brand" href="#">
-            <img src="http://localhost/GAC3/resources/images/logo.png">
+        <div id="contenaireClapiers">
+        <img src="{{ asset('/images/logo_clapiers.png')}}">
+        </div>
+          <div id="contenaireGAC">
+            <img src="{{ asset('/images/logo.png')}}">
+          </div>
+          <div id="contenaireUFPLEP">
+          <img src="{{asset('/images/logo_UFOLEP.png')}}">
+          </div>
         </a>
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             @guest

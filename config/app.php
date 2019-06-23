@@ -166,6 +166,7 @@ return [
       Jenssegers\Date\DateServiceProvider::class,
       Unisharp\Laravelfilemanager\LaravelFilemanagerServiceProvider::class,
       Intervention\Image\ImageServiceProvider::class,
+      Barryvdh\DomPDF\ServiceProvider::class,
         /*
          * Package Service Providers...
          */
@@ -233,6 +234,7 @@ return [
         'View' => Illuminate\Support\Facades\View::class,
         'Form'      => Illuminate\Html\FormFacade::class,
         'Html'      => Illuminate\Html\HtmlFacade::class,
+      'PDF' => Barryvdh\DomPDF\Facade::class,
     ],
 
 ];

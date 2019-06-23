@@ -32,7 +32,8 @@ class AdherentCreateRequest extends FormRequest
             [
                 'date_naissance_J' => 'required|integer',
                 'date_naissance_M' => 'required|integer',
-                'date_naissance_A' => 'required|integer'
+                'date_naissance_A' => 'required|integer',
+
             ];
         if ('date_naissance_A'!=0)
         {
@@ -58,7 +59,8 @@ class AdherentCreateRequest extends FormRequest
                 "adresse2" => 'nullable|string|max:200',
                 "entrainement" => 'nullable|string|max:200',
                 "medicales" => 'nullable|string|max:200',
-                "heureSemaine" => 'required_if:section_id,4'
+                "heureSemaine" => 'required_if:section_id,4',
+              "rgpd" => "required"
             ]);
         if ('date_naissance_A'!=0){
         if ( $age<18 ) {
