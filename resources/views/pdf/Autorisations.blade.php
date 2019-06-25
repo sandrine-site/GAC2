@@ -6,20 +6,34 @@
 <style>
   @page {
     margin: 50px 50px 25px 50px;
-
     }
-
 </style>
 </head>
 <body>
-
   <header><img src="images\logo.png"style="width: 200px;"></header>
   <main>
     <article>
       <div class="cadre">
-
         <h2>Dossier d'inscription de {{$adherentData['nom']}} {{$adherentData['prenom']}} </h2>
+        <p> né(e) le {{$adherentData['dateNaissance']}} à {{$adherentData['lieuNaissance']}} -  sexe:{{$adherentData['sexe']}}</p><br/>
+       <p> téléphone résponsable légal : {{$adherentData["telephone_Resp1"]}}<br/>
+        @isset($adherentData["telephone_Resp2" ]) téléphone 2: {{$adherentData["telephone_Resp2" ]}}<br/>
+        @endisset
+        @isset($adherentData["telephone_adherent" ]) téléphone adhérent: {{$adherentData["telephone_adherent" ]}}<br/>
+         @endisset</p>
+        <p>Adresse:{{$adherentData["adresse" ]}} - {{$adherentData["cp" ]}} &nbsp;{{$adherentData["ville" ]}}</p><br/>
+        <p>Email: {{$adherentData["email1" ]}}<br/>
+        @isset($adherentData["email2" ]) Email2: {{$adherentData["email2" ]}}<br/><br/>
+          @endisset</p>
+       <p> Inscrit(e) en : {{$adherentData['section']->nom}} -
+        temps d'entrainement:{{$adherentData["heureSemaine" ]}} par semaine
+        @isset($adherentData["entrainement" ]) Remarques concernant l'entrainement : {{$adherentData["entrainement" ]}}<br/>
+         @endisset<br/></p>
+        <p> Personne à prevenir en cas d'urgence :{{$adherentData["nomUrgence" ]}} téléphone :{{$adherentData["telUrgence"]}}<br/>
+          @isset($adherentData["medicales" ]) Remarques médicales : {{$adherentData["medicales" ]}}<br/>
+          @endisset<br/></p>
 
+        <hr/>
         <p>  Pour les enfants mineurs inscrits à l'association G.A.C. </p>
         <div class="left">
           Je,soussigné(e) (Nom Prénom du parent) :......................................................<br/>
@@ -114,7 +128,8 @@
 
    <hr/>
     <article>
-      <div class="cadre">
+      <div class="cadre"><br/>
+
         <h2>Autorisation de premiers soins</h2>
         @if($adherentData["age"]<18)
           <div class="left">
@@ -196,22 +211,22 @@
 
               <h2>Pour rappel tarif</h2>
               @if ($adherentData["tarifCours"]!=0)
-              <div class="tarif">
+                <div class="tarif">
         @if ($adherentData["tarifLicence"]!=0)
-      <p>Licence UFOLEP _____________  {{$adherentData['tarifLicence']}} €<br/>
-      @endif
-                Adhesion GAC _______________  {{$adherentData['tarifAdhesion']}} €<br/>
+                    <p>Licence UFOLEP _____________  {{$adherentData['tarifLicence']}} €<br/>
+                      @endif
+                       Adhesion GAC _______________  {{$adherentData['tarifAdhesion']}} €<br/>
           Tarif cours ___________________  {{$adherentData['tarifCours']}} €<br/>
          TOTAL _____________________{{$adherentData['tarifLicence']+$adherentData['tarifAdhesion']+$adherentData['tarifCours']}} €</p>
-@else <h3>Nous ne sommes pas en mesure de calculer le prix de votre adhésion.
-       Veuillez vous rapprocher de votre entraineur afin d'avoir le prix. </h3>
-       @endif
+                  @else <h3>Nous ne sommes pas en mesure de calculer le prix de votre adhésion.
+       Veuillez vous rapprocher de votre entraineur. </h3>
+                  @endif
               </div>
 
- <p> Possibilité de payer par Chèques Vacances et Coupon SportPaiement, <br/>
+                <p> Possibilité de payer par Chèques Vacances et Coupon SportPaiement, <br/>
      Paiement en trois fois  possible avant le 15 Janvier  par exemple 15 octobre, 15 Novembre, 15 décembre.(à noter au dos des chèques).
-    <h4> Documents à fournir :</h4>
-    <ul>
+                <h4> Documents à fournir :</h4>
+                <ul>
       <li>Les autorisations signées</li>
     <li>Certificat médical  ou attestation de santé (pour les anciens)</li>
       <li>Une enveloppe timbrée</li>

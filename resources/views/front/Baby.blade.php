@@ -30,8 +30,11 @@ Baby-Gym à CLAPIERS
 
    Grande section : contactez nous
 <br/>
-   <button class="btn-outline-baby" >Renseignements-Inscription</button>
+   <a  href="{{ route('adherent.create')}}"><button class="btn-outline-baby" >Inscription</button></a>
        </div>
+         </div>
+  <div class="row justify-content-center">
+    <a href="{{route('contactForm')}}"> <button class="btn-outline-baby" >Nous contacter</button></a>
          </div>
       </div>
     </div>

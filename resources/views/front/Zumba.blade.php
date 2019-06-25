@@ -26,9 +26,13 @@ ZUMBA à CLAPIERS
    Lieu : Gymnase Joêl ABATI, rue du Paraguay, CLAPIERS
 
 <br/>
-   <button class="btn-outline-zumba" >Renseignements-Inscription</button>
+   <a href="{{asset('images/Gym-zumba.pdf')}}"><button class="btn-outline-zumba" >Renseignements-Inscription</button></a>
        </div>
          </div>
+  <div class="row justify-content-center">
+       <a href="{{route('contactForm')}}"> <button class="btn-outline-zumba" >Nous contacter</button></a>
+     </div>
+
       </div>
     </div>
       </div>

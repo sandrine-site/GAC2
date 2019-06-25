@@ -5,6 +5,7 @@
     <div class="row justify-content-center">
       <div class="col-md-10">
         <div class="card">
+
           <div class="card-header section1">Modification d'un créneau</div>
           <div class="card-body section1">
             {!! Form::open([ 'route' => ['creneau.update', $creneau->id],'class'=>'form-horizontal small']) !!}

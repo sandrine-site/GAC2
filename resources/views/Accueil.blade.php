@@ -41,7 +41,7 @@
         </div>
       </div>
       <div class="row row-Accueil3">
-   <button class="btn-outline-accueil" >Nous contacter</button>
+  <a href="{{route('contactForm')}}"> <button class="btn-outline-accueil" >Nous contacter</button></a>
        </div>
     </div>
          </div>

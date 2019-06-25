@@ -3,7 +3,7 @@
 @section('content')
 
 
-  <div class="row">
+  <div class="row AccueilAdmin">
          <h1> Bienvenue dans l'interface administrateur</h1>
           <div class="partie">
             <div class="col-lg-2 col-md-3 col-sm-4">
@@ -14,11 +14,11 @@
                   <div>Edition</div>
                 </a>
 
-                <a href={!! route('contact.index') !!} class="small btn-dossier bandeBleuGauche">
+                <a href={!! route('contact.index','mail=1' )!!} class="small btn-dossier bandeBleuGauche">
                   <i class="fas fa-envelope-open-text onglet"></i>
                   <div>Envoyer un mail</div>
                 </a>
-                <a href="#" class="small btn-dossier bandeVerte2Gauche">
+                <a href={!! route('contact.index','sms=1') !!} class="small btn-dossier bandeVerte2Gauche">
                   <i class="fas fa-sms onglet"></i>
                   <div>Envoyer un sms</div>
                 </a>

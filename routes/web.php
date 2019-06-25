@@ -42,6 +42,15 @@ Route::get('/zumba', function () {
 Route::get('/adulte', function () {
   return view('front.Adulte');
 })->name('adulte');
+Route::get('/GA', function () {
+  return view('front.GA');
+})->name('GA');
+Route::get('/TarifsAdulte', function () {
+  return asset('images/Gym_adulte_V1_2018-2019.pdf');
+})->name('adulteTarif');
+Route::get('/contactForm', function () {
+  return view('front.contactForm');
+})->name('contactForm');
 
 
 /*Page d'autentification*/
@@ -164,11 +173,14 @@ Route::get('update','AutorisationController@update')->name('autorisation.update'
 /* Envois de Mail*/
 Route::get('/contact','AdherentContactController@index')->name('contact.index');
 Route::put('/contact/mail','AdherentContactController@create')->name('contact.create');
+Route::put('/contact/sms','AdherentContactController@createSMS')->name('contact.createSMS');
 Route::get('/contact/contact','AdherentContactController@contact')->name('contact.send');
 
 /*-----------PDF----------------*/
 Route::get('/pdf', ['as' => 'inscription.pdf', 'uses' => 'AdherentController@inscriptionPdf']);
 
+/*--------------Formulaire de contact----------------*/
+Route::get('/form', 'ContactFormController@send')->name('contactForm.send');
 /*RGPD:*/
 Route::get('/RGPD', function () {
   return view('RGPD');

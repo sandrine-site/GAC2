@@ -1,11 +1,10 @@
 @extends('layouts.app')
 @section('content')
-
+  <div class="row-inscription">
     <h1>Formulaire d'inscription</h1>
-    {!! Form::open(['route'=>'adherent.store','class'=>'form-horizontal large']) !!}
     <div class="container">
-<a type="button" class="btn-outline-primary" href="{{route('tarif.calcul')}}" >Calcul du tarif</a>
-
+      <a type="button" href="{{route('tarif.calcul')}}" ><button class="btn-outline-primary">Calcul du tarif</button></a>
+      {!! Form::open(['route'=>'adherent.store','class'=>'form-horizontal large']) !!}
         <div class="row justify-content-center">
             <div class="card inscription">
                 <div class="card-header section1">Informations adhérent</div>
@@ -375,18 +374,22 @@
             </div>
         </div>
         <br/><br/>
-        <div class="row">
-      <input type="checkbox"  name="rgpd" id="rgpd" /> &nbsp;
-       <label for="rgpd"> &nbsp;
-       En cochant cette case, je reconnais avoir pris connaissance des <a href="{{route('rgpd')}}">Conditions Générales d'Utilisation du site</a> ainsi que sa Politique de Confidentialité et je les accepte. </label><br/>
-        </div>
-      {!! $errors->first('rgpd', '<small class="help-block">:message</small>') !!}
-        <br/>
+      <div class="row">
+      <div class="align-content-center">
+        <input type="checkbox"  name="rgpd" id="rgpd" /> &nbsp;
+        <label for="rgpd"> &nbsp;
+                           En cochant cette case, je reconnais avoir pris connaissance des <a href="{{route('rgpd')}}">Conditions Générales d'Utilisation du site</a> ainsi que sa Politique de Confidentialité et je les accepte. </label><br/>
+
+        {!! $errors->first('rgpd', '<small class="help-block">:message</small>') !!}
+        <br/></div>
         <p>Le dossier d'inscription est un peu long à se générer, veuillez attendre avant de fermer cette fenêtre</p>
-        <br/>
+        <p>
+          Si vous ne recevez pas d'email dans les 30 min, veuillez nous écrire à l'adresse :
+          gacgym@hotmail.fr</p> </div>
         {!! Form::submit('Envoyer !', ['class' => 'btn btn-xlarge btn-primary']) !!}
         {!! Form::close() !!}
+
     </div>
     </div>
-    </div>
+
 @endsection

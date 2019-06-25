@@ -40,7 +40,7 @@ class AdherentContactController extends Controller
    *
    * @return \Illuminate\Http\Response
    */
-  public function index(){
+  public function index(Request $request){
 
     $adherents = Adherent::orderBy('nom')->orderBy('prenom')->get();
     foreach($adherents as $adherent) { $adherent->text=$adherent->nom." ".$adherent->prenom;}
@@ -65,7 +65,10 @@ class AdherentContactController extends Controller
     $jsonEntraineurs=json_encode($entraineurs);
     $jsonCreneaux=json_encode($creneaux);
 
-    return view('indexMail', compact('jsonAdherents','jsonGroupes','jsonSections','jsonEntraineurs','jsonCreneaux'));
+if ($request->mail=='1'){
+    return view('indexMail', compact('jsonAdherents','jsonGroupes','jsonSections','jsonEntraineurs','jsonCreneaux'));}
+  elseif ($request->sms=='1'){
+    return view('indexSMS', compact('jsonAdherents','jsonGroupes','jsonSections','jsonEntraineurs','jsonCreneaux'));}
   }
 
   public function create(Request $request)
@@ -112,6 +115,70 @@ $subject=$data['subject'];
 //      }
 
     } elseif ($request->category == 'parGroupe') {
+      $groupe = Groupe::find($request->choix);
+      $adherents = $groupe->adherents;
+      foreach ($adherents as $adherent) {
+        array_push($address, $adherent->email1);
+        if (isset($adherent->email2)) {
+          array_push($address, $adherent->email2);
+        }
+      }
+    } elseif ($request->category == 'parSection') {
+      $section = Section::find($request->choix);
+      $adherents = $section->adherents;
+    } elseif ($request->category == 'parEntraineur') {
+      $creneaux = User::find($request->choix)->creneaux;
+      $adherents = $creneaux->adherents;
+    } elseif ($request->category == 'parCreneau') {
+      $creneau = Creneau::find($request->choix);
+      $adherents = $creneau->adherents;
+    }
+
+}
+public function createSMS(Request $request)
+  {
+
+    if ($request->category =='tous') {
+      $adherents = Adherent::all();
+
+      foreach ($adherents as $adherent) {
+        $telResp=Telephone::where("adherent_id",$adherent->id)->where("typeTel_id","2");
+
+        $sPhoneNum = '33'.$telResp;
+        $aProviders = array('vtext.com', 'tmomail.net', 'txt.att.net', 'mobile.pinger.com', 'page.nextel.com');
+        foreach ($aProviders as $sProvider)
+        {
+            if (mail($sPhoneNum . '@' . $sProvider, '', $request->contenu))
+            {
+              break;
+            }
+            else
+            {
+              continue;
+            }
+            }
+        }}
+         elseif ($request->category == "un") {
+
+           $telResps=Telephone::where("adherent_id",$request->choix)->where("typeTel_id","2")->get();
+           foreach ($telResps as $telResp){
+
+                   $sPhoneNum = '33'.(int)$telResp->numero;
+                   $aProviders = array('vtext.com', 'tmomail.net', 'txt.att.net', 'mobile.pinger.com', 'page.nextel.com');
+                   foreach ($aProviders as $sProvider)
+                   {
+                       if (mail($sPhoneNum . '@' . $sProvider, '', $request->contenu))
+                       {
+                         break;
+                       }
+                       else
+                       {
+                         continue;
+                       }
+                       }}
+                   }
+
+    elseif ($request->category == 'parGroupe') {
       $groupe = Groupe::find($request->choix);
       $adherents = $groupe->adherents;
       foreach ($adherents as $adherent) {

@@ -9147,7 +9147,8 @@ a.btn-outline-trash:hover
 a.btn-outline-trash:focus {
   box-shadow: 0 0 0 .2rem rgba(193, 14, 11, 0.5)
 }
-
+html body main.py-4 div.row-inscription div.container form.form-horizontal.large input.btn.btn-xlarge.btn-primary{
+width: max-content;}
 
 
 /* ==--------------polices de carracteres et couleurs --------------*/
@@ -9761,6 +9762,14 @@ html body nav.navbar.navbar-expand-md.navbar-expand-sm.navbar-light.navbar-larav
 
  div.container.col-sm-12 a.navbar-brand  img{
  width: 100%}
+
+.row .justify-content-between{
+display: flex;
+justify-content: space-between;
+align-items: center;}
+
+html body main.py-4 div.row.AccueilAdmin,.row-inscription{
+margin-top: 5rem}
 /* ==------------------ Formulaires -------------------------*/
 .form-control {
   display: block;
@@ -9868,6 +9877,16 @@ font-weight:bold;}
 
  align-items: center;
 
+}
+html body main.py-4 div.row.justify-content-center div.col-8 div#app.card{
+margin-top:10rem}
+.sms {
+ width: 300px;
+ height: 371px;
+}
+div.card-body:nth-child(4) {
+ display: flex;
+ justify-content: space-around;
 }
 
 
@@ -10348,7 +10367,7 @@ div.container.groupe div.col-md-12 div.card div.card-body table.table thead tr t
   justify-content: space-between;
 }
 /*==---------------RGPD--------------------*/
-div.row:nth-child(17) > label:nth-child(2) {
+html body main.py-4 div.row-inscription div.container form.form-horizontal.large div.row div.align-content-center label{
  font-size: small;
 }
 html body main.py-4 form.form-horizontal.large div.container div.row
@@ -10395,6 +10414,7 @@ div.card.cardPilates div.card-header.cardPilates{
   border-bottom: white solid 1px;
   color: white;
   font-size: xx-large;
+
 }
 div.card.cardPilates div.card-body.cardPilates{
   border-radius: calc(.25rem - 1px) calc(.25rem - 1px) 0 0;
@@ -10413,6 +10433,8 @@ div.card.cardPilates div.card-body.cardPilates{
   background-image: none;
   border-color: white;
   border-radius: 5px;
+  padding: 5px;
+   margin-top: 3rem;
 }
 
 .btn-outline-pilates:hover {
@@ -10424,14 +10446,14 @@ div.card.cardPilates div.card-body.cardPilates{
 .btn-outline-pilates.focus, .btn-outline-pilates:focus {
   box-shadow: 0 0 0 .2rem rgba(54, 193, 188, 0.5)
 }
-
+ div.card.cardPilates div.row.justify-content-center a button.btn-outline-pilates{
+font-size: large !important;}
 .baby{
     background-image: url(../images/BabyGym.jpg);
     background-attachment: fixed;
     background-position: top;
     background-size:cover ;
     margin-top: -5rem;
-
 }
 .row.row-baby{
 background-image: url("../images/babyGym.png");
@@ -10441,8 +10463,6 @@ background-image: url("../images/babyGym.png");
    display: flex;
    align-items: start;
    margin:0;
-
-
   }
 
 div.card.cardBaby{
@@ -10471,11 +10491,13 @@ div.card.cardBaby div.card-body.cardBaby{
   line-height: 2;
 }
 .btn-outline-baby {
-  color:#4e555b;
+  color:hotpink;
   background-color: transparent;
   background-image: none;
   border-color: hotpink;
   border-radius: 5px;
+  padding: 5px;
+  margin-top: 3rem;
 }
 
 .btn-outline-baby:hover {
@@ -10483,9 +10505,71 @@ div.card.cardBaby div.card-body.cardBaby{
   background-color: hotpink;
   border-color: cornflowerblue;
 }
+div.row.row-baby div.offset-3.col-6 div.row.justify-content-center a button.btn-outline-baby{
+font-size: large !important;}
 
-.btn-outline-baby.focus, .btn-outlinebaby:focus {
-  box-shadow: 0 0 0 .2rem rgba(61, 152, 193, 0.5)
+.GA{
+    background-image: url(../images/GymArtistique.jpg);
+    background-attachment: fixed;
+    background-position: top;
+    background-size:cover ;
+    margin-top: -5rem;
+}
+.row.row-GA{
+background-image: url("../images/GA.png");
+   background-repeat: repeat-y;
+  background-size:contain;
+   min-height: 2500px;
+   display: flex;
+   align-items: start;
+   margin:0;
+  }
+
+div.card.cardGA{
+background-color: transparent;
+margin-top: 10rem;
+}
+div.card.cardGA div.card-header.cardGA{
+  border-radius: calc(.25rem - 1px) calc(.25rem - 1px) 0 0;
+
+  background-color: rgba(106,54,126,0.8);
+  border-right: #ed1358 solid 2px;
+  border-left: #ed1358 solid 2px;
+  border-top: #ed1358 solid 2px;
+  border-bottom: white solid 1px;
+  color: #ed1358;
+  font-size: xx-large;
+}
+div.card.cardGA div.card-body.cardGA{
+  border-radius: calc(.25rem - 1px) calc(.25rem - 1px) 0 0;
+   background-color: rgba(106,54,126,0.8);
+   border-right: #ed1358 solid 2px;
+   border-left: #ed1358 solid 2px;
+   border-top: #ed1358 solid 1px;
+   border-bottom: #ed1358 solid 2px;
+  color: white !important;
+  font-size: large;
+  line-height: 2;
+}
+.btn-outline-GA {
+  color:#ed1358;
+  background-color: transparent;
+  background-image: none;
+  border-color: #ed1358;
+  border-radius: 5px;
+  padding: 5px;
+   margin-top: 3rem;
+}
+div.card.cardGA div.row.justify-content-center a button.btn-outline-GA{
+font-size: large !important;}
+.btn-outline-GA:hover {
+  color: white;
+  background-color: #ed1358;
+  border-color: #ed1358;
+}
+
+.btn-outline-GA.focus, .btn-outlineGA:focus {
+  box-shadow: 0 0 0 .2rem rgba(193, 49, 99, 0.5)
 }
 
 .zumba{
@@ -10512,37 +10596,40 @@ margin-top: 10rem;
 div.card.cardZumba div.card-header.cardZumba{
   border-radius: calc(.25rem - 1px) calc(.25rem - 1px) 0 0;
   background-color: rgba(204,255,0,0.8);
-  border-right: #18b118 solid 2px;
-  border-left: #18b118 solid 2px;
-  border-top: #18b118 solid 2px;
+  border-right:#03e202 solid 2px;
+  border-left: #03e202 solid 2px;
+  border-top: #03e202 solid 2px;
   border-bottom: white solid 1px;
-  color: #18b118;
+  color: #03e202;
   font-size: xx-large;
 }
 div.card.cardZumba div.card-body.cardZumba{
   border-radius: calc(.25rem - 1px) calc(.25rem - 1px) 0 0;
    background-color: rgba(204,255,0,0.8);
-   border-right: #18b118 solid 2px;
-   border-left: #18b118 solid 2px;
-   border-top: #18b118 solid 1px;
-   border-bottom: #18b118 solid 2px;
+   border-right: #03e202 solid 2px;
+   border-left: #03e202 solid 2px;
+   border-top: #03e202 solid 1px;
+   border-bottom: #03e202 solid 2px;
   color: #4e555b !important;
   font-size: large;
   line-height: 2;
 }
-
+ div.row.row-zumba div.offset-4.col-6 div.row.justify-content-center a button.btn-outline-zumba{
+ font-size: large !important;}
 .btn-outline-zumba {
-  color: #18b118;
+  color: #03e202;
   background-color: transparent;
   background-image: none;
-  border-color: #18b118;
+  border-color:#03e202;
   border-radius: 5px;
+  padding: 5px;
+     margin-top: 3rem;
 }
 
 .btn-outline-zumba:hover {
   color: #CCFF00;
-  background-color: #18b118;
-  border-color: #18b118;
+  background-color: #03e202;
+  border-color: #CCFF00;
 }
 
 .btn-outline-zumba.focus, .btn-outline-zumba:focus {
@@ -10595,6 +10682,28 @@ div.card.cardAdulte div.card-body.cardAdulte{
   font-size: large;
   line-height: 2;
 }
+
+.btn-outline-Adulte {
+  color: #6a387c;
+  background-color: transparent;
+  background-image: none;
+  border-color: #6a387c;
+  border-radius: 5px;
+  padding: 5px;
+     margin-top: 3rem;
+}
+
+.btn-outline-Adulte:hover {
+  color: hotpink;
+  background-color: #6a387c;
+  border-color: #6a387c;
+}
+
+.btn-outline-Adulte.focus, .btn-outline-Adulte:focus {
+  box-shadow: 0 0 0 .2rem rgba(95, 13, 193, 0.5)
+}
+ div.row.justify-content-center a button.btn-outline-Adulte{
+font-size: large !important;}
 .Accueil{
     background-image: url(../images/accueil.jpg);
     background-attachment: fixed;
@@ -10696,6 +10805,7 @@ background-image: url("../images/C.png");
      align-items: flex-start;
      justify-content: center;
      margin:0;
+
    }
 .btn-outline-accueil {
   color: white;
@@ -10707,6 +10817,7 @@ background-image: url("../images/C.png");
   width: 22rem;
   height: 5rem;
   font-size: large !important;
+  padding: 3px;
 }
 
 .btn-outline-accueil:hover {
@@ -10726,6 +10837,7 @@ background-image: url("../images/C.png");
   background-color: transparent;
   border-color:#ed1358!important;
   border-radius: 5px;
+  padding: 3px;
 
 }
 
@@ -10739,18 +10851,87 @@ background-image: url("../images/C.png");
 .btn-outline-primary.focus, .btn-outline-primary:focus {
   box-shadow: 0 0 0 .2rem rgba(186, 9, 68, 0.5)
 }
+.contactForm{
+    background-image: url(../images/GroupeHerbe.JPG);
+    background-attachment: fixed;
+  background-position: 0rem 10rem;
+    background-size:cover ;
+  margin-top: -5rem;
+}
 
+.row.row-contactForm{
+background-image: url("../images/merci.png");
+   background-repeat: repeat-y;
+  background-size:contain;
+   min-height: 2500px;
+   display: flex;
+   align-items: start;
+   margin:0;
+   }
+@media max-width(800px) {
+  div.card.cardcontactForm {
+    margin-top: 20rem;
+  }
+}
+div.card.cardcontactForm{
+background-color: transparent;
+margin-top: 10rem;
+}
+div.card.cardcontactForm div.card-header.cardcontactForm{
+  border-radius: calc(.25rem - 1px) calc(.25rem - 1px) 0 0;
+  background-color: gainsboro;
+  border-right: black solid 2px;
+  border-left: black solid 2px;
+  border-top: black solid 2px;
+  border-bottom: #80878d solid 1px;
+  color: #ed1358;
+  font-size: x-large;
+}
+div.card.cardcontactForm div.card-body.cardcontactForm{
+  border-radius: calc(.25rem - 1px) calc(.25rem - 1px) 0 0;
+   background-color: gainsboro;
+   border-right: black solid 2px;
+   border-left: black solid 2px;
+   border-top: black solid 1px;
+   border-bottom: black solid 2px;
+  color: #4e555b !important;
+  font-size: large;
+  line-height: 2;
+  padding-left: 3rem;
+  padding-right: 3rem;
+}
+ div.card-body.cardcontactForm div.offset-1.col-10 form{
+ text-align: justify;}
+ div.card-body.cardcontactForm div.offset-1.col-10 form label{
+ font-size: initial;}
+
+.btn-outline-contactForm {
+  color: #4e555b;
+  background-color: transparent;
+  background-image: none;
+  border-color: #6a387c;
+  border-radius: 5px;
+  padding: 3px;
+}
+
+.btn-outline-contactForm:hover {
+  color: hotpink;
+  background-color: #6a387c;
+  border-color: #6a387c;
+}
+
+.btn-outline-contactForm.focus, .btn-outline-contactForm:focus {
+  box-shadow: 0 0 0 .2rem rgba(95, 13, 193, 0.5)
+}
 
 .Confirm{
     background-image: url(../images/Merci.jpg);
     background-attachment: fixed;
   background-position: 0rem 10rem;
     background-size:cover ;
-  margin-top: -5rem;
 }
 .row.row-Confirm{
 background-image: url("../images/merci.png");
-
   background-size:contain;
    min-height: 2500px;
    display: flex;
@@ -10760,13 +10941,12 @@ background-image: url("../images/merci.png");
 
 @media max-width(800px) {
   div.card.cardConfirm {
-    margin-top: 20rem;
+
   }
 }
 
 .card.cardConfirm{
 background-color: white;
-margin-top: 20rem;
 }
  div.card-header.cardConfirm{
   border-radius: calc(.25rem - 1px) calc(.25rem - 1px) 0 0;
@@ -10788,3 +10968,21 @@ margin-top: 20rem;
   font-size: inherit;
   line-height: 2;
 }
+div.card-body.cardcontactForm div.offset-1.col-10 form label {
+ font-size: medium;
+ font-weight: inherit;
+}
+
+.offset-1 > form > label > em {
+ font-size: small;
+}
+.btn-outline-primary {
+ margin-block-start: 2rem;
+ padding: 4px !important;
+
+}
+x-small.help-block {
+ font-size: xx-small;
+ font-weight: inherit;
+}
+

@@ -22,7 +22,8 @@
         "predis/predis": "^1.1",
         "tightenco/ziggy": "^0.7.1",
         "twbs/bootstrap": "^4.3",
-        "unisharp/laravel-filemanager": "~1.8"
+        "unisharp/laravel-filemanager": "~1.8",
+        "wildbit/swiftmailer-postmark": "^3.0"
     },
     "require-dev": {
         "beyondcode/laravel-dump-server": "^1.0",

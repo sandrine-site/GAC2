@@ -24,8 +24,11 @@ PILATES
  <div class="card-body cardPilates">
    Tous les jeudis au gymnase Abati de 19h00 à 20h00
 <br/>
-   <button class="btn-outline-pilates" >Renseignements-Inscription</button>
+   <a href="{{asset('images/Gym_adulte_V1_2018-2019.pdf')}}"><button class="btn-outline-pilates" >Renseignements-Inscription</button></a>
        </div>
+    <div class="row justify-content-center">
+              <a href="{{route('contactForm')}}"> <button class="btn-outline-pilates" >Nous contacter</button></a>
+                   </div>
          </div>
       </div>
     </div>

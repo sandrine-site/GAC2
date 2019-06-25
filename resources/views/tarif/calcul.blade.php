@@ -54,7 +54,8 @@
 
               </div>
             </div>
-
+            <p> Vous avez la possibilité de payer par Chèques Vacances et Coupon SportPaiement, <br/>
+                le paiement en trois fois est possible avant le 15 Janvier  par exemple 15 octobre, 15 Novembre, 15 décembre.(à noter au dos des chèques).
             <input type="submit" value="Calculer le tarif" class='btn btn-primary'/>
           </form>
         </div>

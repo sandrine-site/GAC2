@@ -1,10 +1,10 @@
 @extends('layouts.app')
 @section('content')
-
+<div class="row-inscription">
   <h1>Formulaire d'inscription</h1>
   {!! Form::open(['route'=>'adherentAdulte.store','class'=>'form-horizontal large']) !!}
-  <div class="container">
-    <div class="row justify-content-center">
+  <div class="container ">
+    <div class="row  justify-content-center">
       <div class="card inscription">
         <div class="card-header section1">Informations adhérent</div>
         <div class="card-body section1">
@@ -319,5 +319,5 @@
   {!! Form::close() !!}
   </div>
   </div>
-  </div>
+
 @endsection

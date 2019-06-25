@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>GAC Clapiers</title>
-{{--  <link rel="shortcut icon" type="image/ico" href="../../../public/images/ico.png"/>--}}
+ <link rel="shortcut icon" type="image/ico" href="{{asset('images/ico.png')}}">
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
@@ -57,6 +57,7 @@
                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownMenuLink">
                     <a class="dropdown-item" href="{{ route('adherent.create') }}">Inscription GA</a>
                   <a class="dropdown-item" href="{{ route('adherentAdulte.create') }}">Inscription Adulte</a>
+                  <a class="dropdown-item" href="{{route('contactForm')}}">Nous contacter</a>
                     <a class="dropdown-item" href="{{ route('login') }}">Connexion</a>
                 </div>
                     @endguest
@@ -86,7 +87,7 @@
     <ul class="nav nav-tabs nav-justified menu ">
         <li class="active menu fondRose"><a href="{{ route('accueil') }}">Accueil</a></li>
         <li class="bandeBleu menu"><a href="{{ route('baby') }}">Baby Gym</a></li>
-        <li class="bandeViolette menu"><a data-toggle="tab" href="#urgence">Gymnastique Artistique</a></li>
+        <li class="bandeViolette menu"><a href="{{ route('GA') }}">Gymnastique Artistique</a></li>
         <li class="bandeHotpink menu"><a href="{{ route('adulte') }}">Gym'Adulte</a></li>
         <li class="bandeCyan menu"><a href="{{ route('pilates') }}">Pilates</a></li>
         <li class="bandeJaune menu"><a href="{{ route('zumba') }}">Zumba</a></li>
