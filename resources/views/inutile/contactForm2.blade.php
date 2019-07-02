@@ -6,7 +6,7 @@
         <div class="card contactForm">
           <div class="card-header contactForm ">Contact</div>
           <div class="card-body contactForm">
-            <form action='#' methode="post" name="repartition">
+            <form action='#' methode="post" name="contact">
                            {!!csrf_field ()  !!}
                            {{method_field ("post")}}
             <div class="row display-5">
@@ -29,7 +29,7 @@
         </div>
       </div>
     </div>
-  </div>
+
 
 
 

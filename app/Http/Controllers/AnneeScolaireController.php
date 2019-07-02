@@ -18,9 +18,11 @@ class AnneeScolaireController extends Controller
 {
   public function __construct()
   {
-    $this->middleware('Grand');
+    $this->middleware('grand');
 
   }
+
+
 
   public function create()
   {

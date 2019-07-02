@@ -88,7 +88,7 @@ if ($request->mail=='1'){
           $message->from('gacgym@hotmail.fr', 'G.A.C.');
           $message->to($data['email'])->subject($subject)
           ;
-
+//           $admins = User::where("notifications",1)->get(); foreach($admins as $admin){ Mail::to($admin->email)->queue(new NewTechnicalProblemMail($technicalproblem)); }
         });
       }
 

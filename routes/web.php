@@ -53,7 +53,7 @@ Route::get('/contactForm', function () {
 })->name('contactForm');
 
 
-/*Page d'autentification*/
+/*Page d'autentificati:;lon*/
 Auth::routes();
 Route::get('/home', 'HomeController@index')->name('home');
 Route::get('/test-mail', function () {
@@ -84,6 +84,7 @@ Route::delete('/adherent/{adherent}','AdherentController@destroy')
 ->middleware('grand')
 ->name('adherent.destroy');
 
+
 /*  AdherentAdulte Controller*/
 Route::get('/adherentAdulte/create','AdherentAdulteController@create')->name('adherentAdulte.create');
 Route::post('/adherentAdulte', 'AdherentAdulteController@store')->name('adherentAdulte.store');
@@ -100,7 +101,9 @@ Route::post ('/ByEntraineur','AdherentRepartitionController@editByEntraineur')->
 Route::post ('/ByCreneau','AdherentRepartitionController@editByCreneau')->name('adherent.editByCreneau');
 
 /*Année Scolaire Controller*/
-Route::get('/anneeScolaire','AnneeScolaireController@index')
+Route::get('/anneeScolaire', function () {
+  return view('anneeScolaire.index');
+})
 ->middleware('grand')
 ->name('anneeScolaire.index');
 Route::post('/anneeScolaire','AnneeScolaireController@store')

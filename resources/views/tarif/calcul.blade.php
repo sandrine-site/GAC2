@@ -24,7 +24,7 @@
                   name="annee"
                   id="annee"
                   selected="2010">
-                  @for($i=2024;$i>1990;$i=$i-1)
+                  @for($i=getdate ()[ 'year' ]-2;$i>1990;$i=$i-1)
                     <option value="{{$i}}">{{$i}}</option>
                   @endfor
                 </select>
@@ -98,6 +98,7 @@
 
                 </tbody>
               </table>
+              <button class="btn btn-primary"> <a  href="{{ route('adherent.create') }}"></a> Inscription</button>
             </div>
           @else
             <div class="card-header section6">

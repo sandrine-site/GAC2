@@ -4,6 +4,8 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>GAC Clapiers</title>
+  <meta name="description" content="G.A.C. propose des scéances de babyGym, des cours de gymnastique féminine pour le loisir et la competition pour les enfants ainsi que des cours de Gym, zumba et Pilztes pour les adultes
+  à Clapiers dans l'herault">
  <link rel="shortcut icon" type="image/ico" href="{{asset('images/ico.png')}}">
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
@@ -26,7 +28,6 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
-{{--    <link href="{{asset('css/app.css')}}" rel="stylesheet">--}}
     <link href="{{asset('css/app2.css')}}" rel="stylesheet">
     <!---JS----->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.6.10/vue.min.js"></script>
@@ -40,19 +41,20 @@
     <div class="container col-sm-12">
         <a class="navbar-brand" href="#">
         <div id="contenaireClapiers">
-        <img src="{{ asset('/images/logo_clapiers.png')}}">
+        <img src="{{ asset('/images/logo_clapiers_header.png')}}" alt="logo de la ville de Clapiers">
         </div>
           <div id="contenaireGAC">
-            <img src="{{ asset('/images/logo.png')}}">
+            <img src="{{ asset('/images/logoBlanc.png')}}" alt="logo de GAC Clapiers">
+            <h1>Gymnastique Artistique Clapiéroise</h1>
           </div>
           <div id="contenaireUFPLEP">
-          <img src="{{asset('/images/logo_UFOLEP.png')}}">
+          <img src="{{asset('/images/logoufoleptransparent.png')}}" alt="logo de l'UFOLEP">
           </div>
         </a>
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             @guest
 
-                <a class="nav-link dropdown-toggle text-black-50" href="#" id="navbarDropdownMenuLink"
+                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink"
                    data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Menu</a>
                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownMenuLink">
                     <a class="dropdown-item" href="{{ route('adherent.create') }}">Inscription GA</a>
@@ -98,6 +100,18 @@
 <main class="py-4">
     @yield('content')
 </main>
+
+<footer>
+<div id="liens">
+  <a href="{{route('rgpd')}}">Mentions légales</a><br/>
+<a href="http://www.ville-clapiers.fr/" >Ville de CLAPIERS</a><br/>
+<a href="https://www.ufolep.org/">UFOLEP</a>
+  </div>
+  <div id="titreFooter">G.A.C. - Gymnastique Artistique Clapiéroise -</div>
+  <div id="contenaireGAC2">
+             <img src="{{ asset('/images/logoGAC2.png')}}">
+           </div>
+</footer>
 
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
 

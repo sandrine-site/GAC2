@@ -192,12 +192,12 @@ class AdherentController extends Controller
       "sortie"=>$request['sortie'],
       "age" => getdate ()[ 'year' ] - $request['date_naissance_A'],
       "tarifLicence"=>$tarifLicence,
-      "tarifAdhesion"=>$tarif->find(1)->prix,
+      "tarifAdhesion"=>$tarifs->find(1)->prix,
       "tarifCours"=>$tarifCours,
 
     ];
 
-    $pdf = PDF::loadView('pdf.Autorisations',compact('adherentData'))->setPaper('A3', 'portrait');
+    $pdf = PDF::loadView('pdf.Autorisations',compact('adherentData'))->setPaper('A4', 'portrait');
 
     $data = ['email' => $request['email1'], 'subject' => 'Inscription','pdf'=>$pdf];
     Mail::send('emails.maill_Inscription', $data, function ($message) use ($data) {
@@ -212,11 +212,78 @@ class AdherentController extends Controller
 
   }
 
-  public function inscriptionPDF() {
-    $pdf = PDF::loadView('pdf.Autorisations');
-    $name = "commandeNo-.pdf";
+  public function inscriptionPDF(Request $request) {
+  $adherent=Adherent::findOrFail($request->id);
+    /*Calcul du tarif*/
+     $tarifs=Tarif::all();
+
+     if ($adherent['section_id']==3){
+
+     $tarif2s=$tarifs->whereBetween('id',[2, 4]);
+       $tarifmini=$tarif2s->where('anneeMini','<', $adherent['dateNaissance']);
+       foreach ($tarifmini->where('anneeMax','>=', $adherent['dateNaissance']) as $tarif) {
+         $tarifLicence = $tarif->prix;
+
+         if ($tarifs->where('temps',$adherent["heureSemaine"])!='[]'){
+                 foreach ($tarifs->where('temps', $adherent["heureSemaine"]) as $tarif) {
+                   $tarifCours = $tarif->prix;
+                 }
+               }
+               else{
+                 $tarifCours=0;
+               }
+       }
+     }
+     elseif ($adherent['section_id'] == 1) {
+     $tarifLicence=0;
+       foreach ($tarifs->where('section_id', 1) as $tarif) {
+         $tarifCours = $tarif->prix;
+       }}
+     else{
+           $tarifLicence=0;
+       if ($tarifs->where('temps',$adherent["heureSemaine"])!='[]'){
+         foreach ($tarifs->where('temps', $adherent["heureSemaine"]) as $tarif) {
+           $tarifCours = $tarif->prix;
+         }
+       }
+       else{
+         $tarifCours=0;
+       }
+     }
+
+    $adherentData=[
+          "nom"=>$adherent['nom'],
+          "prenom"=>$adherent['prenom'],
+          "dateNaissance"=> $adherent['date_naissance'],
+          "lieuNaissance"=> $adherent['lieuNaissance'],
+          "sexe"=> $adherent['sexe'],
+          "telephone_adherent" => $adherent['telephone_adherent'],
+          "telephone_Resp1" =>  $adherent["telephone_Resp1"],
+          "telephone_Resp2" =>  $adherent["telephone_Resp2"],
+          "adresse" => $adherent["adresse"],
+      "cp" => $adherent[ "cp"],
+           "ville" => $adherent["ville"],
+          "email1" => $adherent["email1"],
+          "email2" => $adherent["email2"],
+          "section" =>Section::find ($adherent["section_id"]),
+          "entrainement" => $adherent["entrainement"],
+          "heureSemaine" => $adherent["heureSemaine"],
+          "nomUrgence" => $adherent["nomUrgence"],
+          "telUrgence" => $adherent["telUrgence"],
+          "medicales" =>$adherent["medicales"],
+          "urgence"=>$adherent['urgence'],
+          "deplacements"=>$adherent['deplacements'],
+          "media"=>$adherent['media'],
+          "sortie"=>$adherent['sortie'],
+          "age" => getdate ()[ 'year' ] - date ('Y',strtotime( $adherent->dateNaissance)),
+      "tarifLicence"=>$tarifLicence,
+           "tarifAdhesion"=>$tarifs->find(1)->prix,
+           "tarifCours"=>$tarifCours,
+        ];
+   $pdf = PDF::loadView('pdf.Autorisations',compact('adherentData'));
+   $name = $adherent['nom']."pdf";
     return $pdf->download($name);
-  }
+ }
 
   /**
    * Show the form for editing the specified resource.
@@ -226,9 +293,12 @@ class AdherentController extends Controller
    */
   public function edit(Request $request)
   {
-    if(isset($_GET['id'])){$id=$_GET['id'];}
+    if(isset($request->id)){$id=$request->id;
+       }
     else{$id=session()->get('id');}
+
     $adherent = Adherent::find($id);
+
     $groupes = Groupe::orderBy('section_id')
       ->get();
     $sections = Section::all();

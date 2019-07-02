@@ -18,7 +18,8 @@
               @foreach($sections as $section)
                 <tr>
                   <td class="text-primary">{!! $section->nom !!}</td>
-                  <td> @if ($section->id!=1&&$section->id!=3&&$section->id!="4")	{!! Form::open(['method' => 'DELETE', 'route' => ['section.destroy', $section->id]]) !!}
+                  <td> @if ($section->id!=1&&$section->id!=3&&$section->id!="4")
+                  	{!! Form::open(['method' => 'DELETE', 'route' => ['section.destroy', $section->id]]) !!}
                     {!! Form::submit('Supprimer', ['class' => 'btn btn-danger', 'onclick' => 'return confirm(\'Vraiment supprimer cette section ?\')']) !!}
                     {!! Form::close() !!}
                     @endif

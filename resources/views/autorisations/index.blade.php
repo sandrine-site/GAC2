@@ -10,7 +10,7 @@
             action='./dossier/update'
             method="post" >
             {!!csrf_field ()  !!}
-            {{method_field ("put")}}
+            {{method_field ("put")}}>
             <table class="autorisation">
               <thead>
               <tr>

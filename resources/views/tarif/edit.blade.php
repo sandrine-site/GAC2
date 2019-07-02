@@ -71,7 +71,7 @@
                           @endfor
                         </select>
                       </td>
-                      <td><input type="submit" value="Modifier" class='btn btn-primary'/></td>
+                      <td><input type="submit" value="Modifier" class=' btn btn-dark'/></td>
                     </form>
                   </tr>
                 @else
@@ -144,10 +144,10 @@
                         @endfor
                       </select>
                     </td>
-                    <td><input type="submit" value="Modifier" class='btn btn-primary'/></td>
+                    <td><input type="submit" value="Modifier" class='btn btn-dark'/></td>
                   </form>
                   <td>    {!! Form::open(['method' => 'DELETE', 'route' => ['tarif.destroy', $tarif->id]]) !!}
-                    {!! Form::submit('Supprimer', ['class' => 'btn btn-bleu2', 'onclick' => 'return confirm(\'Vraiment supprimer ce creneau ?\')']) !!}
+                    {!! Form::submit('Supprimer', ['class' => 'btn btn-danger', 'onclick' => 'return confirm(\'Vraiment supprimer ce creneau ?\')']) !!}
                     {!! Form::close() !!}
                   </td>
                   </tr>

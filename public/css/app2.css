@@ -66,7 +66,7 @@ html {
   width: device-width
 }
 
-article, aside, figcaption, figure, footer, header, hgroup, main, nav, section {
+article, aside, figcaption, figure, header, hgroup, main, nav, section {
   display: block
 }
 
@@ -6192,7 +6192,8 @@ a.bg-dark:focus, a.bg-dark:hover, button.bg-dark:focus, button.bg-dark:hover {
 }
 
 .align-content-center {
-  align-content: center !important
+  align-content: center !important;
+  display: flex;
 }
 
 .align-content-between {
@@ -7192,7 +7193,7 @@ a.bg-dark:focus, a.bg-dark:hover, button.bg-dark:focus, button.bg-dark:hover {
   padding-right: 1.5rem !important
 }
 
-.pb-4, .py-4 {
+.pb-4 {
   padding-bottom: 1.5rem !important
 }
 
@@ -8689,9 +8690,11 @@ a.text-dark:focus, a.text-dark:hover {
 .btn.btn-dark {
   background-color: #6a387c;
   color: white;
-
+ padding: 0 5px;
+ height: 24px;
+ line-height: 20px;
+ width: 10rem;
 }
-
 .btn.btn-dark:hover, .btn.btn-dark:focus {
   background-color: #552766;
   color: #fafafa;
@@ -8784,8 +8787,13 @@ a.text-dark:focus, a.text-dark:hover {
   background: #d0312a;
   color: #fafafa;
 }
-
-.btn.btn-inverse {
+html body main.py-4 div.container.groupe div.col-md-12 div.card div.card-body.section3 form table.table-responsive tbody tr td form input.btn.btn-danger{
+ padding: 0 5px;
+ height: 24px;
+ line-height: 20px;
+ width: 10rem;
+}
+btn.btn-inverse {
   background: #363636;
   color: #fafafa;
 }
@@ -9150,6 +9158,26 @@ a.btn-outline-trash:focus {
 html body main.py-4 div.row-inscription div.container form.form-horizontal.large input.btn.btn-xlarge.btn-primary{
 width: max-content;}
 
+html body main.py-4 div.container div.row.justify-content-center div.col-md-12 div.card div.display-2 div.row a.btn.btn-primary{
+margin: 2rem}
+
+ div.card-body.section1 table.table tbody tr td a.btn.btn-warning,
+ div.card-body.section1 table.table tbody tr td form input.btn.btn-danger,
+div.card div.card-body.section1 a.btn.btn-primary,
+ html body main.py-4 div.row div.offset-md-2.col-md-8 div.card div.card-body.section1 table tbody.small.violet tr td a.btn.btn-warning,
+ html body main.py-4 div.row div.offset-md-2.col-md-8 div.card div.card-body.section1 table tbody.small.violet tr td form input.btn.btn-danger,
+ html body main.py-4 div.row div.offset-md-2.col-md-8 div.card div.card-body.groupe form input.btn.btn-primary.btn-block,
+ html body main.py-4 div.row-inscription div.container form.form-horizontal.large input.btn.btn-primary {
+ font-size: 11px;
+ width: 10rem;
+ height: 3rem;
+ line-height: 2.5;
+ padding: 0;
+ margin: 0;
+ vertical-align: center;
+}
+div.container:nth-child(2){
+margin-top: 5rem;}
 
 /* ==--------------polices de carracteres et couleurs --------------*/
 
@@ -9165,14 +9193,22 @@ h1 {
   color: #fefefe;
 }
 .py-4{
-background-color: gainsboro;
+background-color: #f6f2f4;
 max-width:1400px; }
 h5{
   font-size: small;}
 i {
   font-family: "Font Awesome 5 Free" !important;
 }
+em{
 
+ font-size: xx-small;
+ font-weight: initial;
+ margin-left: 20px;
+  color: #6a387c;
+}
+#italique{
+font-style: italic;}
 .rose {
   color: #EF0452;
 }
@@ -9318,8 +9354,7 @@ font-size: smaller;}
   color:#ed1358;
   font-size: x-large;
 }
-.Bleu:active,.Bleu:hover,.nav-tabs > li > a:focus>.Bleu,
-.nav-tabs > li > a:hover>.Bleu,.nav-tabs > li > a:active>.Bleubleu,
+.Bleu:hover,.Bleu:active,.nav-tabs > li > a:focus>.Bleu, .nav-tabs > li > a:hover>.Bleu,.nav-tabs > li > a:active>.Bleu
 {
   color: cornflowerblue;
   font-size: x-large;
@@ -9351,7 +9386,7 @@ font-size: smaller;}
   color: #ebb742;
   font-size: x-large;
 }
-.Cyancyan, .Cyan:hover,.Cyan:active,Cyan:focus,.nav-tabs > li > a:focus>.Cyan, .nav-tabs > li > a:hover.Cyan,.nav-tabs > li > a:active>.Cyan{
+.Cyancyan,.Cyan:hover,.Cyan:active,.nav-tabs > li > a:focus>.Cyan, .nav-tabs > li > a:hover>.Cyan,.nav-tabs > li > a:active>.Cyan{
   color: darkcyan;
   font-size: x-large;
 }
@@ -9731,7 +9766,7 @@ ul.nav.nav-pills.nav-stacked li.active a {
   display: flex;
   justify-content: space-around;
 }
-.back{
+.back,.row-back {
   padding: 3rem;
   display: flex;
   align-items: center;
@@ -9742,27 +9777,32 @@ html body main.py-4 div.container div.row.justify-content-center {
 div.container.groupe div.col-md-12 div.card div.card-body.section3 form div.row.start div.col-2 img{
 width: 80px}
 #contenaireUFPLEP {
- height: 50px;
- width: 130px;
+ height: 40px;
+ width: 110px;
 }
 #contenaireGAC {
  height: 100px;
  width: 300px;
 }
 #contenaireClapiers {
- height: 100px;
- width: 100px;
+ height: 70px;
+ width: 70px;
 }
 html body nav.navbar.navbar-expand-md.navbar-expand-sm.navbar-light.navbar-laravel.navbar-fixed-top div.container.col-sm-12 a.navbar-brand {
  width: 100%;
  display: flex;
- justify-content: space-between;
+ justify-content: space-around;
  align-items: center;
 }
-
+html body main.py-4 div.row div.offset-md-2.col-md-8 div.card div.card-body.groupe{
+display: flex;
+  background-color: #fefefe;}
  div.container.col-sm-12 a.navbar-brand  img{
  width: 100%}
-
+html body main.py-4 div.row div.offset-md-2.col-md-8 div.card{
+margin-top: 5rem;}
+html body main.py-4 div.row div.offset-md-2.col-md-8 div.card div.card-body.groupe form input.btn.btn-primary.btn-block{
+margin-top: 2rem}
 .row .justify-content-between{
 display: flex;
 justify-content: space-between;
@@ -9770,6 +9810,19 @@ align-items: center;}
 
 html body main.py-4 div.row.AccueilAdmin,.row-inscription{
 margin-top: 5rem}
+
+py-4{
+padding-bottom: 0;}
+
+#destinataire {
+ list-style-type: none;
+}
+ form#app div.row.justify-content-center button.btn.btn-bleu1 {
+ margin: 3rem;
+}
+html body main.py-4 div.container.groupe div.col-md-12 div.card div.card-body.section3 form table.table-responsive tbody tr{
+line-height: 3rem}
+
 /* ==------------------ Formulaires -------------------------*/
 .form-control {
   display: block;
@@ -9888,7 +9941,8 @@ div.card-body:nth-child(4) {
  display: flex;
  justify-content: space-around;
 }
-
+html body main.py-4 div.row-inscription div.container form.form-horizontal.large{
+margin-bottom: 3rem;}
 
 /* ==-----------------carte -------------------*/
 .panel-info > .panel-heading, .card-header {
@@ -10062,13 +10116,42 @@ div.partie {
  width: 90%;
  margin-top: 5rem;
 }
+html body main.py-4 div.container div.row.justify-content-center{
+margin-top: 5rem;}
+ div#inscription.tab-pane.fade.active.show.in div.row div.col-3.autorisation {
+ display: flex;
+ flex-direction: column;
+ justify-content: space-around;
+ align-items: center;
+ height: 20rem;
+}
+.dossier {
+  justify-content:  space-around;
+  align-items: center;
+  align-content: center;
+  display: flex;
+}
+table.dossier{
+display: table;}
 
+.contentInscription {
+ display: flex;
+ justify-content: space-around;
+
+ margin-left: 15rem;
+}
+tbody.small > tr:nth-child(4) > td:nth-child(5) {
+ line-height: 3rem;
+}
+html body main.py-4 div.Confirm div.row.row-Confirm div.offset-md-3.col-md-6.col-sm-12 div.card.cardConfirm{
+margin-top: 10rem;}
 
 /* == -----------------------Navbar------------------------*/
 .navbar {
   position: fixed;
   z-index: 2;
   width: 100%;
+  background-color: ButtonText;
 }
 .nav.nav-tabs.nav-justified.admin li a{
   font-size: medium;
@@ -10183,6 +10266,58 @@ ul.nnav nav-tabs nav-justified .menu li.active a {
   position: relative;
   padding: .5rem 1rem
 }
+.nav-tabs.nav-justified > li > a {
+  color: gainsboro;
+}
+#navbarDropdownMenuLink {
+ color: #c1c1c1 !important;
+}
+table.table-responsive  tr th.dossier{
+display: table;}
+
+#contenaireGAC > h1:nth-child(2) {
+ text-align: center;
+ color: white;
+ text-shadow: none;
+ font-size: 3rem;
+}
+#contenaireGAC {
+ display: flex;
+ flex-direction: column;
+ justify-content: center;
+ align-items: center;
+}
+
+
+
+/*==-------------footer-------------*/
+footer {
+	background-color: ButtonText;
+	color: #C1C1C1 !important;
+	min-height: 8rem;
+	padding: 2rem 5rem;
+}
+ footer a{
+text-decoration: none!important;
+	color: #4e555b;
+	font-size: small;
+}
+#contenaireGAC2 {
+ width: 11rem;
+ margin-left: 0rem;
+ margin-top: -2rem;
+}
+#contenaireGAC2 > img:nth-child(1) {
+ width: 100%;
+}
+body > footer:nth-child(3) {
+ display: flex;
+ justify-content: space-around;
+}
+#titreFooter {
+ font-size: large;
+}
+
 /*==--------------Nav-tabs------------------*/
 
 .W30 {
@@ -10223,7 +10358,22 @@ nav.nav.flex-column{
 .dropdownInscriptions,.dropdownGestion,.dropdownAdministration {
   width: 100%;
 }
-
+ a.identitetoggle:not(:hover),  li.active.bandeRose a:not(:hover),
+ a.entrainementtoggle:not(:hover), li.bandeBleu a:not(:hover),
+ a.urgencetoggle:not(:hover),li.bandeRouge a:not(:hover),
+ a.dossiertoggle:not(:hover), li.bandeHotpink a:not(:hover),
+ a.payementtoggle:not(:hover), li.bandeCyan a:not(:hover),
+ a.autrestoggle:not(:hover),li.bandeJaune a:not(:hover),
+ li.bandeViolette a:not(:hover), li.bandeVert2 a:not(:hover),
+ div#navbarSupportedContent.collapse.navbar-collapse.show div.dropdown-menu.dropdown-menu-right.show a.dropdown-item{
+ color: #4e555b;
+}
+html body nav.navbar.navbar-expand-md.navbar-expand-sm.navbar-light.navbar-laravel.navbar-fixed-top a:not(:hover){
+color: gainsboro;}
+ bandeBleue:hover>i.fas.fa-dumbbell.Bleu{
+ color: cornflowerblue;}
+html body main.py-4 div.row-inscription div.container form.form-horizontal.large input.btn.btn-xlarge.btn-primary{
+margin-bottom: 3rem}
 /*==------------------------- Tables  ---------------------*/
 
 div.row:nth-child(5) > div:nth-child(1) > div:nth-child(1) > div:nth-child(2) > table:nth-child(1) > tbody:nth-child(2) > tr:nth-child(3) > td:nth-child(1) {
@@ -10369,6 +10519,7 @@ div.container.groupe div.col-md-12 div.card div.card-body table.table thead tr t
 /*==---------------RGPD--------------------*/
 html body main.py-4 div.row-inscription div.container form.form-horizontal.large div.row div.align-content-center label{
  font-size: small;
+ margin-top: 2rem;
 }
 html body main.py-4 form.form-horizontal.large div.container div.row
  {
@@ -10395,11 +10546,11 @@ html body main.py-4 form.form-horizontal.large div.container div.row
 .row.row-pilates{
 background-image: url("../images/pilates.png");
    background-repeat: repeat-y;
-   background-size: contain;
+   background-size: cover;
    display: flex;
    align-items: start;
    margin:0;
-   min-height: 2500px;}
+   min-height: 700px;}
 
 div.card.cardPilates{
 background-color: transparent;
@@ -10435,6 +10586,7 @@ div.card.cardPilates div.card-body.cardPilates{
   border-radius: 5px;
   padding: 5px;
    margin-top: 3rem;
+   margin-bottom: 5rem;
 }
 
 .btn-outline-pilates:hover {
@@ -10458,8 +10610,8 @@ font-size: large !important;}
 .row.row-baby{
 background-image: url("../images/babyGym.png");
    background-repeat: repeat-y;
-  background-size:contain;
-   min-height: 2500px;
+  background-size:cover;
+   min-height: 700px;
    display: flex;
    align-items: start;
    margin:0;
@@ -10498,6 +10650,7 @@ div.card.cardBaby div.card-body.cardBaby{
   border-radius: 5px;
   padding: 5px;
   margin-top: 3rem;
+  margin-bottom: 5rem;
 }
 
 .btn-outline-baby:hover {
@@ -10518,8 +10671,8 @@ font-size: large !important;}
 .row.row-GA{
 background-image: url("../images/GA.png");
    background-repeat: repeat-y;
-  background-size:contain;
-   min-height: 2500px;
+  background-size:cover;
+   min-height: 700px;
    display: flex;
    align-items: start;
    margin:0;
@@ -10559,6 +10712,7 @@ div.card.cardGA div.card-body.cardGA{
   border-radius: 5px;
   padding: 5px;
    margin-top: 3rem;
+   margin-bottom:5rem;
 }
 div.card.cardGA div.row.justify-content-center a button.btn-outline-GA{
 font-size: large !important;}
@@ -10582,8 +10736,8 @@ font-size: large !important;}
 .row.row-zumba{
 background-image: url("../images/zumba.png");
    background-repeat: repeat-y;
-  background-size:contain;
-   min-height: 2500px;
+  background-size:cover;
+   min-height: 700px;
    display: flex;
    align-items: start;
    margin:0;
@@ -10624,6 +10778,7 @@ div.card.cardZumba div.card-body.cardZumba{
   border-radius: 5px;
   padding: 5px;
      margin-top: 3rem;
+     margin-bottom: 5rem;
 }
 
 .btn-outline-zumba:hover {
@@ -10646,8 +10801,8 @@ div.card.cardZumba div.card-body.cardZumba{
 .row.row-Adulte{
 background-image: url("../images/gymAdulte.png");
    background-repeat: repeat-y;
-  background-size:contain;
-   min-height: 2500px;
+  background-size:cover;
+   min-height: 700px;
    display: flex;
    align-items: start;
    margin:0;
@@ -10691,6 +10846,7 @@ div.card.cardAdulte div.card-body.cardAdulte{
   border-radius: 5px;
   padding: 5px;
      margin-top: 3rem;
+     margin-bottom: 5rem;
 }
 
 .btn-outline-Adulte:hover {
@@ -10818,6 +10974,7 @@ background-image: url("../images/C.png");
   height: 5rem;
   font-size: large !important;
   padding: 3px;
+  margin-bottom: 5rem;
 }
 
 .btn-outline-accueil:hover {
@@ -10985,4 +11142,48 @@ x-small.help-block {
  font-size: xx-small;
  font-weight: inherit;
 }
+
+/*==-----------modal-------------*/
+
+/** SPINNER CREATION **/
+
+.loader {
+  position: relative;
+  text-align: center;
+  margin: 15px auto 35px auto;
+  z-index: 9999;
+  display: block;
+  width: 80px;
+  height: 80px;
+  border: 10px solid rgba(220, 60, 183, .3);
+  border-radius: 50%;
+  border-top-color: #ed1358;
+  animation: spin 1s ease-in-out infinite;
+  -webkit-animation: spin 1s ease-in-out infinite;
+}
+
+@keyframes spin {
+  to {
+    -webkit-transform: rotate(360deg);
+  }
+}
+
+@-webkit-keyframes spin {
+  to {
+    -webkit-transform: rotate(360deg);
+  }
+}
+
+
+/** MODAL STYLING **/
+
+.modal-content {
+  border-radius: 0px;
+  box-shadow: 0 0 20px 8px rgba(0, 0, 0, 0.7);
+}
+
+.modal-backdrop.show {
+  opacity: 0.75;
+}
+
 

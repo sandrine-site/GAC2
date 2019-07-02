@@ -31,7 +31,7 @@ class AccueilAdminController extends Controller
 
     public function index()
     {
-       $adherents = Adherent::orderBy('section_id')->orderBy('groupe_id')->orderBy('nom')->orderBy('prenom')->paginate(15);
+       $adherents = Adherent::orderBy('section_id')->orderBy('groupe_id')->orderBy('nom')->orderBy('prenom')->paginate(10);
        return view('adherent.liste',compact('adherents'));
 
     }

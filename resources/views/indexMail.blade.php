@@ -10,34 +10,37 @@
         <div class="card-body section2" >
         Sujet:
           <input type="text" name="sujet"/>
-
         </div>
+          <div class="card-body section2" >
+                  Choisissez à qui envoyer le mail<br/>
+                  <div class="row justify-content-center">
+                      <select v-model = "category" v-on:change="onChange" name="category" id="select1">
+                        <option value="tous"> Tous les gymnastes</option>
+                        <option value="un">Un gymnaste</option>
+                      <option value="parGroupe"> Un groupe</option>
+                      <option value="parSection">Une section</option>
+                      <option value="parEntraineur"> Suivant l'entraineur</option>
+                      <option value="parCreneau">Suivant le creneau</option>
+                    </select>
+                    <select id="select2" v-model= "list" name="choix">
+                        <option  v-for="option in options" v-bind:value="option.id">@{{option.text}} </option>
+                    </select>
+
+                   </div>
+          </div>
+                   <br/>
         <div class="card-body section2" >
         Vous pouvez rédiger votre message ici
           <textarea class="tiny" name="contenu">
           </textarea>
         </div>
-        <div class="card-body section2" >
-        Choisissez à qui envoyer le mail<br/>
-        <div class="row justify-content-center">
-            <select v-model = "category" v-on:change="onChange" name="category" id="select1">
-              <option value="tous"> Tous les gymnastes</option>
-              <option value="un">Un gymnaste</option>
-            <option value="parGroupe"> Un groupe</option>
-            <option value="parSection">Une section</option>
-            <option value="parEntraineur"> Suivant l'entraineur</option>
-            <option value="parCreneau">Suivant le creneau</option>
-          </select>
-          <select id="select2" v-model= "list" name="choix">
-              <option  v-for="option in options" v-bind:value="option.id">@{{option.text}} </option>
-          </select>
-         </div>
-         <br/>
+
          <div class="row justify-content-center ">
             <button type="submit" class='btn btn-bleu1'>
             <i class="fas fa-envelope-open-text"></i>
              Envoyer le mail
               </button>
+         </div>
           </form>
         </div>
           </div>

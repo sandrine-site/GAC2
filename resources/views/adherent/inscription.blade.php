@@ -4,7 +4,11 @@
     <h1>Formulaire d'inscription</h1>
     <div class="container">
       <a type="button" href="{{route('tarif.calcul')}}" ><button class="btn-outline-primary">Calcul du tarif</button></a>
-      {!! Form::open(['route'=>'adherent.store','class'=>'form-horizontal large']) !!}
+      <form
+                  action="{{route('adherent.store')}}"
+                  method="post"
+                  class='form-horizontal large' >
+                  {!!csrf_field ()  !!}
         <div class="row justify-content-center">
             <div class="card inscription">
                 <div class="card-header section1">Informations adhérent</div>
@@ -12,13 +16,13 @@
                     <div class="form-group {!! $errors->has('titre') ? 'has-error' : '' !!}">
                         <div class="row">
                             <div class="col-sm-6">
-                                <label for="nom">Nom de l'adhérent :</label>
+                                <label for="nom">Nom de l'adhérent :<em>obligatoire</em></label>
                                 <input type="text" name="nom" id="nom" class="form-control" value="{{old("nom","")}}"/>
                                 @if ($errors->has('nom'))
                                     <small class="help-block">{{$errors->first('nom',':message') }}</small>  @endif
                             </div>
                             <div class="col-sm-6">
-                                <label for="prenom">Prenom :</label> <br/>
+                                <label for="prenom">Prenom : <em>obligatoire</em></label> <br/>
                                 <input type="text" name="prenom" id="prenom" class="form-control"
                                        value="{{old("prenom","")}}"/>
                                 @if ($errors->has('prenom'))
@@ -28,7 +32,7 @@
                         <br/>
                         <div class="row">
                             <div class="col-sm-4">
-                                <label for="date_naissance">Date de naissance :</label><br/>
+                                <label for="date_naissance">Date de naissance :<em>obligatoire</em></label><br/>
                                 <select name="date_naissance_J" id="date_naissance_J">
                                     <option
                                         value="{{old("date_naissance_J","")}}">{{old("date_naissance_J","")}} </option>
@@ -48,7 +52,7 @@
                                         id="date_naissance_A" selected="2010">
                                     <option
                                         value="{{old("date_naissance_A","")}}">{{old("date_naissance_A","")}}</option>
-                                    @for($i=2024;$i>1990;$i=$i-1)
+                                    @for($i=getdate ()[ 'year' ]-2;$i>1990;$i=$i-1)
                                         <option value="{{$i}}">{{$i}}</option>
                                     @endfor
                                 </select>
@@ -58,7 +62,7 @@
                             </div>
 
                             <div class="col-sm-5">
-                                <br/>
+                                <br/><em>obligatoire</em>
                                 <input type="text" name="lieuNaissance" id="lieuNaissance" class="form-control"
                                        placeholder="lieu de naissance" value="{{old("lieuNaissance","")}}"/>
                                 @if ($errors->has('lieuNaissance'))
@@ -95,7 +99,7 @@
                             </div>
                             <div class="col-sm-4">
                                 <h4 class="fonce">Si enfant mineur:</h4>
-                                <label for="telephone_Resp1">Téléphone résponsable légal 1:</label><br/>
+                                <label for="telephone_Resp1">Téléphone résponsable légal 1:<em>obligatoire</em></label><br/>
                                 <input type="tel" name="telephone_Resp1" class="form-control" id="telephone_Resp1"
                                        value="{{old ("telephone_Resp1","")}}"/>
                                 @if ($errors->has('telephone_Resp1'))
@@ -118,22 +122,25 @@
         <br/>
         <div class="row justify-content-center">
             <div class="card inscription">
-                <div class="card-header section2">Adresse</div>
+                <div class="card-header section2">Adresse </div>
                 <div class="card-body section2">
                     <div class="row haut">
                         <div class="col-4">
+                          <em>obligatoire</em>
                             <input type="text" name="adresse1" id="adresse1" class="form-control" value="{{old ("adresse1","")}}" placeholder="n° nom de la rue"/><br/>
                             {!! $errors->first('adresse1','<small class="help-block">:message</small>') !!}
                             <input type="text" name="adresse2" id="adresse2" class="form-control" value="{{old ("adresse2","")}}" placeholder="Complement d'adresse"/>
                             {!! $errors->first('adresse2','<small class="help-block">:message</small>') !!}
                         </div>
                         <div class="col-4">
+                          <em>obligatoire</em>
                             <input type="text" name="cp" id="cp" class="form-control" placeholder="CP"
                                    value="{{old("cp","")}}" cols="5"/>
                             {!! $errors->first('cp', '<small class="help-block">:message</small>') !!}
 
                         </div>
                         <div class="col-4">
+                          <em>obligatoire</em>
                             <input type="text" name="ville" id="ville" class="form-control" placeholder="ville"
                                    value="{{old("ville","")}}"/>
                             {!! $errors->first('ville', '<small class="help-block">:message</small>') !!}
@@ -141,9 +148,11 @@
                     </div>
                     <div class="row haut">
                         <div class="col-12">
-                            <label for="email1"> Email :</label>
+                            <label for="email1"> Email :</label> <br/>
+                            <em>obligatoire</em>
                         </div>
                         <div class="col-sm-6">
+
                             <input type="email" name="email1" class="form-control  col-sm-10" id="email1"
                                    placeholder="Email principal" value="{{old("email1","")}}"/><br/>
                             {!! $errors->first('email1', '<small class="help-block">:message</small>') !!}
@@ -166,8 +175,10 @@
                 <div class="card-body section3">
                     <div class="row haut">
                         <div class="col-sm-4">
+                        <em>obligatoire</em><br/>
                             @foreach($sections as $section)
                                 @if (old("section_id")==$section->id)
+
                                     <input type="checkbox" checked name="section_id" id="section_id"
                                            value="{{$section->id}}"/> <label
                                         for="{{$section->id}}">{{$section->nom}}</label><br/>
@@ -241,11 +252,13 @@
                         <h4 class="fonce">PERSONNE A PREVENIR EN CAS D'ACCIDENT</h4>
                         <div class="row">
                             <div class="col-7">
+                              <em>obligatoire</em>
                                 <input type="text" name="nomUrgence" class="form-control" id="nomUrgence"  value="{{old
                 ("nomUrgence","")}}" placeholder='Nom Prénom '/>
                                 {!! $errors->first('nomUrgence', '<small class="help-block">:message</small>') !!}
                             </div>
                             <div class="col-5">
+                              <em>obligatoire</em>
                                 <input type="text" name="telUrgence" id="telUrgence" class="form-control" value="{{old("telUrgence","")}}" placeholder='Téléphone'/>
                                 {!! $errors->first('telUrgence', '<small class="help-block">:message</small>') !!}
                             </div>
@@ -298,13 +311,13 @@
                         <p>Nous pouvons être amenés à utilliser, dans le cadre des publications de l'association G.A.C.,
                             des
                             photos des adhérents.<br/><br/>
-                            <em>S'agissant de mineurs ce droit à l'image, mais aussi de façon générale ce droit au
+                            <div id="italique">S'agissant de mineurs ce droit à l'image, mais aussi de façon générale ce droit au
                                 respect de la personne,est d'application stricte. En conséquence, aucune photo
                                 d'adhérents reconnaissables ne pourra être publiée sur un support sans une autorisation
                                 écrite des parents (ou tuteurs, responsables..) indiquant dans quel contexte pédagogique
                                 se situe cette photo.Les œuvres des adhérents ne doivent en aucun cas faire état du nom
                                 de famille de l'auteur. Seul est autorisé le prénom. C'est pourquoi nous vous demandons
-                                de bien vouloir remplir la partie ci-dessous.</em></p><br/>
+                                de bien vouloir remplir la partie ci-dessous.</div></p><br/>
                     </div>
                     <div class="row haut">
                         <div class="col-sm-3">
@@ -378,18 +391,30 @@
       <div class="align-content-center">
         <input type="checkbox"  name="rgpd" id="rgpd" /> &nbsp;
         <label for="rgpd"> &nbsp;
-                           En cochant cette case, je reconnais avoir pris connaissance des <a href="{{route('rgpd')}}">Conditions Générales d'Utilisation du site</a> ainsi que sa Politique de Confidentialité et je les accepte. </label><br/>
+                           En cochant cette case, je reconnais avoir pris connaissance et accepter les <a href="{{route('rgpd')}}">Conditions Générales d'Utilisation du site</a> et j'autorise G.A.C. à traiter mes données conformement à sa politique de confidentialité. </label><br/>
 
         {!! $errors->first('rgpd', '<small class="help-block">:message</small>') !!}
         <br/></div>
-        <p>Le dossier d'inscription est un peu long à se générer, veuillez attendre avant de fermer cette fenêtre</p>
-        <p>
           Si vous ne recevez pas d'email dans les 30 min, veuillez nous écrire à l'adresse :
           gacgym@hotmail.fr</p> </div>
-        {!! Form::submit('Envoyer !', ['class' => 'btn btn-xlarge btn-primary']) !!}
-        {!! Form::close() !!}
 
+        <input type="submit" value="Envoyer" id="envoyer" class='btn btn-primary' data-toggle="modal" data-target="#loadingPDF"/>
+                  </form>
     </div>
-    </div>
+  </div>
+
+      <!-- Modal -->
+      <div class="modal fade" id="loadingPDF" tabindex="-1" role="dialog" aria-labelledby="loadingPDFLabel"aria-hidden="true">
+        <div class="modal-dialog " role="document">
+          <div class="modal-content">
+            <div class="modal-body text-center">
+              <div class="loader"></div>
+              <div clas="loader-txt">
+                <p>Le dossier d'inscription est un peu long à se générer, veuillez attendre avant de fermer cette fenêtre</p>
+       </div>
+            </div>
+          </div>
+        </div>
+      </div>
 
 @endsection

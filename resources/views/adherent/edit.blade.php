@@ -356,116 +356,129 @@
 
               <div id="inscription" class="tab-pane fade">
                 <div class="row">
-                  <div class="col-10">
+                  <div class="col-6">
                     <h4 class="rose">Dossier d'inscription</h4>
+                  </div>
+                    <div class="contentInscription">
                     <div class="large">
-                    <span class="display-6">
-                      Certificat médical :&nbsp
-                      @if($adherent->CertifMedical==1)
-                        <i class="fas fa-check-circle Vertvert"></i>
-                        <form action='{{route('dossier.update')}}' method="post">
-                          {!!csrf_field ()  !!}
-                          <input type="hidden" name="CertifMedical" value="0">
-                          <input type="hidden" name="id" value="{{$adherent->id}}">
-                          <button type="submit" class="btn-outline-exchange"><i class="fas fa-exchange-alt"></i></button>
-                        </form>
+                      <div class="display-6">
+                        <div class="col-8">
+                          Certificat médical :&nbsp
+                        </div>
+                        <div class="col-4 dossier">
+                          @if($adherent->CertifMedical==1)
+                            <i class="fas fa-check-circle Vertvert"></i>
+                            <form action='{{route('dossier.update')}}' method="post">
+                              {!!csrf_field ()  !!}
+                              <input type="hidden" name="CertifMedical" value="0">
+                              <input type="hidden" name="id" value="{{$adherent->id}}">
+                              <button type="submit" class="btn-outline-exchange"><i class="fas fa-exchange-alt"></i></button>
+                            </form>
+                          @else
+                            <i class="fas fa-times-circle Rougerouge"></i>
+                            <form action='{{route('dossier.update')}}' method="post">
+                              {!!csrf_field ()  !!}
+                              <input type="hidden" name="CertifMedical" value="1">
+                              <input type="hidden" name="id" value="{{$adherent->id}}">
+                              <button type="submit" class="btn-outline-exchange"><i class="fas fa-exchange-alt"></i></button>
+                            </form>
+                          @endif
+                        </div>
+                      </div>
+                      <div class="display-6">
+                        <div class="col-8">
+                          Photo:
+                        </div>
+                        <div class="col-4 dossier">
+                          @if($adherent->photo==1)
+                            <i class="fas fa-check-circle Vertvert"></i>
+                            <form action='{{route('dossier.update')}}' method="post">
+                              {!!csrf_field ()  !!}
+                              <input type="hidden" name="photo" value="0">
+                              <input type="hidden" name="id" value="{{$adherent->id}}">
+                              <button type="submit" class="btn-outline-exchange"><i class="fas fa-exchange-alt"></i></button>
+                            </form>
+                          @else
+                            <i class="fas fa-times-circle Rougerouge"></i>
+                            <form action='{{route('dossier.update')}}' method="post">
+                              {!!csrf_field ()  !!}
+                              <input type="hidden" name="photo" value="1">
+                              <input type="hidden" name="id" value="{{$adherent->id}}">
+                              <button type="submit" class="btn-outline-exchange"><i class="fas fa-exchange-alt"></i></button>
+                            </form>
+                          @endif
+                        </div>
+                      </div>
+                      <div class="display-6">
+                        <div class="col-8">
+                          Autorisations(Forme papier) :
+                        </div>
+                        <div class="col-4 dossier">
+                          @if($adherent->autorisationsRendues==1)
+                            <i class="fas fa-check-circle Vertvert"></i>
+                            <form action='{{route('dossier.update')}}' method="post">
+                              {!!csrf_field ()  !!}
+                              <input type="hidden" name="autorisationsRendues" value="0">
+                              <input type="hidden" name="id" value="{{$adherent->id}}">
+                              <button type="submit" class="btn-outline-exchange"><i class="fas fa-exchange-alt"></i></button>
+                            </form>
+                          @else
+                            <i class="fas fa-times-circle Rougerouge"></i>
+                            <form action='{{route('dossier.update')}}' method="post">
+                              {!!csrf_field ()  !!}
+                              <input type="hidden" name="autorisationsRendues" value="1">
+                              <input type="hidden" name="id" value="{{$adherent->id}}">
+                              <button type="submit" class="btn-outline-exchange"><i class="fas fa-exchange-alt"></i></button>
+                            </form>
+                          @endif
+                        </div>
+                      </div>
+                      <div class="display-5">
+                        <div class="col-8">
+                          Justificatif de payement demandé
+                        </div>
+                        <div class="col-4 dossier">
+                          @if($adherent->RecuDemande==1)
+                            <i class="fas fa-flag Jaunejaune"></i>
+                            <form action='{{route('dossier.update')}}' method="post">
+                              {!!csrf_field ()  !!}
+                              <input type="hidden" name="RecuDemande" value="0">
+                              <input type="hidden" name="id" value="{{$adherent->id}}">
+                              <button type="submit" class="btn-outline-exchange"><i class="fas fa-exchange-alt"></i></button>
+                            </form>
+                          @else
+                            <form action='{{route('dossier.update')}}' method="post">
+                              {!!csrf_field ()  !!}
+                              <input type="hidden" name="RecuDemande" value="1">
+                              <input type="hidden" name="id" value="{{$adherent->id}}">
+                              <button type="submit" class="btn-outline-exchange"><i class="fas fa-exchange-alt"></i></button>
+                            </form>
+                          @endif
+                        </div>
+                      </div>
+                    </div>
+                    <div class="col-3 autorisation">
+                      @if($adherent->autorisationsRendues==1&&$adherent->photo==1&&$adherent->CertifMedical==1)
+                        <i class="fas fa-smile"></i>
                       @else
-                        <i class="fas fa-times-circle Rougerouge"></i>
-                        <form action='{{route('dossier.update')}}' method="post">
-                          {!!csrf_field ()  !!}
-                          <input type="hidden" name="CertifMedical" value="1">
-                          <input type="hidden" name="id" value="{{$adherent->id}}">
-                          <button type="submit" class="btn-outline-exchange"><i class="fas fa-exchange-alt"></i></button>
-                        </form>
+                        <i class="fas fa-frown"></i>
                       @endif
-                      </span>
-                      <br/>
-                      <span class="display-6">
-                      Photo:
-                      @if($adherent->photo==1)
-                          <i class="fas fa-check-circle Vertvert"></i>
-                          <form action='{{route('dossier.update')}}' method="post">
-                            {!!csrf_field ()  !!}
-                            <input type="hidden" name="photo" value="0">
-                            <input type="hidden" name="id" value="{{$adherent->id}}">
-                            <button type="submit" class="btn-outline-exchange"><i class="fas fa-exchange-alt"></i></button>
-                          </form>
-                        @else
-                          <i class="fas fa-times-circle Rougerouge"></i>
-                          <form action='{{route('dossier.update')}}' method="post">
-                            {!!csrf_field ()  !!}
-                            <input type="hidden" name="photo" value="1">
-                            <input type="hidden" name="id" value="{{$adherent->id}}">
-                            <button type="submit" class="btn-outline-exchange"><i class="fas fa-exchange-alt"></i></button>
-                          </form>
-                        @endif
-                     </span>
-                      <br/>
-                      <span class="display-6">
-                      Autorisations(Forme papier) :
-                        @if($adherent->autorisationsRendues==1)
-                          <i class="fas fa-check-circle Vertvert"></i>
-                          <form action='{{route('dossier.update')}}' method="post">
-                            {!!csrf_field ()  !!}
-                            <input type="hidden" name="autorisationsRendues" value="0">
-                            <input type="hidden" name="id" value="{{$adherent->id}}">
-                            <button type="submit" class="btn-outline-exchange"><i class="fas fa-exchange-alt"></i></button>
-                          </form>
-                        @else
-                          <i class="fas fa-times-circle Rougerouge"></i>
-                          <form action='{{route('dossier.update')}}' method="post">
-                            {!!csrf_field ()  !!}
-                            <input type="hidden" name="autorisationsRendues" value="1">
-                            <input type="hidden" name="id" value="{{$adherent->id}}">
-                            <button type="submit" class="btn-outline-exchange"><i class="fas fa-exchange-alt"></i></button>
-                          </form>
-                        @endif
-                      </span>
-                      <br/>
-                      <span class="display-5">
-                        Justificatif de payement demandé
-                        @if($adherent->RecuDemande==1)
-                          <i class="fas fa-flag Jaunejaune"></i>
-                          <form action='{{route('dossier.update')}}' method="post">
-                            {!!csrf_field ()  !!}
-                            <input type="hidden" name="RecuDemande" value="0">
-                            <input type="hidden" name="id" value="{{$adherent->id}}">
-                            <button type="submit" class="btn-outline-exchange"><i class="fas fa-exchange-alt"></i></button>
-                          </form>
-                        @else
-                          <form action='{{route('dossier.update')}}' method="post">
-                            {!!csrf_field ()  !!}
-                            <input type="hidden" name="RecuDemande" value="1">
-                            <input type="hidden" name="id" value="{{$adherent->id}}">
-                            <button type="submit" class="btn-outline-exchange"><i class="fas fa-exchange-alt"></i></button>
-                          </form>
-                        @endif
-                        </span>
+
+
+                      <div class="bouton">
+                        <a><button class="btn btn-bleu2"> Imprimer le dossier d'inscription</button></a>
+                      </div>
+                      </div>
                     </div>
                   </div>
-                  <div class="col-2">
-                    @if($adherent->autorisationsRendues==1&&$adherent->photo==1&&$adherent->CertifMedical==1)
-                      <i class="fas fa-smile"></i>
-                      <br/>
-                      <br/>
-                      <br/>
-                    @else
-                      <i class="fas fa-frown"></i>
-                      <br/>
-                      <br/>
-                      <br/>
-                    @endif
-                  </div>
                 </div>
-              </div>
-
-              <div id="payement" class="tab-pane fade">
+                <div id="payement" class="tab-pane fade">
                 <div class="row start">
                   <div class="col-10">
                     <h4 class="rose">Detail des payements</h4>
                     <div class="row">
                       <div class="col-6">
-                     <span> Justificatif de payement demandé
+                     <div> Justificatif de payement demandé
                       @if($adherent->RecuDemande==1)
                          <i class="fas fa-flag Jaunejaune"></i>
                          <form action='{{route('dossier.update')}}' method="post">
@@ -482,7 +495,7 @@
                           <button type="submit" class="btn-outline-exchange"><i class="fas fa-exchange-alt"></i></button>
                         </form>
                        @endif
-                      </span>  </div>
+                      </div>  </div>
                       <div class="col-6">
                         @if ((($tarifAdhesion+$tarifLicence+$tarifCours)*(1-($adherent->reduction/100)))>($adherent->totalpaye))
                           <i class="fas fa-frown"></i>
@@ -490,7 +503,6 @@
                           <i class="fas fa-smile"></i>
                         @else<i class="fas fa-exclamation-triangle"></i>
                         @endif
-
                       </div>
                     </div>
                   </div>
@@ -567,9 +579,10 @@
                       </button>
                     </form>
                   </div>
+                </div>
+
                   <div class="col-7 payement ">
                     <h5 class="fonce">Payements:</h5>
-
                     <input type="hidden" name="adherent_id" value="{{$adherent->id}}"/>
                     <div class="row strong smaller" id="payement">
                       <div class="col-2">Montant</div>
@@ -674,7 +687,7 @@
                     </div>
                   </div>
                 </div>
-              </div>
+
               <div id="autres" class="tab-pane fade">
                 <form action='{{route('adherent.update',$adherent->id)}}' method="post">
                   {!!csrf_field ()  !!}
@@ -711,7 +724,6 @@
                       Enregistrer les modifications
                     </button>
                     <br/><br/>
-
                   </div>
                 </form>
                 <div class="row">
@@ -726,9 +738,8 @@
           </div>
               </div>
             </div>
-          </div>
-        </div>
-      </div>
+  </div>
+  </div>
 
   <div class="row back">
       <a href="javascript:history.back()" class="btn-back ">
@@ -741,7 +752,7 @@
       </a>
     </div>
   </div>
-  </div>
+
 
 @endsection
 

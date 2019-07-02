@@ -1,8 +1,7 @@
 @extends('layouts.app')
 @section('content')
-  <br/>
-  <div class="container groupe">
-    <div class="col-md-12">
+<div class="row">
+    <div class="offset-md-2 col-md-8">
       <div class="card ">
         <div class="card-header section1">Liste des groupes</div>
         <div class="card-body section1">
@@ -41,42 +40,34 @@
             </tbody>
           </table>
         </div>
-        <div class="card-body section1">
-          <table>
-            <tbody>
-            <tr>
+        <div class="card-header section1">
               Creer un nouveau groupe
-            </tr>
-            <tr>
+        </div>
+        <div class="card-body groupe">
               <form method="post" action="{{route('groupe.store')}}">
                 {!!csrf_field ()  !!}
-                <td><input type="text" name="nom" class="form-control" placeholder='nom' value="nom"/>
-                </td>
-                <td><input type="text" name="categorie" class="form-control" placeholder='Catégorie'/>
-                </td>
-                <td>
+               <input type="text" name="nom" class="form-control" placeholder='nom' value="nom"/>
+
+                <input type="text" name="categorie" class="form-control" placeholder='Catégorie'/>
+
                   @foreach($users as $user)
                     <input type="checkbox" name="user_id" value="{!! $user->id!!}"/>
                     <label for="{!! $user->id!!}" class="small"> {!!$user->prenom!!} </label><br/>
                   @endforeach</td>
-                <td>
-                  <select name="section_id" class="medium">
-                    <option value="">choisir</option>
-                    @foreach($sections as $section)
 
+                  <select name="section_id" class="medium">
+                    <option value="">section</option>
+                    @foreach($sections as $section)
                       <option value='{{$section->id}}'>{{$section->nom}}</option>
                     @endforeach
-                  </select></td>
-                <td><input type="submit" value="Nouveau groupe" class='btn btn-primary btn-block'/></td>
-                <td></td>
+                  </select>
+                <input type="submit" value="Nouveau groupe" class='btn btn-primary btn-block'/>
+
               </form>
-            </tr>
-            </tbody>
-          </table>
+
         </div>
       </div>
       <div class="row back">
-
         <a href="javascript:history.back()" class="btn-back ">
           <span class="glyphicon glyphicon-circle-arrow-left"></span> Retour
         </a>
@@ -87,5 +78,7 @@
         </a>
       </div>
     </div>
+
+
 
 @endsection

@@ -43,9 +43,9 @@
                   @else
                     <td></td>
                   @endif
-                  <td>{!! link_to_route('creneau.edit', 'Modifier', [$creneau->id], ['class' => 'btn btn-warning btn-block']) !!}</td>
+                  <td>{!! link_to_route('creneau.edit', 'Modifier', [$creneau->id], ['class' => 'btn btn-warning']) !!}</td>
                   <td>    {!! Form::open(['method' => 'DELETE', 'route' => ['creneau.destroy', $creneau->id]]) !!}
-                                        {!! Form::submit('Supprimer', ['class' => 'btn btn-danger btn-block', 'onclick' => 'return confirm(\'Vraiment supprimer ce creneau ?\')']) !!}
+                                        {!! Form::submit('Supprimer', ['class' => 'btn btn-danger', 'onclick' => 'return confirm(\'Vraiment supprimer ce creneau ?\')']) !!}
                                         {!! Form::close() !!}
                   </td>
                 </tr>
