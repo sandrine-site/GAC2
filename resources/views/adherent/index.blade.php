@@ -8,19 +8,19 @@
           <div>
             <ul class="nav nav-tabs nav-justified admin">
             @auth
-                <li class="active bandeRose"><a data-toggle="tab" href="#" class="identitetoggle"><i
+                <li class=" bandeRose"><a data-toggle="tab"  class="editRose identitetoggle"><i
                       class="fas fa-id-card rose"></i><br/>Identités</a></li>
-                <li class="bandeBleu"><a data-toggle="tab" href="#" class="entrainementtoggle"><i
+                <li class="bandeBleu"><a data-toggle="tab"  class="editBleu entrainementtoggle"><i
                       class="fas fa-dumbbell Bleu"></i><br/>Entrainements</a></li>
-                <li class="bandeRouge"><a data-toggle="tab" href="#" class="urgencetoggle"><i
+                <li class="bandeRouge"><a data-toggle="tab"  class="editRouge urgencetoggle"><i
                       class="fas fa-briefcase-medical Rouge"></i><br/> En cas d'urgence</a></li>
                 @if (Auth::user()->fonction_id==1|Auth::user()->fonction_id==2|Auth::user()->fonction_id==3)
-                  <li class="bandeHotpink"><a data-toggle="tab" href="#" class="dossierpantoggle"><i
+                  <li class="bandeHotpink"><a data-toggle="tab" class="editHotpink dossierpantoggle"><i
                         class="fas fa-copy Hotpink"></i><br/> Dossiers d'inscription</a></li>
-                  <li class="bandeCyan"><a data-toggle="tab" href="#" class="payementtoggle"><i
+                  <li class="bandeCyan"><a data-toggle="tab"class="editCyan payementtoggle"><i
                         class="fas fa-money-bill-wave Cyan"></i><br/> Payements</a></li>
                   @if (Auth::user()->fonction_id==1|Auth::user()->fonction_id==2)
-                    <li class="bandeJaune"><a data-toggle="tab" href="#" class="autrestoggle"><i
+                    <li class="bandeJaune"><a data-toggle="tab"  class="editJaune autrestoggle"><i
                           class="fas fa-highlighter Jaune"></i><br/> Autres remarques</a></li>
                   @endif
                 @endif
@@ -56,7 +56,6 @@
                   <th class="dossierpan">Autorisations<br/>papiers</th>
                   <th class="dossierpan">Attestation<br/> demandée</th>
                   <th class="dossierpan">dossier Complet</th>
-                  <th class="payement"></th>
                   <th class="payement"></th>
                   <th class="payement">Remarques</th>
                   <th class="autres">Remarques</th>
@@ -152,14 +151,16 @@
                       @else
                         <i class="fas fa-frown  RougeN"></i>
                       @endif</td>
+                       <td class="section{{$adherent->section->id}} payement">
                     @foreach($adherent->payements as $payement)
-                      <td class="section{{$adherent->section->id}} payement">
+                    <div class="paye">
                        {{$payement->montant}}<br/>
                         {{App\MoyenPayement::find($payement->moyensPayement_id)->type}}<br/>
                         {{$payement->encaisseMois}}
-
+                        </div>
+                         @endforeach
                                           </td>
-                    @endforeach
+
                     <td class="section{{$adherent->section->id}} payement">
                       @if($adherent->remarques->where('typeRq_id','=','3')->first()!=null)
                         {{$adherent->remarques->where('typeRq_id','=','3')->first()->remarque}}
@@ -178,7 +179,7 @@
                             class="fas fa-edit"></i></button>
                       </form>
                     </td>
-                     <td class="toujours">
+                     <td class="identite">
                       <form action='./pdf' method="post">
                         {{method_field ("get")}}
                         <input type="hidden" name="id" value="{{$adherent->id}}">

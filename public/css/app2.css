@@ -9194,7 +9194,9 @@ h1 {
 }
 .py-4{
 background-color: #f6f2f4;
-max-width:1400px; }
+max-width:1900px;
+width: 100%;
+}
 h5{
   font-size: small;}
 i {
@@ -9211,6 +9213,7 @@ em{
 font-style: italic;}
 .rose {
   color: #EF0452;
+
 }
 
 .violet {
@@ -9344,11 +9347,13 @@ font-size: smaller;}
 .rose,.Vert2,.Bleu,.Hotpink,.Jaune,.Cyan,.Rouge,.Violette{
   color:#4e555b;
   font-size: x-large;
+
 }
 
 .rose:active,.rose:hover,.nav-tabs > li.active > a:focus>.rose, .nav-tabs > li.active > a:hover>.rose,.nav-tabs > li.active > a:active>.rose{
   color:#ed1358;
   font-size: x-large;
+
 }
 .roserose{
   color:#ed1358;
@@ -9356,8 +9361,9 @@ font-size: smaller;}
 }
 .Bleu:hover,.Bleu:active,.nav-tabs > li > a:focus>.Bleu, .nav-tabs > li > a:hover>.Bleu,.nav-tabs > li > a:active>.Bleu
 {
-  color: cornflowerblue;
+  color:cornflowerblue;
   font-size: x-large;
+
 }
 .Bleubleu{
   color: cornflowerblue;}
@@ -9365,14 +9371,17 @@ font-size: smaller;}
 .Vert2:active,.Vert2:hover,.nav-tabs > li > a:focus>.Vert2, .nav-tabs > li > a:hover>.Vert2,.nav-tabs > li > a:active>.Vert2{
   color: olivedrab;
   font-size: x-large;
+
 }
 .Vertvert{
   color: olivedrab;
   font-size: x-large;
+
 }
 .Hotpink:hover,.Hotpink:active,.nav-tabs > li > a:focus>.Hotpink, .nav-tabs > li > a:hover>.Hotpink,.nav-tabs > li > a:active>.Hotpink{
   color: hotpink;
   font-size: x-large;
+
 }
 .hotpinkHot{
   color: hotpink;
@@ -9381,6 +9390,7 @@ font-size: smaller;}
 .Jaune:hover,.Jaune:active,.nav-tabs > li > a:focus>.Jaune, .nav-tabs > li > a:hover>.Jaune,.nav-tabs > li > a:active>.Jaune{
   color: #ebb742;
   font-size: x-large;
+
 }
 .Jaunejaune,.fa-exclamation-triangle{
   color: #ebb742;
@@ -9397,6 +9407,7 @@ font-size: smaller;}
 .Rouge:hover,.Rouge:active,.Rouge:focus,.nav-tabs > li > a:focus>.Rouge, .nav-tabs > li > a:hover>.Rouge,.nav-tabs > li > a:active>.Rouge{
   color:red;
   font-size: x-large;
+
 }
 .Rougerouge
 {color:red;
@@ -9518,26 +9529,27 @@ a.small:nth-child(4) > div:nth-child(2) {
 .nav-tabs.nav-justified > li.active.bandeRose > a:active,.nav-tabs.nav-justified > li.active.bandeRose > a:focus,.nav-tabs.nav-justified > li.active.bandeRose > a:hover{
   color: #ed1358;
 }
-.nav-tabs.nav-justified > li.bandeBleu > a:active,.nav-tabs.nav-justified > li.bandeBleu > a:focus,.nav-tabs.nav-justified > li.bandeBleu > a:hover{
-  color: cornflowerblue;
+
+.nav-tabs.nav-justified > li.bandBleu > a:active, .nav-tabs.nav-justified > li.bandeBleu > a:focus, .nav-tabs.nav-justified > li.bandeBleu > a:hover{
+  color: cornflowerblue !important;
 }
 .nav-tabs.nav-justified > li.bandeVert2 > a:active,.nav-tabs.nav-justified > li.bandeVert2 > a:focus,.nav-tabs.nav-justified > li.bandeVert2 > a:hover{
-  color: olivedrab;
+  color: olivedrab !important;
 }
 .nav-tabs.nav-justified > li.bandeHotpink > a:active,.nav-tabs.nav-justified > li.bandeHotpink > a:focus,.nav-tabs.nav-justified > li.bandeHotpink > a:hover{
-  color: hotpink;
+  color: hotpink!important;
 }
 .nav-tabs.nav-justified > li.bandeJaune > a:active,.nav-tabs.nav-justified > li.bandeJaune > a:focus,.nav-tabs.nav-justified > li.bandeJaune > a:hover{
-  color:#ebb742;
+  color:#ebb742 !important;
 }
 .nav-tabs.nav-justified > li.bandeCyan > a:active,.nav-tabs.nav-justified > li.bandeCyan > a:focus,.nav-tabs.nav-justified > li.bandeCyan > a:hover{
-  color: darkcyan;
+  color: darkcyan !important;
 }
 .nav-tabs.nav-justified > li.bandeViolette> a:active,.nav-tabs.nav-justified > li.bandeViolette > a:focus,.nav-tabs.nav-justified > li.bandeViolette > a:hover{
-  color: #6a387c;
+  color: #6a387c!important;
 }
 .nav-tabs.nav-justified > li.bandeRouge > a:active,.nav-tabs.nav-justified > li.bandeRouge > a:focus,.nav-tabs.nav-justified > li.bandeRouge > a:hover{
-  color:red;
+  color:red!important;
 }
 ul.nav.nav-pills.nav-stacked li a i {
   font-size: large;
@@ -9609,7 +9621,44 @@ i>.small {
 #creneau li,.telephones li{
   list-style: none}
 
+ul.nav.nav-tabs.nav-justified.admin li.bandeBleu a,
+ul.nav.nav-tabs.nav-justified.admin li.bandeVert2 a,
+ul.nav.nav-tabs.nav-justified.admin li.bandeHotpink a,
+ul.nav.nav-tabs.nav-justified.admin li.bandeJaune a,
+ul.nav.nav-tabs.nav-justified.admin  li.bandeViolette a,
+ul.nav.nav-tabs.nav-justified.admin  li.bandeCyan a,
+ul.nav.nav-tabs.nav-justified.fiche li.bandeRose a.rose,
+ul.nav.nav-tabs.nav-justified.fiche li.bandeBleu a.Bleu,
+ul.nav.nav-tabs.nav-justified.fiche li.bandeRouge a.Rouge,
+ul.nav.nav-tabs.nav-justified.fiche li.bandeHotpink a.Hotpink,
+ul.nav.nav-tabs.nav-justified.fiche li.bandeCyan a.Cyan,
+ul.nav.nav-tabs.nav-justified.fiche li.bandeJaune a.Jaune,
+ul.nav.nav-tabs.nav-justified.fiche li.bandeRose a.editRose,
+ul.nav.nav-tabs.nav-justified.fiche li.bandeBleu a.editBleu,
+ul.nav.nav-tabs.nav-justified.fiche li.bandeRouge a.editRouge,
+ul.nav.nav-tabs.nav-justified.fiche li.bandeHotpink a.editHotpink,
+ul.nav.nav-tabs.nav-justified.fiche li.bandeCyan a.editCyan,
+ul.nav.nav-tabs.nav-justified.fiche li.bandeJaune a.editJaune,
+
+.editBleu,.editVert2,.editHotpink,.editJaune,.editViolette,.editCyan,.editRose, li.bandeRose a.editRose.identitetoggle,.editRouge, li.bandeRouge a.editRouge.urgencetoggle
+ {
+ color: darkslategrey;}
+
+ ul.nav.nav-tabs.nav-justified.menu li.menu.fondRose:active, ul.nav.nav-tabs.nav-justified.menu li.menu.fondRose:hover
+ {
+ background-color: #fff;
+ }
+ ul.nav.nav-tabs.nav-justified.menu li.menu.fondRose a.navRose:active, ul.nav.nav-tabs.nav-justified.menu li.menu.fondRose a.navRose:hover,.editRose:hover,.editRose:active{
+ color:#ed1358;}
+ ul.nav.nav-tabs.nav-justified.menu li.bandeBleu.menu a.navBleu:active, ul.nav.nav-tabs.nav-justified.menu li.bandeBleu.menu a.navBleu:hover,.editBleu:hover,.editBleu:active{
+ color:cornflowerblue;}
+.nav-tabs.nav-justified > li.bandeRose > a:active, .nav-tabs.nav-justified > li.bandeRose > a:focus, .nav-tabs.nav-justified > li.bandeRose > a:hover{
+color:#ed1358!important;}
 /* ==------------------ Mise en page-----------------*/
+body{
+display: flex;
+flex-direction: column;
+align-items: center;}
 .row {
   align-items: end;
 }
@@ -9822,6 +9871,24 @@ padding-bottom: 0;}
 }
 html body main.py-4 div.container.groupe div.col-md-12 div.card div.card-body.section3 form table.table-responsive tbody tr{
 line-height: 3rem}
+#contenaireClapiers > p:nth-child(2) {
+ font-size: xx-small;
+
+}
+#contenaireClapiers {
+ display: flex;
+ flex-direction: column;
+ align-items: center;
+}
+.table-responsive > tbody:nth-child(2) > tr:nth-child(3) > td:nth-child(23) {
+ width: 70%;
+ display: flex;
+}
+ td.section3.payement div.paye{
+ text-align: center;
+ margin: 5px;
+}
+
 
 /* ==------------------ Formulaires -------------------------*/
 .form-control {
@@ -9943,8 +10010,20 @@ div.card-body:nth-child(4) {
 }
 html body main.py-4 div.row-inscription div.container form.form-horizontal.large{
 margin-bottom: 3rem;}
+html body nav.navbar.navbar-expand-md.navbar-expand-sm.navbar-light.navbar-laravel.navbar-fixed-top ul.nav.nav-tabs.nav-justified.menu li.bandeCyan.menu a.navCyan,
+html body main.py-4 div.container div.row.justify-content-center div.col-md-12 div.card.liste div ul.nav.nav-tabs.nav-justified.admin li.bandeCyan a.editCyan.payementtoggle,
+html body main.py-4 div.container div.row.justify-content-center div.col-12 div.card div ul.nav.nav-tabs.nav-justified.fiche li.bandeCyan a.editCyan{
+height: initial;}
 
 /* ==-----------------carte -------------------*/
+
+.card {
+  margin-top: 8rem;
+  margin-bottom: 3rem;
+  }
+ div.card-deck div.small.card.group{
+ margin-bottom: 3rem;
+ margin-top: 3rem;}
 .panel-info > .panel-heading, .card-header {
   color: #EF0452;
   background-color: silver;
@@ -10183,6 +10262,20 @@ html body nav.navbar.navbar-expand-md.navbar-light.navbar-laravel.navbar-fixed-t
     left: 31%;
     width: 19rem;
   }
+  html body nav.navbar.navbar-expand-md.navbar-light.navbar-laravel.navbar-fixed-top {
+   position:relative;
+  }
+
+
+  .navbar {
+    position: relative;
+    width: 100%;
+    background-color: ButtonText;
+  }
+  html body nav.navbar.navbar-expand-md.navbar-light.navbar-laravel.navbar-fixed-top{
+  position:relative;}
+  html body nav.navbar.navbar-expand-md.navbar-light.navbar-laravel.navbar-fixed-top {
+  position:relative;}
  }
 
 
@@ -10288,6 +10381,13 @@ display: table;}
  align-items: center;
 }
 
+a.dropdown-item:nth-child(1), a.dropdown-item:nth-child(2),a.dropdown-item:nth-child(3){
+ color: darkslategrey !important;
+}
+
+li.bandeViolette:nth-child(5) > a:nth-child(1),li.bandebleu:nth-child(5) > a:nth-child(1),li.bandeVert1:nth-child(5) > a:nth-child(1),li.bandeHotpink:nth-child(5) > a:nth-child(1),li.bandeCyan:nth-child(5) > a:nth-child(1) {
+ height: 8rem;
+}
 
 
 /*==-------------footer-------------*/
@@ -10296,6 +10396,7 @@ footer {
 	color: #C1C1C1 !important;
 	min-height: 8rem;
 	padding: 2rem 5rem;
+	width: 100%;
 }
  footer a{
 text-decoration: none!important;
@@ -10344,7 +10445,9 @@ body > footer:nth-child(3) {
 .card {
   box-shadow: 0px 1px 3px 0px rgba(0, 0, 0, 0.2), 0px 1px 1px 0px rgba(0, 0, 0, 0.14), 0px 2px 1px -1px rgba(0, 0, 0, 0.12);
 }
-
+html body main.py-4 div.container.groupe div.col-md-12 div.card
+  {
+  margin-bottom: 3rem;}
 nav.nav.flex-column{
   width: 100%}
 .navbar-expand-md {
@@ -10358,7 +10461,7 @@ nav.nav.flex-column{
 .dropdownInscriptions,.dropdownGestion,.dropdownAdministration {
   width: 100%;
 }
- a.identitetoggle:not(:hover),  li.active.bandeRose a:not(:hover),
+ a.identitetoggle:not(:hover),  li. .bandeRose a:not(:hover),
  a.entrainementtoggle:not(:hover), li.bandeBleu a:not(:hover),
  a.urgencetoggle:not(:hover),li.bandeRouge a:not(:hover),
  a.dossiertoggle:not(:hover), li.bandeHotpink a:not(:hover),
@@ -10370,12 +10473,14 @@ nav.nav.flex-column{
 }
 html body nav.navbar.navbar-expand-md.navbar-expand-sm.navbar-light.navbar-laravel.navbar-fixed-top a:not(:hover){
 color: gainsboro;}
- bandeBleue:hover>i.fas.fa-dumbbell.Bleu{
+ bandeBleu:hover>i.fas.fa-dumbbell.Bleu{
  color: cornflowerblue;}
 html body main.py-4 div.row-inscription div.container form.form-horizontal.large input.btn.btn-xlarge.btn-primary{
 margin-bottom: 3rem}
 /*==------------------------- Tables  ---------------------*/
-
+html body main.py-4 div.container div.row.justify-content-center div.col-md-12 div.card div.card-header.admin ul.nav.nav-tabs.nav-justified.admin li,
+html body main.py-4 div.container div.row.justify-content-center div.col-md-12 div.card div.card-header.admin ul.nav.nav-tabs.nav-justified.admin li> a{
+height:100%;}
 div.row:nth-child(5) > div:nth-child(1) > div:nth-child(1) > div:nth-child(2) > table:nth-child(1) > tbody:nth-child(2) > tr:nth-child(3) > td:nth-child(1) {
   width: 20rem;
 }
@@ -10442,7 +10547,8 @@ html body main.py-4 div.container.groupe div.col-md-12 div.card div.card-body ta
     width: 100%;
   }
 
-  @media (min-width: 992px) {
+
+    @media (min-width: 992px) {
     .container {
       max-width: 100%;
     }
@@ -10574,7 +10680,7 @@ div.card.cardPilates div.card-body.cardPilates{
    border-left: white solid 2px;
    border-top: white solid 0.5px;
    border-bottom: white solid 2px;
-  color: #4e555b !important;
+  color: #202326 !important;
   font-size: large;
   line-height: 2;
 }
@@ -10638,7 +10744,7 @@ div.card.cardBaby div.card-body.cardBaby{
    border-left: hotpink solid 2px;
    border-top: hotpink solid 1px;
    border-bottom: hotpink solid 2px;
-  color: #4e555b !important;
+  color: #292f35 !important;
   font-size: large;
   line-height: 2;
 }
@@ -10833,7 +10939,7 @@ div.card.cardAdulte div.card-body.cardAdulte{
    border-left: #6a387c solid 2px;
    border-top: #6a387c solid 1px;
    border-bottom: #6a387c solid 2px;
-  color: #4e555b !important;
+  color: #ddd1e7 !important;
   font-size: large;
   line-height: 2;
 }
@@ -10861,7 +10967,7 @@ div.card.cardAdulte div.card-body.cardAdulte{
  div.row.justify-content-center a button.btn-outline-Adulte{
 font-size: large !important;}
 .Accueil{
-    background-image: url(../images/accueil.jpg);
+    background-image: url(../images/Accueil.jpg);
     background-attachment: fixed;
     background-position: top;
     background-size:cover ;
@@ -10870,14 +10976,16 @@ font-size: large !important;}
 .row.row-Accueil{
   margin:0;
   }
-.row.row-Accueil1{
+.row.row-Accueil1 {
 background-image: url("../images/G.png");
-  background-size:cover;
-   height: 500px;
+  background-size:contain;
+   height:579px;
    width: 100%;
    display: flex;
    align-items: center;
-   margin:0;
+   margin-top:5rem;
+margin-left: 0;
+margin-right: 0;
    }
 
 @media max-width(800px) {
@@ -10907,31 +11015,32 @@ div.card.cardAccueil1 div.card-body.cardAccueil1{
    border-left: white solid 2px;
    border-top: white solid 1px;
    border-bottom: white solid 2px;
-  color: #80878d !important;
+  color: #403345 !important;
   font-size: large;
   line-height: 2;
 }
 .row.row-Accueil2{
-background-image: url("../images/A.png");
-  background-size:cover;
-     height: 500px;
-     width: 100%;
-     display: flex;
-     align-items: center;
-     margin:0;
-   }
+  background-image: url("../images/A.png");
+  background-size:contain;
+   height:579px;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  margin-left: 0;
+  margin-right: 0;
+  }
 
 @media max-width(800px) {
   div.card.cardAccueil {
     margin-top: 7rem;
+    }
   }
-}
 div.card.cardAccueil2{
-background-color: transparent;
+  background-color: transparent;
   overflow-y:scroll;
   height: 300px;}
 
- div.card.cardAccueil2 div.card-header.cardAccueil2{
+div.card.cardAccueil2 div.card-header.cardAccueil2{
   border-radius: calc(.25rem - 1px) calc(.25rem - 1px) 0 0;
   background-color: rgba(0,0,0,0.5);
   border-right: white solid 2px;
@@ -10940,29 +11049,32 @@ background-color: transparent;
   border-bottom: white solid 1px;
   color: white;
   font-size: x-large;
-}
- div.card.cardAccueil2 div.card-body.cardAccueil2{
+  }
+div.card.cardAccueil2 div.card-body.cardAccueil2{
   border-radius: calc(.25rem - 1px) calc(.25rem - 1px) 0 0;
-   background-color: rgba(0,0,0,0.5);
-   border-right: white solid 2px;
-   border-left: white solid 2px;
-   border-top: white solid 1px;
-   border-bottom: white solid 2px;
+  background-color: rgba(0,0,0,0.5);
+  border-right: white solid 2px;
+  border-left: white solid 2px;
+  border-top: white solid 1px;
+  border-bottom: white solid 2px;
   color: #80878d !important;
   font-size: large;
   line-height: 2;
-}
+  }
 .row.row-Accueil3{
-background-image: url("../images/C.png");
-  background-size:cover;
-     height: 500px;
-     width: 100%;
-     display: flex;
-     align-items: flex-start;
-     justify-content: center;
-     margin:0;
+  background-image: url("../images/C.png");
+  background-size:contain;
+    height:579px;
+  width: 100%;
+  display: flex;
+  align-items: center;
+ display: flex;
+ align-items: baseline;
+ justify-content: center;
+  margin-left: 0;
+  margin-right: 0;
+  }
 
-   }
 .btn-outline-accueil {
   color: white;
   background-color: transparent;
@@ -11161,6 +11273,7 @@ x-small.help-block {
   animation: spin 1s ease-in-out infinite;
   -webkit-animation: spin 1s ease-in-out infinite;
 }
+
 
 @keyframes spin {
   to {

@@ -9,25 +9,25 @@
             Edition:<br/>
             <p>Vous pouvez choisir comment éditer les gymnastes en sélectionnant un des onglets ci-dessous</p>
             <ul class="nav nav-tabs nav-justified admin">
-              <li class="active bandeBleu"><a data-toggle="tab" href="#tous"> <i class="fas fa-globe-europe Bleu"></i><br/>
+              <li class="bandeBleu"><a data-toggle="tab" class="editBleu" href="#tous"> <i class="fas fa-globe-europe Bleu"></i><br/>
                   Tous les gymnastes</a></li>
-              <li class="bandeVert2 "><a data-toggle="tab" href="#un"><i class="fas fa-user-alt Vert2"></i><br/>
+              <li class="bandeVert2 "><a data-toggle="tab"class="editVert2" href="#un"><i class="fas fa-user-alt Vert2"></i><br/>
                   Un gymnaste</a></li>
-              <li class="bandeHotpink"><a data-toggle="tab" href="#groupe"><i class="fas fa-user-friends Hotpink"></i></i><br/>
+              <li class="bandeHotpink"><a data-toggle="tab" class="editHotpink" href="#groupe"><i class="fas fa-user-friends Hotpink"></i><br/>
                   Un groupe</a></li>
-              <li class="bandeJaune"><a data-toggle="tab" href="#section"><i
+              <li class="bandeJaune"><a data-toggle="tab" class="editJaune"  href="#section"><i
                     class="fas fa-users Jaune"></i><br/>
                   Une section</a></li>
-              <li class="bandeViolette"><a data-toggle="tab" href="#entraineur"> <i
+              <li class="bandeViolette"><a data-toggle="tab" class="editViolette" href="#entraineur"> <i
                     class="fas fa-dumbbell Violette"></i><br/>
                   Suivant l'entraineur</a></li>
-              <li class="bandeCyan"><a data-toggle="tab" href="#creneau"> <i class="fas fa-user-clock Cyan"></i><br/>
+              <li class="bandeCyan"><a data-toggle="tab" class="editCyan" href="#creneau"> <i class="fas fa-user-clock Cyan"></i><br/>
                   Suivant le creneau</a></li>
             </ul>
           </div>
           <div class="card-body">
             <div class="tab-content">
-              <div id="tous" class="tab-pane active">
+              <div id="tous" class="tab-pane">
                 <div class="row ">
                   <div class="col-10">
                     <h4 class="fonce"> Tous les gymnastes</h4>
@@ -43,7 +43,7 @@
                   </a>
                 </div>
               </div>
-              <div id="un" class="tab-pane fade ">
+              <div id="un" class="tab-pane ">
                 <form action='{{route("adherent.edit")}}' method="get">
                   {!!csrf_field ()  !!}
                   {{method_field ("get")}}
@@ -71,7 +71,7 @@
                   </div>
                 </form>
               </div>
-              <div id="groupe" class="tab-pane fade ">
+              <div id="groupe" class="tab-pane   ">
                 <form action='./ByGroup' method="post">
                   {!!csrf_field () !!}
                   <div class="row ">
@@ -99,7 +99,7 @@
                   </div>
                 </form>
               </div>
-              <div id="section" class="tab-pane fade">
+              <div id="section" class="tab-pane  ">
                 <form action='./BySection' method="post">
                   {!!csrf_field () !!}
                   <div class="row ">
@@ -127,7 +127,7 @@
                   </div>
                 </form>
               </div>
-              <div id="entraineur" class=" tab-pane fade  ">
+              <div id="entraineur" class=" tab-pane    ">
                 <form action='./ByEntraineur' method="post">
                   {!!csrf_field () !!}
                   <div class="row ">
@@ -155,7 +155,7 @@
                   </div>
                 </form>
               </div>
-              <div id="creneau" class=" tab-pane fade  ">
+              <div id="creneau" class=" tab-pane    ">
                 <form action='./ByCreneau' method="post">
                   {!!csrf_field () !!}
                   <div class="row ">
@@ -203,3 +203,8 @@
   </div>
 
 @endsection
+
+{{--  <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>--}}
+{{--  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.0/umd/popper.min.js"></script>--}}
+{{--  <script src="js/bootstrap.min.js"></script>--}}
+

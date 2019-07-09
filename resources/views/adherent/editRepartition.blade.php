@@ -121,16 +121,13 @@
             groupe:[],
           },
           methods: {
-
             deleteCreneaux: function (adherent,creneau) {
               adherent.creneau=false;
-
               $.ajaxSetup({
                 headers: {
                   'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
                 }
               });
-
               $.ajax({
                 type: "POST",
                 url: "{{route('adherent.updateRepartition')}}",
@@ -143,7 +140,6 @@
             },
             deleteGroupe:function(adherent){
               adherent.groupe=null;
-
               $.ajaxSetup({
                 headers: {
                   'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
@@ -162,7 +158,6 @@
               })
             },
             changeGroupe:function(adherent){
-
               $.ajaxSetup({
                 headers: {
                   'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
@@ -200,13 +195,11 @@
               console.log(phrase);
                 adherent.creneaux.push(phrase);
                 creneau[adherent.id]="";
-
               }).fail(function(error){
                 alert("Désolé nous ne pouvons pas enregistrer l'information pour le moment");
                 console.log(error);
               })
             },
-
           }})
       </script>
 

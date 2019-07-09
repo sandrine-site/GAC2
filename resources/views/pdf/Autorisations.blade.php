@@ -4,13 +4,11 @@
 <head>
   <meta charset="utf-8">
 <style>
-  @page {
-    margin: 50px;
-    }
+
 </style>
 </head>
 <body>
-  <header><img src="images\logo.png"style="width: 200px;"></header>
+  <header><img src="{{asset('/public/images/logo.png')}}"style="width: 200px;"></header>
   <main>
 
     <article>
@@ -46,13 +44,13 @@
         Vous déclarez:
         <div class="left">
           @if ($adherentData["sortie"]==1)
-            <ul style="list-style-image:url({{asset('/images/coche.png')}})">
-            <li style="list-style-image:url({{asset('/images/coche.png')}})"> Autorise mon fils ou ma fille {{$adherentData['nom']}} {{$adherentData['prenom']}} à quitter seul(e) le lieu d'entraînement ou de compétition et cela sous ma responsabilité.</li>
+            <ul style="list-style-image:url({{asset('/public/images/coche.png')}})">
+            <li style="list-style-image:url({{asset('/public/images/coche.png')}})"> Autorise mon fils ou ma fille {{$adherentData['nom']}} {{$adherentData['prenom']}} à quitter seul(e) le lieu d'entraînement ou de compétition et cela sous ma responsabilité.</li>
             <div class="xx-small" style="font-size: xx-small">N' autorise pas mon fils ou ma fille .................................... à quitter seul(e) le lieu d'entraînement ou de compétition et cela sous ma responsabilité.</div>
             </ul>
           @else
-            <ul style="list-style-image:url({{asset('/images/coche.png')}})">
-              <li style="list-style-image:url({{asset('/images/coche.png')}})">N' autorise pas mon fils ou ma fille {{$adherentData['nom']}} {{$adherentData['prenom']}} à quitter seul(e) le lieu d'entraînement ou de compétition</li>
+            <ul style="list-style-image:url({{asset('/public/images/coche.png')}})">
+              <li style="list-style-image:url({{asset('/public/images/coche.png')}})">N' autorise pas mon fils ou ma fille {{$adherentData['nom']}} {{$adherentData['prenom']}} à quitter seul(e) le lieu d'entraînement ou de compétition</li>
             <div class="xx_small" style="font-size: xx-small">Autorise mon fils ou ma fille.................................... à quitter seul(e) le lieu d'entraînement ou de compétition et cela sous ma responsabilité.</div>
 )____       </ul>
           @endif
@@ -76,26 +74,26 @@
             de l'enfant  {{$adherentData['nom']}} {{$adherentData['prenom']}}
             vous déclarez:
             @if ($adherentData["media"]==1)
-              <ul style="list-style-image:url({{asset('/images/coche.png')}})">
-                         <li style="list-style-image:url({{asset('/images/coche.png')}})">Autoriser l'association G.A.C. à utiliser sans contrepartie  la photo de mon enfant prise dans le cadre des activités de l'association G.A.C.</li>
+              <ul style="list-style-image:url({{asset('/public/images/coche.png')}})">
+                         <li style="list-style-image:url({{asset('/public/images/coche.png')}})">Autoriser l'association G.A.C. à utiliser sans contrepartie  la photo de mon enfant prise dans le cadre des activités de l'association G.A.C.</li>
               <div class="xx-small" style="font-size: xx-small">Ne pas autoriser l'association G.A.C. à utiliser sans contrepartie  la photo de mon enfant prise dans le cadre des activités de l'association G.A.C.</div>
               </ul>
             @else
-              <ul style="list-style-image:url({{asset('/images/coche.png')}})">
-             <li style="list-style-image:url({{asset('/images/coche.png')}})">Ne pas autoriser l'association G.A.C. à utiliser sans contrepartie la photo de mon enfant prise dans le cadre des activités de l'association G.A.C.</li>
+              <ul style="list-style-image:url({{asset('/public/images/coche.png')}})">
+             <li style="list-style-image:url({{asset('/public/images/coche.png')}})">Ne pas autoriser l'association G.A.C. à utiliser sans contrepartie la photo de mon enfant prise dans le cadre des activités de l'association G.A.C.</li>
               <div class="xx_small" style="font-size: xx-small">Autoriser l'association G.A.C. à utiliser sans contrepartie la photo de mon enfant prise dans le cadre des activités de l'association G.A.C.</div>
                 @endif
                 @else
                   Je, soussigné  {{$adherentData['nom']}} {{$adherentData['prenom']}}
                   declare:
                   @if ($adherentData["media"]==1)
-                    <ul style="list-style-image:url({{asset('/images/coche.png')}})">>
-                 <li style="list-style-image:url({{asset('/images/coche.png')}})"> Autoriser l'association G.A.C. à utiliser sans contrepartie ma photo prise dans le cadre des activités de l'association G.A.C.</li>
+                    <ul style="list-style-image:url({{asset('/public/images/coche.png')}})">>
+                 <li style="list-style-image:url({{asset('/public/images/coche.png')}})"> Autoriser l'association G.A.C. à utiliser sans contrepartie ma photo prise dans le cadre des activités de l'association G.A.C.</li>
                 <div class="xx-small" style="font-size: xx-small">Ne pas autoriser l'association G.A.C. à utiliser sans contrepartie ma photo  prise dans le cadre des activités de l'association G.A.C.</div>
                     </ul>
                   @else
-                    <ul style="list-style-image:url({{asset('/images/coche.png')}})">>
-                 <li style="list-style-image:url({{asset('/images/coche.png')}})">Ne pas autoriser l'association G.A.C. à utiliser sans contrepartie ma photo prise dans le cadre des activités de l'association G.A.C.</li>
+                    <ul style="list-style-image:url({{asset('/public/images/coche.png')}})">>
+                 <li style="list-style-image:url({{asset('/public/images/coche.png')}})">Ne pas autoriser l'association G.A.C. à utiliser sans contrepartie ma photo prise dans le cadre des activités de l'association G.A.C.</li>
                 <div class="xx_small" style="font-size: xx-small">Autoriser l'association G.A.C. à utiliser sans contrepartie ma photo  prise dans le cadre des activités de l'association G.A.C.</div>
                      </ul>
                   @endif
@@ -131,24 +129,24 @@
             de l'enfant  {{$adherentData['nom']}} {{$adherentData['prenom']}}
             vous déclarez:
             @if ($adherentData["urgence"]==1)
-              <ul style="list-style-image:url({{asset('/images/coche.png')}})">
-                <li style="list-style-image:url({{asset('/images/coche.png')}})">  Habilite et autorise les animateurs à la mise en oeuvre en cas d'urgence, des traitements, hospitalisation et intervention reconnus médicalement nécessaires auprès de mon enfant.</li>>
+              <ul style="list-style-image:url({{asset('/public/images/coche.png')}})">
+                <li style="list-style-image:url({{asset('/public/images/coche.png')}})">  Habilite et autorise les animateurs à la mise en oeuvre en cas d'urgence, des traitements, hospitalisation et intervention reconnus médicalement nécessaires auprès de mon enfant.</li>>
               </ul>
             @else
-              <ul style="list-style-image:url({{asset('/images/coche.png')}})">
-                  <li style="list-style-image:url({{asset('/images/coche.png')}})"> N'habilite pas et n'autorise pas les animateurs à la mise en oeuvre en cas d'urgence, des traitements, hospitalisation et intervention reconnus médicalement nécessaires auprès de mon enfant .</li>
+              <ul style="list-style-image:url({{asset('/public/images/coche.png')}})">
+                  <li style="list-style-image:url({{asset('/public/images/coche.png')}})"> N'habilite pas et n'autorise pas les animateurs à la mise en oeuvre en cas d'urgence, des traitements, hospitalisation et intervention reconnus médicalement nécessaires auprès de mon enfant .</li>
               </ul>
             @endif
             @else
             Je, soussigné  {{$adherentData['nom']}} {{$adherentData['prenom']}}
             declare:
               @if ($adherentData["urgence"]==1)
-                <ul style="list-style-image:url({{asset('/images/coche.png')}})">
-                <li style="list-style-image:url({{asset('/images/coche.png')}})">   Habilite et autorise les animateurs à la mise en oeuvre en cas d'urgence, des traitements, hospitalisation et intervention qui me sont reconnus médicalement nécessaires.</li>
+                <ul style="list-style-image:url({{asset('/public/images/coche.png')}})">
+                <li style="list-style-image:url({{asset('/public/images/coche.png')}})">   Habilite et autorise les animateurs à la mise en oeuvre en cas d'urgence, des traitements, hospitalisation et intervention qui me sont reconnus médicalement nécessaires.</li>
                   </ul>
               @else
-                <ul style="list-style-image:url({{asset('/images/coche.png')}})">
-                                <li style="list-style-image:url({{asset('/images/coche.png')}})"> N'habilite pas et n'autorise pas les animateurs à la mise en oeuvre en cas d'urgence, des traitements, hospitalisation et intervention qui me sont reconnus médicalement nécessaires  .</li>
+                <ul style="list-style-image:url({{asset('/public/images/coche.png')}})">
+                                <li style="list-style-image:url({{asset('/public/images/coche.png')}})"> N'habilite pas et n'autorise pas les animateurs à la mise en oeuvre en cas d'urgence, des traitements, hospitalisation et intervention qui me sont reconnus médicalement nécessaires  .</li>
                 </ul>
               @endif
             @endif
@@ -175,12 +173,12 @@
           de l'enfant  {{$adherentData['nom']}} {{$adherentData['prenom']}}
           vous déclarez:
           @if ($adherentData["deplacements"]==1)
-            <ul style="list-style-image:url({{asset('/images/coche.png')}})">
-                            <li style="list-style-image:url({{asset('/images/coche.png')}})">  Habilite et autorise Les animateurs et les officiels à transporter mon enfant lors des déplacements durant les divers événements de la saison. </li>
+            <ul style="list-style-image:url({{asset('/public/images/coche.png')}})">
+                            <li style="list-style-image:url({{asset('/public/images/coche.png')}})">  Habilite et autorise Les animateurs et les officiels à transporter mon enfant lors des déplacements durant les divers événements de la saison. </li>
             </ul>
           @else
-            <ul style="list-style-image:url({{asset('/images/coche.png')}})">
-                                                <li style="list-style-image:url({{asset('/images/coche.png')}})">N'habilite pas et n'autorise pas Les animateurs et les officiels à transporter mon enfant lors des déplacements durant les divers événements de la saison. </li>
+            <ul style="list-style-image:url({{asset('/public/images/coche.png')}})">
+                                                <li style="list-style-image:url({{asset('/public/images/coche.png')}})">N'habilite pas et n'autorise pas Les animateurs et les officiels à transporter mon enfant lors des déplacements durant les divers événements de la saison. </li>
 
                                 </ul>
           @endif

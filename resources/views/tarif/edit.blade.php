@@ -50,7 +50,7 @@
                             @endif
                           @endif
                           <option value=0>Pas de limite</option>
-                          @for($i=2024;$i>1936;$i=$i-1)
+                          @for($i=getdate ()[ 'year' ]-2;$i>1936;$i=$i-1)
                             <option value="{{$i}}">{{$i}}</option>
                           @endfor
                         </select>
@@ -66,7 +66,7 @@
                           @else
                             <option value=0>Pas de limite</option>
                           @endif
-                          @for($i=2024;$i>1936;$i=$i-1)
+                          @for($i=getdate ()[ 'year' ]-2;$i>1936;$i=$i-1)
                             <option value="{{$i}}">{{$i}}</option>
                           @endfor
                         </select>

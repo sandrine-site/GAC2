@@ -12,11 +12,11 @@
             <span class="card-header section{{$n}}">Liste des gymnastes de la section {{$section->nom}}</span>
           @endif
           <ul class="nav nav-tabs nav-justified fiche ">
-            <li class="active bandeRose"><a data-toggle="tab" href="#" class="identitetoggle"><i
+            <li class="active bandeRose"><a data-toggle="tab" href="#" class="editRose identitetoggle"><i
                   class="fas fa-id-card rose"></i><br/>Identités</a></li>
-            <li class="bandeBleu"><a data-toggle="tab" href="#" class="entrainementtoggle"><i
+            <li class="bandeBleu"><a data-toggle="tab" href="#" class="editBleu entrainementtoggle"><i
                   class="fas fa-dumbbell Bleu"></i><br/>Entrainements</a></li>
-            <li class="bandeRouge"><a data-toggle="tab" href="#" class="urgencetoggle"><i
+            <li class="bandeRouge"><a data-toggle="tab" href="#" class="editRouge urgencetoggle"><i
                   class="fas fa-briefcase-medical Rouge"></i><br/> En cas d'urgence</a></li>
           </ul>
           <div class="card-body section{{$n}}">

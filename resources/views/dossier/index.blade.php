@@ -100,9 +100,9 @@
                 checkAll: function (adherent) {
                   adherent.isCheckAll = !adherent.isCheckAll;
                   if (adherent.isCheckAll) {
-                    adherent.photo = true;
-                    adherent.autorisationsRendues = true;
-                    adherent.CertifMedical = true;
+                    adherent.photo = 1;
+                    adherent.autorisationsRendues = 1;
+                    adherent.CertifMedical = 1;
                   }
                   $.ajaxSetup({
                     headers: {

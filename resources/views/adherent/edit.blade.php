@@ -9,14 +9,14 @@
           <div>
             <ul class="nav nav-tabs nav-justified fiche ">
             @auth
-                <li class="active bandeRose"><a data-toggle="tab" href="#identite"><i class="fas fa-id-card rose"></i><br/>Identité</a></li>
-                <li class="bandeBleu"><a data-toggle="tab" href="#entrainement"><i class="fas fa-dumbbell Bleu"></i><br/>Entrainement</a></li>
-                <li class="bandeRouge"><a data-toggle="tab" href="#urgence"><i class="fas fa-briefcase-medical Rouge"></i><br/> En cas d'urgence</a></li>
+                <li class="bandeRose"><a data-toggle="tab" class="editRose" href="#identite"><i class="fas fa-id-card rose"></i><br/>Identité</a></li>
+                <li class="bandeBleu"><a data-toggle="tab" class="editBleu"href="#entrainement"><i class="fas fa-dumbbell Bleu"></i><br/>Entrainement</a></li>
+                <li class="bandeRouge"><a data-toggle="tab" class="editRouge" href="#urgence"><i class="fas fa-briefcase-medical Rouge"></i><br/> En cas d'urgence</a></li>
                 @if (Auth::user()->fonction_id==1|Auth::user()->fonction_id==2|Auth::user()->fonction_id==3)
-                  <li class="bandeHotpink"><a data-toggle="tab" href="#inscription"><i class="fas fa-copy Hotpink"></i><br/> Dossier d'inscription</a></li>
-                  <li class="bandeCyan"><a data-toggle="tab" href="#payement"><i class="fas fa-money-bill-wave Cyan"></i><br/> Payement</a></li>
+                  <li class="bandeHotpink"><a data-toggle="tab" class="editHotpink" href="#inscription"><i class="fas fa-copy Hotpink"></i><br/> Dossier d'inscription</a></li>
+                  <li class="bandeCyan"><a data-toggle="tab" class="editCyan" href="#payement"><i class="fas fa-money-bill-wave Cyan"></i><br/> Payement</a></li>
                   @if (Auth::user()->fonction_id==1|Auth::user()->fonction_id==2)
-                    <li class="bandeJaune"><a data-toggle="tab" href="#autres"><i class="fas fa-highlighter Jaune"></i><br/> Autres remarques</a></li>
+                    <li class="bandeJaune"><a data-toggle="tab" class="editJaune" href="#autres"><i class="fas fa-highlighter Jaune"></i><br/> Autres remarques</a></li>
                   @endif
                 @endif
               @endauth
@@ -25,7 +25,7 @@
 
           <div class="card-body section5">
             <div class="tab-content">
-              <div id="identite" class="tab-pane fade-in active">
+              <div id="identite" class="tab-pane">
                 <form action='{{route('adherent.update',$adherent->id)}}' method="post">
                   {!!csrf_field ()  !!}
                   {{method_field ("put")}}
@@ -111,7 +111,7 @@
                 </form>
               </div>
 
-              <div id="entrainement" class="tab-pane fade">
+              <div id="entrainement" class="tab-pane  ">
                 <form action='{{route('adherent.update',$adherent->id)}}' method="post">
                   {!!csrf_field ()  !!}
                   {{method_field ("put")}}
@@ -277,7 +277,7 @@
                   @endforeach
                 </div>
               </div>
-              <div id="urgence" class="tab-pane fade">
+              <div id="urgence" class="tab-pane  ">
                 <form action='{{route('adherent.update',$adherent->id)}}' method="post">
                   {!!csrf_field ()  !!}
                   {{method_field ("put")}}
@@ -354,7 +354,7 @@
                 </div>
               </div>
 
-              <div id="inscription" class="tab-pane fade">
+              <div id="inscription" class="tab-pane  ">
                 <div class="row">
                   <div class="col-6">
                     <h4 class="rose">Dossier d'inscription</h4>
@@ -464,15 +464,11 @@
                         <i class="fas fa-frown"></i>
                       @endif
 
-
-                      <div class="bouton">
-                        <a><button class="btn btn-bleu2"> Imprimer le dossier d'inscription</button></a>
-                      </div>
                       </div>
                     </div>
                   </div>
                 </div>
-                <div id="payement" class="tab-pane fade">
+                <div id="payement" class="tab-pane  ">
                 <div class="row start">
                   <div class="col-10">
                     <h4 class="rose">Detail des payements</h4>
@@ -688,7 +684,7 @@
                   </div>
                 </div>
 
-              <div id="autres" class="tab-pane fade">
+              <div id="autres" class="tab-pane">
                 <form action='{{route('adherent.update',$adherent->id)}}' method="post">
                   {!!csrf_field ()  !!}
                   {{method_field ("put")}}

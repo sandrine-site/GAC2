@@ -25,58 +25,64 @@ class TarifController extends Controller
       return view ('tarif.edit',compact('tarifs','sections'));
     }
   /**
-      * Store a newly created resource in storage.
-      *
-      * @param  \Illuminate\Http\Request  $request
-      * @return \Illuminate\Http\Response
-      */
-     public function calcul()
-     {
-       $tarifs=Tarif::all();
-       $sections=Section::all();
+   * Store a newly created resource in storage.
+   *
+   * @param  \Illuminate\Http\Request  $request
+   * @return \Illuminate\Http\Response
+   */
+  public function calcul()
+  {
+    $tarifs=Tarif::all();
+    $sections=Section::all();
 
-       if ($_POST!=[] ) {
+    if ($_POST!=[] )
+    {
+    foreach ($tarifs->where('id',1) as $tarif)
+    $tarifAdhesion=$tarif->prix;
+    if ( $_POST['section_id']==3){
+          $tarif2s=$tarifs->whereBetween('id',[2, 4]);
+          $tarifmini=$tarif2s->where('anneeMini','<',  $_POST['annee']);
+          foreach ($tarifmini->where('anneeMax','>=',  $_POST['annee']) as $tarif) {
+            $tarifLicence = $tarif->prix;
 
-         foreach ($tarifs->where('libele', 'Adhesion GAC') as $tarif) {
-           $tarifAdhesion = $tarif->prix;
-         }
-         if ($_POST['section_id']==3){
-
-           $tarifmini=$tarifs->where('anneeMini','<',$_POST['annee']);
-
-         foreach ($tarifmini->where('anneeMax','>=',$_POST['annee']) as $tarif) {
-                      $tarifLicence = $tarif->prix;
-                    }
+            if ($tarifs->where('temps', $_POST["heureSemaine"])!='[]'){
+              foreach ($tarifs->where('temps',  $_POST["heureSemaine"]) as $tarif) {
+                $tarifCours = $tarif->prix;
+              }
             }
-         else{
-         $tarifLicence="0";
-         }
-         if ($_POST['section_id'] == 1) {
-           foreach ($tarifs->where('section_id', 1) as $tarif) {
-             $tarifCours = $tarif->prix;
-           }
-         } else {
-         if ($tarifs->where('temps', $_POST["heureSemaine"])!='[]'){
-           foreach ($tarifs->where('temps', $_POST["heureSemaine"]) as $tarif) {
-             $tarifCours = $tarif->prix;
-           }
-           }
-           else{
-           $tarifCours=0;
-           }
-         }
-         $tempsEcrit=$_POST['heureSemaine'];
-         $sectionEcrit=Section::find($_POST['section_id'])->nom;
-         return view ('tarif.calcul',compact('tarifs','sections','tarifCours', 'tarifAdhesion','tarifLicence','tempsEcrit','sectionEcrit'));}
-       return view ('tarif.calcul',compact('tarifs','sections'));
-     }
+            else{
+              $tarifCours=0;
+            }
+          }
+        }
+        elseif ( $_POST['section_id'] == 1) {
+          $tarifLicence=0;
+          foreach ($tarifs->where('section_id', 1) as $tarif) {
+            $tarifCours = $tarif->prix;
+          }}
+        else{
+          $tarifLicence=0;
+          if ($tarifs->where('temps', $_POST["heureSemaine"])!='[]'){
+            foreach ($tarifs->where('temps',  $_POST["heureSemaine"]) as $tarif) {
+              $tarifCours = $tarif->prix;
+            }
+          }
+          else{
+            $tarifCours=0;
+          }
+        }
+      $tempsEcrit=$_POST['heureSemaine'];
+      $sectionEcrit=Section::find($_POST['section_id'])->nom;
+      return view ('tarif.calcul',compact('tarifs','sections','tarifCours', 'tarifAdhesion','tarifLicence','tempsEcrit','sectionEcrit'));}
+    return view ('tarif.calcul',compact('tarifs','sections'));
+  }
 
 
 
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param  \Illuminate\Http\Request   $_POST
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)

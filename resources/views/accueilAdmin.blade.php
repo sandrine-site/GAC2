@@ -84,12 +84,12 @@
                   @endif
               </nav>
               @endauth
-            </div><?php $n=0?>
+            </div>
+            <?php $n=0?>
             <div class="col-lg-10 col-md-9 col-sm-8">
               @foreach($sections as $section)
                 <h4 class="fonce">{{$section->nom}} :</h4>
                 <div class="partie">
-
                 @foreach($section->groupes as $groupe)
                     <?php $n++?>
                     @isset($groupe->adherents)

@@ -5,7 +5,7 @@
   </head>
   <body>
 
-  {{strip_tags($content)}}
+  {{$content}}
     <ul>
 
     </ul>

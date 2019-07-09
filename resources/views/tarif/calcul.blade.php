@@ -23,7 +23,7 @@
                   type="number"
                   name="annee"
                   id="annee"
-                  selected="2010">
+                  >
                   @for($i=getdate ()[ 'year' ]-2;$i>1990;$i=$i-1)
                     <option value="{{$i}}">{{$i}}</option>
                   @endfor
@@ -98,27 +98,22 @@
 
                 </tbody>
               </table>
-              <button class="btn btn-primary"> <a  href="{{ route('adherent.create') }}"></a> Inscription</button>
-            </div>
+
           @else
             <div class="card-header section6">
               Nous ne pouvons calculer le tarif veuillez vous rapprocher de votre entraineur
             </div>
           @endif
+          <div class="row" >
+          <div class="col-1">
+              <a type="button"  class="btn btn-primary" href="{{ route('adherent.create')}}"> Inscription</a>
+            </div>
+             </div></div>
         </div>
       @endisset
 
 
     </div>
-    <div class="offset-4  col-4 back">
-            <a href="javascript:history.back()" class="btn-back ">
-              <span class="glyphicon glyphicon-circle-arrow-left"></span> Retour
-            </a>
-            <a href="{{route('home')}}"
-               class="btn-home "
-            >Accueil administration
-              <i class="fas fa-home"></i>
-            </a>
-          </div>
+
   </div>
 @endsection

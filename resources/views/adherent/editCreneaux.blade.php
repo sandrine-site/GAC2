@@ -7,11 +7,11 @@
           <div class="card-header section7">
             Liste des gymnastes s'entrainant le {{$creneau->jour->jour}} à {{$creneau->heure_debut}} h  {{$creneau->min_debut}} pendant {{$creneau->duree}} au {{App\Lieu::find($creneau->lieu_id)->nom}}</span>
             <ul class="nav nav-tabs nav-justified fiche ">
-              <li class="active bandeRose"><a data-toggle="tab" href="#" class="identitetoggle"><i
+              <li class="active bandeRose"><a data-toggle="tab" href="#" class="editRose identitetoggle"><i
                     class="fas fa-id-card rose"></i><br/>Identités</a></li>
-              <li class="bandeBleu"><a data-toggle="tab" href="#" class="entrainementtoggle"><i
+              <li class="bandeBleu"><a data-toggle="tab" href="#" class="editBleu entrainementtoggle"><i
                     class="fas fa-dumbbell Bleu"></i><br/>Entrainements</a></li>
-              <li class="bandeRouge"><a data-toggle="tab" href="#" class="urgencetoggle"><i
+              <li class="bandeRouge"><a data-toggle="tab" href="#" class="editRouge urgencetoggle"><i
                     class="fas fa-briefcase-medical Rouge"></i><br/> En cas d'urgence</a></li>
             </ul>
           </div>

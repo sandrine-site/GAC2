@@ -22,7 +22,7 @@
                                     <small class="help-block">{{$errors->first('nom',':message') }}</small>  @endif
                             </div>
                             <div class="col-sm-6">
-                                <label for="prenom">Prenom : <em>obligatoire</em></label> <br/>
+                                <label for="prenom">Prénom : <em>obligatoire</em></label> <br/>
                                 <input type="text" name="prenom" id="prenom" class="form-control"
                                        value="{{old("prenom","")}}"/>
                                 @if ($errors->has('prenom'))
@@ -398,23 +398,23 @@
           Si vous ne recevez pas d'email dans les 30 min, veuillez nous écrire à l'adresse :
           gacgym@hotmail.fr</p> </div>
 
-        <input type="submit" value="Envoyer" id="envoyer" class='btn btn-primary' data-toggle="modal" data-target="#loadingPDF"/>
+        <input type="submit" value="Envoyer" id="Envoyer" class='btn btn-primary' data-toggle="modal" data-target="#loadingPDF"/>
                   </form>
     </div>
   </div>
 
-      <!-- Modal -->
-      <div class="modal fade" id="loadingPDF" tabindex="-1" role="dialog" aria-labelledby="loadingPDFLabel"aria-hidden="true">
-        <div class="modal-dialog " role="document">
-          <div class="modal-content">
-            <div class="modal-body text-center">
-              <div class="loader"></div>
-              <div clas="loader-txt">
-                <p>Le dossier d'inscription est un peu long à se générer, veuillez attendre avant de fermer cette fenêtre</p>
-       </div>
-            </div>
+  <!-- Modal -->
+  <div class="modal fade" id="loadingPDF" tabindex="-1" role="dialog" aria-labelledby="loadingPDFLabel"aria-hidden="true">
+    <div class="modal-dialog " role="document">
+      <div class="modal-content">
+        <div class="modal-body text-center">
+          <div class="loader"></div>
+          <div clas="loader-txt">
+            <p>Nous générons votre dossier d'inscription, veuillez attendre avant de fermer cette fenêtre</p>
           </div>
         </div>
       </div>
+    </div>
+  </div>
 
 @endsection

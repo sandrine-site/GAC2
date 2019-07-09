@@ -6,10 +6,10 @@ return [
   "host" => "smtp.mailtrap.io",
   "port" => 2525,
   "from" => array(
-      "address" => "gacgym@hotmail.fr",
-      "name" => "G.A.C"
+      "address" => "from@example.com",
+      "name" => "Example"
   ),
-  "username" => "eb73f21b95c899",
-  "password" => "70a6e5226e4acf",
+  "username" => "7e8f81ef05c224",
+  "password" => "f30836257b9753",
   "sendmail" => "/usr/sbin/sendmail -bs"
 ];

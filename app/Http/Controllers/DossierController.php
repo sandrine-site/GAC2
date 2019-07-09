@@ -51,25 +51,27 @@ class DossierController extends Controller
    *
    * @return \Illuminate\Http\Response
    */
-  public function update(Request $request)
-  {        if(isset($request->photo)){
-    $variable= $request->photo xor $request->photo ;
-    Adherent::where('id', $request->id)
-      ->update(['photo' =>$variable]);}
-    if(isset($request->autorisationsRendues)){
-      $variable= $request->autorisationsRendues xor $request->autorisationsRendues ;
-      Adherent::where('id', $request->id)
-        ->update(['autorisationsRendues' => $variable]);}
-    if( isset($request->CertifMedical)){
-      $variable= $request->CertifMedical xor $request->CertifMedical ;
-      Adherent::where('id', $request->id)
-        ->update(['CertifMedical' => $variable]);}
-    if(isset($request->RecuDemande)){
-      $variable= $request->RecuDemande xor $request->RecuDemande ;
+  public function update(Request $request){
 
-      Adherent::where('id', $request->id)
-        ->update(['RecuDemande' => $variable]);
+$adherent=Adherent::findOrFail($request->id);
+    if(isset($request->autorisationsRendues)){
+      $variable= $request->autorisationsRendues?1:0;
+      $adherent->autorisationsRendues=$variable;
     }
+    if(isset($request->photo)){
+      $variable= $request->photo?1:0;
+      $adherent->photo=$variable;
+    }
+    if( isset($request->CertifMedical)){
+      $variable= $request->CertifMedical?1:0;
+      $adherent->CertifMedical=$variable;
+    }
+
+    if( isset($request->RecuDemande)){
+      $variable= $request->RecuDemande?1:0;
+      $adherent->RecuDemande=$variable;
+    }
+    $adherent->save();
 
     return back();
   }
