@@ -299,8 +299,6 @@ public function createSMS(Request $request)
  $resteL2=count($liste2)%10;
  $divL3=(int)(count($liste3)/10);
  $resteL3=count($liste3)%10;
- dd(count($liste1),$divL1,$resteL1,count($liste2),$divL2,$resteL2,count($liste3),$divL3,$resteL3);
 
-
-return view("numeroSMS",compact('liste1','divL1','resteL1','liste2','divL2','resteL2','liste3',divL3,$resteL3)); }
+return view("numeroSMS",compact('liste1','divL1','resteL1','liste2','divL2','resteL2','liste3','divL3','resteL3')); }
 }
