@@ -8,6 +8,8 @@ use App\Autorisation;
 use App\Creneau;
 use App\Groupe;
 use App\Section;
+use App\Tarif;
+use App\MoyenPayement;
 use Illuminate\Http\Request;
 
 class AutorisationController extends Controller
@@ -42,8 +44,40 @@ class AutorisationController extends Controller
     $sections = Section::all();
     $creneaux = Creneau::orderBy('jour_id')
       ->get();
+    $tarifs=Tarif::all();
+       $annee=(date ('Y',strtotime( $adherent->dateNaissance)));
+       foreach ($tarifs->where('libele', 'Adhesion GAC') as $tarif) {
+         $tarifAdhesion = $tarif->prix;
+       }
+       if ($adherent->section_id==3){
+         $tarifmini=$tarifs->where('anneeMini','<',$annee);
 
-    return view('adherent.edit', compact('adherent', 'groupes', 'sections', 'creneaux'));
+         foreach ($tarifmini->where('anneeMax','>=',$annee) as $tarif) {
+           $tarifLicence = $tarif->prix;
+         }
+       }
+       else{
+         $tarifLicence="0";
+       }
+       if ($adherent->section_id == 1) {
+         foreach ($tarifs->where('section_id', 1) as $tarif) {
+           $tarifCours = $tarif->prix;
+         }
+       } else {
+         if ($tarifs->where('temps', $adherent->heureSemaine)!='[]'){
+           foreach ($tarifs->where('temps', $adherent->heureSemaine) as $tarif) {
+             $tarifCours = $tarif->prix;
+           }
+         }
+         else{
+           $tarifCours=0;
+         }}
+       $total=0;
+       foreach ($adherent->payements as $payement)
+       {$total=$total+$payement->montant; }
+       $adherent->total=$total;
+       $moyensPayements=MoyenPayement::all();
+    return view('adherent.edit', compact('adherent', 'groupes', 'sections', 'creneaux','tarifAdhesion','tarifCours','tarifLicence','moyensPayements'));
   }
 
   public function index()

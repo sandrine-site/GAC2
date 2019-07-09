@@ -162,19 +162,9 @@
                           @foreach($adherent->creneaux as $creneau)
                             <li><div class="row haut">
                                 Le: {{$creneau->jour->jour}} à {{$creneau->heure_debut}}h{{$creneau->min_debut}} pendant {{$creneau->duree}}&nbsp
-                                <a class="btn-outline-trash" href="../creneau/{{$creneau->id}}/{{$adherent->id}}"  role="button"  ><i class="fas fa-trash-alt"></i></a>
-                              </div> </li>
-                          @endforeach
+                                @endforeach
                         </ul>
                       @endisset
-                      Ajouter un créneau
-                      <select name="creneau" id="creneau" class="form-invisible" cols="10">
-                        <option value="">choisir dans la liste</option>
-                        @foreach($creneaux as $creneau)
-                          <option value="{!!$creneau->id!!}"> le {!!$creneau->jour->jour!!}
-                                                              à {{$creneau->heure_debut}}h{{$creneau->min_debut}}</option>
-                        @endforeach
-                      </select>
                     </div>
                     <div class="col-4">
                       Remarque

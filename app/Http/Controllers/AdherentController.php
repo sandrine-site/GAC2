@@ -132,28 +132,28 @@ class AdherentController extends Controller
     $tarifs=Tarif::all();
 
     if ($request['section_id']==3){
-    $tarif2s=$tarifs->whereBetween('id',[2, 4]);
+      $tarif2s=$tarifs->whereBetween('id',[2, 4]);
       $tarifmini=$tarif2s->where('anneeMini','<', $request['date_naissance_A']);
       foreach ($tarifmini->where('anneeMax','>=', $request['date_naissance_A']) as $tarif) {
         $tarifLicence = $tarif->prix;
 
         if ($tarifs->where('temps',$request["heureSemaine"])!='[]'){
-                foreach ($tarifs->where('temps', $request["heureSemaine"]) as $tarif) {
-                  $tarifCours = $tarif->prix;
-                }
-              }
-              else{
-                $tarifCours=0;
-              }
+          foreach ($tarifs->where('temps', $request["heureSemaine"]) as $tarif) {
+            $tarifCours = $tarif->prix;
+          }
+        }
+        else{
+          $tarifCours=0;
+        }
       }
     }
     elseif ($request['section_id'] == 1) {
-    $tarifLicence=0;
+      $tarifLicence=0;
       foreach ($tarifs->where('section_id', 1) as $tarif) {
         $tarifCours = $tarif->prix;
       }}
     else{
-          $tarifLicence=0;
+      $tarifLicence=0;
       if ($tarifs->where('temps',$request["heureSemaine"])!='[]'){
         foreach ($tarifs->where('temps', $request["heureSemaine"]) as $tarif) {
           $tarifCours = $tarif->prix;
@@ -164,7 +164,7 @@ class AdherentController extends Controller
       }
     }
 
-       /*Génération des PDF*/
+    /*Génération des PDF*/
 
     $adherentData=[
       "nom"=>strtoupper($request['nom']),
@@ -213,77 +213,77 @@ class AdherentController extends Controller
   }
 
   public function inscriptionPDF(Request $request) {
-  $adherent=Adherent::findOrFail($request->id);
+    $adherent=Adherent::findOrFail($request->id);
     /*Calcul du tarif*/
-     $tarifs=Tarif::all();
+    $tarifs=Tarif::all();
 
-     if ($adherent['section_id']==3){
+    if ($adherent['section_id']==3){
 
-     $tarif2s=$tarifs->whereBetween('id',[2, 4]);
-       $tarifmini=$tarif2s->where('anneeMini','<', $adherent['dateNaissance']);
-       foreach ($tarifmini->where('anneeMax','>=', $adherent['dateNaissance']) as $tarif) {
-         $tarifLicence = $tarif->prix;
+      $tarif2s=$tarifs->whereBetween('id',[2, 4]);
+      $tarifmini=$tarif2s->where('anneeMini','<', $adherent['dateNaissance']);
+      foreach ($tarifmini->where('anneeMax','>=', $adherent['dateNaissance']) as $tarif) {
+        $tarifLicence = $tarif->prix;
 
-         if ($tarifs->where('temps',$adherent["heureSemaine"])!='[]'){
-                 foreach ($tarifs->where('temps', $adherent["heureSemaine"]) as $tarif) {
-                   $tarifCours = $tarif->prix;
-                 }
-               }
-               else{
-                 $tarifCours=0;
-               }
-       }
-     }
-     elseif ($adherent['section_id'] == 1) {
-     $tarifLicence=0;
-       foreach ($tarifs->where('section_id', 1) as $tarif) {
-         $tarifCours = $tarif->prix;
-       }}
-     else{
-           $tarifLicence=0;
-       if ($tarifs->where('temps',$adherent["heureSemaine"])!='[]'){
-         foreach ($tarifs->where('temps', $adherent["heureSemaine"]) as $tarif) {
-           $tarifCours = $tarif->prix;
-         }
-       }
-       else{
-         $tarifCours=0;
-       }
-     }
+        if ($tarifs->where('temps',$adherent["heureSemaine"])!='[]'){
+          foreach ($tarifs->where('temps', $adherent["heureSemaine"]) as $tarif) {
+            $tarifCours = $tarif->prix;
+          }
+        }
+        else{
+          $tarifCours=0;
+        }
+      }
+    }
+    elseif ($adherent['section_id'] == 1) {
+      $tarifLicence=0;
+      foreach ($tarifs->where('section_id', 1) as $tarif) {
+        $tarifCours = $tarif->prix;
+      }}
+    else{
+      $tarifLicence=0;
+      if ($tarifs->where('temps',$adherent["heureSemaine"])!='[]'){
+        foreach ($tarifs->where('temps', $adherent["heureSemaine"]) as $tarif) {
+          $tarifCours = $tarif->prix;
+        }
+      }
+      else{
+        $tarifCours=0;
+      }
+    }
 
     $adherentData=[
-          "nom"=>$adherent['nom'],
-          "prenom"=>$adherent['prenom'],
-          "dateNaissance"=> $adherent['date_naissance'],
-          "lieuNaissance"=> $adherent['lieuNaissance'],
-          "sexe"=> $adherent['sexe'],
-          "telephone_adherent" => $adherent['telephone_adherent'],
-          "telephone_Resp1" =>  $adherent["telephone_Resp1"],
-          "telephone_Resp2" =>  $adherent["telephone_Resp2"],
-          "adresse" => $adherent["adresse"],
+      "nom"=>$adherent['nom'],
+      "prenom"=>$adherent['prenom'],
+      "dateNaissance"=> $adherent['date_naissance'],
+      "lieuNaissance"=> $adherent['lieuNaissance'],
+      "sexe"=> $adherent['sexe'],
+      "telephone_adherent" => $adherent['telephone_adherent'],
+      "telephone_Resp1" =>  $adherent["telephone_Resp1"],
+      "telephone_Resp2" =>  $adherent["telephone_Resp2"],
+      "adresse" => $adherent["adresse"],
       "cp" => $adherent[ "cp"],
-           "ville" => $adherent["ville"],
-          "email1" => $adherent["email1"],
-          "email2" => $adherent["email2"],
-          "section" =>Section::find ($adherent["section_id"]),
-          "entrainement" => $adherent["entrainement"],
-          "heureSemaine" => $adherent["heureSemaine"],
-          "nomUrgence" => $adherent["nomUrgence"],
-          "telUrgence" => $adherent["telUrgence"],
-          "medicales" =>$adherent["medicales"],
-          "urgence"=>$adherent['urgence'],
-          "deplacements"=>$adherent['deplacements'],
-          "media"=>$adherent['media'],
-          "sortie"=>$adherent['sortie'],
-          "age" => getdate ()[ 'year' ] - date ('Y',strtotime( $adherent->dateNaissance)),
+      "ville" => $adherent["ville"],
+      "email1" => $adherent["email1"],
+      "email2" => $adherent["email2"],
+      "section" =>Section::find ($adherent["section_id"]),
+      "entrainement" => $adherent["entrainement"],
+      "heureSemaine" => $adherent["heureSemaine"],
+      "nomUrgence" => $adherent["nomUrgence"],
+      "telUrgence" => $adherent["telUrgence"],
+      "medicales" =>$adherent["medicales"],
+      "urgence"=>$adherent['urgence'],
+      "deplacements"=>$adherent['deplacements'],
+      "media"=>$adherent['media'],
+      "sortie"=>$adherent['sortie'],
+      "age" => getdate ()[ 'year' ] - date ('Y',strtotime( $adherent->dateNaissance)),
       "tarifLicence"=>$tarifLicence,
-           "tarifAdhesion"=>$tarifs->find(1)->prix,
-           "tarifCours"=>$tarifCours,
-        ];
-   $pdf = PDF::loadView('pdf.Autorisations',compact('adherentData'));
-   $name = $adherent['nom']."pdf";
+      "tarifAdhesion"=>$tarifs->find(1)->prix,
+      "tarifCours"=>$tarifCours,
+    ];
+    $pdf = PDF::loadView('pdf.Autorisations',compact('adherentData'));
+    $name = $adherent['nom']."pdf";
     return $pdf->download($name);
- }
+  }
 
   /**
    * Show the form for editing the specified resource.
@@ -294,7 +294,7 @@ class AdherentController extends Controller
   public function edit(Request $request)
   {
     if(isset($request->id)){$id=$request->id;
-       }
+    }
     else{$id=session()->get('id');}
 
     $adherent = Adherent::find($id);
@@ -340,6 +340,7 @@ class AdherentController extends Controller
     }
     return view('adherent.edit', compact('adherent', 'groupes', 'sections', 'creneaux','tarifAdhesion','tarifLicence','tarifCours','moyensPayements'));
   }
+
 
   /**
    * Update the specified resource in storage.

@@ -87,10 +87,9 @@ public function update($id,Request $request)
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($creneau_id)
+    public function destroy($creneau_id,$adherent_id)
     {
 
-        return redirect('/creneau/');
     }
 
 }
