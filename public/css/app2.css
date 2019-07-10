@@ -9907,6 +9907,16 @@ div.choix{
 width: 20%;}
 
 
+html body main.py-4 div.container div.row.justify-content-center div.col-md-12 div.card.liste div.card-body.section2 div.tab-content table.table-responsive > td:nth-child(1)
+ {
+  width: 20%;
+}
+
+html body main.py-4 div.container div.row.justify-content-center div.col-md-12 div.card.liste div.card-body.section2 div.tab-content table.table-responsive > td:nth-child(2){
+  width: 20%;
+}
+
+
 /* ==------------------ Formulaires -------------------------*/
 .form-control {
   display: block;

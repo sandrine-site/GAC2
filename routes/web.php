@@ -46,7 +46,7 @@ Route::get('/GA', function () {
   return view('front.GA');
 })->name('GA');
 Route::get('/TarifsAdulte', function () {
-  return asset('images/Gym_adulte_V1_2018-2019.pdf');
+  return asset('public/images/Gym_adulte_V1_2018-2019.pdf');
 })->name('adulteTarif');
 Route::get('/contactForm', function () {
   return view('front.contactForm');
@@ -152,7 +152,7 @@ Route::delete('/groupe/{groupe}','GroupeController@destroy')->name('groupe.destr
 /*SectionController*/
 Route::get('/section','SectionController@index')->name('section.index');
 Route::post('/section','SectionController@store')->name('section.store');
-Route::delete('/section/{section}','sectionController@destroy')->name('section.destroy');
+Route::delete('/section/{section}','SectionController@destroy')->name('section.destroy');
 
 /*UserController*/
 Route::get('/user','UserController@index')->name('user.index');

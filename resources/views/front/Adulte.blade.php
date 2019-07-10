@@ -37,7 +37,7 @@
             </ul>
             Lieu : Gymnase Joêl ABATI, rue du Paraguay, CLAPIERS
             <br/>
-            <a href="{{asset('images/Gym_adulte_V1_2018-2019.pdf')}}"><button class="btn-outline-Adulte" >Renseignements-Inscription</button></a>
+            <a href="{{asset('public/images/Gym_adulte_V1_2018-2019.pdf')}}"><button class="btn-outline-Adulte" >Renseignements-Inscription</button></a>
           </div>
         </div>
         <div class="row justify-content-center">

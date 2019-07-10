@@ -62,25 +62,24 @@ class AdherentRepartitionController extends Controller
     return view('adherent.editRepartition',compact('json','jsonAdherents','jsonSections','jsonGroupes'));
   }
 
-  public function updateRepartition(Request $request)
-  {
+  public function updateRepartition(Request $request){
     if(isset($request->groupe_id)){
       if($request->groupe_id===false||$request->groupe_id==="false"||$request->groupe_id==="0"||$request->groupe_id===0){
-        Adherent::where('id', $request->id)
-          ->update(['groupe_id' => false]);}
+       $reponse=false;}
       else
       {
-        Adherent::where('id', $request->id)
-          ->update(['groupe_id' =>$request->groupe_id]);
+        $reponse=$request->groupe_id;
       }
-    }
+        Adherent::where('id', $request->id)
+          ->update(['groupe_id' =>$reponse]);
+      }
+
     elseif(isset($request->creneau_id)){
       if($request->value===false||$request->value==="false"||$request->value==="0"||$request->value===0){
         $adherent=Adherent::find($request->adherent_id);
         $adherent->creneaux()->detach($request->creneau_id);}
       else{
-        $adherent=Adherent::find($request->adherent_id);
-        $adherent->creneaux()->attach($request->creneau_id);
+!+98    $adherent=Adherent::find($request->adherent_id);
       }
     }
     return;

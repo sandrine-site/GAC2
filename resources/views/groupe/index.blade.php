@@ -32,7 +32,7 @@
                 <td>{{$groupe->section->nom}}</td>
                 <td>{!! link_to_route('groupe.edit', 'Modifier', $groupe->id, ['class' => 'btn btn-warning']) !!}</td>
                 <td> {!! Form::open(['method' => 'DELETE', 'route' => ['groupe.destroy', $groupe->id]]) !!}
-                  {!! Form::submit('Supprimer', ['class' => 'btn btn-danger', 'onclick' => 'return confirm(\'Vraiment supprimer ce creneau ?\')']) !!}
+                  {!! Form::submit('Supprimer', ['class' => 'btn btn-danger', 'onclick' => 'return confirm(\'Vraiment supprimer ce groupe ?\')']) !!}
                   {!! Form::close() !!}
                 </td>
               </tr>
